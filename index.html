@@ -251,15 +251,21 @@
 
     /* badge */
     .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .35rem .9rem;
+      display: inline-flex; align-items: center; gap: .62rem;
+      padding: .58rem 1.45rem;
       border-radius: var(--r-pill);
-      border: 1px solid rgba(61,127,97,.22);
-      background: rgba(61,127,97,.07);
-      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--accent); font-weight: 500;
+      border: 1.5px solid rgba(61,127,97,.42);
+      background: rgba(61,127,97,.1);
+      font-size: .76rem; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
       opacity: 0; /* GSAP reveals */
-      align-self: flex-start;
+      align-self: center;
+      box-shadow: 0 0 0 5px rgba(61,127,97,.06), 0 4px 22px rgba(61,127,97,.14);
+      transition: box-shadow .35s, border-color .35s;
+    }
+    .hero-badge:hover {
+      box-shadow: 0 0 0 7px rgba(61,127,97,.08), 0 6px 28px rgba(61,127,97,.2);
+      border-color: rgba(61,127,97,.62);
     }
     .badge-dot {
       width: 7px; height: 7px; border-radius: 50%;
