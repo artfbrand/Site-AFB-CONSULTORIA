@@ -312,6 +312,20 @@
       line-height: 1.75; color: var(--sage);
       max-width: 520px; opacity: 0;
     }
+    .hero-subtitle-highlight {
+      font-weight: 700;
+      color: var(--accent);
+      position: relative;
+      display: inline;
+    }
+    .hero-subtitle-highlight::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -1px;
+      height: 2px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, var(--accent), rgba(61,127,97,.3));
+    }
 
     /* CTAs */
     .hero-ctas {
@@ -958,7 +972,7 @@
 
           <!-- subtitle -->
           <p class="hero-subtitle" id="hero-subtitle">
-            Não vendo uma solução pronta. Faço uma varredura técnica completa da sua instalação — fatura, modalidade de contratação, qualidade de energia e crédito de ICMS — e só então recomendo o caminho certo. A análise é o produto. A economia é a consequência.
+            Não vendo uma solução pronta. Faço uma varredura técnica completa da sua instalação para <span class="hero-subtitle-highlight">redução dos custos com energia</span> — fatura, modalidade de contratação, qualidade de energia e crédito de ICMS — e só então recomendo o caminho certo. A análise é o produto. A economia é a consequência.
           </p>
 
           <!-- CTAs -->
