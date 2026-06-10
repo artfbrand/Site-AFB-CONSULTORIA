@@ -1694,9 +1694,18 @@
 
         <!-- REFORÇO strip -->
         <div class="metodo-reforco" id="metodo-reforco" aria-live="polite">
-          <div class="metodo-reforco-rule" aria-hidden="true"></div>
-          <p class="metodo-reforco-text">A análise técnica vem antes da recomendação. <em>Sempre.</em></p>
-          <div class="metodo-reforco-rule metodo-reforco-rule-r" aria-hidden="true"></div>
+          <!-- mesh overlay -->
+          <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;border-radius:inherit;"></div>
+          <!-- scan line -->
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1s;"></div>
+          <!-- orb esquerdo -->
+          <div aria-hidden="true" style="position:absolute;width:260px;height:260px;top:-60%;left:-4%;background:radial-gradient(circle,rgba(61,127,97,.18) 0%,transparent 70%);filter:blur(26px);pointer-events:none;animation:icmsGlow 4s ease-in-out infinite;border-radius:50%;"></div>
+          <!-- orb direito -->
+          <div aria-hidden="true" style="position:absolute;width:180px;height:180px;top:-40%;right:-2%;background:radial-gradient(circle,rgba(246,144,102,.12) 0%,transparent 65%);filter:blur(20px);pointer-events:none;animation:icmsGlow 5.5s ease-in-out infinite 1.4s;border-radius:50%;"></div>
+          <!-- conteúdo -->
+          <div class="metodo-reforco-rule" aria-hidden="true" style="position:relative;z-index:2;"></div>
+          <p class="metodo-reforco-text" style="position:relative;z-index:2;">A análise técnica vem antes da recomendação. <em>Sempre.</em></p>
+          <div class="metodo-reforco-rule metodo-reforco-rule-r" aria-hidden="true" style="position:relative;z-index:2;"></div>
         </div>
 
       </div><!-- /metodo-inner -->
