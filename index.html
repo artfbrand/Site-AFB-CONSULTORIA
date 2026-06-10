@@ -1397,22 +1397,21 @@
           grid-template-columns: repeat(12, 1fr);
           grid-auto-rows: auto;
         }
-        .mc-intro { grid-column: span 5; grid-row: span 2; }
-        .mc-f1    { grid-column: span 4; }
-        .mc-f2    { grid-column: span 3; }
-        .mc-f3    { grid-column: span 4; }
-        .mc-f4    { grid-column: span 3; }
+        .mc-f1 { grid-column: span 5; }
+        .mc-f2 { grid-column: span 7; }
+        .mc-f3 { grid-column: span 7; }
+        .mc-f4 { grid-column: span 5; }
       }
 
       /* shared card */
       .mc {
         border-radius: 16px;
-        padding: 2rem;
+        padding: 2.25rem;
         display: flex;
         flex-direction: column;
         position: relative;
         overflow: hidden;
-        min-height: 220px;
+        min-height: 260px;
         opacity: 0;
         transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s;
       }
@@ -1591,13 +1590,12 @@
       /* responsive */
       @media (max-width: 1024px) {
         .metodo { padding: 5.5rem 0 5rem; }
-        .mc-intro { min-height: 360px; }
+        .mc { min-height: 240px; }
       }
       @media (max-width: 767px) {
         .metodo { padding: 5rem 0 4.5rem; }
         .metodo-inner { padding: 0 1.5rem; }
-        .mc-intro { min-height: 300px; }
-        .mc { min-height: 180px; }
+        .mc { min-height: 200px; }
         .metodo-reforco { padding: 1.75rem 1.5rem; flex-wrap: wrap; gap: .75rem; }
         .metodo-reforco-rule, .metodo-reforco-rule-r { display: none; }
       }
@@ -1626,63 +1624,64 @@
         <!-- bento grid -->
         <div class="metodo-grid">
 
-          <!-- card INTRO — dark, col-span-5 row-span-2 -->
-          <article class="mc mc-intro mc-shimmer" data-mr="0" aria-labelledby="mc-intro-h3">
-            <!-- bg orbs -->
-            <div class="mc-orb" aria-hidden="true" style="width:280px;height:280px;top:-10%;right:-14%;background:radial-gradient(circle,rgba(61,127,97,.16) 0%,transparent 70%);filter:blur(26px);animation:icmsGlow 4s ease-in-out infinite;"></div>
-            <div class="mc-orb" aria-hidden="true" style="width:180px;height:180px;bottom:-8%;left:-6%;background:radial-gradient(circle,rgba(246,144,102,.11) 0%,transparent 65%);filter:blur(20px);animation:icmsGlow 5.5s ease-in-out infinite 1.4s;"></div>
-            <!-- mesh overlay -->
-            <div class="mc-inner-mesh" aria-hidden="true"></div>
-            <!-- scan line -->
-            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.4),transparent);z-index:3;pointer-events:none;animation:icmsScan 6s ease-in-out infinite;"></div>
-            <!-- ghost number -->
-            <span class="mc-ghost-num" aria-hidden="true">04</span>
-            <!-- content -->
-            <div style="position:relative;z-index:4;margin-top:auto;">
-              <span class="mc-eyebrow mc-eyebrow-dark">O Método · AFB Consultoria Energética</span>
-              <h3 class="mc-h3 mc-h3-intro" id="mc-intro-h3">Toda recomendação nasce de quatro frentes.</h3>
-              <p class="mc-p mc-p-intro">Não existe uma resposta única para economizar energia. Existe a análise técnica que descobre qual é a resposta certa para a SUA instalação.</p>
-            </div>
-          </article>
-
-          <!-- FRENTE 01 — sage — col-span-4 -->
-          <article class="mc mc-sage mc-f1" data-mr="1" aria-labelledby="mc-f1-h3">
-            <span class="mc-num-accent mc-num-sage" aria-hidden="true">01</span>
-            <div>
-              <span class="mc-eyebrow mc-eyebrow-sage">Frente 01 · A Conta</span>
-              <h3 class="mc-h3 mc-h3-sage" id="mc-f1-h3">A Conta</h3>
+          <!-- FRENTE 01 — sage — col-span-5 -->
+          <article class="mc mc-sage mc-f1" data-mr="0" aria-labelledby="mc-f1-h3">
+            <!-- ghost number grande -->
+            <span aria-hidden="true" style="font-family:'Playfair Display',Georgia,serif;font-size:5.5rem;font-weight:700;color:rgba(13,60,31,.06);position:absolute;top:.5rem;right:1.2rem;line-height:1;letter-spacing:-.04em;pointer-events:none;">01</span>
+            <!-- accent bar top -->
+            <div aria-hidden="true" style="width:36px;height:3px;border-radius:9999px;background:linear-gradient(90deg,#3D7F61,rgba(61,127,97,.3));margin-bottom:1.5rem;flex-shrink:0;"></div>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;flex:1;">
+              <span class="mc-eyebrow mc-eyebrow-sage" style="margin-bottom:.5rem;">Frente 01 · A Conta</span>
+              <h3 class="mc-h3 mc-h3-sage" id="mc-f1-h3" style="font-size:clamp(1.1rem,1.6vw,1.35rem);margin-bottom:.75rem;">A Conta</h3>
               <p class="mc-p mc-p-sage">Leitura técnica criteriosa da fatura: enquadramento, modalidade tarifária, cobranças indevidas e perfil real de consumo.</p>
             </div>
           </article>
 
-          <!-- FRENTE 02 — medium — col-span-3 -->
-          <article class="mc mc-medium mc-shimmer mc-f2" data-mr="2" aria-labelledby="mc-f2-h3">
-            <span class="mc-num-accent mc-num-medium" aria-hidden="true">02</span>
-            <div>
-              <span class="mc-eyebrow mc-eyebrow-medium">Frente 02 · A Contratação</span>
-              <h3 class="mc-h3 mc-h3-medium" id="mc-f2-h3">A Contratação</h3>
+          <!-- FRENTE 02 — medium — col-span-7 -->
+          <article class="mc mc-medium mc-shimmer mc-f2" data-mr="1" aria-labelledby="mc-f2-h3">
+            <!-- orbs -->
+            <div class="mc-orb" aria-hidden="true" style="width:240px;height:240px;top:-15%;right:-8%;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 70%);filter:blur(24px);animation:icmsGlow 4.2s ease-in-out infinite;"></div>
+            <div class="mc-orb" aria-hidden="true" style="width:160px;height:160px;bottom:-10%;left:-4%;background:radial-gradient(circle,rgba(13,60,31,.2) 0%,transparent 65%);filter:blur(18px);animation:icmsGlow 5.8s ease-in-out infinite 1s;"></div>
+            <!-- ghost number -->
+            <span aria-hidden="true" style="font-family:'Playfair Display',Georgia,serif;font-size:5.5rem;font-weight:700;color:rgba(255,255,255,.1);position:absolute;top:.5rem;right:1.2rem;line-height:1;letter-spacing:-.04em;pointer-events:none;">02</span>
+            <!-- accent bar top -->
+            <div aria-hidden="true" style="width:36px;height:3px;border-radius:9999px;background:rgba(255,255,255,.35);margin-bottom:1.5rem;flex-shrink:0;position:relative;z-index:2;"></div>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;flex:1;">
+              <span class="mc-eyebrow mc-eyebrow-medium" style="margin-bottom:.5rem;">Frente 02 · A Contratação</span>
+              <h3 class="mc-h3 mc-h3-medium" id="mc-f2-h3" style="font-size:clamp(1.1rem,1.6vw,1.35rem);margin-bottom:.75rem;">A Contratação</h3>
               <p class="mc-p mc-p-medium">Mercado Livre de Energia, GD Livre e Energia por Assinatura são comparados entre si. A melhor opção é definida pelo seu perfil de consumo — nunca por conveniência comercial.</p>
             </div>
           </article>
 
-          <!-- FRENTE 03 — dark — col-span-4 -->
-          <article class="mc mc-dark mc-shimmer mc-f3" data-mr="3" aria-labelledby="mc-f3-h3">
+          <!-- FRENTE 03 — dark — col-span-7 -->
+          <article class="mc mc-dark mc-shimmer mc-f3" data-mr="2" aria-labelledby="mc-f3-h3">
+            <!-- mesh overlay -->
             <div class="mc-inner-mesh" aria-hidden="true"></div>
-            <div class="mc-orb" aria-hidden="true" style="width:140px;height:140px;top:-14%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.18) 0%,transparent 70%);filter:blur(16px);animation:icmsGlow 4.5s ease-in-out infinite .8s;"></div>
-            <span class="mc-num-accent mc-num-dark" aria-hidden="true" style="position:relative;z-index:2;">03</span>
-            <div style="position:relative;z-index:2;">
-              <span class="mc-eyebrow mc-eyebrow-dark">Frente 03 · A Causa Raiz</span>
-              <h3 class="mc-h3 mc-h3-dark" id="mc-f3-h3">A Causa Raiz</h3>
+            <!-- scan line -->
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite;"></div>
+            <!-- orbs -->
+            <div class="mc-orb" aria-hidden="true" style="width:220px;height:220px;top:-12%;right:-6%;background:radial-gradient(circle,rgba(61,127,97,.2) 0%,transparent 70%);filter:blur(22px);animation:icmsGlow 4s ease-in-out infinite .5s;"></div>
+            <div class="mc-orb" aria-hidden="true" style="width:140px;height:140px;bottom:-8%;left:-4%;background:radial-gradient(circle,rgba(246,144,102,.12) 0%,transparent 65%);filter:blur(16px);animation:icmsGlow 5.5s ease-in-out infinite 1.6s;"></div>
+            <!-- ghost number -->
+            <span aria-hidden="true" style="font-family:'Playfair Display',Georgia,serif;font-size:5.5rem;font-weight:700;color:rgba(255,255,255,.06);position:absolute;top:.5rem;right:1.2rem;line-height:1;letter-spacing:-.04em;pointer-events:none;z-index:2;">03</span>
+            <!-- accent bar top -->
+            <div aria-hidden="true" style="width:36px;height:3px;border-radius:9999px;background:linear-gradient(90deg,#3D7F61,rgba(61,127,97,.3));margin-bottom:1.5rem;flex-shrink:0;position:relative;z-index:4;"></div>
+            <div style="position:relative;z-index:4;display:flex;flex-direction:column;justify-content:flex-end;flex:1;">
+              <span class="mc-eyebrow mc-eyebrow-dark" style="margin-bottom:.5rem;">Frente 03 · A Causa Raiz</span>
+              <h3 class="mc-h3 mc-h3-dark" id="mc-f3-h3" style="font-size:clamp(1.1rem,1.6vw,1.35rem);margin-bottom:.75rem;">A Causa Raiz</h3>
               <p class="mc-p mc-p-dark">Estudos de Qualidade de Energia (QEE) atacam na origem as perdas, os danos a equipamentos e os custos ocultos que a fatura não mostra.</p>
             </div>
           </article>
 
-          <!-- FRENTE 04 — sage — col-span-3 -->
-          <article class="mc mc-sage mc-f4" data-mr="4" aria-labelledby="mc-f4-h3">
-            <span class="mc-num-accent mc-num-sage" aria-hidden="true">04</span>
-            <div>
-              <span class="mc-eyebrow mc-eyebrow-sage">Frente 04 · O Capital</span>
-              <h3 class="mc-h3 mc-h3-sage" id="mc-f4-h3">O Capital</h3>
+          <!-- FRENTE 04 — sage — col-span-5 -->
+          <article class="mc mc-sage mc-f4" data-mr="3" aria-labelledby="mc-f4-h3">
+            <!-- ghost number -->
+            <span aria-hidden="true" style="font-family:'Playfair Display',Georgia,serif;font-size:5.5rem;font-weight:700;color:rgba(13,60,31,.06);position:absolute;top:.5rem;right:1.2rem;line-height:1;letter-spacing:-.04em;pointer-events:none;">04</span>
+            <!-- accent bar top -->
+            <div aria-hidden="true" style="width:36px;height:3px;border-radius:9999px;background:linear-gradient(90deg,#F69066,rgba(246,144,102,.3));margin-bottom:1.5rem;flex-shrink:0;"></div>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;flex:1;">
+              <span class="mc-eyebrow mc-eyebrow-sage" style="margin-bottom:.5rem;">Frente 04 · O Capital</span>
+              <h3 class="mc-h3 mc-h3-sage" id="mc-f4-h3" style="font-size:clamp(1.1rem,1.6vw,1.35rem);margin-bottom:.75rem;">O Capital</h3>
               <p class="mc-p mc-p-sage">Laudo de Crédito de ICMS para identificar e recuperar o que a empresa tem direito de reaver.</p>
             </div>
           </article>
