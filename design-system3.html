@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sondero — Sistema Operacional de IA</title>
+<!-- fonts: Playfair Display (headings), Inter (body), Geist (utility) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Lucide icons runtime -->
+<script src="https://unpkg.com/lucide@0.260.0/dist/lucide.min.js"></script>
+<!-- css: hero intro animations, reveal-up scroll reveals, all keyframes -->
+<link rel="stylesheet" href="assets/css/combined-animations.css"/>
+<!-- css: glow system, hover effects, card-image-hover, shimmer, particles -->
+<link rel="stylesheet" href="assets/css/effects.css"/>
+<!-- css: DS3 light-mode palette — blink override, sage ambient, light-card, stat-pill, mesh-bg -->
+<link rel="stylesheet" href="assets/css/ds3-light.css"/>
+<!-- css: body Inter, .font-geist, .font-display -->
+<link rel="stylesheet" href="assets/css/typography.css"/>
+</head>
+<body class="antialiased min-h-screen selection:bg-[#D4E8DC] text-[#0D3C1F] relative overflow-x-hidden" style="background:#F7FAF7;cursor:none;">
+
+<!-- ambient-lighting (subtle sage orbs, light mode) -->
+<div class="ambient-light-sage"></div>
+<div class="ambient-light-sage-2"></div>
+<div class="ambient-light-sage-3"></div>
+
+<!-- custom-cursor: dark green ring + dot, light-mode visible -->
+<div class="pointer-events-none fixed top-0 left-0 z-50 hidden md:block" id="cursor-ring" style="width:28px;height:28px;border:1.5px solid rgba(61,127,97,.68);border-radius:9999px;transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 2px rgba(13,60,31,.07),0 0 22px rgba(61,127,97,.12);transition:width .2s,height .2s,border-color .2s,box-shadow .2s,transform .06s,opacity .2s;backdrop-filter:blur(1px);opacity:.82;"></div>
+<div class="pointer-events-none fixed top-0 left-0 z-50 hidden md:block" id="cursor-dot" style="width:5px;height:5px;background:rgba(13,60,31,.85);border-radius:9999px;transform:translate(-50%,-50%);transition:transform .06s,opacity .2s;box-shadow:rgba(61,127,97,.35) 0 0 7px;opacity:.9;"></div>
+
+<!-- header: sticky glassmorphism light -->
+<header class="w-full sticky top-0 z-50 header-glass-light animate-header-intro">
+<div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between py-5">
+<a class="flex items-center gap-2 select-none logo-hover cursor-glow" href="#">
+<span class="text-xl font-semibold tracking-tight gradient-text-green" style="font-family:'Playfair Display',serif;">Sondero</span>
+<span class="text-xs font-medium text-[#3D7F61] opacity-60 font-geist tracking-widest uppercase">IA</span>
+</a>
+<nav class="hidden gap-x-5 md:flex">
+<a class="text-sm font-normal text-[#4A6B5A] hover:text-[#0D3C1F] transition-colors interactive-text-light cursor-glow" href="#">Produto</a>
+<a class="text-sm font-normal text-[#4A6B5A] hover:text-[#0D3C1F] transition-colors interactive-text-light cursor-glow" href="#">Segurança</a>
+<a class="text-sm font-normal text-[#4A6B5A] hover:text-[#0D3C1F] transition-colors interactive-text-light cursor-glow" href="#">Preços</a>
+<a class="text-sm font-normal text-[#4A6B5A] hover:text-[#0D3C1F] transition-colors interactive-text-light cursor-glow" href="#">Documentação</a>
+<a class="text-sm font-normal text-[#4A6B5A] hover:text-[#0D3C1F] transition-colors interactive-text-light cursor-glow" href="#">Suporte</a>
+</nav>
+<div class="flex items-center gap-5">
+<a class="text-xs tracking-widest font-medium text-[#4A6B5A] hover:text-[#0D3C1F] uppercase transition-colors hidden sm:block cursor-glow interactive-text-light" href="#">Entrar</a>
+<a class="inline-flex items-center justify-center text-white px-5 py-2.5 rounded-lg text-xs font-medium tracking-[0.15em] uppercase light-btn-hover cursor-glow gap-2" href="#" style="background:#0D3C1F;box-shadow:0 4px 16px rgba(13,60,31,.2);">
+Iniciar Teste Grátis
+<i data-lucide="arrow-right" class="w-3 h-3"></i>
+</a>
+</div>
+</div>
+</header>
+
+<!-- hero: two-column light mode hero with floating composition -->
+<section class="w-full relative overflow-hidden" style="background:#F7FAF7;min-height:calc(100vh - 68px);">
+<!-- animated mesh grid -->
+<div class="absolute inset-0 mesh-bg-light pointer-events-none"></div>
+<!-- scan line -->
+<div class="scan-line-light"></div>
+<!-- rising particles -->
+<div class="particle-light" style="width:4px;height:4px;left:8%;bottom:18%;animation-duration:9s;animation-delay:0s;"></div>
+<div class="particle-light" style="width:3px;height:3px;left:18%;bottom:12%;animation-duration:12s;animation-delay:2s;"></div>
+<div class="particle-light" style="width:5px;height:5px;left:62%;bottom:8%;animation-duration:10s;animation-delay:4s;"></div>
+<div class="particle-light" style="width:3px;height:3px;left:75%;bottom:22%;animation-duration:14s;animation-delay:1s;"></div>
+<div class="particle-light" style="width:4px;height:4px;left:42%;bottom:4%;animation-duration:11s;animation-delay:3s;"></div>
+<div class="particle-light" style="width:2px;height:2px;left:86%;bottom:28%;animation-duration:8s;animation-delay:5s;"></div>
+<div class="particle-light" style="width:3px;height:3px;left:30%;bottom:6%;animation-duration:13s;animation-delay:1.5s;"></div>
+<div class="particle-light" style="width:4px;height:4px;left:55%;bottom:16%;animation-duration:7.5s;animation-delay:2.5s;"></div>
+<!-- radial accents -->
+<div class="absolute top-0 right-0 w-[700px] h-[700px] pointer-events-none" style="background:radial-gradient(circle at 75% 15%, rgba(61,127,97,.055) 0%, transparent 55%);"></div>
+<div class="absolute bottom-0 left-0 w-[500px] h-[500px] pointer-events-none" style="background:radial-gradient(circle at 20% 90%, rgba(20,184,166,.035) 0%, transparent 60%);"></div>
+<!-- large decorative rings -->
+<div class="hero-ring" style="width:700px;height:700px;top:50%;left:58%;transform:translate(-50%,-50%);opacity:.5;"></div>
+<div class="hero-ring" style="width:520px;height:520px;top:50%;left:58%;transform:translate(-50%,-50%);opacity:.7;border-color:rgba(61,127,97,.05);"></div>
+
+<div class="max-w-7xl mx-auto px-6 md:px-12 w-full py-20 md:py-28 relative z-10 flex flex-col md:flex-row items-center gap-16 md:gap-8">
+
+<!-- left: headline + cta -->
+<div class="flex flex-col items-start w-full md:w-[52%]">
+<!-- section badge -->
+<div class="section-badge-light animate-fade-in delay-100 light-tag mb-8 cursor-glow">
+<span style="width:6px;height:6px;background:#3D7F61;border-radius:50%;display:inline-block;animation:pulse 2.2s ease-in-out infinite;flex-shrink:0;"></span>
+Sistema Operacional de IA
+</div>
+<!-- headline -->
+<h1 class="leading-[1.07] md:text-[66px] text-[42px] font-semibold tracking-tighter animate-title-intro" style="font-family:'Playfair Display',serif;">
+<span class="gradient-text-green block">Sistemas de IA que</span>
+<span class="gradient-text-green block">tornam suas melhores</span>
+<span class="block text-[#0D3C1F]">pessoas&nbsp;<span class="inline-block border-r-[3px] border-[#3D7F61] pr-1 animate-blink" id="word-carousel" style="color:#3D7F61;"></span></span>
+</h1>
+<!-- subtitle -->
+<p class="md:text-xl leading-relaxed text-[1.05rem] font-normal text-[#4A6B5A] max-w-xl mt-8 animate-subtitle-intro font-geist">
+Estamos construindo um sistema operacional de IA para empresas que querem mais receita em menos tempo.
+</p>
+<!-- cta buttons -->
+<div class="mt-10 flex flex-wrap items-center gap-4 animate-btn-intro">
+<a class="inline-flex items-center justify-center uppercase transition-all light-btn-hover text-xs font-medium text-white tracking-[0.15em] rounded-lg px-7 py-3.5 cursor-glow gap-2 shimmer-light" href="#" style="background:#0D3C1F;box-shadow:0 4px 22px rgba(13,60,31,.2);">
+Veja em ação
+<i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+</a>
+<a class="inline-flex items-center justify-center uppercase transition-all light-glow-border text-xs font-medium text-[#3D7F61] tracking-[0.15em] rounded-lg px-7 py-3.5 cursor-glow gap-2 hover-lift" href="#" style="background:rgba(255,255,255,.8);">
+Solicitar Demo
+<i data-lucide="play-circle" class="w-3.5 h-3.5"></i>
+</a>
+</div>
+<!-- trust row -->
+<div class="mt-12 flex flex-wrap items-center gap-6 animate-stats-intro">
+<div class="flex items-center gap-2.5">
+<div class="flex -space-x-1.5">
+<div class="w-8 h-8 rounded-full border-2 border-white" style="background:linear-gradient(135deg,#3D7F61,#0D3C1F);"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white" style="background:linear-gradient(135deg,#5BA87A,#3D7F61);"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white" style="background:linear-gradient(135deg,#14b8a6,#3D7F61);"></div>
+</div>
+<span class="text-xs text-[#4A6B5A] font-geist">+200 empresas ativas</span>
+</div>
+<div class="w-px h-5" style="background:rgba(61,127,97,.2);"></div>
+<div class="flex items-center gap-1.5">
+<div class="flex gap-0.5">
+<i data-lucide="star" class="w-3.5 h-3.5 text-[#F69066]" style="fill:#F69066;"></i>
+<i data-lucide="star" class="w-3.5 h-3.5 text-[#F69066]" style="fill:#F69066;"></i>
+<i data-lucide="star" class="w-3.5 h-3.5 text-[#F69066]" style="fill:#F69066;"></i>
+<i data-lucide="star" class="w-3.5 h-3.5 text-[#F69066]" style="fill:#F69066;"></i>
+<i data-lucide="star" class="w-3.5 h-3.5 text-[#F69066]" style="fill:#F69066;"></i>
+</div>
+<span class="text-xs text-[#4A6B5A] font-geist">4.9 média</span>
+</div>
+<div class="w-px h-5" style="background:rgba(61,127,97,.2);"></div>
+<div class="flex items-center gap-1.5 cursor-glow light-tag section-badge-light">
+<i data-lucide="leaf" class="w-3 h-3"></i>
+CO₂ Zero
+</div>
+</div>
+</div>
+
+<!-- right: image + floating cards composition -->
+<div class="w-full md:w-[48%] relative flex items-center justify-center min-h-[500px] md:min-h-[580px] animate-scale-in delay-300">
+
+<!-- decorative rings (behind image) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full pointer-events-none" style="border:1px solid rgba(61,127,97,.07);"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full pointer-events-none" style="border:1px solid rgba(61,127,97,.09);"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full pointer-events-none" style="border:1px dashed rgba(61,127,97,.1);"></div>
+
+<!-- main photo card -->
+<div class="absolute top-0 right-0 w-[85%] h-[340px] md:h-[390px] rounded-2xl overflow-hidden hero-float-card cursor-glow">
+<div class="card-image-hover w-full h-full">
+<img src="glass-green-effect/glass-green-effect/assets/photo-1658243762592-d3ff6f8a9a_5c9037f90edf.jpg" alt="Data center de alta performance" class="w-full h-full object-cover" style="filter:brightness(1.04) saturate(0.82) contrast(1.02);"/>
+</div>
+<div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(13,60,31,.3) 0%,transparent 50%);"></div>
+<!-- badge on image -->
+<div class="absolute top-4 left-4 section-badge-light light-tag cursor-glow shimmer-light" style="background:rgba(247,250,247,.88);">
+<i data-lucide="zap" class="w-3 h-3"></i>
+Infraestrutura Verde
+</div>
+<!-- stat overlay bottom -->
+<div class="absolute bottom-0 left-0 right-0 p-4 floating-stats-hover-light" style="background:rgba(247,250,247,.78);backdrop-filter:blur(14px);">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 cursor-glow">
+<div class="w-2 h-2 rounded-full bg-[#3D7F61]" style="animation:pulse 2s ease-in-out infinite;"></div>
+<span class="text-xs text-[#4A6B5A] font-geist">300+ racks ativos</span>
+</div>
+<div class="w-px h-3" style="background:rgba(61,127,97,.2);"></div>
+<span class="text-xs text-[#4A6B5A] font-geist">244.000+ pés² de área</span>
+</div>
+</div>
+</div>
+
+<!-- floating card 1: tempo recuperado -->
+<div class="absolute bottom-16 left-0 hero-float-card rounded-xl px-5 py-4 animate-float cursor-glow stat-pill-light" style="animation-delay:.5s;min-width:190px;">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center feature-icon-light flex-shrink-0">
+<i data-lucide="clock" class="w-5 h-5 text-[#3D7F61]"></i>
+</div>
+<div>
+<div class="text-[26px] font-semibold text-[#0D3C1F] leading-none" style="font-family:'Playfair Display',serif;">28%</div>
+<div class="text-[11px] text-[#4A6B5A] font-geist mt-0.5">tempo recuperado</div>
+</div>
+</div>
+<div class="mt-3 h-1.5 rounded-full w-full" style="background:rgba(61,127,97,.1);">
+<div class="h-full rounded-full bar-grow" style="background:linear-gradient(90deg,#3D7F61,#5BA87A);--bar-w:28%;"></div>
+</div>
+</div>
+
+<!-- floating card 2: módulos ativos -->
+<div class="absolute top-28 left-6 hero-float-card rounded-xl px-4 py-3.5 animate-float cursor-glow stat-pill-light" style="animation-delay:1s;min-width:160px;">
+<div class="text-[11px] text-[#4A6B5A] font-geist mb-1.5">Módulos ativos</div>
+<div class="text-[30px] font-semibold text-[#0D3C1F] leading-none" style="font-family:'Playfair Display',serif;">121</div>
+<div class="flex items-center gap-1.5 mt-2">
+<div class="w-1.5 h-1.5 rounded-full bg-[#3D7F61]" style="animation:pulse 2s ease-in-out infinite;"></div>
+<span class="text-[10px] text-[#3D7F61] font-geist font-medium">rodando agora</span>
+</div>
+</div>
+
+<!-- floating card 3: uptime -->
+<div class="absolute bottom-4 right-4 hero-float-card rounded-xl px-4 py-3.5 animate-float cursor-glow stat-pill-light" style="animation-delay:1.8s;min-width:144px;">
+<div class="flex items-center gap-2 mb-1">
+<i data-lucide="leaf" class="w-3.5 h-3.5 text-[#3D7F61]"></i>
+<span class="text-[10px] font-geist text-[#3D7F61] font-medium uppercase tracking-wide">CO₂ Zero</span>
+</div>
+<div class="text-[26px] font-semibold text-[#0D3C1F] leading-none" style="font-family:'Playfair Display',serif;">99.9%</div>
+<div class="text-[11px] text-[#4A6B5A] font-geist mt-0.5">uptime garantido</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- section divider -->
+<div class="section-divider-light w-full"></div>
+
+<!-- features -->
+<section class="w-full bg-white py-24 md:py-32 px-6 flex justify-center relative z-20 overflow-hidden">
+<div class="absolute inset-0 dot-pattern-light opacity-50 pointer-events-none"></div>
+<div class="max-w-7xl w-full flex flex-col items-center relative z-10">
+<div class="section-badge-light mb-6 reveal-up light-tag cursor-glow">
+<i data-lucide="layers" class="w-3 h-3"></i>
+Por que Sondero
+</div>
+<h2 class="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up" style="font-family:'Playfair Display',serif;">
+IA por muito tempo foi coisa só do Vale do Silício e de startups. Isso está mudando agora.
+</h2>
+<p class="mt-6 text-lg text-[#4A6B5A] text-center max-w-2xl leading-relaxed font-geist reveal-up delay-100">
+A maioria das iniciativas de IA termina em uma apresentação. Não em um sistema que roda às 7h da manhã. A Sondero constrói sistemas de IA prontos que se conectam diretamente às suas ferramentas existentes — e mantêm seu pessoal livre para o trabalho que realmente importa.
+</p>
+
+<div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl">
+
+<!-- feature card 1 -->
+<div class="light-card rounded-2xl flex flex-col overflow-hidden max-w-sm mx-auto w-full reveal-up delay-100 cursor-glow">
+<div class="h-64 w-full relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,#F4F9F5,#EDF4EF);border-bottom:1px solid rgba(61,127,97,.08);">
+<div class="absolute inset-0" style="background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8) 0%,transparent 60%);"></div>
+<div class="absolute top-0 right-0 w-36 h-36 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(61,127,97,.07) 0%,transparent 70%);filter:blur(16px);"></div>
+<div class="relative z-10 flex items-center gap-4">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-px" style="background:linear-gradient(90deg,transparent,rgba(61,127,97,.14),transparent);"></div>
+<div class="w-12 h-12 rounded-xl flex items-center justify-center text-[#3D7F61] z-10 feature-icon-light light-glow-border cursor-glow">
+<i data-lucide="mail" class="w-5 h-5"></i>
+</div>
+<div class="w-16 h-16 rounded-2xl flex items-center justify-center text-[#0D3C1F] z-20 cursor-glow" style="background:rgba(255,255,255,.92);border:1px solid rgba(61,127,97,.18);box-shadow:0 8px 24px rgba(13,60,31,.08);">
+<i data-lucide="message-square" class="w-7 h-7"></i>
+</div>
+<div class="w-12 h-12 rounded-xl flex items-center justify-center text-[#3D7F61] z-10 feature-icon-light light-glow-border cursor-glow">
+<i data-lucide="calendar" class="w-5 h-5"></i>
+</div>
+</div>
+</div>
+<div class="p-8 flex flex-col gap-3 grow">
+<h3 class="text-xl font-semibold text-[#0D3C1F] tracking-tight" style="font-family:'Playfair Display',serif;">Funciona com o que você já tem.</h3>
+<p class="text-base text-[#4A6B5A] leading-relaxed font-geist">A Sondero se conecta diretamente às suas ferramentas existentes — Gmail, Outlook, Slack, Teams. Sem trocar de sistema, sem migração, sem projeto de TI.</p>
+</div>
+</div>
+
+<!-- feature card 2 -->
+<div class="light-card rounded-2xl flex flex-col overflow-hidden max-w-sm mx-auto w-full reveal-up delay-200 cursor-glow">
+<div class="h-64 w-full relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,#EDF4EF,#F4F9F5);border-bottom:1px solid rgba(61,127,97,.08);">
+<div class="absolute top-0 left-0 w-48 h-48 rounded-full" style="background:radial-gradient(circle,rgba(255,255,255,.9) 0%,transparent 70%);filter:blur(10px);"></div>
+<div class="relative z-10 w-28 h-32 rounded-t-full rounded-b-2xl flex flex-col items-center justify-center cursor-glow" style="background:rgba(255,255,255,.88);border:1px solid rgba(61,127,97,.16);box-shadow:0 8px 24px rgba(13,60,31,.07);">
+<i data-lucide="shield" class="w-10 h-10 text-[#0D3C1F] opacity-80 mb-2"></i>
+<div class="flex gap-1 opacity-80">
+<i data-lucide="star" class="w-3 h-3 text-[#3D7F61]" style="fill:#3D7F61;"></i>
+<i data-lucide="star" class="w-3 h-3 text-[#3D7F61]" style="fill:#3D7F61;"></i>
+<i data-lucide="star" class="w-3 h-3 text-[#3D7F61]" style="fill:#3D7F61;"></i>
+</div>
+</div>
+</div>
+<div class="p-8 flex flex-col gap-3 grow">
+<h3 class="text-xl font-semibold text-[#0D3C1F] tracking-tight" style="font-family:'Playfair Display',serif;">Construído para padrões europeus.</h3>
+<p class="text-base text-[#4A6B5A] leading-relaxed font-geist">Compatível com a LGPD desde a base. Servidores na UE, Zero Data Retention, contrato de processamento incluído. Seus dados não saem da Europa.</p>
+</div>
+</div>
+
+<!-- feature card 3 -->
+<div class="light-card rounded-2xl flex flex-col overflow-hidden max-w-sm mx-auto w-full reveal-up delay-300 cursor-glow">
+<div class="h-64 w-full relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(180deg,#F4F9F5,#EDF4EF);border-bottom:1px solid rgba(61,127,97,.08);">
+<div class="absolute top-0 right-0 w-40 h-40 rounded-full" style="background:radial-gradient(circle,rgba(61,127,97,.06) 0%,transparent 70%);filter:blur(20px);"></div>
+<div class="relative z-10 flex items-center">
+<div class="w-20 h-20 rounded-full flex items-center justify-center text-[#0D3C1F] z-20 translate-x-3 cursor-glow" style="background:rgba(255,255,255,.88);border:1px solid rgba(61,127,97,.18);box-shadow:0 8px 20px rgba(13,60,31,.07);">
+<i data-lucide="user" class="w-8 h-8 opacity-80"></i>
+</div>
+<div class="w-20 h-20 rounded-2xl rotate-12 flex items-center justify-center text-[#3D7F61] z-10 -translate-x-3 cursor-glow" style="background:linear-gradient(135deg,rgba(61,127,97,.1),transparent);border:1px solid rgba(61,127,97,.16);">
+<i data-lucide="sparkles" class="w-7 h-7 -rotate-12 opacity-80"></i>
+</div>
+</div>
+</div>
+<div class="p-8 flex flex-col gap-3 grow">
+<h3 class="text-xl font-semibold text-[#0D3C1F] tracking-tight" style="font-family:'Playfair Display',serif;">Fortalece seu time, não o substitui.</h3>
+<p class="text-base text-[#4A6B5A] leading-relaxed font-geist">A Sondero não substitui ninguém. Nossos sistemas tiram dos seus melhores profissionais o trabalho que ninguém precisaria fazer — para que possam se concentrar no que só eles podem fazer.</p>
+</div>
+</div>
+
+</div>
+<p class="mt-16 text-sm text-[#4A6B5A] italic font-geist text-center reveal-up delay-300">Sem consultoria. Sem workshops. Sistemas que rodam.</p>
+</div>
+</section>
+
+<!-- section divider -->
+<div class="section-divider-light w-full"></div>
+
+<!-- bento-stats -->
+<section class="w-full py-24 md:py-[100px] px-6 flex justify-center relative z-20 overflow-hidden" style="background:#EFF6F1;">
+<div class="absolute inset-0 mesh-bg-light opacity-55 pointer-events-none"></div>
+<div class="max-w-[1200px] w-full flex flex-col items-center relative z-10">
+<div class="section-badge-light mb-6 reveal-up light-tag cursor-glow">
+<i data-lucide="bar-chart-2" class="w-3 h-3"></i>
+Dados que importam
+</div>
+<h2 class="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up delay-100" style="font-family:'Playfair Display',serif;">E se suas melhores pessoas só fizessem o que importa?</h2>
+
+<div class="mt-16 w-full grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[auto]">
+
+<!-- tile 1: dark green — 28% -->
+<div class="md:col-span-5 md:row-span-2 bento-dark rounded-2xl p-8 flex flex-col relative overflow-hidden reveal-up delay-100 min-h-[400px] shimmer-light cursor-glow">
+<div class="absolute top-0 right-0 w-full h-1/2 pointer-events-none" style="background:linear-gradient(to bottom,transparent,#0D3C1F);z-index:10;"></div>
+<div class="absolute -top-10 -right-10 w-64 h-64 rounded-full" style="background:radial-gradient(circle,rgba(61,127,97,.18) 0%,transparent 70%);filter:blur(20px);"></div>
+<div class="absolute top-8 right-8 w-40 h-32 rounded-xl transform rotate-6 z-0" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(6px);"><div class="absolute inset-0 flex items-center justify-center"><svg fill="none" height="48" stroke="rgba(250,249,246,.22)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="48"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div></div>
+<div class="absolute top-16 right-24 w-24 h-20 rounded-lg z-0" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><div class="absolute inset-0 flex items-center justify-center"><svg fill="none" height="32" stroke="rgba(61,127,97,.5)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="32"><rect height="16" rx="2" width="20" x="2" y="4"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div></div>
+<div class="mt-auto relative z-20 flex flex-col gap-2 pt-32">
+<div class="text-[72px] leading-none text-[#F69066] font-semibold" style="font-family:'Playfair Display',serif;">28%</div>
+<p class="text-[16px] text-[#FAF9F6] font-geist leading-relaxed">do tempo de trabalho é gasto lendo e organizando e-mails.</p>
+<p class="text-[12px] text-[#8ABF9E] font-geist italic mt-2">Microsoft Workplace Study</p>
+</div>
+</div>
+
+<!-- tile 2: light sage — 72% -->
+<div class="md:col-span-4 bento-sage rounded-2xl p-8 flex flex-col justify-between reveal-up delay-200 min-h-[220px] light-card cursor-glow">
+<div class="text-[56px] leading-tight text-[#0D3C1F] font-semibold" style="font-family:'Playfair Display',serif;">72%</div>
+<div class="mt-4">
+<p class="text-[15px] text-[#4A6B5A] font-geist leading-snug mb-2">do tempo do time de vendas vai para administração. Não para vender.</p>
+<p class="text-[11px] text-[#7A9E8A] font-geist italic">Salesforce State of Sales 2025</p>
+</div>
+</div>
+
+<!-- tile 3: medium green — segurança -->
+<div class="md:col-span-3 bento-medium rounded-2xl p-8 flex flex-col relative overflow-hidden reveal-up delay-300 min-h-[220px] cursor-glow shimmer-light">
+<i data-lucide="shield-check" class="absolute top-6 right-6 text-white w-6 h-6" style="opacity:.85;"></i>
+<div class="mt-auto">
+<h3 class="text-[22px] leading-tight text-white font-semibold mb-2" style="font-family:'Playfair Display',serif;">Servidores na UE.<br/>Zero Data Retention.</h3>
+<p class="text-[14px] font-geist leading-snug" style="color:rgba(212,232,220,.85);">Seus dados não saem da Europa. Ponto.</p>
+</div>
+</div>
+
+<!-- tile 4: light sage — 121 -->
+<div class="md:col-span-4 bento-sage rounded-2xl p-8 flex flex-col justify-between reveal-up delay-200 min-h-[220px] light-card cursor-glow">
+<div class="text-[56px] leading-tight text-[#0D3C1F] font-semibold" style="font-family:'Playfair Display',serif;">121</div>
+<div class="mt-4"><p class="text-[14px] text-[#4A6B5A] font-geist leading-snug">E-mails por dia. Em média.</p></div>
+</div>
+
+<!-- tile 5: dark green — crescimento -->
+<div class="md:col-span-3 bento-dark rounded-2xl p-8 flex flex-col justify-end reveal-up delay-300 min-h-[220px] cursor-glow shimmer-light">
+<h3 class="text-[20px] leading-tight text-[#FAF9F6] font-semibold mb-2" style="font-family:'Playfair Display',serif;">A Sondero cresce com você.</h3>
+<p class="text-[14px] text-[#8ABF9E] font-geist leading-snug">Cada novo módulo aproveita as integrações que você já tem. Automaticamente.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- section divider -->
+<div class="section-divider-light w-full"></div>
+
+<!-- ways-to-work -->
+<section class="w-full bg-white py-24 md:py-[100px] px-6 flex justify-center relative z-20 overflow-hidden">
+<div class="absolute inset-0 dot-pattern-light opacity-35 pointer-events-none"></div>
+<div class="max-w-[1200px] w-full flex flex-col items-center relative z-10">
+<div class="section-badge-light mb-6 reveal-up light-tag cursor-glow">
+<i data-lucide="git-branch" class="w-3 h-3"></i>
+Como trabalhamos
+</div>
+<h2 class="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up" style="font-family:'Playfair Display',serif;">Três formas de trabalhar com a Sondero.</h2>
+<p class="mt-6 text-[16px] text-[#4A6B5A] text-center max-w-[600px] leading-relaxed font-geist reveal-up delay-100">Seja com módulos prontos, acompanhamento estratégico ou sistemas sob medida — você decide o que sua empresa precisa.</p>
+
+<div class="mt-16 w-full flex flex-col gap-4">
+
+<!-- platform tile (dark green) -->
+<div class="bento-dark flex flex-col md:flex-row min-h-[480px] overflow-hidden reveal-up delay-100 w-full rounded-[16px] md:p-16 p-8 relative cursor-glow shimmer-light" style="box-shadow:0 16px 50px rgba(13,60,31,.18);">
+<div class="w-full md:w-[50%] flex flex-col justify-center relative z-20 md:pr-16">
+<div class="text-[12px] uppercase tracking-[0.15em] text-[#3D7F61] font-geist font-medium mb-6">PLATAFORMA SONDERO</div>
+<h3 class="text-[36px] font-semibold text-[#FAF9F6] leading-tight mb-6 tracking-tight" style="font-family:'Playfair Display',serif;">Módulos de IA prontos. Um dashboard. Produtivo na hora.</h3>
+<p class="text-[16px] text-[#B8D4C4] font-geist leading-[1.8] mb-12 max-w-lg">Nossa plataforma se conecta às suas ferramentas existentes e entrega fluxos de trabalho prontos — de triagem de e-mails à preparação de reuniões, passando por relatórios automatizados. Sem desenvolvimento. Ative o módulo, configure, está rodando.</p>
+<a class="mt-auto md:mt-0 self-start text-[15px] text-[#F69066] font-geist hover:underline flex items-center gap-2 transition-all cursor-glow interactive-text-light" href="#">Conheça a plataforma <span class="text-xl leading-none">→</span></a>
+</div>
+<div class="w-full md:w-[50%] mt-16 md:mt-0 relative flex items-center justify-center min-h-[320px] md:min-h-full">
+<div class="absolute inset-0 flex flex-col gap-6 justify-center items-end opacity-90 transform translate-x-4 md:translate-x-12">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full" style="background:#3D7F61;filter:blur(90px);opacity:.3;"></div>
+<div class="w-full max-w-[340px] h-24 rounded-xl p-5 flex items-center gap-5 transform -translate-x-12 relative z-10 hover-lift cursor-glow" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);">
+<div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:rgba(61,127,97,.28);">
+<i data-lucide="layout-dashboard" class="w-5 h-5 text-[#8ABF9E]"></i>
+</div>
+<div class="flex flex-col gap-3 w-full">
+<div class="w-3/4 h-2.5 rounded-full" style="background:rgba(255,255,255,.28);"></div>
+<div class="w-1/2 h-2 rounded-full" style="background:rgba(255,255,255,.1);"></div>
+</div>
+</div>
+<div class="w-full max-w-[400px] h-32 rounded-xl p-6 flex flex-col justify-between relative z-20 transform -translate-x-4 hover-lift cursor-glow" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(12px);box-shadow:0 16px 48px rgba(0,0,0,.18);">
+<div class="flex items-center justify-between w-full">
+<div class="flex items-center gap-4 w-full">
+<div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center" style="background:rgba(246,144,102,.18);border:1px solid rgba(246,144,102,.28);">
+<i data-lucide="trending-up" class="w-6 h-6 text-[#F69066]"></i>
+</div>
+<div class="w-1/2 h-3.5 rounded-full" style="background:rgba(255,255,255,.38);"></div>
+</div>
+<div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center" style="background:rgba(255,255,255,.1);">
+<i data-lucide="activity" class="w-4 h-4" style="color:rgba(255,255,255,.65);"></i>
+</div>
+</div>
+<div class="flex gap-3 w-full">
+<div class="w-1/3 h-2.5 rounded-full" style="background:rgba(61,127,97,.55);"></div>
+<div class="w-1/4 h-2.5 rounded-full" style="background:rgba(255,255,255,.18);"></div>
+<div class="w-1/5 h-2.5 rounded-full" style="background:rgba(255,255,255,.09);"></div>
+</div>
+</div>
+<div class="w-full max-w-[280px] h-16 rounded-xl p-4 flex items-center gap-4 transform translate-x-2 relative z-10 opacity-65" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+<div class="w-8 h-8 rounded-full flex-shrink-0" style="background:rgba(255,255,255,.07);"></div>
+<div class="flex flex-col gap-2 w-full"><div class="w-3/4 h-1.5 rounded-full" style="background:rgba(255,255,255,.16);"></div></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- small tiles -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+<div class="rounded-[16px] p-8 flex flex-col reveal-up delay-200 cursor-glow light-card" style="background:#EFF6F1;">
+<div class="text-[11px] uppercase tracking-[0.15em] text-[#7A9E8A] font-geist font-medium mb-4">CONSULTORIA</div>
+<h3 class="text-[22px] font-semibold text-[#0D3C1F] leading-tight mb-3" style="font-family:'Playfair Display',serif;">Saiba onde a IA tem mais impacto na sua empresa.</h3>
+<p class="text-[14px] text-[#4A6B5A] font-geist leading-[1.6] mb-8 grow">Vocês estão prontos para IA? Onde estão os maiores potenciais? Analisamos seus processos e mostramos onde a automação traz impacto real — antes de você investir um centavo.</p>
+<a class="mt-auto self-start text-[13px] text-[#3D7F61] font-geist hover:underline flex items-center gap-1 transition-all cursor-glow interactive-text-light" href="#">Agendar conversa inicial <span class="text-base leading-none">→</span></a>
+</div>
+<div class="rounded-[16px] p-8 flex flex-col reveal-up delay-300 cursor-glow light-card" style="background:#EFF6F1;">
+<div class="text-[11px] uppercase tracking-[0.15em] text-[#7A9E8A] font-geist font-medium mb-4">PROJETOS SOB MEDIDA</div>
+<h3 class="text-[22px] font-semibold text-[#0D3C1F] leading-tight mb-3" style="font-family:'Playfair Display',serif;">Seu fluxo ainda não existe? A gente constrói.</h3>
+<p class="text-[14px] text-[#4A6B5A] font-geist leading-[1.6] mb-8 grow">Nem todo processo cabe em um módulo padrão. Se o seu caso é específico, desenvolvemos um sistema sob medida — com a mesma arquitetura e os mesmos padrões de segurança.</p>
+<a class="mt-auto self-start text-[13px] text-[#3D7F61] font-geist hover:underline flex items-center gap-1 transition-all cursor-glow interactive-text-light" href="#">Conversar sobre o projeto <span class="text-base leading-none">→</span></a>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- section divider -->
+<div class="section-divider-light w-full"></div>
+
+<!-- photo-cards: glass-green images in light card style -->
+<section class="w-full py-24 md:py-[100px] px-6 flex justify-center relative z-20 overflow-hidden" style="background:#F7FAF7;">
+<div class="absolute inset-0 mesh-bg-light opacity-45 pointer-events-none"></div>
+<div class="max-w-[1200px] w-full flex flex-col items-center relative z-10">
+<div class="section-badge-light mb-6 reveal-up light-tag cursor-glow">
+<i data-lucide="server" class="w-3 h-3"></i>
+Nossa infraestrutura
+</div>
+<h2 class="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up" style="font-family:'Playfair Display',serif;">Tecnologia de ponta, comprometida com o futuro.</h2>
+<p class="mt-6 text-[16px] text-[#4A6B5A] text-center max-w-[620px] leading-relaxed font-geist reveal-up delay-100">Infraestrutura de classe mundial, segura, sustentável e sempre disponível para manter seu negócio rodando.</p>
+
+<div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+
+<!-- photo card 1 -->
+<article class="rounded-2xl overflow-hidden reveal-up delay-100 cursor-glow light-card">
+<div class="card-content">
+<div class="card-image-hover relative h-[260px]">
+<img alt="Data center de alta performance" class="w-full h-full object-cover" src="glass-green-effect/glass-green-effect/assets/photo-1658243762592-d3ff6f8a9a_5c9037f90edf.jpg" style="filter:brightness(1.02) saturate(0.82);"/>
+<div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent 40%,white 100%);"></div>
+</div>
+<div class="p-6 pt-4 bg-white">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-geist light-tag light-glow-border cursor-glow" style="background:#EDF4EF;color:#3D7F61;border-color:rgba(61,127,97,.2);">
+<i data-lucide="server" class="w-3 h-3"></i>
+Data Center
+</span>
+<span class="text-xs text-[#7A9E8A] font-geist">Tier IV</span>
+</div>
+<h3 class="text-xl font-semibold text-[#0D3C1F] tracking-tight" style="font-family:'Playfair Display',serif;">Infraestrutura de alta disponibilidade</h3>
+<p class="text-sm text-[#4A6B5A] font-geist mt-2 leading-relaxed">300+ racks, 244.000 pés quadrados, 99.9% de uptime garantido com redundância total.</p>
+</div>
+</div>
+</article>
+
+<!-- photo card 2 -->
+<article class="rounded-2xl overflow-hidden reveal-up delay-200 cursor-glow light-card">
+<div class="card-content">
+<div class="card-image-hover relative h-[260px]">
+<img alt="Visualização de segurança digital" class="w-full h-full object-cover" src="glass-green-effect/glass-green-effect/assets/photo-1669062897193-f8a4215c20_340863947964.jpg" style="filter:brightness(1.02) saturate(0.82);"/>
+<div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent 40%,white 100%);"></div>
+</div>
+<div class="p-6 pt-4 bg-white">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-geist light-tag light-glow-border cursor-glow" style="background:#EDF4EF;color:#3D7F61;border-color:rgba(61,127,97,.2);">
+<i data-lucide="shield-check" class="w-3 h-3"></i>
+Segurança
+</span>
+<span class="text-xs text-[#7A9E8A] font-geist">LGPD + DDoS</span>
+</div>
+<h3 class="text-xl font-semibold text-[#0D3C1F] tracking-tight" style="font-family:'Playfair Display',serif;">Segurança total para seus dados</h3>
+<p class="text-sm text-[#4A6B5A] font-geist mt-2 leading-relaxed">SSL gratuito, proteção anti-DDoS e monitoramento 24/7 sem necessidade de plugins extras.</p>
+</div>
+</div>
+</article>
+
+<!-- photo card 3 -->
+<article class="rounded-2xl overflow-hidden reveal-up delay-300 cursor-glow light-card">
+<div class="card-content">
+<div class="card-image-hover relative h-[260px]">
+<img alt="Otimização de servidores WordPress" class="w-full h-full object-cover" src="glass-green-effect/glass-green-effect/assets/photo-1644329770639-1a20809b82_d528bf5936f1.jpg" style="filter:brightness(1.02) saturate(0.82);"/>
+<div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent 40%,white 100%);"></div>
+</div>
+<div class="p-6 pt-4 bg-white">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-geist light-tag light-glow-border cursor-glow" style="background:#EDF4EF;color:#3D7F61;border-color:rgba(61,127,97,.2);">
+<i data-lucide="wand-2" class="w-3 h-3"></i>
+Otimização
+</span>
+<span class="text-xs text-[#7A9E8A] font-geist">HTTP/3 · LiteSpeed</span>
+</div>
+<h3 class="text-xl font-semibold text-[#0D3C1F] tracking-tight" style="font-family:'Playfair Display',serif;">Desempenho incomparável</h3>
+<p class="text-sm text-[#4A6B5A] font-geist mt-2 leading-relaxed">HTTP/3, IPv6 e servidores LiteSpeed garantem máxima velocidade. Planos premium com banda ilimitada.</p>
+</div>
+</div>
+</article>
+
+<!-- photo card 4 -->
+<article class="rounded-2xl overflow-hidden reveal-up delay-400 cursor-glow light-card">
+<div class="card-content">
+<div class="card-image-hover relative h-[260px]">
+<img alt="Interface de controle de servidores" class="w-full h-full object-cover" src="glass-green-effect/glass-green-effect/assets/photo-1737505599162-d9932323a8_6b96c0b064bc.jpg" style="filter:brightness(1.02) saturate(0.82);"/>
+<div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent 40%,white 100%);"></div>
+</div>
+<div class="p-6 pt-4 bg-white">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-geist light-tag light-glow-border cursor-glow" style="background:#EDF4EF;color:#3D7F61;border-color:rgba(61,127,97,.2);">
+<i data-lucide="terminal" class="w-3 h-3"></i>
+Controle
+</span>
+<span class="text-xs text-[#7A9E8A] font-geist">SSH · WP-CLI</span>
+</div>
+<h3 class="text-xl font-semibold text-[#0D3C1F] tracking-tight" style="font-family:'Playfair Display',serif;">Controle total na sua mão</h3>
+<p class="text-sm text-[#4A6B5A] font-geist mt-2 leading-relaxed">SSH, backups automatizados e uma CLI poderosa para gerenciar cada detalhe da sua infraestrutura.</p>
+</div>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- section divider -->
+<div class="section-divider-light w-full"></div>
+
+<!-- process-flow -->
+<section class="w-full bg-white py-24 md:py-[100px] px-6 flex justify-center relative z-20 overflow-hidden">
+<div class="absolute inset-0 dot-pattern-light opacity-40 pointer-events-none"></div>
+<div class="max-w-[1200px] w-full flex flex-col items-center relative z-10">
+<div class="section-badge-light mb-6 reveal-up light-tag cursor-glow">
+<i data-lucide="map" class="w-3 h-3"></i>
+Nosso processo
+</div>
+<h2 class="text-3xl md:text-5xl font-semibold text-[#0D3C1F] text-center max-w-3xl tracking-tight leading-tight reveal-up" style="font-family:'Playfair Display',serif;">Da primeira conversa ao sistema rodando. Em dias, não meses.</h2>
+<p class="mt-6 text-[16px] text-[#4A6B5A] text-center max-w-[620px] leading-relaxed font-geist reveal-up delay-100">Sem maratona de onboarding. Sem gestão de mudança. Quatro passos, e está rodando.</p>
+
+<div class="mt-20 w-full relative reveal-up delay-200">
+<div class="hidden md:block absolute top-[20px] left-4 right-[20%] h-[1px] z-0" style="background:linear-gradient(90deg,rgba(61,127,97,.3),rgba(61,127,97,.12),rgba(61,127,97,.04));"></div>
+<div class="md:hidden absolute top-[20px] bottom-10 left-[24px] w-[1px] z-0" style="background:rgba(61,127,97,.2);"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 relative z-10">
+
+<div class="flex flex-col relative pl-16 md:pl-0">
+<div class="absolute md:relative left-0 top-0 flex justify-center md:justify-start md:mb-4 py-2 md:py-0 md:pr-6 md:inline-block w-12 md:w-auto z-10 process-node-light cursor-glow" style="background:white;">
+<span class="text-[40px] text-[#F69066] leading-none" style="font-family:'Playfair Display',serif;">01</span>
+</div>
+<h3 class="text-[20px] font-semibold text-[#0D3C1F] mb-3 md:mt-2 tracking-tight" style="font-family:'Playfair Display',serif;">Conversa</h3>
+<p class="text-[14px] text-[#4A6B5A] font-geist leading-[1.6]">30 minutos. A gente escuta, faz as perguntas certas e descobre onde está o maior ponto de alavancagem para você.</p>
+</div>
+
+<div class="flex flex-col relative pl-16 md:pl-0">
+<div class="absolute md:relative left-0 top-0 flex justify-center md:justify-start md:mb-4 py-2 md:py-0 md:pr-6 md:inline-block w-12 md:w-auto z-10 process-node-light cursor-glow" style="background:white;">
+<span class="text-[40px] text-[#F69066] leading-none" style="font-family:'Playfair Display',serif;">02</span>
+</div>
+<h3 class="text-[20px] font-semibold text-[#0D3C1F] mb-3 md:mt-2 tracking-tight" style="font-family:'Playfair Display',serif;">Análise de potencial</h3>
+<p class="text-[14px] text-[#4A6B5A] font-geist leading-[1.6]">Analisamos seus fluxos atuais e identificamos quais módulos e integrações fazem sentido para você.</p>
+</div>
+
+<div class="flex flex-col relative pl-16 md:pl-0">
+<div class="absolute md:relative left-0 top-0 flex justify-center md:justify-start md:mb-4 py-2 md:py-0 md:pr-6 md:inline-block w-12 md:w-auto z-10 process-node-light cursor-glow" style="background:white;">
+<span class="text-[40px] text-[#F69066] leading-none" style="font-family:'Playfair Display',serif;">03</span>
+</div>
+<h3 class="text-[20px] font-semibold text-[#0D3C1F] mb-3 md:mt-2 tracking-tight" style="font-family:'Playfair Display',serif;">Implementação</h3>
+<p class="text-[14px] text-[#4A6B5A] font-geist leading-[1.6]">Conectamos a Sondero às suas ferramentas, configuramos os fluxos e testamos tudo — até rodar redondo.</p>
+</div>
+
+<div class="flex flex-col relative pl-16 md:pl-0">
+<div class="absolute md:relative left-0 top-0 flex justify-center md:justify-start md:mb-4 py-2 md:py-0 md:pr-6 md:inline-block w-12 md:w-auto z-10 process-node-light cursor-glow" style="background:white;">
+<span class="text-[40px] text-[#F69066] leading-none" style="font-family:'Playfair Display',serif;">04</span>
+</div>
+<h3 class="text-[20px] font-semibold text-[#0D3C1F] mb-3 md:mt-2 tracking-tight" style="font-family:'Playfair Display',serif;">Rodando.</h3>
+<p class="text-[14px] text-[#4A6B5A] font-geist leading-[1.6]">Seu time continua trabalhando no Slack, Teams, Outlook — normalmente. A IA roda em segundo plano. Seu admin gerencia tudo a partir de um dashboard central.</p>
+</div>
+
+</div>
+</div>
+
+<div class="mt-20 flex flex-col md:flex-row gap-4 justify-center items-center w-full reveal-up delay-300">
+<div class="bento-dark text-white rounded-full px-5 py-2 text-[13px] font-geist text-center w-full md:w-auto cursor-glow">Para o seu time: zero ferramentas novas. Tudo roda nos apps que vocês já usam.</div>
+<div class="bento-medium text-white rounded-full px-5 py-2 text-[13px] font-geist text-center w-full md:w-auto cursor-glow">Para o seu admin: um dashboard. Todos os módulos, todos os usuários, controle total.</div>
+</div>
+</div>
+</section>
+
+<!-- section divider -->
+<div class="section-divider-light w-full"></div>
+
+<!-- cta -->
+<section class="w-full py-24 md:py-32 px-6 flex justify-center relative z-20 overflow-hidden" style="background:#EFF6F1;">
+<div class="absolute inset-0 mesh-bg-light opacity-65 pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] rounded-full pointer-events-none" style="background:radial-gradient(ellipse at center,rgba(61,127,97,.055) 0%,transparent 65%);filter:blur(50px);"></div>
+<div class="max-w-[1100px] w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-12 reveal-up relative z-10">
+<div class="max-w-2xl">
+<div class="section-badge-light mb-6 light-tag cursor-glow">
+<i data-lucide="rocket" class="w-3 h-3"></i>
+Comece hoje
+</div>
+<h2 class="text-5xl md:text-6xl font-semibold text-[#0D3C1F] tracking-tight leading-tight" style="font-family:'Playfair Display',serif;">Comece em <span class="text-transparent bg-clip-text" style="background:linear-gradient(to right,#F69066,#E35D30);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">minutos</span></h2>
+<p class="mt-6 text-lg md:text-xl text-[#4A6B5A] leading-relaxed font-geist">Experimente nosso playground e comece pelo plano gratuito para testar os modelos da Sondero na sua aplicação.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0 mt-8 md:mt-0">
+<a class="inline-flex items-center justify-center px-7 py-3.5 rounded text-xs font-medium tracking-[0.1em] uppercase transition-all light-btn-hover cursor-glow gap-2 shimmer-light" href="#" style="background:#F69066;color:white;box-shadow:0 4px 14px rgba(246,144,102,.28);">
+Solicitar uma Demo
+<i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+</a>
+<a class="inline-flex items-center justify-center px-7 py-3.5 rounded text-xs font-medium tracking-[0.1em] uppercase transition-all light-glow-border cursor-glow gap-2 hover-lift" href="#" style="background:rgba(255,255,255,.82);color:#0D3C1F;">
+Cadastre-se grátis
+<i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+</a>
+</div>
+</div>
+</section>
+
+<!-- section divider -->
+<div class="section-divider-light w-full"></div>
+
+<!-- banner-image -->
+<div class="w-full h-[180px] md:h-[260px] relative overflow-hidden reveal-up z-20">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop');filter:contrast(1.08) saturate(0.65) brightness(1.12);"></div>
+<div class="absolute inset-0" style="background:linear-gradient(to right,rgba(247,250,247,.35),transparent,rgba(247,250,247,.35));"></div>
+</div>
+
+<!-- footer -->
+<footer class="w-full pt-12 pb-8 px-6 flex justify-center relative z-20" style="background:#F7FAF7;">
+<div class="max-w-[1100px] w-full flex flex-col">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
+<a class="flex items-center gap-2 select-none shrink-0 logo-hover cursor-glow" href="#">
+<span class="text-xl font-semibold tracking-tight gradient-text-green" style="font-family:'Playfair Display',serif;">Sondero</span>
+</a>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12 text-xs font-medium text-[#4A6B5A] tracking-[0.05em] uppercase font-geist">
+<a class="hover:text-[#0D3C1F] transition-colors cursor-glow interactive-text-light" href="#">Y Combinator</a>
+<a class="hover:text-[#0D3C1F] transition-colors cursor-glow interactive-text-light" href="#">Sobre nós</a>
+<a class="hover:text-[#0D3C1F] transition-colors cursor-glow interactive-text-light" href="#">Fale conosco</a>
+</div>
+<div class="flex items-center gap-6 text-[#0D3C1F] shrink-0">
+<a class="hover:opacity-60 transition-opacity cursor-glow" href="#" aria-label="X">
+<svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.005 4.25H5.078z"/></svg>
+</a>
+<a class="hover:opacity-60 transition-opacity cursor-glow" href="#" aria-label="LinkedIn">
+<i data-lucide="linkedin" class="w-4 h-4"></i>
+</a>
+</div>
+</div>
+<div class="w-full h-px mb-8" style="background:rgba(61,127,97,.12);"></div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#7A9E8A] font-geist">
+<p>Copyright © 2026 Sondero</p>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="hover:text-[#0D3C1F] transition-colors cursor-glow" href="#">Status</a>
+<a class="hover:text-[#0D3C1F] transition-colors cursor-glow" href="#">Termos de Uso</a>
+<a class="hover:text-[#0D3C1F] transition-colors cursor-glow" href="#">Política de Privacidade</a>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- js: Lucide, word carousel, reveal-up, dark-green snake cursor for light mode -->
+<script src="assets/js/ds3-interactions.js"></script>
+
+</body>
+</html>

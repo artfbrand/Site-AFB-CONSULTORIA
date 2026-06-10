@@ -1,0 +1,12 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.code-workspace
+
+# Referências de design (não precisam ir pro deploy)
+ai-saas-landing-27.aura.build/
+glass-green-effect/

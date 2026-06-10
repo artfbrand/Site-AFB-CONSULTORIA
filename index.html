@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arthur Brandão · Consultoria em Energia</title>
+  <meta name="description" content="Engenharia elétrica e consultoria em energia. Análise técnica completa da sua instalação — fatura, modalidade de contratação, qualidade de energia e crédito de ICMS." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS (from design-system3) ─────────────────────────── */
+    :root {
+      --bg:          #F7FAF7;
+      --bg-alt:      #EFF6F1;
+      --forest:      #0D3C1F;
+      --sage:        #4A6B5A;
+      --muted:       #7A9E8A;
+      --accent:      #3D7F61;
+      --accent-light:#5BA87A;
+      --teal:        #14b8a6;
+      --orange:      #F69066;
+      --white:       #ffffff;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+
+      --ease-out:    cubic-bezier(.16,1,.3,1);
+      --ease-inout:  cubic-bezier(.4,0,.2,1);
+
+      --shadow-card:  0 4px 24px rgba(13,60,31,.06), 0 0 0 1px rgba(61,127,97,.07);
+      --shadow-float: 0 10px 36px rgba(13,60,31,.09), 0 2px 8px rgba(13,60,31,.04);
+      --r-card:  16px;
+      --r-pill:  9999px;
+    }
+
+    /* ─── RESET & BASE ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-family: var(--font-body); background: var(--bg); color: var(--forest); scroll-behavior: smooth; }
+    body { overflow-x: hidden; cursor: none; }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── CURSOR ─────────────────────────────────────────────────────── */
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1.5px solid rgba(61,127,97,.68);
+      box-shadow: 0 0 0 2px rgba(13,60,31,.08), 0 0 20px rgba(61,127,97,.18);
+      transform: translate(-50%,-50%);
+      pointer-events: none; transition: width .2s, height .2s, border-color .2s;
+      display: none;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 10000;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(13,60,31,.85);
+      transform: translate(-50%,-50%);
+      pointer-events: none; display: none;
+    }
+    @media (pointer: fine) {
+      #cursor-ring, #cursor-dot { display: block; }
+    }
+
+    /* ─── KEYFRAMES ──────────────────────────────────────────────────── */
+    @keyframes meshShift {
+      0%   { background-position: 0 0, 0 0; }
+      100% { background-position: 60px 60px, 60px 60px; }
+    }
+    @keyframes scanLine {
+      0%   { top: -2px; opacity: .6; }
+      80%  { opacity: .6; }
+      100% { top: 100%; opacity: 0; }
+    }
+    @keyframes particleRise {
+      0%   { transform: translateY(0) scale(1); opacity: .55; }
+      100% { transform: translateY(-260px) scale(.3); opacity: 0; }
+    }
+    @keyframes ambientMove {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%      { transform: translate(60px,-40px) scale(1.08); }
+    }
+    @keyframes ambientMove2 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%      { transform: translate(-50px,50px) scale(.92); }
+    }
+    @keyframes floatY {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.5; transform:scale(.7); }
+    }
+    @keyframes shimmer {
+      0%   { left: -110%; }
+      100% { left: 110%; }
+    }
+
+    /* ─── AMBIENT LIGHTS ─────────────────────────────────────────────── */
+    .ambient-orb-1 {
+      position: fixed; top: 8%; left: -2%;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(61,127,97,.07) 0%, transparent 70%);
+      filter: blur(70px); pointer-events: none; z-index: 0;
+      animation: ambientMove 11s ease-in-out infinite alternate;
+    }
+    .ambient-orb-2 {
+      position: fixed; bottom: 15%; right: -5%;
+      width: 440px; height: 440px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,184,166,.05) 0%, transparent 70%);
+      filter: blur(60px); pointer-events: none; z-index: 0;
+      animation: ambientMove2 14s ease-in-out infinite alternate;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      width: 100%; height: 132px;
+      background: rgba(247,250,247,.94);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid rgba(61,127,97,.09);
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      position: relative;
+      max-width: 1280px; margin: 0 auto; width: 100%;
+      padding: 0 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    /* logo absolutamente centrado entre os links e o CTA */
+    .nav-logo-center {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center;
+      pointer-events: auto; z-index: 1;
+    }
+    .nav-logo-center img {
+      height: 111px; width: auto; display: block;
+      object-fit: contain;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 3.3rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 1.05rem; font-weight: 500; color: var(--sage);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-cta {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .82rem 1.8rem; border-radius: var(--r-pill);
+      background: var(--accent); color: #fff;
+      font-size: 1rem; font-weight: 600;
+      box-shadow: 0 2px 12px rgba(61,127,97,.28);
+      transition: background .2s, transform .2s, box-shadow .2s;
+      cursor: none;
+    }
+    .nav-cta:hover {
+      background: var(--forest);
+      box-shadow: 0 4px 20px rgba(13,60,31,.28);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 1024px) {
+      .nav { height: 108px; }
+      .nav-logo-center img { height: 90px; }
+      .nav-links { gap: 2.4rem; }
+      .nav-inner { padding: 0 2rem; }
+    }
+    @media (max-width: 768px) {
+      .nav { height: 90px; }
+      .nav-logo-center img { height: 72px; }
+      .nav-links { display: none; }
+      .nav-cta span { display: none; }
+    }
+    @media (max-width: 480px) {
+      .nav { height: 76px; }
+      .nav-logo-center img { height: 58px; }
+    }
+
+    /* ─── HERO SECTION ───────────────────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: calc(100vh - 132px);
+      background: var(--bg);
+      display: flex; align-items: center;
+    }
+
+    /* mesh grid */
+    .mesh-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(61,127,97,.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(61,127,97,.038) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: meshShift 32s linear infinite;
+    }
+    /* scan line */
+    .scan-line {
+      position: absolute; left: 0; right: 0; top: -2px;
+      height: 1.5px; z-index: 1; pointer-events: none;
+      background: linear-gradient(90deg, transparent 0%, rgba(61,127,97,.22) 30%,
+        rgba(91,168,122,.38) 50%, rgba(61,127,97,.22) 70%, transparent 100%);
+      animation: scanLine 9s linear infinite;
+    }
+    /* particles */
+    .particle {
+      position: absolute; border-radius: 50%;
+      background: var(--accent-light); pointer-events: none; z-index: 1;
+      animation: particleRise linear infinite;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1280px; margin: 0 auto; width: 100%;
+      padding: 5rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: 52% 48%;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem; padding: 3.5rem 1.5rem 4rem;
+      }
+    }
+
+    /* ─── LEFT COLUMN ────────────────────────────────────────────────── */
+    .hero-left { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    /* badge */
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .35rem .9rem;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(61,127,97,.22);
+      background: rgba(61,127,97,.07);
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500;
+      opacity: 0; /* GSAP reveals */
+      align-self: flex-start;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    /* heading */
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.2vw, 3.3rem);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -.02em;
+      color: var(--forest);
+    }
+    .accent-text {
+      color: var(--accent);
+      position: relative; display: inline-block;
+    }
+    .accent-text::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .6s var(--ease-out);
+    }
+    .accent-text.underline-active::after { transform: scaleX(1); }
+
+    /* Word split */
+    .word-wrap {
+      display: inline-block; overflow: hidden;
+      vertical-align: bottom; padding-bottom: .05em;
+    }
+    .word-inner {
+      display: inline-block;
+      transform: translateY(110%); opacity: 0;
+    }
+
+    /* subtitle */
+    .hero-subtitle {
+      font-size: clamp(.9rem, 1.4vw, 1.05rem);
+      line-height: 1.75; color: var(--sage);
+      max-width: 520px; opacity: 0;
+    }
+
+    /* CTAs */
+    .hero-ctas {
+      display: flex; flex-wrap: wrap; gap: .85rem;
+      align-items: center; opacity: 0;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .8rem 1.6rem;
+      border-radius: var(--r-pill);
+      background: var(--accent); color: #fff;
+      font-size: .92rem; font-weight: 700;
+      box-shadow: 0 4px 20px rgba(61,127,97,.32);
+      transition: background .2s, transform .2s, box-shadow .2s;
+      cursor: none; position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; top: 0; left: -110%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      animation: shimmer 2.8s infinite;
+    }
+    .btn-primary:hover {
+      background: var(--forest); transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(13,60,31,.28);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .78rem 1.45rem;
+      border-radius: var(--r-pill);
+      border: 1.5px solid rgba(61,127,97,.3);
+      background: transparent; color: var(--accent);
+      font-size: .9rem; font-weight: 600;
+      transition: border-color .2s, background .2s, transform .2s;
+      cursor: none;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: rgba(61,127,97,.06);
+      transform: translateY(-2px);
+    }
+
+    /* microprova */
+    .hero-microprova {
+      display: flex; align-items: center; gap: .55rem;
+      font-size: .78rem; color: var(--muted); opacity: 0;
+    }
+    .microprova-divider {
+      width: 1px; height: 12px;
+      background: rgba(61,127,97,.25);
+    }
+    .microprova-icon {
+      width: 16px; height: 16px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .microprova-icon svg {
+      width: 9px; height: 9px; stroke: #fff; fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ─── RIGHT COLUMN ───────────────────────────────────────────────── */
+    .hero-right {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* main card */
+    .main-card-wrap { /* parallax target */
+      position: relative; z-index: 1;
+      opacity: 0;
+    }
+    .main-card {
+      position: relative; border-radius: 20px; overflow: hidden;
+      width: 100%; max-width: 440px;
+      aspect-ratio: 4/5;
+      background: var(--forest);
+      box-shadow: 0 32px 80px rgba(13,60,31,.22), 0 0 0 1px rgba(61,127,97,.14);
+    }
+    .main-card-img {
+      width: 100%; height: 100%; object-fit: cover;
+      /* swap placeholder below with assets/subestacao-entardecer.jpg */
+      opacity: 0; transition: opacity .4s;
+    }
+    .main-card-img.loaded { opacity: 1; }
+    /* fallback bg when image absent */
+    .main-card-fallback {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #0D3C1F 0%, #1a5c35 50%, #0a2c17 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1rem;
+    }
+    .fallback-svg { opacity: .18; }
+    /* dark overlay on photo for text legibility */
+    .main-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top,
+        rgba(7,25,13,.82) 0%, rgba(7,25,13,.38) 45%, transparent 75%);
+    }
+    /* top badge on card */
+    .card-top-badge {
+      position: absolute; top: 1rem; left: 1rem; z-index: 2;
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .28rem .7rem; border-radius: var(--r-pill);
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.9); font-weight: 600;
+    }
+    .card-badge-dot { width:5px;height:5px;border-radius:50%;background:#5BA87A;animation:pulse-dot 2s ease-in-out infinite; }
+
+
+    /* floating glassmorphism cards */
+    .float-card {
+      position: absolute; z-index: 3;
+      background: rgba(255,255,255,.93);
+      border: 1px solid rgba(61,127,97,.14);
+      box-shadow: var(--shadow-float);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+      border-radius: 16px; padding: 1.2rem 1.5rem;
+      opacity: 0;
+    }
+    /* counter card — top-right area */
+    .float-counter {
+      right: -3rem; top: 10%;
+      min-width: 170px; max-width: 180px;
+    }
+    .float-counter-label {
+      font-size: .8rem; font-weight: 700; color: var(--forest);
+      margin-bottom: .45rem;
+    }
+    .float-counter-phrase {
+      display: flex; align-items: baseline; gap: .2rem;
+      flex-wrap: wrap; line-height: 1.1; margin-bottom: .4rem;
+    }
+    .phrase-pre {
+      font-size: .78rem; color: var(--sage); font-weight: 500;
+    }
+    .phrase-from {
+      font-size: 1.5rem; font-weight: 800;
+      font-family: var(--font-display);
+      color: var(--accent);
+    }
+    .phrase-sep {
+      font-size: .78rem; color: var(--sage); font-weight: 400;
+    }
+    .phrase-to {
+      font-size: 1.5rem; font-weight: 800; line-height: 1;
+      font-family: var(--font-display);
+      color: var(--accent);
+    }
+    .phrase-to .range-pct { font-size: .95rem; }
+    .phrase-from .range-pct { font-size: .95rem; }
+    .float-counter-unit {
+      font-size: .68rem; color: var(--sage); line-height: 1.4;
+      border-top: 1px solid rgba(61,127,97,.1); padding-top: .38rem;
+    }
+
+    /* progress card — bottom-left area */
+    .float-progress {
+      left: -4rem; bottom: 18%;
+      min-width: 245px;
+    }
+    .float-progress-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: .6rem; padding-bottom: .5rem;
+      border-bottom: 1px solid rgba(61,127,97,.1);
+    }
+    .float-progress-title { font-size: .8rem; font-weight: 700; color: var(--forest); }
+    .float-progress-badge {
+      font-size: .68rem; font-weight: 700; color: var(--white);
+      background: var(--accent); padding: .15rem .45rem;
+      border-radius: 99px; letter-spacing: .02em;
+    }
+    /* frentes checklist */
+    .frentes-list {
+      list-style: none; display: flex; flex-direction: column; gap: .3rem;
+    }
+    .frentes-list li {
+      display: flex; align-items: center; gap: .45rem;
+      font-size: .72rem; color: var(--sage); line-height: 1.3;
+    }
+    .frente-check {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: rgba(61,127,97,.12); color: var(--accent);
+      font-size: .55rem; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .float-counter { right: -1.5rem; top: 8%; min-width: 190px; }
+      .float-progress { left: -1.5rem; bottom: 14%; min-width: 210px; }
+      .main-card { max-width: 380px; }
+    }
+    @media (max-width: 640px) {
+      .float-counter, .float-progress { display: none; }
+    }
+
+    /* ─── SCROLL HINT ────────────────────────────────────────────────── */
+    .scroll-hint {
+      position: absolute; bottom: 1.8rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      font-size: .68rem; color: var(--muted); letter-spacing: .1em;
+      text-transform: uppercase; opacity: 0;
+      animation: floatY 3s ease-in-out infinite;
+    }
+    .scroll-hint-line {
+      width: 1px; height: 28px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    /* ─── AUTHORITY BAR ──────────────────────────────────────────────── */
+    .authority-bar {
+      position: relative; z-index: 2;
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(61,127,97,.1);
+      border-bottom: 1px solid rgba(61,127,97,.1);
+      padding: 2rem 0;
+      overflow: hidden;
+    }
+    .authority-bar::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(61,127,97,.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .authority-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 2rem;
+      display: flex; align-items: center;
+      justify-content: center;
+      flex-wrap: wrap; gap: 0;
+    }
+    .authority-item {
+      display: flex; align-items: center; gap: .7rem;
+      padding: .55rem 1.4rem;
+      opacity: 0;
+      transition: color .25s;
+      cursor: default;
+    }
+    .authority-item:hover .authority-label { color: var(--forest); }
+    .authority-item:hover .authority-icon-wrap { filter: brightness(.6); }
+
+    /* icon sprite — icones 2.png, grid 4×2 (linha 1: 4 ícones, linha 2: 3)
+       background-size: 144px auto  → cada ícone linha-1 ≈ 36px wide
+       linha 1 center-y ≈ -4px, linha 2 center-y ≈ -48px               */
+    .authority-icon-wrap {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background-image: url('icones 2.png');
+      background-repeat: no-repeat;
+      background-size: 144px auto;
+      opacity: .8;
+      transition: filter .25s, opacity .25s;
+    }
+    /* linha 1 */
+    .ai-lupa    { background-position:   0px -4px; }  /* lupa+doc   → Análise de Fatura */
+    .ai-gauge   { background-position: -36px -4px; }  /* medidor    → Subestações */
+    .ai-arrows  { background-position: -72px -4px; }  /* setas circ → Mercado Livre */
+    /* linha 2 */
+    .ai-wave    { background-position: -54px -48px; } /* onda sin   → QEE */
+    .ai-docdol  { background-position:-100px -48px; } /* doc+$↑     → Crédito ICMS */
+
+    .authority-label {
+      font-size: .82rem; font-weight: 500;
+      color: var(--sage); white-space: nowrap;
+      transition: color .25s;
+    }
+    .authority-sep {
+      width: 1px; height: 22px;
+      background: rgba(61,127,97,.2);
+      flex-shrink: 0;
+    }
+    @media (max-width: 900px) {
+      .authority-item { padding: .45rem .9rem; }
+      .authority-label { font-size: .76rem; }
+    }
+    @media (max-width: 640px) {
+      .authority-inner { gap: 0; justify-content: flex-start; }
+      .authority-sep { display: none; }
+      .authority-item { padding: .4rem .7rem; }
+      .authority-label { font-size: .72rem; white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ambient lights -->
+  <div class="ambient-orb-1" aria-hidden="true"></div>
+  <div class="ambient-orb-2" aria-hidden="true"></div>
+
+  <!-- custom cursor -->
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot"  aria-hidden="true"></div>
+
+  <!-- ═══ NAVBAR ════════════════════════════════════════════════════════ -->
+  <header>
+    <nav class="nav" role="navigation" aria-label="Navegação principal">
+      <div class="nav-inner">
+        <!-- links — esquerda -->
+        <ul class="nav-links" role="list">
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <!-- logo — centro absoluto -->
+        <a href="/" class="nav-logo-center" aria-label="AFB Consultoria Energética — página inicial">
+          <img src="logomarca horizontal.png" alt="AFB Consultoria Energética" />
+        </a>
+
+        <!-- CTA -->
+        <!-- WHATSAPP URL: troque 55XXXXXXXXXXX pelo número real com DDD -->
+        <a
+          href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C%20Arthur%21%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20gratuita%20da%20minha%20instala%C3%A7%C3%A3o."
+          class="nav-cta"
+          target="_blank" rel="noopener"
+          aria-label="Falar no WhatsApp"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ═══ HERO ══════════════════════════════════════════════════════════ -->
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <!-- background effects -->
+      <div class="mesh-bg" aria-hidden="true"></div>
+      <div class="scan-line" aria-hidden="true"></div>
+
+      <!-- particles (injected by JS) -->
+
+      <div class="hero-inner">
+        <!-- ── LEFT ── -->
+        <div class="hero-left">
+          <!-- badge -->
+          <span class="hero-badge" role="text" id="hero-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Engenharia Elétrica · Consultoria em Energia
+          </span>
+
+          <!-- H1 — word-split done by JS -->
+          <h1 class="hero-h1" id="hero-heading" aria-label="Sua empresa paga mais caro pela energia do que precisa. Eu encontro onde — e corrijo na raiz.">
+            <span class="h1-line1">Sua empresa paga mais caro pela energia do que precisa.</span>
+            <br aria-hidden="true"/>
+            <span class="h1-line2">Eu encontro onde — e <span class="accent-text" id="accent-phrase">corrijo na raiz.</span></span>
+          </h1>
+
+          <!-- subtitle -->
+          <p class="hero-subtitle" id="hero-subtitle">
+            Não vendo uma solução pronta. Faço uma varredura técnica completa da sua instalação — fatura, modalidade de contratação, qualidade de energia e crédito de ICMS — e só então recomendo o caminho certo. A análise é o produto. A economia é a consequência.
+          </p>
+
+          <!-- CTAs -->
+          <div class="hero-ctas" id="hero-ctas">
+            <!-- WHATSAPP: troque o número -->
+            <a
+              href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C%20Arthur%21%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20gratuita%20da%20minha%20instala%C3%A7%C3%A3o."
+              class="btn-primary"
+              target="_blank" rel="noopener"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Falar no WhatsApp →
+            </a>
+
+            <a href="#analise" class="btn-secondary">
+              Solicitar análise gratuita ▷
+            </a>
+          </div>
+
+          <!-- microprova -->
+          <div class="hero-microprova" id="hero-microprova" role="text">
+            <span class="microprova-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12">
+                <polyline points="2,6 5,9 10,3"/>
+              </svg>
+            </span>
+            Experiência de 8 anos de CEMIG, conhecendo todo processo por dentro da companhia
+            <span class="microprova-divider" aria-hidden="true"></span>
+            Análise gratuita e sem compromisso
+          </div>
+        </div>
+
+        <!-- ── RIGHT ── -->
+        <div class="hero-right" id="hero-right">
+          <!-- main card (parallax wrapper) -->
+          <div class="main-card-wrap" id="main-card-wrap">
+            <div class="main-card">
+              <img
+                class="main-card-img"
+                src="Subestaçao - Entardecer.png"
+                alt="Subestação elétrica ao entardecer — instalação industrial"
+                id="main-photo"
+                loading="eager"
+              />
+
+              <!-- fallback shown when photo is absent -->
+              <div class="main-card-fallback" id="photo-fallback" aria-hidden="true">
+                <svg class="fallback-svg" width="96" height="96" viewBox="0 0 96 96" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.5">
+                  <rect x="8" y="32" width="16" height="56" rx="2"/>
+                  <rect x="40" y="16" width="16" height="72" rx="2"/>
+                  <rect x="72" y="24" width="16" height="64" rx="2"/>
+                  <line x1="0" y1="88" x2="96" y2="88"/>
+                  <path d="M24 32 L40 16 M56 16 L72 24"/>
+                  <circle cx="16" cy="28" r="4"/>
+                  <circle cx="48" cy="12" r="4"/>
+                  <circle cx="80" cy="20" r="4"/>
+                </svg>
+                <span style="font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;">
+                  <!-- swap: assets/subestacao-entardecer.jpg -->
+                </span>
+              </div>
+
+              <div class="main-card-overlay" aria-hidden="true"></div>
+
+              <!-- top badge -->
+              <div class="card-top-badge" aria-hidden="true">
+                <span class="card-badge-dot"></span>
+                Diagnóstico Energético
+              </div>
+
+            </div><!-- /main-card -->
+
+            <!-- floating card: counter -->
+            <div class="float-card float-counter" id="float-counter" aria-hidden="true">
+              <div class="float-counter-label">Economia Média</div>
+              <div class="float-counter-phrase">
+                <span class="phrase-pre">De</span>
+                <span class="phrase-from">10<span class="range-pct">%</span></span>
+                <span class="phrase-sep">até</span>
+                <span class="phrase-to" id="counter-pct">0<span class="range-pct">%</span></span>
+              </div>
+              <div class="float-counter-unit">de economia média na fatura</div>
+            </div>
+
+            <!-- floating card: fontes de análise -->
+            <div class="float-card float-progress" id="float-progress" aria-hidden="true">
+              <div class="float-progress-header">
+                <span class="float-progress-title">Fontes de Análise</span>
+                <span class="float-progress-badge">9/9</span>
+              </div>
+              <ul class="frentes-list">
+                <li><span class="frente-check">✓</span> Fatura</li>
+                <li><span class="frente-check">✓</span> Contratação</li>
+                <li><span class="frente-check">✓</span> Modalidade Tarifária</li>
+                <li><span class="frente-check">✓</span> Demanda Contratada</li>
+                <li><span class="frente-check">✓</span> Mercado Livre de Energia</li>
+                <li><span class="frente-check">✓</span> Energia por Assinatura</li>
+                <li><span class="frente-check">✓</span> GD Livre</li>
+                <li><span class="frente-check">✓</span> Qualidade de Energia QEE</li>
+                <li><span class="frente-check">✓</span> Créditos de ICMS</li>
+              </ul>
+            </div>
+          </div><!-- /main-card-wrap -->
+        </div><!-- /hero-right -->
+      </div><!-- /hero-inner -->
+
+      <!-- scroll hint -->
+      <div class="scroll-hint" id="scroll-hint" aria-hidden="true">
+        <span>scroll</span>
+        <div class="scroll-hint-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══ FAIXA DE AUTORIDADE ══════════════════════════════════════════ -->
+    <section class="authority-bar" aria-label="Credenciais e especialidades">
+      <div class="authority-inner">
+
+        <div class="authority-item" data-auth>
+          <span class="authority-icon-wrap ai-lupa" role="img" aria-label="Análise de Fatura"></span>
+          <span class="authority-label">Análise de Fatura</span>
+        </div>
+
+        <span class="authority-sep" aria-hidden="true"></span>
+
+        <div class="authority-item" data-auth>
+          <span class="authority-icon-wrap ai-gauge" role="img" aria-label="Subestações de Média Tensão"></span>
+          <span class="authority-label">Subestações de Média Tensão</span>
+        </div>
+
+        <span class="authority-sep" aria-hidden="true"></span>
+
+        <div class="authority-item" data-auth>
+          <span class="authority-icon-wrap ai-arrows" role="img" aria-label="Mercado Livre de Energia"></span>
+          <span class="authority-label">Mercado Livre de Energia</span>
+        </div>
+
+        <span class="authority-sep" aria-hidden="true"></span>
+
+        <div class="authority-item" data-auth>
+          <span class="authority-icon-wrap ai-wave" role="img" aria-label="Qualidade de Energia QEE"></span>
+          <span class="authority-label">Qualidade de Energia (QEE)</span>
+        </div>
+
+        <span class="authority-sep" aria-hidden="true"></span>
+
+        <div class="authority-item" data-auth>
+          <span class="authority-icon-wrap ai-docdol" role="img" aria-label="Crédito de ICMS"></span>
+          <span class="authority-label">Crédito de ICMS</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ SCRIPTS ══════════════════════════════════════════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── reduced motion guard ─────────────────────────────────────── */
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── image fallback ───────────────────────────────────────────── */
+    const photo = document.getElementById('main-photo');
+    const fallback = document.getElementById('photo-fallback');
+    if (photo) {
+      photo.addEventListener('load', () => {
+        photo.classList.add('loaded');
+        if (fallback) fallback.style.display = 'none';
+      });
+      photo.addEventListener('error', () => {
+        photo.style.display = 'none';
+        if (fallback) fallback.style.display = 'flex';
+      });
+      // fire error if already failed (cached)
+      if (photo.complete && !photo.naturalWidth) {
+        photo.dispatchEvent(new Event('error'));
+      } else if (photo.complete && photo.naturalWidth) {
+        photo.classList.add('loaded');
+        if (fallback) fallback.style.display = 'none';
+      }
+    }
+
+    /* ── particles ────────────────────────────────────────────────── */
+    if (!prefersReduced) {
+      const hero = document.querySelector('.hero');
+      const sizes  = [3, 4, 4, 5, 3, 4];
+      const delays = [0, 2.5, 5, 7, 9.5, 12];
+      const lefts  = [8, 18, 34, 55, 72, 88];
+      sizes.forEach((s, i) => {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.cssText = [
+          `width:${s}px;height:${s}px;`,
+          `left:${lefts[i]}%;bottom:10%;`,
+          `animation-duration:${10 + i * 1.5}s;`,
+          `animation-delay:${delays[i]}s;`,
+          `opacity:0;`
+        ].join('');
+        hero.appendChild(p);
+      });
+    }
+
+    /* ── Lenis smooth scroll ──────────────────────────────────────── */
+    if (!prefersReduced && typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
+      gsap.ticker.add((t) => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    /* ── GSAP word splitter ──────────────────────────────────────── */
+    function splitWords(el) {
+      /* preserve accent-text span as a single word unit */
+      const nodes = Array.from(el.childNodes);
+      el.innerHTML = '';
+      nodes.forEach(node => {
+        if (node.nodeType === 3 /* TEXT */) {
+          const words = node.textContent.split(/(\s+)/);
+          words.forEach(w => {
+            if (/^\s+$/.test(w)) {
+              el.appendChild(document.createTextNode(w));
+            } else if (w) {
+              const wrap  = document.createElement('span');
+              const inner = document.createElement('span');
+              wrap.className  = 'word-wrap';
+              inner.className = 'word-inner';
+              inner.textContent = w;
+              wrap.appendChild(inner);
+              el.appendChild(wrap);
+            }
+          });
+        } else if (node.nodeType === 1) {
+          /* span/em/strong — treat as one word */
+          const wrap  = document.createElement('span');
+          const inner = document.createElement('span');
+          wrap.className  = 'word-wrap';
+          inner.className = 'word-inner';
+          inner.appendChild(node.cloneNode(true));
+          wrap.appendChild(inner);
+          el.appendChild(wrap);
+        }
+      });
+      return el.querySelectorAll('.word-inner');
+    }
+
+    const line1 = document.querySelector('.h1-line1');
+    const line2 = document.querySelector('.h1-line2');
+    const words1 = splitWords(line1);
+    const words2 = splitWords(line2);
+    const allWords = [...words1, ...words2];
+
+    /* re-attach accent-text id after split */
+    const accentEl = document.querySelector('#hero-heading .accent-text');
+
+    /* ── GSAP main timeline ─────────────────────────────────────── */
+    if (!prefersReduced && typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      /* badge */
+      tl.to('#hero-badge', { opacity: 1, y: 0, duration: .7 }, 0)
+        .fromTo('#hero-badge', { y: 16 }, { y: 0, duration: .7 }, 0);
+
+      /* H1 words */
+      tl.to(allWords, {
+        y: '0%', opacity: 1, duration: .65,
+        stagger: .045
+      }, 0.22);
+
+      /* subtitle */
+      tl.to('#hero-subtitle', { opacity: 1, y: 0, duration: .65 }, 0.78)
+        .fromTo('#hero-subtitle', { y: 18 }, { y: 0, duration: .65 }, 0.78);
+
+      /* CTAs */
+      tl.to('#hero-ctas', { opacity: 1, y: 0, duration: .55 }, 1.08)
+        .fromTo('#hero-ctas', { y: 14 }, { y: 0, duration: .55 }, 1.08);
+
+      /* microprova */
+      tl.to('#hero-microprova', { opacity: 1, y: 0, duration: .5 }, 1.32)
+        .fromTo('#hero-microprova', { y: 10 }, { y: 0, duration: .5 }, 1.32);
+
+      /* main card */
+      tl.to('#main-card-wrap', {
+        opacity: 1, x: 0, duration: .85, ease: 'power3.out'
+      }, 0.42)
+        .fromTo('#main-card-wrap', { x: 32 }, { x: 0, duration: .85 }, 0.42);
+
+      /* float cards */
+      tl.to('#float-counter', {
+        opacity: 1, x: 0, y: 0, duration: .55
+      }, 0.82)
+        .fromTo('#float-counter', { x: 12, y: -8 }, { x: 0, y: 0, duration: .55 }, 0.82);
+
+      tl.to('#float-progress', {
+        opacity: 1, x: 0, y: 0, duration: .55
+      }, 1.0)
+        .fromTo('#float-progress', { x: -12, y: 8 }, { x: 0, y: 0, duration: .55 }, 1.0);
+
+      /* scroll hint */
+      tl.to('#scroll-hint', { opacity: .6, duration: .5 }, 1.5);
+
+      /* accent underline */
+      tl.call(() => {
+        if (accentEl) accentEl.classList.add('underline-active');
+      }, [], 1.4);
+
+      /* ── counters ──────────────────────────────────────────────── */
+      tl.call(() => {
+        /* economia % — anima só o máx (mín 10% é estático) */
+        gsap.to({ val: 0 }, {
+          val: 32, duration: 2.4, ease: 'power2.out',
+          onUpdate: function () {
+            const el = document.getElementById('counter-pct');
+            if (el) el.innerHTML = Math.round(this.targets()[0].val) + '<span class="range-pct">%</span>';
+          }
+        });
+      }, [], 1.05);
+
+      /* ── CSS float animations on cards (deferred to avoid overlap) ── */
+      tl.call(() => {
+        document.querySelectorAll('.float-card').forEach((fc, i) => {
+          fc.style.animation = `floatY ${5.5 + i}s ease-in-out infinite`;
+          fc.style.animationDelay = `${i * 1.1}s`;
+        });
+      }, [], 1.6);
+
+      /* ── Mouse parallax ─────────────────────────────────────────── */
+      let mx = 0, my = 0;
+      let cx = 0, cy = 0;
+      const cardWrap = document.getElementById('main-card-wrap');
+      const floatCards = document.querySelectorAll('.float-card');
+      const LERP = 0.06;
+
+      window.addEventListener('mousemove', e => {
+        mx = (e.clientX / window.innerWidth  - 0.5) * 2;
+        my = (e.clientY / window.innerHeight - 0.5) * 2;
+      }, { passive: true });
+
+      (function parallaxLoop() {
+        cx += (mx - cx) * LERP;
+        cy += (my - cy) * LERP;
+        if (cardWrap) {
+          gsap.set(cardWrap, { x: cx * 14, y: cy * 8 });
+        }
+        floatCards.forEach((fc, i) => {
+          const factor = 22 + i * 8;
+          gsap.set(fc, {
+            x: -cx * factor * (i % 2 === 0 ? 1 : -1),
+            y: -cy * (factor * 0.6)
+          });
+        });
+        requestAnimationFrame(parallaxLoop);
+      })();
+
+      /* ── Authority bar stagger (ScrollTrigger) ──────────────────── */
+      gsap.fromTo('[data-auth]',
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1, y: 0, duration: .55, ease: 'power3.out',
+          stagger: .08,
+          scrollTrigger: {
+            trigger: '.authority-bar',
+            start: 'top 88%',
+            once: true
+          }
+        }
+      );
+
+    } else {
+      /* reduced motion: show everything immediately */
+      document.querySelectorAll(
+        '#hero-badge, #hero-subtitle, #hero-ctas, #hero-microprova, #main-card-wrap, #float-counter, #float-progress'
+      ).forEach(el => { el.style.opacity = '1'; });
+      document.querySelectorAll('.word-inner').forEach(el => {
+        el.style.transform = 'translateY(0)';
+        el.style.opacity = '1';
+      });
+      document.getElementById('counter-pct').innerHTML = '32<span class="range-pct">%</span>';
+      if (accentEl) accentEl.classList.add('underline-active');
+      /* authority bar: show immediately */
+      document.querySelectorAll('[data-auth]').forEach(el => { el.style.opacity = '1'; });
+    }
+
+    /* ── Custom cursor (snake trail, light-bg adapted) ─────────────── */
+    const ring = document.getElementById('cursor-ring');
+    const dot  = document.getElementById('cursor-dot');
+    if (ring && dot && window.matchMedia('(pointer: fine)').matches && !prefersReduced) {
+
+      const SEGMENTS = 20;
+      const segEls = [], segX = new Array(SEGMENTS), segY = new Array(SEGMENTS);
+      let tgtX = innerWidth / 2, tgtY = innerHeight / 2;
+      let curX = tgtX, curY = tgtY;
+      let sizeBoost = 0;
+
+      for (let i = 0; i < SEGMENTS; i++) {
+        const el = document.createElement('div');
+        const base = Math.max(3, 11 - i * 0.45);
+        el.style.cssText = [
+          'position:fixed;top:0;left:0;border-radius:9999px;pointer-events:none;',
+          `z-index:9990;`,
+          `width:${base}px;height:${base}px;`,
+          `background:rgba(61,127,97,${Math.min(.84, .44 + .018 * (SEGMENTS - i))});`,
+          `box-shadow:0 0 0 1px rgba(13,60,31,.05),0 0 8px rgba(61,127,97,.13);`,
+          `opacity:${Math.max(.12, .88 - i * 0.038)};`,
+          'transform:translate(-50%,-50%);will-change:left,top;'
+        ].join('');
+        document.body.appendChild(el);
+        segEls[i] = el;
+        segX[i] = tgtX; segY[i] = tgtY;
+      }
+
+      const updSizes = () => {
+        for (let i = 0; i < SEGMENTS; i++) {
+          const s = Math.max(3, 11 - i * 0.45) + sizeBoost;
+          segEls[i].style.width  = s + 'px';
+          segEls[i].style.height = s + 'px';
+        }
+      };
+
+      const snap = (x, y) => {
+        ring.style.left = dot.style.left = x + 'px';
+        ring.style.top  = dot.style.top  = y + 'px';
+        for (let i = 0; i < SEGMENTS; i++) {
+          segX[i] = x; segY[i] = y;
+          segEls[i].style.left = x + 'px';
+          segEls[i].style.top  = y + 'px';
+        }
+      };
+
+      const loop = () => {
+        curX += (tgtX - curX) * .22;
+        curY += (tgtY - curY) * .22;
+        ring.style.left = curX + 'px'; ring.style.top = curY + 'px';
+        dot.style.left  = tgtX + 'px'; dot.style.top  = tgtY + 'px';
+        segX[0] += (tgtX - segX[0]) * .28;
+        segY[0] += (tgtY - segY[0]) * .28;
+        for (let i = 1; i < SEGMENTS; i++) {
+          segX[i] += (segX[i-1] - segX[i]) * .28;
+          segY[i] += (segY[i-1] - segY[i]) * .28;
+        }
+        for (let i = 0; i < SEGMENTS; i++) {
+          segEls[i].style.left = segX[i] + 'px';
+          segEls[i].style.top  = segY[i] + 'px';
+        }
+        requestAnimationFrame(loop);
+      };
+
+      snap(tgtX, tgtY);
+      updSizes();
+      loop();
+
+      window.addEventListener('mousemove', e => { tgtX = e.clientX; tgtY = e.clientY; }, { passive: true });
+      window.addEventListener('mouseleave', () => {
+        ring.style.opacity = dot.style.opacity = '0';
+        segEls.forEach(el => el.style.opacity = '0');
+      });
+      window.addEventListener('mouseenter', () => {
+        ring.style.opacity = '.9'; dot.style.opacity = '.9';
+        segEls.forEach((el, i) => el.style.opacity = String(Math.max(.12, .88 - i * .038)));
+      });
+
+      const enlarge = () => {
+        ring.style.width = ring.style.height = '44px';
+        ring.style.borderColor = 'rgba(61,127,97,.9)';
+        ring.style.boxShadow = '0 0 0 3px rgba(61,127,97,.12),0 0 40px rgba(61,127,97,.22)';
+        sizeBoost = 2; updSizes();
+      };
+      const shrink = () => {
+        ring.style.width = ring.style.height = '28px';
+        ring.style.borderColor = 'rgba(61,127,97,.68)';
+        ring.style.boxShadow = '0 0 0 2px rgba(13,60,31,.08),0 0 20px rgba(61,127,97,.18)';
+        sizeBoost = 0; updSizes();
+      };
+
+      document.querySelectorAll('a, button, [role="button"], .btn-primary, .btn-secondary, .nav-cta').forEach(el => {
+        el.addEventListener('mouseenter', enlarge);
+        el.addEventListener('mouseleave', shrink);
+      });
+
+      window.addEventListener('mousedown', () => {
+        ring.style.transform = 'translate(-50%,-50%) scale(.88)';
+      });
+      window.addEventListener('mouseup', () => {
+        ring.style.transform = 'translate(-50%,-50%) scale(1)';
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        /* RAF pauses automatically when hidden */
+      });
+    }
+
+  })();
+  </script>
+</body>
+</html>

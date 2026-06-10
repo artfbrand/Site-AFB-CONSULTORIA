@@ -1,0 +1,8 @@
+/* ── BASE FONT ── */
+body { font-family: 'Inter', sans-serif; }
+
+/* ── GEIST UTILITY ── */
+.font-geist { font-family: 'Geist', 'Inter', sans-serif !important; }
+
+/* ── PLAYFAIR UTILITY ── */
+.font-display { font-family: 'Playfair Display', serif !important; }

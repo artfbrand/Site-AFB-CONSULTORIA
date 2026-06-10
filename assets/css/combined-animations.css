@@ -1,0 +1,57 @@
+/* ===================================================
+   COMBINED ANIMATIONS — merged from both source DS
+   Sondero × Glass-Green-Effect design fusion
+   =================================================== */
+
+/* ── KEYFRAMES ── */
+@keyframes blink-cursor { 0%, 100% { border-color: transparent; } 50% { border-color: #14b8a6; } }
+@keyframes slideUpFade { 0% { opacity: 0; transform: translateY(32px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes bgZoomOut { 0% { opacity: 0; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { 0% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.91); } to { opacity: 1; transform: scale(1); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+@keyframes glow { from { box-shadow: 0 0 20px rgba(20,184,166,.3), 0 0 40px rgba(20,184,166,.1); } to { box-shadow: 0 0 32px rgba(20,184,166,.55), 0 0 64px rgba(20,184,166,.22); } }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+@keyframes ambientMove { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(100px,-55px) scale(1.12); } }
+@keyframes ambientMove2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px,65px) scale(0.88); } }
+@keyframes ambientMove3 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(50px,-80px) scale(1.2); } }
+@keyframes particleRise { 0% { transform: translateY(0) scale(1); opacity: .65; } 100% { transform: translateY(-260px) scale(.25); opacity: 0; } }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+@keyframes scanLine { 0% { top: -2px; opacity: 0; } 5% { opacity: 1; } 95% { opacity: .6; } 100% { top: 100%; opacity: 0; } }
+@keyframes borderPulse { 0%, 100% { opacity: .25; } 50% { opacity: .75; } }
+@keyframes dataBarGrow { from { width: 0%; } to { width: var(--bar-w, 28%); } }
+@keyframes meshShift { 0% { background-position: 0% 0%; } 100% { background-position: 60px 60px; } }
+@keyframes countUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* ── INTRO (page load) ── */
+.animate-blink { animation: blink-cursor 1s step-end infinite; }
+.animate-bg-intro { animation: bgZoomOut 1.9s cubic-bezier(.16,1,.3,1) forwards; }
+.animate-header-intro { opacity: 0; animation: fadeIn 1s ease-out .45s forwards; }
+.animate-title-intro { opacity: 0; animation: slideUpFade 1.2s cubic-bezier(.16,1,.3,1) .2s forwards; }
+.animate-subtitle-intro { opacity: 0; animation: slideUpFade 1.2s cubic-bezier(.16,1,.3,1) .5s forwards; }
+.animate-btn-intro { opacity: 0; animation: slideUpFade 1.2s cubic-bezier(.16,1,.3,1) .8s forwards; }
+.animate-stats-intro { opacity: 0; animation: slideUpFade 1.2s cubic-bezier(.16,1,.3,1) 1.1s forwards; }
+
+/* ── SCROLL REVEAL ── */
+.reveal-up { animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards; opacity: 0; }
+
+/* ── CONTINUOUS ── */
+.animate-glow { animation: glow 2.2s ease-in-out infinite alternate; }
+.animate-float { animation: float 6.5s ease-in-out infinite; }
+.animate-fade-in { animation: fadeIn 1s cubic-bezier(.4,0,.2,1) forwards; opacity: 0; }
+.animate-slide-up { animation: slideUp .85s cubic-bezier(.4,0,.2,1) forwards; opacity: 0; }
+.animate-scale-in { animation: scaleIn .7s cubic-bezier(.4,0,.2,1) forwards; opacity: 0; }
+.animate-count-up { animation: countUp .6s cubic-bezier(.4,0,.2,1) forwards; opacity: 0; }
+
+/* ── DELAYS ── */
+.delay-100 { animation-delay: .1s; }
+.delay-200 { animation-delay: .2s; }
+.delay-300 { animation-delay: .3s; }
+.delay-400 { animation-delay: .4s; }
+.delay-500 { animation-delay: .5s; }
+.delay-600 { animation-delay: .6s; }
+.delay-700 { animation-delay: .7s; }
+.delay-800 { animation-delay: .8s; }
