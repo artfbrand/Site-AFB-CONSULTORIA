@@ -1308,6 +1308,397 @@
       </div><!-- /problema-inner -->
     </section>
 
+    <!-- ═══ SEÇÃO 04 — O MÉTODO ═══════════════════════════════════════════ -->
+    <style>
+      /* ── Section: O Método ───────────────────────────────────────────── */
+      .metodo {
+        background: #EFF6F1;
+        padding: 7rem 0 6rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .metodo-mesh {
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(61,127,97,.038) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(61,127,97,.038) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+        opacity: .55;
+        animation: meshShift 32s linear infinite;
+      }
+      .metodo-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      /* badge */
+      .metodo-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .35rem .9rem;
+        border-radius: 9999px;
+        background: rgba(247,250,247,.92);
+        border: 1px solid rgba(61,127,97,.22);
+        font-size: .7rem;
+        font-weight: 600;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: #3D7F61;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        box-shadow: 0 2px 12px rgba(61,127,97,.08);
+      }
+      .metodo-badge-dot {
+        width: 6px; height: 6px;
+        background: #3D7F61;
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: icmsGlow 2.4s ease-in-out infinite;
+      }
+      .metodo-heading {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1.8rem, 3.4vw, 3rem);
+        font-weight: 600;
+        color: #0D3C1F;
+        text-align: center;
+        max-width: 820px;
+        line-height: 1.16;
+        letter-spacing: -.025em;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+      }
+      .metodo-subintro {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: .9375rem;
+        color: #4A6B5A;
+        text-align: center;
+        max-width: 620px;
+        line-height: 1.78;
+        margin-bottom: 3.5rem;
+        opacity: 0;
+      }
+
+      /* ── Bento grid ─── */
+      .metodo-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .metodo-grid {
+          grid-template-columns: repeat(12, 1fr);
+          grid-auto-rows: auto;
+        }
+        .mc-intro { grid-column: span 5; grid-row: span 2; }
+        .mc-f1    { grid-column: span 4; }
+        .mc-f2    { grid-column: span 3; }
+        .mc-f3    { grid-column: span 4; }
+        .mc-f4    { grid-column: span 3; }
+      }
+
+      /* shared card */
+      .mc {
+        border-radius: 16px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        min-height: 220px;
+        opacity: 0;
+        transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s;
+      }
+      .mc:hover { transform: translateY(-5px); }
+      /* shimmer sweep on hover-equivalent (continuous for dark cards) */
+      .mc-shimmer::after {
+        content: '';
+        position: absolute; top: 0; left: -60%;
+        width: 42%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+        animation: metodoshimmer 5.5s ease-in-out infinite;
+        pointer-events: none;
+      }
+      @keyframes metodoshimmer {
+        0%   { left: -60%; opacity: 0; }
+        35%  { opacity: 1; }
+        65%  { opacity: 1; }
+        100% { left: 160%; opacity: 0; }
+      }
+
+      /* INTRO card */
+      .mc-intro {
+        background: #0D3C1F;
+        box-shadow: 0 8px 40px rgba(13,60,31,.24);
+        min-height: 420px;
+        justify-content: flex-end;
+      }
+      .mc-intro:hover { box-shadow: 0 18px 52px rgba(13,60,31,.32); }
+
+      /* dark frente */
+      .mc-dark {
+        background: #0D3C1F;
+        box-shadow: 0 8px 40px rgba(13,60,31,.22);
+      }
+      .mc-dark:hover { box-shadow: 0 14px 44px rgba(13,60,31,.30); }
+
+      /* sage frente */
+      .mc-sage {
+        background: #EFF6F1;
+        box-shadow: 0 4px 20px rgba(13,60,31,.04);
+        border: 1px solid rgba(61,127,97,.14);
+      }
+      .mc-sage:hover {
+        box-shadow: 0 10px 32px rgba(13,60,31,.08);
+        border-color: rgba(61,127,97,.26);
+      }
+
+      /* medium frente */
+      .mc-medium {
+        background: #3D7F61;
+        box-shadow: 0 8px 30px rgba(61,127,97,.28);
+      }
+      .mc-medium:hover { box-shadow: 0 14px 44px rgba(61,127,97,.38); }
+
+      /* orb in dark cards */
+      .mc-orb {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      /* mesh grid overlay inside dark card */
+      .mc-inner-mesh {
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+      }
+
+      /* intro card internals */
+      .mc-ghost-num {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 7rem;
+        font-weight: 700;
+        color: rgba(255,255,255,.05);
+        position: absolute;
+        top: .8rem; right: 1.2rem;
+        line-height: 1;
+        pointer-events: none;
+        letter-spacing: -.04em;
+      }
+      .mc-eyebrow {
+        font-size: .65rem;
+        font-weight: 600;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        margin-bottom: .75rem;
+      }
+      .mc-eyebrow-dark   { color: #3D7F61; }
+      .mc-eyebrow-sage   { color: #3D7F61; }
+      .mc-eyebrow-medium { color: rgba(212,232,220,.75); }
+
+      .mc-h3 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 600;
+        line-height: 1.28;
+        margin-bottom: .65rem;
+      }
+      .mc-h3-intro   { font-size: clamp(1.15rem, 1.7vw, 1.5rem); color: #FAF9F6; margin-bottom: .9rem; }
+      .mc-h3-dark    { font-size: clamp(.95rem, 1.3vw, 1.1rem);  color: #FAF9F6; }
+      .mc-h3-sage    { font-size: clamp(.95rem, 1.3vw, 1.1rem);  color: #0D3C1F; }
+      .mc-h3-medium  { font-size: clamp(.95rem, 1.3vw, 1.1rem);  color: #ffffff; }
+
+      .mc-p {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: .8125rem;
+        line-height: 1.75;
+      }
+      .mc-p-intro  { color: rgba(212,232,220,.76); font-size: .875rem; line-height: 1.78; }
+      .mc-p-dark   { color: rgba(212,232,220,.72); }
+      .mc-p-sage   { color: #4A6B5A; }
+      .mc-p-medium { color: rgba(255,255,255,.8); }
+
+      /* frente number accent */
+      .mc-num-accent {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: auto;
+        padding-bottom: 1.25rem;
+      }
+      .mc-num-dark   { color: rgba(255,255,255,.09); }
+      .mc-num-sage   { color: rgba(13,60,31,.07); }
+      .mc-num-medium { color: rgba(255,255,255,.12); }
+
+      /* ── REFORÇO strip ─── */
+      .metodo-reforco {
+        margin-top: 1rem;
+        width: 100%;
+        background: #0D3C1F;
+        border-radius: 16px;
+        padding: 2.25rem 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        box-shadow: 0 8px 40px rgba(13,60,31,.22);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+      }
+      .metodo-reforco::after {
+        content: '';
+        position: absolute; top: 0; left: -60%;
+        width: 42%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+        animation: metodoshimmer 7s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .metodo-reforco-rule {
+        width: 32px; height: 1.5px;
+        flex-shrink: 0;
+        background: linear-gradient(90deg, transparent, #3D7F61);
+      }
+      .metodo-reforco-rule-r {
+        background: linear-gradient(90deg, #3D7F61, transparent);
+      }
+      .metodo-reforco-text {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1rem, 1.7vw, 1.35rem);
+        font-weight: 500;
+        color: #FAF9F6;
+        text-align: center;
+        font-style: italic;
+        letter-spacing: .005em;
+        line-height: 1.4;
+      }
+      .metodo-reforco-text em {
+        color: #3D7F61;
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      /* responsive */
+      @media (max-width: 1024px) {
+        .metodo { padding: 5.5rem 0 5rem; }
+        .mc-intro { min-height: 360px; }
+      }
+      @media (max-width: 767px) {
+        .metodo { padding: 5rem 0 4.5rem; }
+        .metodo-inner { padding: 0 1.5rem; }
+        .mc-intro { min-height: 300px; }
+        .mc { min-height: 180px; }
+        .metodo-reforco { padding: 1.75rem 1.5rem; flex-wrap: wrap; gap: .75rem; }
+        .metodo-reforco-rule, .metodo-reforco-rule-r { display: none; }
+      }
+      @media (max-width: 480px) {
+        .metodo-inner { padding: 0 1.25rem; }
+        .mc-ghost-num { font-size: 5rem; }
+      }
+    </style>
+
+    <section class="metodo" id="metodo" aria-labelledby="metodo-heading">
+      <div class="metodo-mesh" aria-hidden="true"></div>
+      <div class="metodo-inner">
+
+        <!-- header -->
+        <div class="metodo-badge" id="metodo-badge">
+          <span class="metodo-badge-dot" aria-hidden="true"></span>
+          O método
+        </div>
+        <h2 class="metodo-heading" id="metodo-heading">
+          Uma análise que olha tudo —<br>não uma solução que serve para todos.
+        </h2>
+        <p class="metodo-subintro" id="metodo-subintro">
+          Não existe uma resposta única para economizar energia. Existe a análise técnica que descobre qual é a resposta certa para a SUA instalação. Toda recomendação nasce de quatro frentes:
+        </p>
+
+        <!-- bento grid -->
+        <div class="metodo-grid">
+
+          <!-- card INTRO — dark, col-span-5 row-span-2 -->
+          <article class="mc mc-intro mc-shimmer" data-mr="0" aria-labelledby="mc-intro-h3">
+            <!-- bg orbs -->
+            <div class="mc-orb" aria-hidden="true" style="width:280px;height:280px;top:-10%;right:-14%;background:radial-gradient(circle,rgba(61,127,97,.16) 0%,transparent 70%);filter:blur(26px);animation:icmsGlow 4s ease-in-out infinite;"></div>
+            <div class="mc-orb" aria-hidden="true" style="width:180px;height:180px;bottom:-8%;left:-6%;background:radial-gradient(circle,rgba(246,144,102,.11) 0%,transparent 65%);filter:blur(20px);animation:icmsGlow 5.5s ease-in-out infinite 1.4s;"></div>
+            <!-- mesh overlay -->
+            <div class="mc-inner-mesh" aria-hidden="true"></div>
+            <!-- scan line -->
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.4),transparent);z-index:3;pointer-events:none;animation:icmsScan 6s ease-in-out infinite;"></div>
+            <!-- ghost number -->
+            <span class="mc-ghost-num" aria-hidden="true">04</span>
+            <!-- content -->
+            <div style="position:relative;z-index:4;margin-top:auto;">
+              <span class="mc-eyebrow mc-eyebrow-dark">O Método · AFB Consultoria Energética</span>
+              <h3 class="mc-h3 mc-h3-intro" id="mc-intro-h3">Toda recomendação nasce de quatro frentes.</h3>
+              <p class="mc-p mc-p-intro">Não existe uma resposta única para economizar energia. Existe a análise técnica que descobre qual é a resposta certa para a SUA instalação.</p>
+            </div>
+          </article>
+
+          <!-- FRENTE 01 — sage — col-span-4 -->
+          <article class="mc mc-sage mc-f1" data-mr="1" aria-labelledby="mc-f1-h3">
+            <span class="mc-num-accent mc-num-sage" aria-hidden="true">01</span>
+            <div>
+              <span class="mc-eyebrow mc-eyebrow-sage">Frente 01 · A Conta</span>
+              <h3 class="mc-h3 mc-h3-sage" id="mc-f1-h3">A Conta</h3>
+              <p class="mc-p mc-p-sage">Leitura técnica criteriosa da fatura: enquadramento, modalidade tarifária, cobranças indevidas e perfil real de consumo.</p>
+            </div>
+          </article>
+
+          <!-- FRENTE 02 — medium — col-span-3 -->
+          <article class="mc mc-medium mc-shimmer mc-f2" data-mr="2" aria-labelledby="mc-f2-h3">
+            <span class="mc-num-accent mc-num-medium" aria-hidden="true">02</span>
+            <div>
+              <span class="mc-eyebrow mc-eyebrow-medium">Frente 02 · A Contratação</span>
+              <h3 class="mc-h3 mc-h3-medium" id="mc-f2-h3">A Contratação</h3>
+              <p class="mc-p mc-p-medium">Mercado Livre de Energia, GD Livre e Energia por Assinatura são comparados entre si. A melhor opção é definida pelo seu perfil de consumo — nunca por conveniência comercial.</p>
+            </div>
+          </article>
+
+          <!-- FRENTE 03 — dark — col-span-4 -->
+          <article class="mc mc-dark mc-shimmer mc-f3" data-mr="3" aria-labelledby="mc-f3-h3">
+            <div class="mc-inner-mesh" aria-hidden="true"></div>
+            <div class="mc-orb" aria-hidden="true" style="width:140px;height:140px;top:-14%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.18) 0%,transparent 70%);filter:blur(16px);animation:icmsGlow 4.5s ease-in-out infinite .8s;"></div>
+            <span class="mc-num-accent mc-num-dark" aria-hidden="true" style="position:relative;z-index:2;">03</span>
+            <div style="position:relative;z-index:2;">
+              <span class="mc-eyebrow mc-eyebrow-dark">Frente 03 · A Causa Raiz</span>
+              <h3 class="mc-h3 mc-h3-dark" id="mc-f3-h3">A Causa Raiz</h3>
+              <p class="mc-p mc-p-dark">Estudos de Qualidade de Energia (QEE) atacam na origem as perdas, os danos a equipamentos e os custos ocultos que a fatura não mostra.</p>
+            </div>
+          </article>
+
+          <!-- FRENTE 04 — sage — col-span-3 -->
+          <article class="mc mc-sage mc-f4" data-mr="4" aria-labelledby="mc-f4-h3">
+            <span class="mc-num-accent mc-num-sage" aria-hidden="true">04</span>
+            <div>
+              <span class="mc-eyebrow mc-eyebrow-sage">Frente 04 · O Capital</span>
+              <h3 class="mc-h3 mc-h3-sage" id="mc-f4-h3">O Capital</h3>
+              <p class="mc-p mc-p-sage">Laudo de Crédito de ICMS para identificar e recuperar o que a empresa tem direito de reaver.</p>
+            </div>
+          </article>
+
+        </div><!-- /metodo-grid -->
+
+        <!-- REFORÇO strip -->
+        <div class="metodo-reforco" id="metodo-reforco" aria-live="polite">
+          <div class="metodo-reforco-rule" aria-hidden="true"></div>
+          <p class="metodo-reforco-text">A análise técnica vem antes da recomendação. <em>Sempre.</em></p>
+          <div class="metodo-reforco-rule metodo-reforco-rule-r" aria-hidden="true"></div>
+        </div>
+
+      </div><!-- /metodo-inner -->
+    </section>
+
   </main>
 
   <!-- ═══ SCRIPTS ══════════════════════════════════════════════════════ -->
@@ -1583,6 +1974,36 @@
           scrollTrigger: { trigger: '#problema-closing', start: 'top 90%', once: true } }
       );
 
+      /* ── Seção 04 — O Método ────────────────────────────────────────── */
+      gsap.fromTo('#metodo-badge',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: .65, ease: 'power2.out',
+          scrollTrigger: { trigger: '#metodo-badge', start: 'top 92%', once: true } }
+      );
+      gsap.fromTo('#metodo-heading',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: .85, ease: 'power3.out',
+          scrollTrigger: { trigger: '#metodo-heading', start: 'top 90%', once: true }, delay: .1 }
+      );
+      gsap.fromTo('#metodo-subintro',
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: .7, ease: 'power2.out',
+          scrollTrigger: { trigger: '#metodo-subintro', start: 'top 90%', once: true }, delay: .2 }
+      );
+      document.querySelectorAll('[data-mr]').forEach(el => {
+        const d = parseFloat(el.dataset.mr) * 0.11;
+        gsap.fromTo(el,
+          { opacity: 0, y: 38, scale: .97 },
+          { opacity: 1, y: 0, scale: 1, duration: .82, ease: 'power3.out', delay: d,
+            scrollTrigger: { trigger: '.metodo-grid', start: 'top 84%', once: true } }
+        );
+      });
+      gsap.fromTo('#metodo-reforco',
+        { opacity: 0, y: 28, scale: .97 },
+        { opacity: 1, y: 0, scale: 1, duration: .88, ease: 'power3.out',
+          scrollTrigger: { trigger: '#metodo-reforco', start: 'top 90%', once: true } }
+      );
+
     } else {
       /* reduced motion: show everything immediately */
       document.querySelectorAll(
@@ -1602,6 +2023,10 @@
       document.querySelectorAll('#problema-badge,#problema-heading,#problema-intro,#problema-closing')
         .forEach(el => { el.style.opacity = '1'; });
       document.querySelectorAll('[data-pc]').forEach(el => { el.style.opacity = '1'; });
+      /* metodo: show immediately */
+      document.querySelectorAll('#metodo-badge,#metodo-heading,#metodo-subintro,#metodo-reforco')
+        .forEach(el => { el.style.opacity = '1'; });
+      document.querySelectorAll('[data-mr]').forEach(el => { el.style.opacity = '1'; });
     }
 
     /* ── Custom cursor — 12 segmentos, GPU via translate3d ─────────── */
