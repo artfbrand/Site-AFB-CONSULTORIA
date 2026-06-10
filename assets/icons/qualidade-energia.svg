@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title>Qualidade de Energia (QEE)</title>
+  <circle cx="32" cy="32" r="28"/>
+  <line x1="4" y1="32" x2="60" y2="32" stroke-dasharray="4,3"/>
+  <path d="M6 32 C14 16,22 16,32 32 C42 48,50 48,58 32"/>
+</svg>

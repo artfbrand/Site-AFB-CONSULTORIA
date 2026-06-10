@@ -6,9 +6,12 @@
   <title>Arthur Brandão · Consultoria em Energia</title>
   <meta name="description" content="Engenharia elétrica e consultoria em energia. Análise técnica completa da sua instalação — fatura, modalidade de contratação, qualidade de energia e crédito de ICMS." />
 
-  <!-- Fonts -->
+  <!-- Resource hints — establish connections early -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <!-- Fonts (display=swap prevents render-blocking) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -40,7 +43,8 @@
     /* ─── RESET & BASE ───────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { font-family: var(--font-body); background: var(--bg); color: var(--forest); scroll-behavior: smooth; }
+    html { font-family: var(--font-body); background: var(--bg); color: var(--forest); }
+    /* scroll-behavior: smooth removido — Lenis gerencia o smooth scroll */
     body { overflow-x: hidden; cursor: none; }
 
     img { display: block; max-width: 100%; }
@@ -120,7 +124,7 @@
 
     /* ─── NAVBAR ─────────────────────────────────────────────────────── */
     .nav {
-      position: sticky; top: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       width: 100%; height: 132px;
       background: rgba(247,250,247,.94);
       backdrop-filter: blur(20px) saturate(160%);
@@ -168,21 +172,25 @@
       box-shadow: 0 4px 20px rgba(13,60,31,.28);
       transform: translateY(-1px);
     }
+    main { padding-top: 132px; }
     @media (max-width: 1024px) {
       .nav { height: 108px; }
       .nav-logo-center img { height: 90px; }
       .nav-links { gap: 2.4rem; }
       .nav-inner { padding: 0 2rem; }
+      main { padding-top: 108px; }
     }
     @media (max-width: 768px) {
       .nav { height: 90px; }
       .nav-logo-center img { height: 72px; }
       .nav-links { display: none; }
       .nav-cta span { display: none; }
+      main { padding-top: 90px; }
     }
     @media (max-width: 480px) {
       .nav { height: 76px; }
       .nav-logo-center img { height: 58px; }
+      main { padding-top: 76px; }
     }
 
     /* ─── HERO SECTION ───────────────────────────────────────────────── */
@@ -417,6 +425,7 @@
       -webkit-backdrop-filter: blur(22px) saturate(150%);
       border-radius: 16px; padding: 1.2rem 1.5rem;
       opacity: 0;
+      will-change: transform;
     }
     /* counter card — top-right area */
     .float-counter {
@@ -541,24 +550,19 @@
     .authority-item:hover .authority-label { color: var(--forest); }
     .authority-item:hover .authority-icon-wrap { filter: brightness(.6); }
 
-    /* icon sprite — icones 2.png, grid 4×2 (linha 1: 4 ícones, linha 2: 3)
-       background-size: 144px auto  → cada ícone linha-1 ≈ 36px wide
-       linha 1 center-y ≈ -4px, linha 2 center-y ≈ -48px               */
     .authority-icon-wrap {
       width: 36px; height: 36px; flex-shrink: 0;
-      background-image: url('assets/images/icones.png');
-      background-repeat: no-repeat;
-      background-size: 144px auto;
-      opacity: .8;
-      transition: filter .25s, opacity .25s;
+      color: var(--accent);
+      opacity: .85;
+      transition: opacity .25s;
+      display: flex; align-items: center; justify-content: center;
     }
-    /* linha 1 */
-    .ai-lupa    { background-position:   0px -4px; }  /* lupa+doc   → Análise de Fatura */
-    .ai-gauge   { background-position: -36px -4px; }  /* medidor    → Subestações */
-    .ai-arrows  { background-position: -72px -4px; }  /* setas circ → Mercado Livre */
-    /* linha 2 */
-    .ai-wave    { background-position: -54px -48px; } /* onda sin   → QEE */
-    .ai-docdol  { background-position:-100px -48px; } /* doc+$↑     → Crédito ICMS */
+    .authority-icon-wrap svg {
+      width: 36px; height: 36px;
+      transition: transform .25s cubic-bezier(.16,1,.3,1);
+    }
+    .authority-item:hover .authority-icon-wrap { opacity: 1; }
+    .authority-item:hover .authority-icon-wrap svg { transform: scale(1.12); }
 
     .authority-label {
       font-size: .82rem; font-weight: 500;
@@ -579,6 +583,291 @@
       .authority-sep { display: none; }
       .authority-item { padding: .4rem .7rem; }
       .authority-label { font-size: .72rem; white-space: normal; }
+    }
+
+    /* ─── O PROBLEMA ─────────────────────────────────────────────────── */
+    .problema {
+      position: relative;
+      background: #ffffff;
+      overflow: hidden;
+      padding: 9rem 0 8.5rem;
+      z-index: 2;
+    }
+    /* dot pattern */
+    .problema-dots {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(rgba(61,127,97,.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .48;
+    }
+    /* ambient blobs */
+    .problema-blob-tl {
+      position: absolute; top: -6%; left: -6%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(61,127,97,.052) 0%, transparent 65%);
+      filter: blur(72px); pointer-events: none; z-index: 0;
+    }
+    .problema-blob-br {
+      position: absolute; bottom: -10%; right: -6%;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,184,166,.038) 0%, transparent 65%);
+      filter: blur(60px); pointer-events: none; z-index: 0;
+    }
+    /* green glow orb that sits behind the fatura */
+    .problema-fatura-glow {
+      position: absolute; top: 2%; left: 50%;
+      transform: translateX(-50%);
+      width: 540px; height: 540px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(61,127,97,.10) 0%, transparent 58%);
+      filter: blur(88px); pointer-events: none; z-index: 1;
+      opacity: 0;
+    }
+    /* fatura de fundo — ghost layer behind the headline */
+    .problema-fatura-bg {
+      position: absolute;
+      top: -2%; left: 50%;
+      transform: translateX(-50%) rotate(-4deg);
+      width: 54%; max-width: 660px;
+      z-index: 1; pointer-events: none;
+      opacity: 0;
+      -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 44%, black 20%, transparent 70%);
+      mask-image:         radial-gradient(ellipse 72% 64% at 50% 44%, black 20%, transparent 70%);
+      filter: grayscale(52%) contrast(.78) brightness(1.1) blur(.5px);
+    }
+    .fatura-bg-img { width: 100%; height: auto; display: block; }
+    /* inner wrapper */
+    .problema-inner {
+      position: relative; z-index: 2;
+      max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    /* header */
+    .problema-header {
+      text-align: center; max-width: 840px; width: 100%;
+      margin-bottom: 5.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1.8rem;
+    }
+    .problema-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .34rem 1rem; border-radius: var(--r-pill);
+      border: 1px solid rgba(61,127,97,.22);
+      background: rgba(61,127,97,.07);
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500;
+      opacity: 0;
+    }
+    .problema-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.2vw, 3.5rem);
+      font-weight: 800; line-height: 1.18;
+      letter-spacing: -.025em; color: var(--forest);
+      opacity: 0;
+    }
+    .problema-h2 .h2-accent { color: var(--accent); }
+    .problema-intro {
+      font-size: clamp(.9rem, 1.35vw, 1.02rem);
+      line-height: 1.82; color: var(--sage);
+      max-width: 560px; opacity: 0;
+    }
+    /* 3-card grid */
+    .problema-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      width: 100%; max-width: 1160px;
+    }
+    /* card — light-card style from ds3 */
+    .problema-card {
+      background: #ffffff;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(61,127,97,.09);
+      box-shadow: 0 4px 24px rgba(13,60,31,.06), 0 0 0 1px rgba(61,127,97,.06);
+      opacity: 0;
+      transition: transform .32s var(--ease-out), box-shadow .32s;
+      cursor: none;
+    }
+    .problema-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(13,60,31,.12), 0 0 0 1px rgba(61,127,97,.16);
+    }
+    /* card visual area */
+    .pc-visual {
+      height: 300px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid rgba(61,127,97,.08);
+    }
+    .pc-visual-tarifa    { background: linear-gradient(148deg, #1B4D2F, #0D3C1F 52%, #081F10); }
+    .pc-visual-qualidade { background: linear-gradient(148deg, #1B4D2F, #0D3C1F 52%, #081F10); }
+    .pc-visual-icms      { background: linear-gradient(148deg, #1B4D2F, #0D3C1F 52%, #081F10); }
+    /* white radial glow spot per card */
+    .pc-visual-glow { position: absolute; border-radius: 50%; pointer-events: none; }
+    /* number tag — orange, top-left (like ds3 process section) */
+    .pc-num {
+      position: absolute; top: 1.1rem; left: 1.4rem; z-index: 3;
+      font-family: var(--font-display);
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--orange); line-height: 1;
+      opacity: .72;
+    }
+    /* watermark (large faded icon) */
+    .pc-watermark {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .pc-watermark svg { width: 160px; height: 160px; opacity: .052; }
+    /* decorative rings — z-index:2 para aparecer sobre a foto */
+    .pc-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(61,127,97,.22);
+      pointer-events: none; z-index: 2;
+    }
+    /* icon box */
+    .pc-icon-box {
+      position: relative; z-index: 2;
+      width: 80px; height: 80px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      border: 1px solid rgba(61,127,97,.15);
+      box-shadow: 0 8px 28px rgba(13,60,31,.09), 0 0 0 5px rgba(255,255,255,.58);
+      transition: transform .32s var(--ease-out), box-shadow .32s;
+    }
+    .problema-card:hover .pc-icon-box {
+      transform: translateY(-5px) scale(1.04);
+      box-shadow: 0 18px 44px rgba(13,60,31,.14), 0 0 0 6px rgba(255,255,255,.7);
+    }
+    .pc-icon-box svg { width: 44px; height: 44px; }
+    /* photo — cards 01 e 02: ds3 photo-card pattern com contain para sem distorção */
+    .pc-fatura-img {
+      position: relative;
+      max-width: 82%; max-height: 88%;
+      width: auto; height: auto;
+      object-fit: contain;
+      z-index: 1; pointer-events: none;
+      border-radius: 4px;
+      filter: drop-shadow(0 8px 28px rgba(13,60,31,.26)) drop-shadow(0 2px 8px rgba(13,60,31,.13));
+      transition: transform .55s cubic-bezier(.16,1,.3,1), filter .55s cubic-bezier(.16,1,.3,1);
+    }
+    .problema-card:hover .pc-fatura-img {
+      transform: translateY(-7px) scale(1.03);
+      filter: drop-shadow(0 20px 48px rgba(13,60,31,.32)) drop-shadow(0 6px 14px rgba(13,60,31,.18));
+    }
+    /* bottom fade — integra área visual com o body (padrão ds3 photo-card) */
+    .pc-photo-fade {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 80px; z-index: 2; pointer-events: none;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.82));
+    }
+    /* ── ICMS card — dark bento premium ──────────────────────────────── */
+    /* mesh grid */
+    .pc-icms-mesh {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      opacity: .07;
+      background-image:
+        linear-gradient(rgba(91,168,122,.9) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,168,122,.9) 1px, transparent 1px);
+      background-size: 26px 26px;
+    }
+    /* scan line */
+    @keyframes icmsScan {
+      0%   { top: 8%; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: .55; }
+      100% { top: 92%; opacity: 0; }
+    }
+    .pc-icms-scan {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(61,127,97,.7) 40%, rgba(91,168,122,.9) 50%, rgba(61,127,97,.7) 60%, transparent 100%);
+      z-index: 3; pointer-events: none;
+      animation: icmsScan 5s ease-in-out infinite;
+    }
+    /* pulsing glow orb */
+    @keyframes icmsGlow {
+      0%,100% { opacity: .45; transform: scale(1); }
+      50%     { opacity: .85; transform: scale(1.1); }
+    }
+    .pc-icms-pulse { animation: icmsGlow 3.4s ease-in-out infinite; }
+    /* bottom fade — dark → white, integra com pc-body */
+    .pc-photo-fade-dark {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 100px; z-index: 2; pointer-events: none;
+      background: linear-gradient(to bottom, transparent 0%, rgba(8,31,16,.72) 55%, rgba(255,255,255,.98) 100%);
+    }
+    /* frosted badge */
+    .pc-icms-badge {
+      position: absolute; bottom: .9rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 4; pointer-events: none;
+      display: flex; align-items: center; gap: .45rem;
+      padding: .35rem .9rem;
+      background: rgba(13,60,31,.58);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(91,168,122,.35);
+      border-radius: var(--r-pill);
+      font-size: .64rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(138,191,158,.95); white-space: nowrap;
+    }
+    .pc-icms-badge-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #5BA87A; flex-shrink: 0;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    /* card body */
+    .pc-body { padding: 1.9rem 2rem 2.4rem; background: #ffffff; }
+    .pc-tag {
+      font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: .65rem; display: block;
+    }
+    .pc-h3 {
+      font-family: var(--font-display);
+      font-size: 1.13rem; font-weight: 700; line-height: 1.33;
+      color: var(--forest); margin-bottom: .85rem;
+    }
+    .pc-p { font-size: .875rem; line-height: 1.82; color: var(--sage); }
+    /* closing */
+    .problema-closing {
+      margin-top: 6rem; text-align: center;
+      max-width: 700px; opacity: 0;
+    }
+    .pc-closing-rule {
+      width: 48px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      margin: 0 auto 2.6rem;
+    }
+    .problema-closing-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.4vw, 1.72rem);
+      font-weight: 700; line-height: 1.52; color: var(--forest);
+      font-style: italic;
+    }
+    .problema-closing-text .closing-green { color: var(--accent); }
+    .closing-sub {
+      margin-top: 1.5rem;
+      display: flex; align-items: center; justify-content: center; gap: .55rem;
+      font-size: .8rem; color: var(--muted);
+    }
+    .closing-sub-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--accent); opacity: .6; flex-shrink: 0;
+    }
+    /* responsive */
+    @media (max-width: 1024px) {
+      .problema-fatura-bg { width: 72%; }
+      .problema-fatura-glow { width: 400px; height: 400px; }
+    }
+    @media (max-width: 900px) {
+      .problema-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .problema-fatura-bg { width: 94%; }
+    }
+    @media (max-width: 640px) {
+      .problema { padding: 6rem 0 5rem; }
+      .problema-header { margin-bottom: 3.5rem; gap: 1.4rem; }
+      .problema-closing { margin-top: 4rem; }
+      .pc-num { font-size: 2rem; }
     }
   </style>
 </head>
@@ -697,6 +986,7 @@
                 alt="Subestação elétrica ao entardecer — instalação industrial"
                 id="main-photo"
                 loading="eager"
+                fetchpriority="high"
               />
 
               <!-- fallback shown when photo is absent -->
@@ -772,39 +1062,250 @@
       <div class="authority-inner">
 
         <div class="authority-item" data-auth>
-          <span class="authority-icon-wrap ai-lupa" role="img" aria-label="Análise de Fatura"></span>
-          <span class="authority-label">Análise de Fatura</span>
+          <span class="authority-icon-wrap">
+            <svg viewBox="0 0 64 64" role="img" aria-label="Análise de Fatura" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>Análise de Fatura</title>
+              <path d="M8 4 H38 L50 14 V58 H8 Z"/>
+              <path d="M38 4 V14 H50"/>
+              <line x1="16" y1="22" x2="42" y2="22"/>
+              <line x1="16" y1="29" x2="42" y2="29"/>
+              <line x1="16" y1="36" x2="28" y2="36"/>
+              <circle cx="38" cy="46" r="10"/>
+              <line x1="45" y1="53" x2="54" y2="62"/>
+            </svg>
+          </span>
+          <span class="authority-label">Análise Técnica da Fatura</span>
         </div>
 
         <span class="authority-sep" aria-hidden="true"></span>
 
         <div class="authority-item" data-auth>
-          <span class="authority-icon-wrap ai-gauge" role="img" aria-label="Subestações de Média Tensão"></span>
+          <span class="authority-icon-wrap">
+            <svg viewBox="0 0 64 64" role="img" aria-label="Subestações de Média Tensão" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>Subestações de Média Tensão</title>
+              <rect x="17" y="3" width="6" height="13" rx="3"/>
+              <line x1="14" y1="8"  x2="23" y2="8"/>
+              <line x1="14" y1="12" x2="23" y2="12"/>
+              <rect x="29" y="3" width="6" height="13" rx="3"/>
+              <line x1="26" y1="8"  x2="35" y2="8"/>
+              <line x1="26" y1="12" x2="35" y2="12"/>
+              <rect x="41" y="3" width="6" height="13" rx="3"/>
+              <line x1="38" y1="8"  x2="47" y2="8"/>
+              <line x1="38" y1="12" x2="47" y2="12"/>
+              <rect x="8" y="16" width="48" height="32" rx="2"/>
+              <line x1="16" y1="20" x2="16" y2="44"/>
+              <line x1="22" y1="20" x2="22" y2="44"/>
+              <line x1="28" y1="20" x2="28" y2="44"/>
+              <line x1="34" y1="20" x2="34" y2="44"/>
+              <line x1="40" y1="20" x2="40" y2="44"/>
+              <line x1="46" y1="20" x2="46" y2="44"/>
+              <circle cx="5"  cy="26" r="3"/>
+              <circle cx="5"  cy="40" r="3"/>
+              <circle cx="59" cy="26" r="3"/>
+              <circle cx="59" cy="40" r="3"/>
+              <rect x="6" y="48" width="52" height="5" rx="1"/>
+              <rect x="10" y="53" width="10" height="7" rx="1"/>
+              <rect x="44" y="53" width="10" height="7" rx="1"/>
+            </svg>
+          </span>
           <span class="authority-label">Subestações de Média Tensão</span>
         </div>
 
         <span class="authority-sep" aria-hidden="true"></span>
 
         <div class="authority-item" data-auth>
-          <span class="authority-icon-wrap ai-arrows" role="img" aria-label="Mercado Livre de Energia"></span>
+          <span class="authority-icon-wrap">
+            <svg viewBox="0 0 64 64" role="img" aria-label="Mercado Livre de Energia" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>Mercado Livre de Energia</title>
+              <path d="M8 4 H38 L52 16 V60 H8 Z"/>
+              <path d="M38 4 V16 H52"/>
+              <line x1="16" y1="24" x2="44" y2="24"/>
+              <line x1="16" y1="31" x2="44" y2="31"/>
+              <line x1="16" y1="38" x2="30" y2="38"/>
+              <text x="13" y="56" font-family="Georgia,serif" font-size="20" font-weight="700" fill="currentColor" stroke="none">$</text>
+              <path d="M44 60 V50 H40 L48 40 L56 50 H52 V60 Z"/>
+            </svg>
+          </span>
           <span class="authority-label">Mercado Livre de Energia</span>
         </div>
 
         <span class="authority-sep" aria-hidden="true"></span>
 
         <div class="authority-item" data-auth>
-          <span class="authority-icon-wrap ai-wave" role="img" aria-label="Qualidade de Energia QEE"></span>
+          <span class="authority-icon-wrap">
+            <svg viewBox="0 0 64 64" role="img" aria-label="Qualidade de Energia QEE" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>Qualidade de Energia (QEE)</title>
+              <circle cx="32" cy="32" r="28"/>
+              <line x1="4" y1="32" x2="60" y2="32" stroke-dasharray="4,3"/>
+              <path d="M6 32 C14 16,22 16,32 32 C42 48,50 48,58 32"/>
+            </svg>
+          </span>
           <span class="authority-label">Qualidade de Energia (QEE)</span>
         </div>
 
         <span class="authority-sep" aria-hidden="true"></span>
 
         <div class="authority-item" data-auth>
-          <span class="authority-icon-wrap ai-docdol" role="img" aria-label="Crédito de ICMS"></span>
+          <span class="authority-icon-wrap">
+            <svg viewBox="0 0 64 64" role="img" aria-label="Crédito de ICMS" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>Crédito de ICMS</title>
+              <line x1="8" y1="56" x2="60" y2="56"/>
+              <line x1="8" y1="8"  x2="8"  y2="56"/>
+              <rect x="12" y="44" width="9" height="12"/>
+              <rect x="24" y="36" width="9" height="20"/>
+              <rect x="36" y="26" width="9" height="30"/>
+              <rect x="48" y="16" width="9" height="40"/>
+              <polyline points="16,40 28,32 40,22 52,12"/>
+              <line x1="52" y1="12" x2="58" y2="6"/>
+              <polyline points="53,4 58,6 56,11"/>
+              <circle cx="16" cy="40" r="3"/>
+              <circle cx="28" cy="32" r="3"/>
+              <circle cx="40" cy="22" r="3"/>
+              <circle cx="52" cy="12" r="3"/>
+            </svg>
+          </span>
           <span class="authority-label">Crédito de ICMS</span>
         </div>
 
       </div>
+    </section>
+
+    <!-- ═══ O PROBLEMA ══════════════════════════════════════════════════ -->
+    <section class="problema" id="problema" aria-labelledby="problema-heading">
+
+      <!-- ambient blobs -->
+      <div class="problema-blob-tl" aria-hidden="true"></div>
+      <div class="problema-blob-br" aria-hidden="true"></div>
+      <!-- dot pattern -->
+      <div class="problema-dots" aria-hidden="true"></div>
+
+      <!-- fatura glow (orb behind the ghost fatura) -->
+      <div class="problema-fatura-glow" id="fatura-glow" aria-hidden="true"></div>
+
+      <!-- fatura de fundo — ghost behind headline; inserir imagem em src -->
+      <div class="problema-fatura-bg" id="fatura-bg" aria-hidden="true">
+        <img
+          src="_design/referencias/conta-energia.png"
+          alt=""
+          class="fatura-bg-img"
+          loading="lazy"
+          onerror="this.closest('.problema-fatura-bg').style.display='none'"
+        />
+      </div>
+
+      <div class="problema-inner">
+
+        <!-- ── Header ───────────────────────────────────────────── -->
+        <div class="problema-header">
+          <span class="problema-badge" id="problema-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            O custo que ninguém vê
+          </span>
+
+          <h2 class="problema-h2" id="problema-heading">
+            O desperdício raramente aparece na conta.<br>
+            <span class="h2-accent">Ele se esconde nela.</span>
+          </h2>
+
+          <p class="problema-intro" id="problema-intro">
+            Cada real desperdiçado tem uma origem técnica precisa. O problema não está visível na fatura — ele está escondido nela. Análise técnica é o único caminho para revelar o que está oculto.
+          </p>
+        </div>
+
+        <!-- ── Cards ────────────────────────────────────────────── -->
+        <div class="problema-grid" id="problema-grid">
+
+          <!-- Card 1 · Tarifa -->
+          <article class="problema-card" data-pc aria-labelledby="pc-h3-tarifa">
+            <div class="pc-visual pc-visual-tarifa">
+              <div class="pc-icms-mesh"></div>
+              <div class="pc-visual-glow pc-icms-pulse" style="width:300px;height:300px;top:-20%;right:-12%;background:radial-gradient(circle,rgba(246,144,102,.18) 0%,rgba(61,127,97,.10) 50%,transparent 70%);filter:blur(28px);"></div>
+              <div class="pc-visual-glow" style="width:200px;height:200px;bottom:-12%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.28) 0%,transparent 65%);filter:blur(22px);"></div>
+              <div class="pc-icms-scan" aria-hidden="true"></div>
+              <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">01</span>
+              <img src="_design/referencias/FATURA.png" alt="" aria-hidden="true" class="pc-fatura-img" />
+              <div class="pc-photo-fade-dark"></div>
+              <div class="pc-icms-badge">
+                <span class="pc-icms-badge-dot"></span>
+                Tarifa · Verificar Agora
+              </div>
+            </div>
+            <div class="pc-body">
+              <span class="pc-tag">01 · Tarifa</span>
+              <h3 class="pc-h3" id="pc-h3-tarifa">Você pode estar pagando pela tarifa errada há anos</h3>
+              <p class="pc-p">Enquadramento errado, modalidade tarifária inadequada e cobranças indevidas drenam caixa todo mês. A maioria das empresas paga sem nunca conferir se está na tarifa certa.</p>
+            </div>
+          </article>
+
+          <!-- Card 2 · Qualidade -->
+          <article class="problema-card" data-pc aria-labelledby="pc-h3-qualidade">
+            <div class="pc-visual pc-visual-qualidade">
+              <div class="pc-icms-mesh"></div>
+              <div class="pc-visual-glow pc-icms-pulse" style="width:300px;height:300px;top:-20%;left:-12%;background:radial-gradient(circle,rgba(246,144,102,.18) 0%,rgba(61,127,97,.10) 50%,transparent 70%);filter:blur(28px);"></div>
+              <div class="pc-visual-glow" style="width:200px;height:200px;bottom:-12%;right:-8%;background:radial-gradient(circle,rgba(61,127,97,.28) 0%,transparent 65%);filter:blur(22px);"></div>
+              <div class="pc-icms-scan" aria-hidden="true"></div>
+              <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">02</span>
+              <img src="_design/referencias/QEE.png" alt="" aria-hidden="true" class="pc-fatura-img" />
+              <div class="pc-photo-fade-dark"></div>
+              <div class="pc-icms-badge">
+                <span class="pc-icms-badge-dot"></span>
+                QEE · Qualidade de Energia
+              </div>
+            </div>
+            <div class="pc-body">
+              <span class="pc-tag">02 · Qualidade de Energia</span>
+              <h3 class="pc-h3" id="pc-h3-qualidade">O dano nos equipamentos começa antes de qualquer alarme</h3>
+              <p class="pc-p">Harmônicos, desequilíbrios e afundamentos de tensão queimam equipamentos aos poucos e elevam o consumo. O dano é silencioso — e a fatura raramente revela a causa.</p>
+            </div>
+          </article>
+
+          <!-- Card 3 · ICMS -->
+          <article class="problema-card" data-pc aria-labelledby="pc-h3-icms">
+            <div class="pc-visual pc-visual-icms">
+              <!-- mesh grid atmosférico -->
+              <div class="pc-icms-mesh"></div>
+              <!-- glow laranja canto superior direito (pulsante) -->
+              <div class="pc-visual-glow pc-icms-pulse" style="width:300px;height:300px;top:-20%;right:-12%;background:radial-gradient(circle,rgba(246,144,102,.18) 0%,rgba(61,127,97,.10) 50%,transparent 70%);filter:blur(28px);"></div>
+              <!-- glow verde canto inferior esquerdo -->
+              <div class="pc-visual-glow" style="width:200px;height:200px;bottom:-12%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.28) 0%,transparent 65%);filter:blur(22px);"></div>
+              <!-- scan line animada -->
+              <div class="pc-icms-scan" aria-hidden="true"></div>
+              <!-- número badge -->
+              <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">03</span>
+              <!-- imagem ICMS -->
+              <img src="_design/referencias/ICMS.png" alt="" aria-hidden="true" class="pc-fatura-img" />
+              <!-- fade escuro → branco para integrar com pc-body -->
+              <div class="pc-photo-fade-dark"></div>
+              <!-- frosted badge -->
+              <div class="pc-icms-badge">
+                <span class="pc-icms-badge-dot"></span>
+                Crédito de ICMS · Recuperável
+              </div>
+            </div>
+            <div class="pc-body">
+              <span class="pc-tag">03 · Crédito de ICMS</span>
+              <h3 class="pc-h3" id="pc-h3-icms">Há capital parado que a empresa tem direito de reaver</h3>
+              <p class="pc-p">Há capital que a empresa tem direito de reaver e nunca recuperou. Sem um laudo técnico, esse dinheiro continua parado — invisível, mas real e recuperável.</p>
+            </div>
+          </article>
+
+        </div><!-- /problema-grid -->
+
+        <!-- ── Closing ──────────────────────────────────────────── -->
+        <div class="problema-closing" id="problema-closing">
+          <div class="pc-closing-rule" aria-hidden="true"></div>
+          <p class="problema-closing-text">
+            O primeiro passo não é cortar custo.<br>
+            <span class="closing-green">É enxergar o que está oculto.</span>
+          </p>
+          <div class="closing-sub" aria-hidden="true">
+            <span class="closing-sub-dot"></span>
+            Análise gratuita e sem compromisso
+            <span class="closing-sub-dot"></span>
+          </div>
+        </div>
+
+      </div><!-- /problema-inner -->
     </section>
 
   </main>
@@ -1028,6 +1529,60 @@
         }
       );
 
+      /* ── O Problema ──────────────────────────────────────────────── */
+      /* fatura glow — fades in first, behind the ghost */
+      gsap.fromTo('#fatura-glow',
+        { opacity: 0 },
+        { opacity: 1, duration: 3.2, ease: 'power1.out',
+          scrollTrigger: { trigger: '.problema', start: 'top 82%', once: true } }
+      );
+      /* fatura ghost reveal — scale + fade, lands at 22% opacity */
+      gsap.fromTo('#fatura-bg',
+        { opacity: 0, y: 40, scale: .97 },
+        { opacity: .075, y: 0, scale: 1, duration: 2.6, ease: 'power2.out',
+          scrollTrigger: { trigger: '.problema', start: 'top 82%', once: true } }
+      );
+      /* fatura parallax — drifts upward as user scrolls through */
+      gsap.to('#fatura-bg', {
+        y: -92, ease: 'none',
+        scrollTrigger: {
+          trigger: '.problema', start: 'top bottom', end: 'bottom top', scrub: 2.5
+        }
+      });
+      /* badge */
+      gsap.fromTo('#problema-badge',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: .65, ease: 'power3.out',
+          scrollTrigger: { trigger: '#problema-badge', start: 'top 88%', once: true } }
+      );
+      /* h2 */
+      gsap.fromTo('#problema-heading',
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: .82, ease: 'power3.out',
+          scrollTrigger: { trigger: '#problema-heading', start: 'top 88%', once: true } }
+      );
+      /* intro */
+      gsap.fromTo('#problema-intro',
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: .68, ease: 'power3.out',
+          scrollTrigger: { trigger: '#problema-intro', start: 'top 90%', once: true } }
+      );
+      /* cards — stagger reveal, each from below */
+      gsap.fromTo('[data-pc]',
+        { opacity: 0, y: 52 },
+        {
+          opacity: 1, y: 0, duration: .75, ease: 'power3.out',
+          stagger: .14,
+          scrollTrigger: { trigger: '#problema-grid', start: 'top 84%', once: true }
+        }
+      );
+      /* closing — scale + fade, most dramatic entrance */
+      gsap.fromTo('#problema-closing',
+        { opacity: 0, y: 36, scale: .96 },
+        { opacity: 1, y: 0, scale: 1, duration: .95, ease: 'power3.out',
+          scrollTrigger: { trigger: '#problema-closing', start: 'top 90%', once: true } }
+      );
+
     } else {
       /* reduced motion: show everything immediately */
       document.querySelectorAll(
@@ -1041,39 +1596,52 @@
       if (accentEl) accentEl.classList.add('underline-active');
       /* authority bar: show immediately */
       document.querySelectorAll('[data-auth]').forEach(el => { el.style.opacity = '1'; });
+      /* problema: show immediately */
+      document.getElementById('fatura-glow').style.opacity = '1';
+      document.getElementById('fatura-bg').style.opacity = '.075';
+      document.querySelectorAll('#problema-badge,#problema-heading,#problema-intro,#problema-closing')
+        .forEach(el => { el.style.opacity = '1'; });
+      document.querySelectorAll('[data-pc]').forEach(el => { el.style.opacity = '1'; });
     }
 
-    /* ── Custom cursor (snake trail, light-bg adapted) ─────────────── */
+    /* ── Custom cursor — 12 segmentos, GPU via translate3d ─────────── */
     const ring = document.getElementById('cursor-ring');
     const dot  = document.getElementById('cursor-dot');
     if (ring && dot && window.matchMedia('(pointer: fine)').matches && !prefersReduced) {
 
-      const SEGMENTS = 20;
-      const segEls = [], segX = new Array(SEGMENTS), segY = new Array(SEGMENTS);
+      /* 12 segments (vs 20): mesma sensação visual, ~60% menos escritas por frame.
+         Posicionamento por translate3d → compositor thread, sem layout thrashing. */
+      const SEGMENTS = 12;
+      const halfBase  = new Float32Array(SEGMENTS); /* precomputed half-widths */
+      const segEls    = new Array(SEGMENTS);
+      const segX      = new Float32Array(SEGMENTS);
+      const segY      = new Float32Array(SEGMENTS);
       let tgtX = innerWidth / 2, tgtY = innerHeight / 2;
       let curX = tgtX, curY = tgtY;
       let sizeBoost = 0;
 
       for (let i = 0; i < SEGMENTS; i++) {
+        const base = Math.max(3, 11 - i * 0.65);
+        halfBase[i] = base / 2;
         const el = document.createElement('div');
-        const base = Math.max(3, 11 - i * 0.45);
-        el.style.cssText = [
-          'position:fixed;top:0;left:0;border-radius:9999px;pointer-events:none;',
-          `z-index:9990;`,
-          `width:${base}px;height:${base}px;`,
-          `background:rgba(61,127,97,${Math.min(.84, .44 + .018 * (SEGMENTS - i))});`,
-          `box-shadow:0 0 0 1px rgba(13,60,31,.05),0 0 8px rgba(61,127,97,.13);`,
-          `opacity:${Math.max(.12, .88 - i * 0.038)};`,
-          'transform:translate(-50%,-50%);will-change:left,top;'
-        ].join('');
+        /* will-change:transform — único valor compositor-eligible para rAF contínuo */
+        el.style.cssText =
+          'position:fixed;top:0;left:0;border-radius:9999px;pointer-events:none;' +
+          `z-index:9990;width:${base}px;height:${base}px;` +
+          `background:rgba(61,127,97,${Math.min(.84, .44 + .033 * (SEGMENTS - i)).toFixed(2)});` +
+          'box-shadow:0 0 0 1px rgba(13,60,31,.05),0 0 8px rgba(61,127,97,.13);' +
+          `opacity:${Math.max(.12, .88 - i * 0.062).toFixed(2)};` +
+          'will-change:transform;';
         document.body.appendChild(el);
         segEls[i] = el;
         segX[i] = tgtX; segY[i] = tgtY;
       }
 
+      /* Atualiza dimensões (só chamado em hover enter/leave, não a cada frame) */
       const updSizes = () => {
         for (let i = 0; i < SEGMENTS; i++) {
-          const s = Math.max(3, 11 - i * 0.45) + sizeBoost;
+          const s = Math.max(3, 11 - i * 0.65) + sizeBoost;
+          halfBase[i] = s / 2;
           segEls[i].style.width  = s + 'px';
           segEls[i].style.height = s + 'px';
         }
@@ -1084,25 +1652,30 @@
         ring.style.top  = dot.style.top  = y + 'px';
         for (let i = 0; i < SEGMENTS; i++) {
           segX[i] = x; segY[i] = y;
-          segEls[i].style.left = x + 'px';
-          segEls[i].style.top  = y + 'px';
+          segEls[i].style.transform =
+            `translate3d(${Math.round(x - halfBase[i])}px,${Math.round(y - halfBase[i])}px,0)`;
         }
       };
 
       const loop = () => {
-        curX += (tgtX - curX) * .22;
-        curY += (tgtY - curY) * .22;
-        ring.style.left = curX + 'px'; ring.style.top = curY + 'px';
-        dot.style.left  = tgtX + 'px'; dot.style.top  = tgtY + 'px';
-        segX[0] += (tgtX - segX[0]) * .28;
-        segY[0] += (tgtY - segY[0]) * .28;
-        for (let i = 1; i < SEGMENTS; i++) {
-          segX[i] += (segX[i-1] - segX[i]) * .28;
-          segY[i] += (segY[i-1] - segY[i]) * .28;
-        }
-        for (let i = 0; i < SEGMENTS; i++) {
-          segEls[i].style.left = segX[i] + 'px';
-          segEls[i].style.top  = segY[i] + 'px';
+        /* pausa computação quando aba está oculta; rAF continua mas não muta DOM */
+        if (!document.hidden) {
+          curX += (tgtX - curX) * .22;
+          curY += (tgtY - curY) * .22;
+          ring.style.left = Math.round(curX) + 'px';
+          ring.style.top  = Math.round(curY) + 'px';
+          dot.style.left  = tgtX + 'px';
+          dot.style.top   = tgtY + 'px';
+          segX[0] += (tgtX - segX[0]) * .28;
+          segY[0] += (tgtY - segY[0]) * .28;
+          for (let i = 1; i < SEGMENTS; i++) {
+            segX[i] += (segX[i-1] - segX[i]) * .28;
+            segY[i] += (segY[i-1] - segY[i]) * .28;
+          }
+          for (let i = 0; i < SEGMENTS; i++) {
+            segEls[i].style.transform =
+              `translate3d(${Math.round(segX[i] - halfBase[i])}px,${Math.round(segY[i] - halfBase[i])}px,0)`;
+          }
         }
         requestAnimationFrame(loop);
       };
@@ -1118,7 +1691,7 @@
       });
       window.addEventListener('mouseenter', () => {
         ring.style.opacity = '.9'; dot.style.opacity = '.9';
-        segEls.forEach((el, i) => el.style.opacity = String(Math.max(.12, .88 - i * .038)));
+        segEls.forEach((el, i) => el.style.opacity = String(Math.max(.12, .88 - i * .062)));
       });
 
       const enlarge = () => {
@@ -1144,10 +1717,6 @@
       });
       window.addEventListener('mouseup', () => {
         ring.style.transform = 'translate(-50%,-50%) scale(1)';
-      });
-
-      document.addEventListener('visibilitychange', () => {
-        /* RAF pauses automatically when hidden */
       });
     }
 

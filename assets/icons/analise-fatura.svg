@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title>Análise Técnica da Fatura</title>
+  <!-- Documento -->
+  <path d="M8 4 H38 L50 14 V58 H8 Z"/>
+  <path d="M38 4 V14 H50"/>
+  <!-- Linhas de texto -->
+  <line x1="16" y1="22" x2="42" y2="22"/>
+  <line x1="16" y1="29" x2="42" y2="29"/>
+  <line x1="16" y1="36" x2="28" y2="36"/>
+  <!-- Lupa -->
+  <circle cx="38" cy="46" r="10"/>
+  <line x1="45" y1="53" x2="54" y2="62"/>
+</svg>

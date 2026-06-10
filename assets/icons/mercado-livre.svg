@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title>Mercado Livre de Energia</title>
+  <!-- Documento -->
+  <path d="M8 4 H38 L52 16 V60 H8 Z"/>
+  <path d="M38 4 V16 H52"/>
+  <!-- Linhas de texto -->
+  <line x1="16" y1="24" x2="44" y2="24"/>
+  <line x1="16" y1="31" x2="44" y2="31"/>
+  <line x1="16" y1="38" x2="30" y2="38"/>
+  <!-- Cifrão -->
+  <text x="13" y="56" font-family="Georgia,serif" font-size="20" font-weight="700" fill="currentColor" stroke="none">$</text>
+  <!-- Seta para cima (outline) -->
+  <path d="M44 60 V50 H40 L48 40 L56 50 H52 V60 Z"/>
+</svg>
