@@ -7,6 +7,9 @@ desktop.ini
 .vscode/
 *.code-workspace
 
-# Referências de design (não precisam ir pro deploy)
+# Dependências (se usar npm no futuro)
+node_modules/
+
+# Pastas de referência de design externas
 ai-saas-landing-27.aura.build/
 glass-green-effect/
