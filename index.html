@@ -181,6 +181,28 @@
     .nav-right {
       display: flex; align-items: center; gap: 2.4rem;
     }
+    /* ── Hambúrguer (mobile only) ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: .5rem; border-radius: 8px;
+      transition: background .2s;
+    }
+    .nav-hamburger:hover { background: rgba(61,127,97,.08); }
+    .ham-line {
+      width: 22px; height: 2px;
+      background: var(--forest); border-radius: 2px;
+      transition: transform .3s ease, opacity .2s ease;
+      display: block;
+    }
+    .nav-hamburger.open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* ── Dropdown mobile ── */
+    .nav-mobile-menu {
+      display: none;
+    }
     .nav-cta {
       display: flex; align-items: center; gap: .6rem;
       padding: .82rem 1.8rem; border-radius: var(--r-pill);
@@ -209,6 +231,39 @@
       .nav-links { display: none; }
       .nav-cta span { display: none; }
       main { padding-top: 90px; }
+      /* hambúrguer visível */
+      .nav-hamburger { display: flex; }
+      /* dropdown: escondido por padrão, expande ao abrir */
+      .nav-mobile-menu {
+        display: block;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(247,250,247,.97);
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        border-bottom: 1px solid rgba(61,127,97,.12);
+        max-height: 0; overflow: hidden;
+        opacity: 0;
+        transition: max-height .35s ease, opacity .25s ease;
+        z-index: 99;
+      }
+      .nav-mobile-menu.open {
+        max-height: 320px;
+        opacity: 1;
+      }
+      .nav-mobile-menu ul {
+        list-style: none;
+        display: flex; flex-direction: column;
+        padding: .75rem 2rem 1.25rem; margin: 0;
+      }
+      .nav-mobile-menu ul li a {
+        display: block;
+        padding: .9rem 0;
+        font-size: 1rem; font-weight: 500; color: var(--sage);
+        border-bottom: 1px solid rgba(61,127,97,.08);
+        transition: color .2s, padding-left .2s;
+      }
+      .nav-mobile-menu ul li:last-child a { border-bottom: none; }
+      .nav-mobile-menu ul li a:hover { color: var(--forest); padding-left: .4rem; }
     }
     @media (max-width: 480px) {
       .nav { height: 76px; }
@@ -892,13 +947,29 @@
           <img src="assets/images/logo-horizontal.png" alt="AFB Consultoria Energética" />
         </a>
 
-        <!-- direita: links + CTA -->
+        <!-- direita: links + hambúrguer mobile -->
         <div class="nav-right">
           <ul class="nav-links" role="list">
             <li><a href="#quem-somos">Quem Somos</a></li>
             <li><a href="#contato">Contato</a></li>
           </ul>
+          <!-- hambúrguer — visível só no mobile -->
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu de navegação" aria-expanded="false">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+          </button>
         </div><!-- /nav-right -->
+      </div>
+
+      <!-- dropdown mobile — oculto no desktop -->
+      <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+        <ul>
+          <li><a href="#solucoes">Soluções</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#quem-somos">Quem Somos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
       </div>
     </nav>
   </header>
@@ -2063,16 +2134,19 @@
           </article>
 
           <!-- Card 5 · Energia por Assinatura -->
-          <article class="sol-card sol-medium sol-shimmer" data-sol="4" aria-labelledby="sc5-h">
-            <div class="sol-orb" aria-hidden="true" style="width:150px;height:150px;top:-20%;right:-8%;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 70%);filter:blur(20px);animation:icmsGlow 5.5s ease-in-out infinite .8s;"></div>
-            <span class="sol-ghost sol-ghost-m" aria-hidden="true">05</span>
-            <div class="sol-bar sol-bar-w" aria-hidden="true"></div>
-            <span class="sol-ctag sol-ctag-m">Contratação comparada</span>
-            <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
-              <span class="sol-eyebrow sol-ey-m">Serviço 05 · Adesão</span>
-              <h3 class="sol-title sol-ti-m" id="sc5-h">Energia por Assinatura</h3>
-              <p class="sol-text sol-tx-m">Economia mensal por adesão, sem obra e sem capital imobilizado.</p>
-              <div class="sol-pill sol-pill-m"><span class="sol-pill-dot"></span>Assinatura</div>
+          <article class="sol-card sol-dark sol-shimmer" data-sol="4" aria-labelledby="sc5-h">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1s;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:180px;height:180px;top:-25%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.14) 0%,transparent 70%);filter:blur(26px);animation:icmsGlow 5.5s ease-in-out infinite .8s;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:110px;height:110px;bottom:-12%;left:-6%;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 65%);filter:blur(16px);animation:icmsGlow 6.8s ease-in-out infinite 2.5s;"></div>
+            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">05</span>
+            <div class="sol-bar sol-bar-g" aria-hidden="true" style="z-index:4;"></div>
+            <span class="sol-ctag sol-ctag-d">Contratação comparada</span>
+            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-d">Serviço 05 · Adesão</span>
+              <h3 class="sol-title sol-ti-d" id="sc5-h">Energia por Assinatura</h3>
+              <p class="sol-text sol-tx-d">Economia mensal por adesão, sem obra e sem capital imobilizado.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Assinatura</div>
             </div>
           </article>
 
@@ -3533,6 +3607,26 @@
       window.lenis = lenis;
       gsap.ticker.add((t) => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);
+    }
+
+    /* ── Hambúrguer mobile ───────────────────────────────────────── */
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileMenu = document.getElementById('nav-mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+        });
+      });
     }
 
     /* ── Anchor clicks → Lenis smooth-scroll ─────────────────────── */
