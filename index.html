@@ -3,8 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arthur Brandão · Consultoria em Energia</title>
-  <meta name="description" content="Engenharia elétrica e consultoria em energia. Análise técnica completa da sua instalação — fatura, modalidade de contratação, qualidade de energia e crédito de ICMS." />
+  <title>AFB Consultoria Energética · Redução de Custos com Energia Elétrica</title>
+  <meta name="description" content="Consultoria especializada em redução de custos com energia elétrica. Análise técnica completa — fatura, modalidade tarifária, qualidade de energia e crédito de ICMS. 8 anos de CEMIG." />
+
+  <!-- Favicon (substitua pelo arquivo real) -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="AFB Consultoria Energética · Redução de Custos com Energia Elétrica" />
+  <meta property="og:description" content="Análise técnica completa da sua instalação — fatura, modalidade tarifária, qualidade de energia e crédito de ICMS. Economias típicas de 10% a 32%." />
+  <meta property="og:url"         content="https://www.afbconsultoria.com.br" />
+  <meta property="og:image"       content="https://www.afbconsultoria.com.br/assets/images/og-image.jpg" />
+  <meta property="og:locale"      content="pt_BR" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="AFB Consultoria Energética · Redução de Custos com Energia Elétrica" />
+  <meta name="twitter:description" content="Análise técnica completa — fatura, modalidade tarifária, qualidade de energia e crédito de ICMS." />
 
   <!-- Resource hints — establish connections early -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -163,6 +178,9 @@
       transition: color .2s;
     }
     .nav-links a:hover { color: var(--forest); }
+    .nav-right {
+      display: flex; align-items: center; gap: 2.4rem;
+    }
     .nav-cta {
       display: flex; align-items: center; gap: .6rem;
       padding: .82rem 1.8rem; border-radius: var(--r-pill);
@@ -544,73 +562,6 @@
       background: linear-gradient(to bottom, var(--accent), transparent);
     }
 
-    /* ─── AUTHORITY BAR ──────────────────────────────────────────────── */
-    .authority-bar {
-      position: relative; z-index: 2;
-      background: var(--bg-alt);
-      border-top: 1px solid rgba(61,127,97,.1);
-      border-bottom: 1px solid rgba(61,127,97,.1);
-      padding: 2rem 0;
-      overflow: hidden;
-    }
-    .authority-bar::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(61,127,97,.03) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .authority-inner {
-      max-width: 1280px; margin: 0 auto;
-      padding: 0 2rem;
-      display: flex; align-items: center;
-      justify-content: center;
-      flex-wrap: wrap; gap: 0;
-    }
-    .authority-item {
-      display: flex; align-items: center; gap: .7rem;
-      padding: .55rem 1.4rem;
-      opacity: 0;
-      transition: color .25s;
-      cursor: default;
-    }
-    .authority-item:hover .authority-label { color: var(--forest); }
-    .authority-item:hover .authority-icon-wrap { filter: brightness(.6); }
-
-    .authority-icon-wrap {
-      width: 36px; height: 36px; flex-shrink: 0;
-      color: var(--accent);
-      opacity: .85;
-      transition: opacity .25s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .authority-icon-wrap svg {
-      width: 36px; height: 36px;
-      transition: transform .25s cubic-bezier(.16,1,.3,1);
-    }
-    .authority-item:hover .authority-icon-wrap { opacity: 1; }
-    .authority-item:hover .authority-icon-wrap svg { transform: scale(1.12); }
-
-    .authority-label {
-      font-size: .82rem; font-weight: 500;
-      color: var(--sage); white-space: nowrap;
-      transition: color .25s;
-    }
-    .authority-sep {
-      width: 1px; height: 22px;
-      background: rgba(61,127,97,.2);
-      flex-shrink: 0;
-    }
-    @media (max-width: 900px) {
-      .authority-item { padding: .45rem .9rem; }
-      .authority-label { font-size: .76rem; }
-    }
-    @media (max-width: 640px) {
-      .authority-inner { gap: 0; justify-content: flex-start; }
-      .authority-sep { display: none; }
-      .authority-item { padding: .4rem .7rem; }
-      .authority-label { font-size: .72rem; white-space: normal; }
-    }
-
     /* ─── O PROBLEMA ─────────────────────────────────────────────────── */
     .problema {
       position: relative;
@@ -918,29 +869,22 @@
       <div class="nav-inner">
         <!-- links — esquerda -->
         <ul class="nav-links" role="list">
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#contato">Contato</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#solucoes">Soluções</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
         </ul>
 
         <!-- logo — centro absoluto -->
-        <a href="/" class="nav-logo-center" aria-label="AFB Consultoria Energética — página inicial">
+        <a href="#" class="nav-logo-center" aria-label="AFB Consultoria Energética — página inicial">
           <img src="assets/images/logo-horizontal.png" alt="AFB Consultoria Energética" />
         </a>
 
-        <!-- CTA -->
-        <!-- WHATSAPP URL: troque 55XXXXXXXXXXX pelo número real com DDD -->
-        <a
-          href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C%20Arthur%21%20Gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20gratuita%20da%20minha%20instala%C3%A7%C3%A3o."
-          class="nav-cta"
-          target="_blank" rel="noopener"
-          aria-label="Falar no WhatsApp"
-        >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          <span>WhatsApp</span>
-        </a>
+        <!-- direita: links + CTA -->
+        <div class="nav-right">
+          <ul class="nav-links" role="list">
+            <li><a href="#quem-somos">Quem Somos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div><!-- /nav-right -->
       </div>
     </nav>
   </header>
@@ -989,7 +933,7 @@
               Falar no WhatsApp →
             </a>
 
-            <a href="#analise" class="btn-secondary">
+            <a href="#contato" class="btn-secondary">
               Solicitar análise gratuita ▷
             </a>
           </div>
@@ -1089,8 +1033,6 @@
       </div>
     </section>
 
-    <!-- ═══ FAIXA DE AUTORIDADE ══════════════════════════════════════════ -->
-
     <!-- ═══ O PROBLEMA ══════════════════════════════════════════════════ -->
     <section class="problema" id="problema" aria-labelledby="problema-heading">
 
@@ -1144,7 +1086,7 @@
               <div class="pc-visual-glow" style="width:200px;height:200px;bottom:-12%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.28) 0%,transparent 65%);filter:blur(22px);"></div>
               <div class="pc-icms-scan" aria-hidden="true"></div>
               <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">01</span>
-              <img src="_design/referencias/FATURA NEW.png" alt="" aria-hidden="true" class="pc-fatura-img" />
+              <img src="_design/referencias/FATURA NEW.png" alt="" aria-hidden="true" class="pc-fatura-img" loading="lazy" />
               <div class="pc-photo-fade-dark"></div>
               <div class="pc-icms-badge">
                 <span class="pc-icms-badge-dot"></span>
@@ -1166,7 +1108,7 @@
               <div class="pc-visual-glow" style="width:200px;height:200px;bottom:-12%;right:-8%;background:radial-gradient(circle,rgba(61,127,97,.28) 0%,transparent 65%);filter:blur(22px);"></div>
               <div class="pc-icms-scan" aria-hidden="true"></div>
               <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">02</span>
-              <img src="_design/referencias/QEE NEW.png" alt="" aria-hidden="true" class="pc-fatura-img" />
+              <img src="_design/referencias/QEE NEW.png" alt="" aria-hidden="true" class="pc-fatura-img" loading="lazy" />
               <div class="pc-photo-fade-dark"></div>
               <div class="pc-icms-badge">
                 <span class="pc-icms-badge-dot"></span>
@@ -1194,7 +1136,7 @@
               <!-- número badge -->
               <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">03</span>
               <!-- imagem ICMS -->
-              <img src="_design/referencias/ICMS NEW.png" alt="" aria-hidden="true" class="pc-fatura-img" />
+              <img src="_design/referencias/ICMS NEW.png" alt="" aria-hidden="true" class="pc-fatura-img" loading="lazy" />
               <!-- fade escuro → branco para integrar com pc-body -->
               <div class="pc-photo-fade-dark"></div>
               <!-- frosted badge -->
@@ -2167,6 +2109,8 @@
 
       </div><!-- /sol-inner -->
     </section>
+
+  <div id="quem-somos" aria-hidden="true"></div>
 
   <!-- ════════════════════════════════════════════════════════════════════ -->
   <!-- SECTION 07 — POR QUE TRABALHAR COMIGO                              -->
@@ -3468,8 +3412,9 @@
           <a href="#problema" class="footer-nav-link">O Problema</a>
           <a href="#metodo" class="footer-nav-link">O Método</a>
           <a href="#solucoes" class="footer-nav-link">Soluções</a>
-          <a href="#diferenciais" class="footer-nav-link">Por Que Trabalhar Comigo</a>
+          <a href="#diferencial" class="footer-nav-link">Por Que Trabalhar Comigo</a>
           <a href="#como-funciona" class="footer-nav-link">Como Funciona</a>
+          <a href="#quem-somos" class="footer-nav-link">Quem Somos</a>
           <a href="#contato" class="footer-nav-link">Contato</a>
         </nav>
 
@@ -3571,9 +3516,29 @@
     /* ── Lenis smooth scroll ──────────────────────────────────────── */
     if (!prefersReduced && typeof Lenis !== 'undefined') {
       const lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
+      window.lenis = lenis;
       gsap.ticker.add((t) => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);
     }
+
+    /* ── Anchor clicks → Lenis smooth-scroll ─────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const hash = link.getAttribute('href');
+        if (!hash || hash === '#') {
+          e.preventDefault();
+          if (window.lenis) window.lenis.scrollTo(0, { duration: 1.2 });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        const target = document.querySelector(hash);
+        if (target) {
+          e.preventDefault();
+          if (window.lenis) window.lenis.scrollTo(target, { duration: 1.2, offset: -132 });
+          else target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
 
     /* ── GSAP word splitter ──────────────────────────────────────── */
     function splitWords(el) {
@@ -3720,19 +3685,6 @@
         requestAnimationFrame(parallaxLoop);
       })();
 
-      /* ── Authority bar stagger (ScrollTrigger) ──────────────────── */
-      gsap.fromTo('[data-auth]',
-        { opacity: 0, y: 18 },
-        {
-          opacity: 1, y: 0, duration: .55, ease: 'power3.out',
-          stagger: .08,
-          scrollTrigger: {
-            trigger: '.authority-bar',
-            start: 'top 88%',
-            once: true
-          }
-        }
-      );
 
       /* ── O Problema ──────────────────────────────────────────────── */
       /* fatura glow — fades in first, behind the ghost */
@@ -3947,7 +3899,6 @@
       document.getElementById('counter-pct').innerHTML = '32<span class="range-pct">%</span>';
       if (accentEl) accentEl.classList.add('underline-active');
       /* authority bar: show immediately */
-      document.querySelectorAll('[data-auth]').forEach(el => { el.style.opacity = '1'; });
       /* problema: show immediately */
       document.getElementById('fatura-glow').style.opacity = '1';
       document.getElementById('fatura-bg').style.opacity = '.075';
