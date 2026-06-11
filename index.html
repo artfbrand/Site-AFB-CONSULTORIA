@@ -960,7 +960,7 @@
           <!-- badge -->
           <span class="hero-badge" role="text" id="hero-badge">
             <span class="badge-dot" aria-hidden="true"></span>
-            Engenharia Elétrica · Consultoria em Energia
+            Consultoria para Redução de Custos com Energia Elétrica
           </span>
 
           <!-- H1 — word-split done by JS -->
@@ -1748,7 +1748,1883 @@
       </div><!-- /metodo-inner -->
     </section>
 
+    <!-- ═══ SEÇÃO 05 — SOLUÇÕES / SERVIÇOS ══════════════════════════════ -->
+    <style>
+      /* ── Section 05 — Soluções ──────────────────────────────────────── */
+      .solucoes {
+        background: #ffffff;
+        padding: 2rem 0 7rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .sol-dot-bg {
+        position: absolute; inset: 0;
+        background-image: radial-gradient(circle, rgba(61,127,97,.11) 1px, transparent 1px);
+        background-size: 28px 28px;
+        pointer-events: none;
+        opacity: .5;
+      }
+      .sol-header {
+        display: flex; justify-content: center; align-items: center;
+        padding: 2.5rem 0 2rem; opacity: 0;
+      }
+      .sol-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      /* main 12-col grid (hero + cards 1-2) */
+      .sol-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .solucoes { padding: 2rem 0 7rem; }
+        .sol-grid { grid-template-columns: repeat(12, 1fr); }
+        .sg-hero { grid-column: span 7; grid-row: span 2; }
+        .sg-c1   { grid-column: span 5; }
+        .sg-c2   { grid-column: span 5; }
+      }
+
+      /* info strip — contratação (light reforço) */
+      .sol-info-strip {
+        width: 100%;
+        background: #EFF6F1;
+        border: 1px solid rgba(61,127,97,.2);
+        border-radius: 16px;
+        padding: 2.1rem 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        box-shadow: 0 4px 28px rgba(13,60,31,.07), inset 0 1px 0 rgba(255,255,255,.7);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+      }
+      .sol-info-strip::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(13,60,31,.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(13,60,31,.035) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+        border-radius: inherit;
+      }
+      .sol-info-strip::after {
+        content: '';
+        position: absolute; top: 0; left: -60%;
+        width: 42%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+        animation: metodoshimmer 7s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .sol-info-rule {
+        width: 32px; height: 1.5px; flex-shrink: 0;
+        background: linear-gradient(90deg, transparent, #3D7F61);
+        position: relative; z-index: 2;
+      }
+      .sol-info-rule-r { background: linear-gradient(90deg, #3D7F61, transparent); }
+      .sol-info-text {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(.95rem, 1.4vw, 1.2rem);
+        font-weight: 500;
+        font-style: italic;
+        color: #0D3C1F;
+        text-align: center;
+        letter-spacing: .005em;
+        line-height: 1.5;
+        position: relative; z-index: 2;
+      }
+      .sol-info-text strong {
+        font-weight: 700;
+        font-style: italic;
+        color: #3D7F61;
+      }
+      @media (max-width: 767px) {
+        .sol-info-strip { padding: 1.75rem 1.5rem; flex-wrap: wrap; gap: .75rem; }
+        .sol-info-rule, .sol-info-rule-r { display: none; }
+      }
+
+      /* contratação group */
+      .sol-contratacao-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .sol-contratacao-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      .sol-bottom-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .sol-bottom-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      /* HERO IMAGE CARD */
+      .sg-hero { opacity: 0; }
+      .sol-hero-card {
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 420px;
+        height: 100%;
+        cursor: default;
+      }
+      .sol-hero-img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center 38%;
+        filter: brightness(.68) saturate(.82);
+        transition: transform 9s ease, filter .6s;
+      }
+      .sol-hero-card:hover .sol-hero-img {
+        transform: scale(1.05);
+        filter: brightness(.74) saturate(.88);
+      }
+      .sol-hero-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(13,60,31,.96) 0%,
+          rgba(13,60,31,.55) 40%,
+          rgba(13,60,31,.18) 100%
+        );
+        pointer-events: none;
+      }
+      .sol-hero-mesh {
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+        background-size: 38px 38px;
+        pointer-events: none;
+      }
+      .sol-hero-scan {
+        position: absolute; left: 0; right: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(61,127,97,.5), transparent);
+        pointer-events: none;
+        animation: icmsScan 9s ease-in-out infinite;
+        z-index: 3;
+      }
+      .sol-hero-orb {
+        position: absolute; border-radius: 50%; pointer-events: none;
+      }
+      .sol-hero-content {
+        position: relative; z-index: 4;
+        padding: 2.5rem 2.25rem;
+      }
+      .sol-badge-center { text-align: center; margin-bottom: 1.4rem; }
+      .sol-badge {
+        display: inline-flex; align-items: center; gap: .58rem;
+        padding: .52rem 1.3rem; border-radius: 9999px;
+        background: rgba(247,250,247,.1);
+        border: 1.5px solid rgba(61,127,97,.42);
+        font-size: .72rem; font-weight: 600;
+        letter-spacing: .13em; text-transform: uppercase;
+        color: rgba(212,232,220,.9);
+        width: fit-content;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 0 4px rgba(61,127,97,.05);
+      }
+      .sol-badge-dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: #3D7F61; flex-shrink: 0;
+        animation: pulse-ring 2s ease-out infinite;
+      }
+      .sol-hero-h2 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1.65rem, 2.8vw, 2.7rem);
+        font-weight: 700; color: #FAF9F6;
+        line-height: 1.14; letter-spacing: -.022em;
+        margin-bottom: 1rem;
+      }
+      .sol-hero-sub {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: .875rem; color: rgba(212,232,220,.7);
+        line-height: 1.74; max-width: 420px;
+      }
+
+      /* SERVICE CARDS — mc style */
+      .sol-card {
+        border-radius: 18px;
+        overflow: hidden;
+        display: flex; flex-direction: column;
+        padding: 2rem 2.1rem 1.85rem;
+        position: relative;
+        min-height: 230px;
+        opacity: 0;
+        transition: transform .38s cubic-bezier(.16,1,.3,1), box-shadow .38s;
+      }
+      .sol-card:hover { transform: translateY(-6px); }
+
+      /* color variants */
+      .sol-sage {
+        background: #EFF6F1;
+        box-shadow: 0 4px 20px rgba(13,60,31,.04);
+        border: 1px solid rgba(61,127,97,.12);
+      }
+      .sol-sage:hover {
+        box-shadow: 0 14px 40px rgba(13,60,31,.09);
+        border-color: rgba(61,127,97,.24);
+      }
+      .sol-dark {
+        background: #0D3C1F;
+        box-shadow: 0 8px 40px rgba(13,60,31,.22);
+      }
+      .sol-dark:hover { box-shadow: 0 18px 54px rgba(13,60,31,.32); }
+      .sol-medium {
+        background: #3D7F61;
+        box-shadow: 0 8px 30px rgba(61,127,97,.28);
+      }
+      .sol-medium:hover { box-shadow: 0 16px 46px rgba(61,127,97,.38); }
+
+      /* shimmer sweep — dark/medium only */
+      .sol-shimmer::after {
+        content: '';
+        position: absolute; top: 0; left: -60%;
+        width: 42%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+        animation: metodoshimmer 5.5s ease-in-out infinite;
+        pointer-events: none;
+      }
+      /* inner mesh */
+      .sol-mesh {
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+      }
+      .sol-orb { position: absolute; border-radius: 50%; pointer-events: none; }
+
+      /* ghost number */
+      .sol-ghost {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 5.5rem; font-weight: 700; line-height: 1;
+        position: absolute; top: .4rem; right: 1rem;
+        letter-spacing: -.04em; pointer-events: none;
+      }
+      .sol-ghost-s { color: rgba(13,60,31,.06); }
+      .sol-ghost-d { color: rgba(255,255,255,.06); }
+      .sol-ghost-m { color: rgba(255,255,255,.1); }
+
+      /* accent bar */
+      .sol-bar {
+        width: 36px; height: 3px; border-radius: 9999px;
+        margin-bottom: 1.5rem; flex-shrink: 0;
+        position: relative; z-index: 2;
+      }
+      .sol-bar-g { background: linear-gradient(90deg, #3D7F61, rgba(61,127,97,.3)); }
+      .sol-bar-o { background: linear-gradient(90deg, #F69066, rgba(246,144,102,.3)); }
+      .sol-bar-w { background: rgba(255,255,255,.35); }
+
+      /* contratação micro-label */
+      .sol-ctag {
+        font-size: .58rem; font-weight: 700;
+        letter-spacing: .12em; text-transform: uppercase;
+        margin-bottom: .3rem;
+        position: relative; z-index: 2;
+      }
+      .sol-ctag-d { color: rgba(61,127,97,.65); }
+      .sol-ctag-m { color: rgba(255,255,255,.45); }
+      .sol-ctag-s { color: rgba(61,127,97,.55); }
+
+      /* eyebrow */
+      .sol-eyebrow {
+        font-size: .65rem; font-weight: 700;
+        letter-spacing: .13em; text-transform: uppercase;
+        margin-bottom: .45rem; position: relative; z-index: 2;
+      }
+      .sol-ey-s { color: #3D7F61; }
+      .sol-ey-d { color: #3D7F61; }
+      .sol-ey-m { color: rgba(212,232,220,.75); }
+
+      /* title */
+      .sol-title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1rem, 1.3vw, 1.2rem);
+        font-weight: 600; line-height: 1.28;
+        letter-spacing: -.01em; margin-bottom: .55rem;
+        position: relative; z-index: 2;
+      }
+      .sol-ti-s { color: #0D3C1F; }
+      .sol-ti-d { color: #FAF9F6; }
+      .sol-ti-m { color: #ffffff; }
+
+      /* body text */
+      .sol-text {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: .8125rem; line-height: 1.74;
+        position: relative; z-index: 2; flex: 1;
+      }
+      .sol-tx-s { color: #4A6B5A; }
+      .sol-tx-d { color: rgba(212,232,220,.72); }
+      .sol-tx-m { color: rgba(255,255,255,.82); }
+
+      /* bottom pill */
+      .sol-pill {
+        display: inline-flex; align-items: center; gap: .35rem;
+        padding: .3rem .78rem; border-radius: 9999px;
+        font-size: .61rem; font-weight: 700;
+        letter-spacing: .1em; text-transform: uppercase;
+        margin-top: 1rem; position: relative; z-index: 2;
+        width: fit-content;
+        transition: opacity .3s;
+      }
+      .sol-pill-s { background: rgba(61,127,97,.1); border: 1px solid rgba(61,127,97,.2); color: #3D7F61; }
+      .sol-pill-d { background: rgba(61,127,97,.15); border: 1px solid rgba(61,127,97,.28); color: rgba(212,232,220,.88); }
+      .sol-pill-m { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: rgba(255,255,255,.88); }
+      .sol-pill-dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+      /* LEGENDA */
+
+      /* responsive */
+      @media (max-width: 1024px) {
+        .solucoes { padding-bottom: 5.5rem; }
+        .sol-hero-card { min-height: 380px; }
+      }
+      @media (max-width: 767px) {
+        .solucoes { padding: 1.5rem 0 5rem; }
+        .sol-inner { padding: 0 1.5rem; }
+        .sol-hero-card { min-height: 320px; }
+        .sol-hero-content { padding: 1.75rem; }
+      }
+      @media (max-width: 480px) {
+        .sol-inner { padding: 0 1.25rem; }
+      }
+    </style>
+
+    <section class="solucoes" id="solucoes" aria-labelledby="sol-heading">
+      <div class="sol-dot-bg" aria-hidden="true"></div>
+      <div class="sol-inner">
+
+        <!-- ── Badge centralizado ── -->
+        <header class="sol-header" id="sol-header">
+          <div class="problema-badge" id="sol-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Soluções
+          </div>
+        </header>
+
+        <!-- ── Grid principal: hero image + cards 1-2 ── -->
+        <div class="sol-grid">
+
+          <!-- HERO IMAGEM SUBESTAÇÃO — col-span-7, row-span-2 -->
+          <div class="sg-hero" id="sol-hero-card">
+            <div class="sol-hero-card">
+              <img src="assets/images/subestacao-entardecer.png"
+                   alt="Subestação de média tensão ao entardecer — AFB Consultoria Energética"
+                   class="sol-hero-img" loading="lazy" />
+              <div class="sol-hero-overlay"></div>
+              <div class="sol-hero-mesh" aria-hidden="true"></div>
+              <div class="sol-hero-scan" aria-hidden="true"></div>
+              <div class="sol-hero-orb" aria-hidden="true" style="width:320px;height:320px;top:-12%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.16) 0%,transparent 70%);filter:blur(30px);animation:icmsGlow 5s ease-in-out infinite;"></div>
+              <div class="sol-hero-orb" aria-hidden="true" style="width:200px;height:200px;bottom:18%;left:-8%;background:radial-gradient(circle,rgba(246,144,102,.1) 0%,transparent 65%);filter:blur(22px);animation:icmsGlow 6.5s ease-in-out infinite 1.8s;"></div>
+              <div class="sol-hero-content">
+                <div class="sol-badge-center">
+                  <div class="sol-badge">
+                    <span class="sol-badge-dot" aria-hidden="true"></span>
+                    Conheça Nossos Serviços
+                  </div>
+                </div>
+                <h2 class="sol-hero-h2" id="sol-heading">
+                  Do diagnóstico à<br>recuperação de capital.
+                </h2>
+                <p class="sol-hero-sub">
+                  Elaboração de relatórios técnicos com projeção de economia e retorno financeiro — do levantamento técnico à implementação acompanhada.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 1 · Análise Técnica da Fatura — col-span-5 -->
+          <article class="sol-card sol-sage sg-c1" data-sol="0" aria-labelledby="sc1-h">
+            <span class="sol-ghost sol-ghost-s" aria-hidden="true">01</span>
+            <div class="sol-bar sol-bar-g" aria-hidden="true"></div>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-s">Serviço 01 · Fatura</span>
+              <h3 class="sol-title sol-ti-s" id="sc1-h">Análise Técnica da Fatura</h3>
+              <p class="sol-text sol-tx-s">Revisão completa de enquadramento, cobranças e perfil de consumo. O ponto de partida de toda redução de custos.</p>
+              <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>Diagnóstico</div>
+            </div>
+          </article>
+
+          <!-- Card 2 · Gestão de Modalidade Tarifária — col-span-5 -->
+          <article class="sol-card sol-dark sol-shimmer sg-c2" data-sol="1" aria-labelledby="sc2-h">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 6s ease-in-out infinite .5s;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:160px;height:160px;top:-20%;right:-12%;background:radial-gradient(circle,rgba(61,127,97,.14) 0%,transparent 70%);filter:blur(22px);animation:icmsGlow 4.5s ease-in-out infinite;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:120px;height:120px;bottom:-15%;left:-8%;background:radial-gradient(circle,rgba(246,144,102,.09) 0%,transparent 65%);filter:blur(18px);animation:icmsGlow 6s ease-in-out infinite 1.6s;"></div>
+            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">02</span>
+            <div class="sol-bar sol-bar-g" aria-hidden="true" style="z-index:4;"></div>
+            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-d">Serviço 02 · Tarifa</span>
+              <h3 class="sol-title sol-ti-d" id="sc2-h">Gestão de Modalidade Tarifária</h3>
+              <p class="sol-text sol-tx-d">Ajuste da modalidade ao consumo real para parar de pagar pela tarifa errada.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Otimização</div>
+            </div>
+          </article>
+
+        </div><!-- /sol-grid -->
+
+        <div class="sol-contratacao-grid">
+
+          <!-- Card 3 · Mercado Livre de Energia -->
+          <article class="sol-card sol-dark sol-shimmer" data-sol="2" aria-labelledby="sc3-h">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1s;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:180px;height:180px;top:-25%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.14) 0%,transparent 70%);filter:blur(26px);animation:icmsGlow 5s ease-in-out infinite;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:110px;height:110px;bottom:-12%;left:-6%;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 65%);filter:blur(16px);animation:icmsGlow 6.8s ease-in-out infinite 2s;"></div>
+            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">03</span>
+            <div class="sol-bar sol-bar-g" aria-hidden="true" style="z-index:4;"></div>
+            <span class="sol-ctag sol-ctag-d">Contratação comparada</span>
+            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-d">Serviço 03 · ACL</span>
+              <h3 class="sol-title sol-ti-d" id="sc3-h">Mercado Livre de Energia</h3>
+              <p class="sol-text sol-tx-d">Liberdade para negociar energia e reduzir o custo do MWh com previsibilidade de longo prazo.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Mercado Livre</div>
+            </div>
+          </article>
+
+          <!-- Card 4 · GD Livre -->
+          <article class="sol-card sol-sage" data-sol="3" aria-labelledby="sc4-h">
+            <span class="sol-ghost sol-ghost-s" aria-hidden="true">04</span>
+            <div class="sol-bar sol-bar-g" aria-hidden="true"></div>
+            <span class="sol-ctag sol-ctag-s">Contratação comparada</span>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-s">Serviço 04 · Solar</span>
+              <h3 class="sol-title sol-ti-s" id="sc4-h">GD Livre</h3>
+              <p class="sol-text sol-tx-s">Geração distribuída sem investimento em usina própria, com desconto direto na fatura mensal.</p>
+              <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>GD Livre</div>
+            </div>
+          </article>
+
+          <!-- Card 5 · Energia por Assinatura -->
+          <article class="sol-card sol-medium sol-shimmer" data-sol="4" aria-labelledby="sc5-h">
+            <div class="sol-orb" aria-hidden="true" style="width:150px;height:150px;top:-20%;right:-8%;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 70%);filter:blur(20px);animation:icmsGlow 5.5s ease-in-out infinite .8s;"></div>
+            <span class="sol-ghost sol-ghost-m" aria-hidden="true">05</span>
+            <div class="sol-bar sol-bar-w" aria-hidden="true"></div>
+            <span class="sol-ctag sol-ctag-m">Contratação comparada</span>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-m">Serviço 05 · Adesão</span>
+              <h3 class="sol-title sol-ti-m" id="sc5-h">Energia por Assinatura</h3>
+              <p class="sol-text sol-tx-m">Economia mensal por adesão, sem obra e sem capital imobilizado.</p>
+              <div class="sol-pill sol-pill-m"><span class="sol-pill-dot"></span>Assinatura</div>
+            </div>
+          </article>
+
+        </div><!-- /sol-contratacao-grid -->
+
+        <!-- Info strip — contratação (light reforço) -->
+        <div class="sol-info-strip" id="sol-info-strip" role="note">
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.3),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1s;"></div>
+          <div aria-hidden="true" style="position:absolute;width:260px;height:260px;top:-40%;right:-6%;background:radial-gradient(circle,rgba(61,127,97,.09) 0%,transparent 70%);filter:blur(32px);pointer-events:none;border-radius:50%;animation:icmsGlow 5s ease-in-out infinite;"></div>
+          <div aria-hidden="true" style="position:absolute;width:180px;height:180px;bottom:-40%;left:-4%;background:radial-gradient(circle,rgba(246,144,102,.06) 0%,transparent 65%);filter:blur(24px);pointer-events:none;border-radius:50%;animation:icmsGlow 6.5s ease-in-out infinite 1.8s;"></div>
+          <div class="sol-info-rule" aria-hidden="true"></div>
+          <p class="sol-info-text">Mercado Livre, GD Livre e Energia por Assinatura não competem entre si — <strong>competem na análise.</strong> A recomendação é a que economiza mais para o seu perfil.</p>
+          <div class="sol-info-rule sol-info-rule-r" aria-hidden="true"></div>
+        </div>
+
+        <!-- ── Grid inferior: Cards 6 + 7 ── -->
+        <div class="sol-bottom-grid">
+
+          <!-- Card 6 · Estudos de QEE -->
+          <article class="sol-card sol-sage" data-sol="5" aria-labelledby="sc6-h">
+            <span class="sol-ghost sol-ghost-s" aria-hidden="true">06</span>
+            <div class="sol-bar sol-bar-g" aria-hidden="true"></div>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-s">Serviço 06 · QEE</span>
+              <h3 class="sol-title sol-ti-s" id="sc6-h">Estudos de Qualidade de Energia (QEE)</h3>
+              <p class="sol-text sol-tx-s">Diagnóstico da causa raiz que protege equipamentos e elimina perdas de energia na origem.</p>
+              <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>QEE</div>
+            </div>
+          </article>
+
+          <!-- Card 7 · Laudo de Crédito de ICMS -->
+          <article class="sol-card sol-dark sol-shimmer" data-sol="6" aria-labelledby="sc7-h">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(246,144,102,.5),transparent);z-index:3;pointer-events:none;animation:icmsScan 8s ease-in-out infinite 1.2s;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:200px;height:200px;top:-20%;right:-12%;background:radial-gradient(circle,rgba(246,144,102,.12) 0%,transparent 70%);filter:blur(28px);animation:icmsGlow 4.8s ease-in-out infinite;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:130px;height:130px;bottom:-15%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.12) 0%,transparent 65%);filter:blur(20px);animation:icmsGlow 6.2s ease-in-out infinite 2.4s;"></div>
+            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">07</span>
+            <div class="sol-bar sol-bar-o" aria-hidden="true" style="z-index:4;"></div>
+            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-d">Serviço 07 · ICMS</span>
+              <h3 class="sol-title sol-ti-d" id="sc7-h">Laudo de Crédito de ICMS</h3>
+              <p class="sol-text sol-tx-d">Identificação e recuperação de capital em créditos de ICMS no consumo de energia elétrica no setor produtivo — em média 20% da fatura todos os meses.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Recuperação ICMS</div>
+            </div>
+          </article>
+
+        </div><!-- /sol-bottom-grid -->
+
+      </div><!-- /sol-inner -->
+    </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 07 — POR QUE TRABALHAR COMIGO                              -->
+  <!-- ════════════════════════════════════════════════════════════════════ -->
+  <style>
+    /* ── Section 07 · Diferencial ─────────────────────────────────────── */
+    .diferencial {
+      padding: 7rem 0 6.5rem;
+      background: var(--bg);
+      position: relative; overflow: hidden;
+    }
+    .dif-dot-bg {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(61,127,97,.1) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
+    }
+    .dif-ambient {
+      position: absolute; width: 600px; height: 600px;
+      top: -15%; right: -10%;
+      background: radial-gradient(circle, rgba(61,127,97,.05) 0%, transparent 65%);
+      filter: blur(60px); pointer-events: none;
+    }
+    .dif-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; flex-direction: column; gap: 2.5rem;
+      position: relative; z-index: 1;
+    }
+
+    /* header */
+    .dif-header {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      gap: 1.25rem; opacity: 0;
+    }
+
+    /* heading — creative 3-level arrangement */
+    .dif-heading-wrap { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+    .dif-h2-question {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic; font-weight: 400;
+      font-size: clamp(.88rem, 1.15vw, 1.05rem);
+      color: #3D7F61; letter-spacing: .01em;
+      display: flex; align-items: center; gap: .85rem;
+    }
+    .dif-h2-rule {
+      display: block; width: 28px; height: 1px;
+      background: #3D7F61; opacity: .45; flex-shrink: 0;
+    }
+    .dif-h2-main {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.9rem, 3.2vw, 2.85rem);
+      font-weight: 700; color: var(--forest);
+      line-height: 1.15; letter-spacing: -.022em;
+      max-width: 680px;
+    }
+    .dif-h2-atalho {
+      display: block;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+      font-style: italic; font-weight: 600;
+      color: #3D7F61; letter-spacing: -.015em;
+      margin-top: .1rem;
+    }
+    .dif-credential {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(.74rem, .88vw, .8rem);
+      color: var(--sage); line-height: 1.75;
+      max-width: 660px; opacity: .85;
+    }
+
+    /* ── Hero card ── */
+    .dif-hero {
+      border-radius: 20px; background: var(--forest);
+      box-shadow: 0 16px 60px rgba(13,60,31,.24);
+      overflow: hidden; position: relative;
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 460px; opacity: 0;
+      transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+    }
+    .dif-hero:hover { transform: translateY(-6px); box-shadow: 0 28px 76px rgba(13,60,31,.32); }
+    .dif-hero::after {
+      content: ''; position: absolute; top: 0; left: -60%;
+      width: 42%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+      animation: metodoshimmer 6s ease-in-out infinite;
+      pointer-events: none; z-index: 6;
+    }
+    .dif-hero-mesh {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none; z-index: 1; border-radius: inherit;
+    }
+    .dif-hero-scan {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(61,127,97,.4), transparent);
+      z-index: 3; pointer-events: none;
+      animation: icmsScan 8s ease-in-out infinite 1.2s;
+    }
+    .dif-hero-orb { position: absolute; border-radius: 50%; pointer-events: none; }
+
+    /* hero — left content */
+    .dif-hero-body {
+      padding: 3.5rem 2.5rem 3.5rem 3.5rem;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; position: relative; z-index: 4;
+    }
+    .dif-hero-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: #3D7F61; margin-bottom: 1.1rem;
+    }
+    .dif-hero-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: #3D7F61; flex-shrink: 0; }
+    .dif-hero-bar {
+      width: 36px; height: 3px; border-radius: 9999px;
+      background: linear-gradient(90deg, #3D7F61, rgba(61,127,97,.25));
+      margin-bottom: 1.5rem; flex-shrink: 0;
+    }
+    .dif-hero-h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.45rem, 2.1vw, 2rem);
+      font-weight: 600; color: #FAF9F6;
+      line-height: 1.18; letter-spacing: -.015em; margin-bottom: 1.1rem;
+    }
+    .dif-hero-p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(.875rem, 1vw, .9375rem);
+      color: rgba(212,232,220,.78); line-height: 1.74; max-width: 400px;
+    }
+
+    /* hero — right photo */
+    .dif-hero-photo { position: relative; overflow: hidden; }
+    .dif-hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      filter: brightness(.82) saturate(.78) contrast(1.06); display: block;
+    }
+    .dif-hero-photo-mask {
+      position: absolute; inset: 0;
+      background: linear-gradient(100deg, #0D3C1F 0%, rgba(13,60,31,.52) 20%, rgba(13,60,31,.06) 55%, rgba(13,60,31,.15) 100%);
+      pointer-events: none; z-index: 2;
+    }
+    .dif-hero-photo-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 75% 25%, rgba(61,127,97,.16) 0%, transparent 60%);
+      pointer-events: none; z-index: 3;
+    }
+
+    /* ── Secondary cards ── */
+    .dif-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .dif-card {
+      border-radius: 18px; overflow: hidden;
+      position: relative; display: flex; flex-direction: column;
+      opacity: 0; transition: transform .38s cubic-bezier(.16,1,.3,1), box-shadow .38s;
+    }
+    .dif-card:hover { transform: translateY(-6px); }
+
+    .dif-card-dark {
+      background: #0D3C1F;
+      box-shadow: 0 8px 40px rgba(13,60,31,.22); min-height: 380px;
+    }
+    .dif-card-dark:hover { box-shadow: 0 18px 56px rgba(13,60,31,.32); }
+    .dif-card-dark::after {
+      content: ''; position: absolute; top: 0; left: -60%;
+      width: 42%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.055), transparent);
+      animation: metodoshimmer 7.5s ease-in-out infinite 2s;
+      pointer-events: none; z-index: 5;
+    }
+    .dif-card-sage {
+      background: #EFF6F1;
+      border: 1px solid rgba(61,127,97,.14);
+      box-shadow: 0 4px 20px rgba(13,60,31,.04); min-height: 380px;
+    }
+    .dif-card-sage:hover { box-shadow: 0 14px 44px rgba(13,60,31,.1); border-color: rgba(61,127,97,.26); }
+
+    .dif-card-mesh {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+      background-size: 40px 40px; pointer-events: none; z-index: 1;
+    }
+    .dif-card-scan {
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(61,127,97,.38), transparent);
+      z-index: 3; pointer-events: none;
+      animation: icmsScan 9s ease-in-out infinite 2.5s;
+    }
+
+    /* photo in dark secondary card */
+    .dif-card-photo { height: 210px; position: relative; overflow: hidden; flex-shrink: 0; }
+    .dif-card-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      filter: brightness(.78) saturate(.75) contrast(1.08); display: block;
+    }
+    .dif-card-photo-mask {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(13,60,31,.1) 0%, rgba(13,60,31,0) 35%, rgba(13,60,31,.88) 85%, #0D3C1F 100%);
+      pointer-events: none; z-index: 2;
+    }
+    .dif-card-photo-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 65% 20%, rgba(61,127,97,.14) 0%, transparent 65%);
+      pointer-events: none; z-index: 3;
+    }
+
+    /* card body */
+    .dif-card-body { padding: 1.6rem 2rem 2rem; display: flex; flex-direction: column; flex: 1; position: relative; z-index: 4; }
+
+    /* ghost number */
+    .dif-ghost {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 5.5rem; font-weight: 700; line-height: 1;
+      position: absolute; top: .4rem; right: 1rem;
+      letter-spacing: -.04em; pointer-events: none;
+      color: rgba(13,60,31,.055);
+    }
+
+    /* accent bar */
+    .dif-bar { width: 36px; height: 3px; border-radius: 9999px; margin-bottom: 1.25rem; flex-shrink: 0; }
+    .dif-bar-g { background: linear-gradient(90deg, #3D7F61, rgba(61,127,97,.3)); }
+    .dif-bar-d { background: linear-gradient(90deg, #3D7F61, rgba(61,127,97,.2)); }
+
+    /* eyebrow */
+    .dif-eyebrow { font-size: .62rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; margin-bottom: .5rem; position: relative; z-index: 2; }
+    .dif-ey-d { color: #3D7F61; }
+    .dif-ey-s { color: #3D7F61; }
+
+    /* titles */
+    .dif-h3 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.5vw, 1.3rem); font-weight: 600; line-height: 1.22; margin-bottom: .8rem; position: relative; z-index: 2; }
+    .dif-h3-d { color: #FAF9F6; }
+    .dif-h3-s { color: #0D3C1F; }
+
+    /* text */
+    .dif-p { font-family: 'Inter', system-ui, sans-serif; font-size: .8125rem; line-height: 1.74; position: relative; z-index: 2; }
+    .dif-p-d { color: rgba(212,232,220,.74); }
+    .dif-p-s { color: #4A6B5A; }
+
+    /* hero taller to hold 3 differentials */
+    .dif-hero { min-height: 520px; }
+    .dif-hero-body { justify-content: center; gap: 0; padding: 3rem 2.5rem 3rem 3.5rem; }
+
+    /* unified item — same pattern for all 3 differentials */
+    .dif-item { display: flex; flex-direction: column; gap: .6rem; }
+    .dif-item-h {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.2rem, 1.7vw, 1.6rem);
+      font-weight: 700; color: #FAF9F6;
+      line-height: 1.18; letter-spacing: -.015em;
+    }
+    .dif-item-p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(.82rem, .95vw, .875rem);
+      color: rgba(212,232,220,.78); line-height: 1.7;
+    }
+
+    /* divider between differentials */
+    .dif-divider-line {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, rgba(61,127,97,.24), transparent);
+      margin: 1.4rem 0; flex-shrink: 0;
+    }
+
+
+    /* responsive */
+    @media (max-width: 1023px) {
+      .dif-hero { grid-template-columns: 1fr; min-height: auto; }
+      .dif-hero-photo { height: 300px; order: -1; }
+      .dif-hero-photo-mask { background: linear-gradient(to bottom, rgba(13,60,31,.1) 0%, rgba(13,60,31,.5) 60%, #0D3C1F 100%); }
+      .dif-hero-body { padding: 2rem 2rem 2.5rem; }
+      .dif-photo-strip { max-width: 100%; }
+    }
+    @media (max-width: 767px) {
+      .diferencial { padding: 5rem 0 4.5rem; }
+      .dif-inner { padding: 0 1.25rem; gap: 2rem; }
+    }
+  </style>
+
+  <section class="diferencial" id="diferencial" aria-labelledby="dif-heading">
+    <div class="dif-dot-bg" aria-hidden="true"></div>
+    <div class="dif-ambient" aria-hidden="true"></div>
+
+    <div class="dif-inner">
+
+      <!-- ── Header ── -->
+      <header class="dif-header" id="dif-header">
+        <div class="problema-badge" id="dif-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Quem Somos
+        </div>
+        <div class="dif-heading-wrap">
+          <p class="dif-h2-question">
+            <span class="dif-h2-rule" aria-hidden="true"></span>
+            Porque escolher a AFB Consultoria Energética?
+            <span class="dif-h2-rule" aria-hidden="true"></span>
+          </p>
+          <h2 class="dif-h2-main" id="dif-heading">
+            Conheço a concessionária por dentro.
+            <em class="dif-h2-atalho">Esse é o seu atalho.</em>
+          </h2>
+        </div>
+        <p class="dif-credential">
+          Me chamo Arthur Felipe Brandão, engenheiro eletricista pela PUC-MG, com pós-graduação em Automação do Sistema Elétrico de Potência (IEC PUC-MG), especialização em Mercado Livre de Energia (CCEE) e pós-graduação em Análise de Distúrbios Elétricos pela ISOE — Instituto O Setor Elétrico.
+        </p>
+      </header>
+
+      <!-- ── Hero card — Diferencial 01 ── -->
+      <article class="dif-hero" id="dif-hero" aria-labelledby="dif1-h">
+        <div class="dif-hero-mesh" aria-hidden="true"></div>
+        <div class="dif-hero-scan" aria-hidden="true"></div>
+        <div class="dif-hero-orb" aria-hidden="true" style="width:320px;height:320px;bottom:-20%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.16) 0%,transparent 70%);filter:blur(38px);animation:icmsGlow 5.5s ease-in-out infinite;"></div>
+        <div class="dif-hero-orb" aria-hidden="true" style="width:180px;height:180px;top:-18%;left:32%;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 65%);filter:blur(28px);animation:icmsGlow 7s ease-in-out infinite 2s;"></div>
+
+        <!-- left: 3 differentials -->
+        <div class="dif-hero-body">
+
+          <div class="dif-item">
+            <h3 class="dif-item-h" id="dif1-h">Visão de dentro<br>da concessionária.</h3>
+            <p class="dif-item-p">Atuei 8 anos dentro da CEMIG. Sei como a tarifa é construída, onde se escondem as cobranças indevidas e como o jogo é jogado do outro lado do balcão.</p>
+          </div>
+
+          <div class="dif-divider-line" aria-hidden="true"></div>
+
+          <div class="dif-item">
+            <h3 class="dif-item-h" id="dif2-h">Campo + Gestão.</h3>
+            <p class="dif-item-p">Comecei como eletricista de redes e cheguei à supervisão de serviços integrados. Entendo a instalação no detalhe técnico — e na decisão de gestão.</p>
+          </div>
+
+          <div class="dif-divider-line" aria-hidden="true"></div>
+
+          <div class="dif-item">
+            <h3 class="dif-item-h" id="dif3-h">Especializações com base técnica.</h3>
+            <p class="dif-item-p">Possuo especialização em Qualidade de Energia, Mercado Livre e Subestações de Média Tensão. Cada recomendação tem fundamento técnico — não opinião comercial.</p>
+          </div>
+
+        </div>
+
+        <!-- right: photo ref-01 -->
+        <div class="dif-hero-photo">
+          <img src="_design/referencias/ref-01.jpeg"
+               alt="Arthur Brandão em inspeção técnica em transformador de média tensão"
+               class="dif-hero-img" loading="lazy" />
+          <div class="dif-hero-photo-mask" aria-hidden="true"></div>
+          <div class="dif-hero-photo-glow" aria-hidden="true"></div>
+        </div>
+      </article>
+
+
+    </div><!-- /dif-inner -->
+  </section>
+
+  <!-- ═══ SEÇÃO 09 — COMO FUNCIONA ════════════════════════════════════ -->
+  <style>
+    /* ── Section 09 — Como Funciona ─────────────────────────────────── */
+    .como-funciona {
+      padding: 7rem 0 7rem; background: #ffffff;
+      position: relative; overflow: hidden;
+    }
+    .cf-dot-bg {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(61,127,97,.08) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
+    }
+    .cf-ambient {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 8% 25%, rgba(61,127,97,.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 92% 75%, rgba(246,144,102,.04) 0%, transparent 50%);
+    }
+    .cf-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2rem;
+      display: flex; flex-direction: column; gap: 5rem;
+      position: relative; z-index: 1;
+    }
+
+    /* header */
+    .cf-header {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      gap: 1.5rem; opacity: 0;
+    }
+    .cf-h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      font-weight: 700; color: #0D3C1F;
+      line-height: 1.13; letter-spacing: -.022em;
+      max-width: 680px;
+    }
+    .cf-sub {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(.88rem, 1.05vw, 1rem);
+      color: #4A6B5A; line-height: 1.74; max-width: 500px;
+    }
+
+    /* credential card */
+    .cf-cred-card {
+      border-radius: 22px; overflow: hidden;
+      background: #0D3C1F;
+      display: grid; grid-template-columns: 40% 1fr;
+      position: relative; opacity: 0;
+      box-shadow: 0 16px 60px rgba(13,60,31,.26);
+      transition: transform .42s cubic-bezier(.16,1,.3,1), box-shadow .42s;
+    }
+    .cf-cred-card:hover { transform: translateY(-6px); box-shadow: 0 24px 72px rgba(13,60,31,.32); }
+    .cf-cred-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(61,127,97,.06) 0%, transparent 50%);
+      pointer-events: none; z-index: 3;
+    }
+    /* mesh overlay */
+    .cf-cred-mesh {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    /* photo side */
+    .cf-cred-photo { position: relative; overflow: hidden; }
+    .cf-cred-img {
+      width: 100%; height: auto; display: block;
+      filter: brightness(.8) saturate(.72) contrast(1.09);
+    }
+    .cf-cred-photo-mask {
+      position: absolute; inset: 0; pointer-events: none; z-index: 2;
+      background:
+        linear-gradient(90deg, transparent 55%, #0D3C1F 100%),
+        linear-gradient(to bottom, rgba(13,60,31,.12) 0%, transparent 22%, transparent 75%, rgba(13,60,31,.28) 100%);
+    }
+    .cf-cred-photo-glow {
+      position: absolute; inset: 0; pointer-events: none; z-index: 3;
+      background: radial-gradient(ellipse at 20% 65%, rgba(61,127,97,.12) 0%, transparent 50%);
+    }
+    /* body side */
+    .cf-cred-body {
+      padding: 3.5rem 3.2rem 3.5rem 2.8rem;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 1.5rem; position: relative; z-index: 4;
+    }
+    .cf-cred-badge {
+      display: inline-flex; align-items: center; gap: .55rem;
+      padding: .42rem 1.05rem; border-radius: 9999px;
+      background: rgba(61,127,97,.18); border: 1px solid rgba(61,127,97,.32);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .62rem; font-weight: 700; letter-spacing: .13em;
+      text-transform: uppercase; color: rgba(138,191,158,.92);
+      width: fit-content;
+    }
+    .cf-cred-badge-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #3D7F61; flex-shrink: 0;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    .cf-cred-quote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic; font-size: clamp(1.3rem, 2vw, 1.85rem);
+      font-weight: 600; color: #FAF9F6;
+      line-height: 1.28; letter-spacing: -.015em;
+    }
+    .cf-cred-quote em {
+      font-style: normal; color: #3D7F61;
+      background: linear-gradient(90deg, #5BA87A, #3D7F61);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cf-cred-rule {
+      width: 36px; height: 1.5px; border-radius: 9999px;
+      background: linear-gradient(90deg, rgba(61,127,97,.6), transparent);
+      flex-shrink: 0;
+    }
+    .cf-cred-meta {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .78rem; color: rgba(212,232,220,.68);
+      line-height: 1.65;
+    }
+    .cf-cred-meta strong {
+      color: rgba(212,232,220,.88); font-weight: 600;
+    }
+    .cf-cred-orb {
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 2;
+    }
+    /* responsive */
+    @media (max-width: 767px) {
+      .cf-cred-card { grid-template-columns: 1fr; }
+      .cf-cred-photo-mask {
+        background: linear-gradient(to bottom, transparent 55%, #0D3C1F 100%);
+      }
+      .cf-cred-body { padding: 2rem 1.75rem 2.5rem; }
+    }
+
+    /* timeline wrapper */
+    .cf-timeline-wrap { position: relative; }
+
+    /* desktop connector line */
+    .cf-conn-outer {
+      display: none;
+      position: absolute; top: 26px;
+      left: 12.5%; right: 12.5%;
+      height: 1px; z-index: 1; pointer-events: none;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) { .cf-conn-outer { display: block; } }
+    .cf-conn-track {
+      position: absolute; inset: 0;
+      background: rgba(61,127,97,.1);
+    }
+    .cf-conn-fill {
+      position: absolute; inset: 0;
+      width: 0%;
+      background: linear-gradient(90deg, #F69066 0%, #3D7F61 60%, rgba(61,127,97,.3) 100%);
+      transition: none;
+    }
+
+    /* grid */
+    .cf-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 2.5rem; position: relative; z-index: 2;
+    }
+    @media (min-width: 768px) {
+      .cf-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    }
+
+    /* step */
+    .cf-step {
+      display: flex; flex-direction: column;
+      position: relative; opacity: 0;
+      padding: 1.75rem 1.6rem 2rem;
+      border-radius: 18px;
+      background: #F7FAF7;
+      border: 1px solid rgba(61,127,97,.1);
+      transition: transform .38s cubic-bezier(.16,1,.3,1),
+                  box-shadow .38s, border-color .38s;
+    }
+    .cf-step:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 14px 44px rgba(13,60,31,.1);
+      border-color: rgba(61,127,97,.2);
+    }
+
+    /* mobile vertical connector */
+    @media (max-width: 767px) {
+      .cf-step:not(:last-child)::before {
+        content: ''; position: absolute;
+        left: 2.85rem; top: calc(100% + 2px); height: 2.5rem;
+        width: 1px;
+        background: linear-gradient(to bottom, rgba(61,127,97,.28), rgba(61,127,97,.05));
+      }
+    }
+
+    /* large number */
+    .cf-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3.2rem; font-weight: 700;
+      color: #F69066; line-height: 1;
+      letter-spacing: -.03em; display: block;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .cf-num::before {
+      content: '';
+      position: absolute; inset: -6px -10px;
+      background: radial-gradient(ellipse at center, rgba(246,144,102,.14) 0%, transparent 68%);
+      border-radius: 50%; z-index: -1; pointer-events: none;
+    }
+
+    /* eyebrow */
+    .cf-eyebrow {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: .13em; text-transform: uppercase;
+      color: #3D7F61; margin-bottom: .52rem;
+      display: block;
+    }
+
+    /* step title */
+    .cf-step-h {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(.98rem, 1.2vw, 1.12rem);
+      font-weight: 700; color: #0D3C1F;
+      line-height: 1.22; margin-bottom: .6rem;
+    }
+
+    /* step body */
+    .cf-step-p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .8rem; color: #4A6B5A;
+      line-height: 1.74; flex: 1;
+    }
+
+    /* icon container */
+    .cf-icon-box {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(61,127,97,.08);
+      border: 1px solid rgba(61,127,97,.16);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1.25rem; flex-shrink: 0; color: #3D7F61;
+      transition: background .3s, box-shadow .3s;
+    }
+    .cf-step:hover .cf-icon-box {
+      background: rgba(61,127,97,.14);
+      box-shadow: 0 0 0 5px rgba(61,127,97,.07);
+    }
+
+    /* accent bar under number */
+    .cf-bar {
+      width: 22px; height: 2px; border-radius: 9999px;
+      background: linear-gradient(90deg, #F69066, rgba(246,144,102,.28));
+      margin-bottom: 1.1rem; flex-shrink: 0;
+    }
+
+    /* seal */
+    .cf-seal {
+      display: flex; align-items: center; justify-content: center;
+      gap: .9rem; opacity: 0;
+      background: #EFF6F1;
+      border: 1.5px solid rgba(61,127,97,.22);
+      border-radius: 9999px;
+      padding: .95rem 2.4rem;
+      width: fit-content; margin: 0 auto;
+      box-shadow: 0 4px 28px rgba(13,60,31,.07),
+                  inset 0 1px 0 rgba(255,255,255,.72);
+      transition: transform .38s cubic-bezier(.16,1,.3,1),
+                  box-shadow .38s, border-color .38s;
+    }
+    .cf-seal:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 36px rgba(13,60,31,.12), 0 0 0 5px rgba(61,127,97,.07);
+      border-color: rgba(61,127,97,.34);
+    }
+    .cf-seal-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #3D7F61; flex-shrink: 0;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    .cf-seal-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(.92rem, 1.1vw, 1.05rem);
+      color: #0D3C1F; font-weight: 500; white-space: nowrap;
+    }
+
+    /* ── dark step cards (inside credential card) ── */
+    .cf-cred-body {
+      padding: 2.2rem 2.8rem 2.2rem 2rem;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      position: relative; z-index: 4;
+    }
+    .cf-steps-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: .8rem; width: 100%;
+    }
+    .cf-step-d {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.085);
+      border-radius: 14px;
+      padding: 1.2rem 1.25rem 1.35rem;
+      display: flex; flex-direction: column;
+      opacity: 0;
+      transition: background .3s, border-color .3s,
+                  transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+    }
+    .cf-step-d:hover {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(61,127,97,.28);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,0,0,.18);
+    }
+    .cf-num-d {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem; font-weight: 700;
+      color: #F69066; line-height: 1;
+      letter-spacing: -.03em; display: block;
+      margin-bottom: .75rem;
+    }
+    .cf-bar-d {
+      width: 16px; height: 2px; border-radius: 9999px;
+      background: linear-gradient(90deg, #F69066, rgba(246,144,102,.2));
+      margin-bottom: .7rem; flex-shrink: 0;
+    }
+    .cf-eyebrow-d {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .58rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(138,191,158,.68); margin-bottom: .38rem;
+      display: block;
+    }
+    .cf-step-h-d {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(.87rem, 1vw, .97rem);
+      font-weight: 700; color: #FAF9F6;
+      line-height: 1.2; margin-bottom: .42rem;
+    }
+    .cf-step-p-d {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .74rem; color: rgba(212,232,220,.62);
+      line-height: 1.68; flex: 1;
+    }
+    .cf-icon-box-d {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.11);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: .9rem; flex-shrink: 0;
+      color: rgba(138,191,158,.78);
+      transition: background .3s, box-shadow .3s;
+    }
+    .cf-step-d:hover .cf-icon-box-d {
+      background: rgba(61,127,97,.18);
+      box-shadow: 0 0 0 4px rgba(61,127,97,.1);
+    }
+
+    /* responsive */
+    @media (max-width: 1023px) {
+      .como-funciona { padding: 5.5rem 0 5rem; }
+      .cf-inner { gap: 3.5rem; }
+    }
+    @media (max-width: 767px) {
+      .como-funciona { padding: 5rem 0 4.5rem; }
+      .cf-inner { padding: 0 1.25rem; gap: 3rem; }
+      .cf-steps-grid { grid-template-columns: 1fr; }
+      .cf-seal { border-radius: 16px; width: auto; flex-direction: column; gap: .6rem; padding: 1.1rem 1.5rem; }
+      .cf-seal-text { white-space: normal; text-align: center; }
+    }
+
+    /* ─── SECTION 10 — CONTATO ───────────────────────────────────────── */
+    .contato {
+      padding: 8rem 0 8rem;
+      background: var(--bg-alt);
+      position: relative; overflow: hidden;
+    }
+    .ct-dot-bg {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(61,127,97,.09) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+    .ct-ambient {
+      position: absolute; top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 520px;
+      background: radial-gradient(ellipse, rgba(61,127,97,.07) 0%, transparent 65%);
+      filter: blur(70px); pointer-events: none;
+    }
+    .ct-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 4.5rem;
+    }
+    /* header */
+    .ct-header {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.5rem; text-align: center; max-width: 860px;
+      opacity: 0;
+    }
+    .ct-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
+      font-weight: 700; color: var(--forest);
+      line-height: 1.1; letter-spacing: -.026em;
+    }
+    .ct-h2 em {
+      font-style: normal;
+      background: linear-gradient(to right, #F69066, #E35D30);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ct-sub {
+      font-size: clamp(.95rem, 1.2vw, 1.1rem);
+      color: var(--sage); line-height: 1.72; max-width: 680px;
+    }
+    /* two-column body */
+    .ct-body {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; width: 100%; align-items: start;
+    }
+    /* left */
+    .ct-left { display: flex; flex-direction: column; gap: 2.2rem; }
+    .ct-reforco {
+      font-size: clamp(.9rem, 1.05vw, 1rem);
+      color: var(--sage); line-height: 1.78;
+      font-style: italic; opacity: 0;
+    }
+    .ct-wa-btn {
+      display: inline-flex; align-items: center; gap: 1rem;
+      padding: 1.1rem 2rem; border-radius: var(--r-pill);
+      background: var(--forest); color: #fff;
+      font-family: var(--font-body); font-size: .97rem; font-weight: 600;
+      letter-spacing: -.01em;
+      box-shadow: 0 4px 24px rgba(13,60,31,.22);
+      transition: background .25s, transform .25s var(--ease-out), box-shadow .25s;
+      cursor: none; opacity: 0; position: relative; overflow: hidden;
+    }
+    .ct-wa-btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.12) 50%, transparent 100%);
+      transform: translateX(-110%); transition: transform .55s var(--ease-out);
+    }
+    .ct-wa-btn:hover::after { transform: translateX(110%); }
+    .ct-wa-btn:hover {
+      background: #0a2e18;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(13,60,31,.32), 0 0 0 5px rgba(61,127,97,.12);
+    }
+    .ct-wa-icon { width: 22px; height: 22px; flex-shrink: 0; fill: #fff; }
+    .ct-divider {
+      display: flex; align-items: center; gap: 1rem; opacity: 0;
+    }
+    .ct-divider-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(74,107,90,.24), rgba(74,107,90,.07));
+    }
+    .ct-divider-text {
+      font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+    /* form card (right) */
+    .ct-form-wrap {
+      background: #fff; border-radius: 22px;
+      padding: 2.8rem 2.6rem;
+      box-shadow: 0 12px 48px rgba(13,60,31,.08), 0 0 0 1px rgba(61,127,97,.07);
+      border: 1px solid rgba(61,127,97,.07);
+      opacity: 0; position: relative; overflow: hidden;
+    }
+    .ct-form-wrap::before {
+      content: ''; position: absolute; top: 0; left: -110%; right: auto;
+      width: 110%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--orange), var(--accent));
+      animation: shimmer 3s linear infinite;
+    }
+    .ct-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .ct-field { display: flex; flex-direction: column; gap: .45rem; }
+    .ct-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--sage);
+    }
+    .ct-label .opt {
+      font-weight: 400; font-style: italic;
+      text-transform: none; letter-spacing: 0;
+      color: var(--muted); font-size: .68rem;
+    }
+    .ct-input, .ct-textarea {
+      width: 100%; padding: .82rem 1.05rem;
+      border-radius: 10px; border: 1.5px solid rgba(61,127,97,.15);
+      background: #F7FAF7; font-family: var(--font-body);
+      font-size: .88rem; color: var(--forest);
+      transition: border-color .2s, box-shadow .2s, background .2s;
+      outline: none;
+    }
+    .ct-input::placeholder, .ct-textarea::placeholder {
+      color: rgba(74,107,90,.42);
+    }
+    .ct-input:focus, .ct-textarea:focus {
+      border-color: var(--accent); background: #fff;
+      box-shadow: 0 0 0 4px rgba(61,127,97,.1);
+    }
+    .ct-input:hover:not(:focus), .ct-textarea:hover:not(:focus) {
+      border-color: rgba(61,127,97,.3);
+    }
+    .ct-textarea { resize: vertical; min-height: 108px; }
+    .ct-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .ct-submit {
+      display: flex; align-items: center; justify-content: center; gap: .7rem;
+      padding: 1rem 2rem; border-radius: var(--r-pill);
+      border: none; cursor: pointer;
+      background: var(--accent); color: #fff;
+      font-family: var(--font-body); font-size: .88rem; font-weight: 600;
+      letter-spacing: .03em;
+      box-shadow: 0 4px 18px rgba(61,127,97,.26);
+      transition: background .25s, transform .22s var(--ease-out), box-shadow .22s;
+      margin-top: .2rem; position: relative; overflow: hidden;
+    }
+    .ct-submit::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.14) 50%, transparent 100%);
+      transform: translateX(-110%); transition: transform .5s var(--ease-out);
+    }
+    .ct-submit:hover::after { transform: translateX(110%); }
+    .ct-submit:hover {
+      background: var(--forest);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(13,60,31,.24);
+    }
+    .ct-microcopy {
+      font-size: .73rem; color: var(--muted);
+      text-align: center; line-height: 1.5; margin-top: .35rem;
+    }
+    .ct-input.error, .ct-textarea.error {
+      border-color: #d95252; box-shadow: 0 0 0 3px rgba(217,82,82,.1);
+    }
+    .ct-input.success, .ct-textarea.success {
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,127,97,.1);
+    }
+
+    @media (max-width: 1023px) {
+      .ct-body { grid-template-columns: 1fr; gap: 3rem; }
+      .ct-h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); }
+    }
+    @media (max-width: 767px) {
+      .contato { padding: 5.5rem 0 6rem; }
+      .ct-inner { padding: 0 1.25rem; gap: 3rem; }
+      .ct-form-row { grid-template-columns: 1fr; }
+      .ct-form-wrap { padding: 2rem 1.5rem; }
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────────── */
+    .site-footer {
+      background: var(--forest); color: #FAF9F6;
+      padding: 4.5rem 0 0; position: relative; overflow: hidden;
+    }
+    .footer-mesh {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(138,191,158,.06) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
+    }
+    .footer-orb {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; filter: blur(80px);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2.5rem; position: relative; z-index: 1;
+    }
+    /* CTA strip */
+    .footer-cta-strip {
+      padding: 2.6rem 0; border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .footer-cta-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      font-weight: 700; color: #FAF9F6; line-height: 1.35;
+    }
+    .footer-cta-text em { font-style: normal; color: #F69066; }
+    .footer-cta-btn {
+      display: inline-flex; align-items: center; gap: .65rem;
+      padding: .82rem 1.85rem; border-radius: var(--r-pill);
+      background: var(--accent); color: #fff;
+      font-size: .83rem; font-weight: 600; white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(61,127,97,.3);
+      transition: background .2s, transform .22s var(--ease-out), box-shadow .22s;
+      cursor: none; flex-shrink: 0;
+    }
+    .footer-cta-btn:hover {
+      background: #4DA87A; transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(61,127,97,.38);
+    }
+    /* top grid */
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem; padding: 3.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 1.2rem; }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 700;
+      color: #FAF9F6; letter-spacing: -.02em;
+    }
+    .footer-logo span { color: #8ABF9E; }
+    .footer-tagline {
+      font-size: .85rem; color: rgba(212,232,220,.62);
+      line-height: 1.72; max-width: 320px;
+    }
+    .footer-social { display: flex; align-items: center; gap: .8rem; margin-top: .1rem; }
+    .footer-social-link {
+      width: 36px; height: 36px; border-radius: 9px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(212,232,220,.65);
+      transition: background .2s, border-color .2s, color .2s, transform .22s var(--ease-out);
+      cursor: none;
+    }
+    .footer-social-link:hover {
+      background: rgba(61,127,97,.25); border-color: rgba(61,127,97,.4);
+      color: #8ABF9E; transform: translateY(-2px);
+    }
+    .footer-social-link svg { width: 16px; height: 16px; }
+    .footer-nav-group { display: flex; flex-direction: column; gap: .85rem; }
+    .footer-nav-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: rgba(138,191,158,.55);
+      margin-bottom: .2rem;
+    }
+    .footer-nav-link {
+      font-size: .86rem; color: rgba(212,232,220,.58);
+      transition: color .2s; cursor: none;
+    }
+    .footer-nav-link:hover { color: #8ABF9E; }
+    .footer-contact-item {
+      display: flex; align-items: center; gap: .65rem;
+      font-size: .84rem; color: rgba(212,232,220,.58);
+    }
+    .footer-contact-icon { width: 15px; height: 15px; color: #8ABF9E; flex-shrink: 0; }
+    /* bottom */
+    .footer-bottom {
+      padding: 1.75rem 0;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1.5rem; flex-wrap: wrap;
+    }
+    .footer-copy { font-size: .76rem; color: rgba(138,191,158,.45); }
+    .footer-legal { display: flex; align-items: center; gap: 1.5rem; }
+    .footer-legal a {
+      font-size: .76rem; color: rgba(138,191,158,.45);
+      transition: color .2s; cursor: none;
+    }
+    .footer-legal a:hover { color: rgba(138,191,158,.82); }
+
+    /* back-to-top */
+    .back-to-top {
+      position: fixed; bottom: 5.5rem; right: 2.2rem; z-index: 50;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(13,60,31,.88); backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(61,127,97,.35); color: #8ABF9E;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 18px rgba(13,60,31,.28);
+      cursor: none; opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s, transform .25s var(--ease-out),
+                  box-shadow .25s, background .2s;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover {
+      background: var(--accent); transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(61,127,97,.32); color: #fff;
+    }
+    .back-to-top svg { width: 18px; height: 18px; }
+
+    /* floating WhatsApp */
+    .float-wa {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 50;
+      display: flex; align-items: center; gap: .65rem;
+      padding: .78rem 1.4rem; border-radius: var(--r-pill);
+      background: #25D366; color: #fff;
+      font-size: .82rem; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(37,211,102,.32);
+      cursor: none;
+      transition: background .2s, transform .25s var(--ease-out), box-shadow .25s;
+    }
+    .float-wa:hover {
+      background: #1da851; transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(37,211,102,.42);
+    }
+    .float-wa svg { width: 17px; height: 17px; fill: #fff; flex-shrink: 0; }
+
+    @media (max-width: 1023px) {
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-cta-strip { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    }
+    @media (max-width: 767px) {
+      .site-footer { padding: 3.5rem 0 0; }
+      .footer-inner { padding: 0 1.25rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-brand { grid-column: auto; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+      .float-wa { right: 1.25rem; bottom: 1.25rem; }
+      .back-to-top { right: 1.25rem; bottom: 4.5rem; }
+    }
+  </style>
+
+  <section class="como-funciona" id="como-funciona" aria-labelledby="cf-heading">
+    <div class="cf-dot-bg" aria-hidden="true"></div>
+    <div class="cf-ambient" aria-hidden="true"></div>
+
+    <div class="cf-inner">
+
+      <!-- ── Header ── -->
+      <header class="cf-header" id="cf-header">
+        <div class="problema-badge" id="cf-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Como funciona
+        </div>
+        <h2 class="cf-h2" id="cf-heading">
+          Começar é simples.<br>O rigor vem depois.
+        </h2>
+        <p class="cf-sub">Quatro passos estruturados. Do primeiro contato à economia medida — sem burocracia e sem compromisso para iniciar.</p>
+      </header>
+
+      <!-- ── Credential card — foto de campo ── -->
+      <div class="cf-cred-card" id="cf-cred-card">
+        <div class="cf-cred-mesh" aria-hidden="true"></div>
+        <!-- orbs -->
+        <div class="cf-cred-orb" aria-hidden="true" style="width:320px;height:320px;top:-15%;right:18%;background:radial-gradient(circle,rgba(61,127,97,.14) 0%,transparent 70%);filter:blur(40px);animation:icmsGlow 5.5s ease-in-out infinite;"></div>
+        <div class="cf-cred-orb" aria-hidden="true" style="width:200px;height:200px;bottom:10%;right:5%;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 65%);filter:blur(28px);animation:icmsGlow 7s ease-in-out infinite 2s;"></div>
+
+        <!-- foto -->
+        <div class="cf-cred-photo">
+          <img src="_design/referencias/ref-02.jpeg"
+               alt="Arthur Brandão operando painel elétrico NXAIR de média tensão em subestação de campo"
+               class="cf-cred-img" loading="lazy" />
+          <div class="cf-cred-photo-mask" aria-hidden="true"></div>
+          <div class="cf-cred-photo-glow" aria-hidden="true"></div>
+        </div>
+
+        <!-- conteúdo: 4 passos em grid 2×2 -->
+        <div class="cf-cred-body">
+          <div class="cf-steps-grid" id="cf-grid">
+
+            <!-- Passo 01 -->
+            <article class="cf-step-d" data-cf="0" aria-labelledby="cf-s1-h">
+              <span class="cf-num-d" aria-hidden="true">01</span>
+              <div class="cf-bar-d" aria-hidden="true"></div>
+              <span class="cf-eyebrow-d">Passo 01 · Contato</span>
+              <h3 class="cf-step-h-d" id="cf-s1-h">Você fala comigo pelo WhatsApp.</h3>
+              <p class="cf-step-p-d">Me conta o básico da sua operação — sem formulário, sem reunião prévia, sem compromisso.</p>
+              <div class="cf-icon-box-d" aria-label="Ícone de contato">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </article>
+
+            <!-- Passo 02 -->
+            <article class="cf-step-d" data-cf="1" aria-labelledby="cf-s2-h">
+              <span class="cf-num-d" aria-hidden="true">02</span>
+              <div class="cf-bar-d" aria-hidden="true"></div>
+              <span class="cf-eyebrow-d">Passo 02 · Análise</span>
+              <h3 class="cf-step-h-d" id="cf-s2-h">Varredura técnica completa.</h3>
+              <p class="cf-step-p-d">Fatura, contratação, qualidade de energia e ICMS. Identifico onde o dinheiro está saindo desnecessariamente.</p>
+              <div class="cf-icon-box-d" aria-label="Ícone de análise">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+            </article>
+
+            <!-- Passo 03 -->
+            <article class="cf-step-d" data-cf="2" aria-labelledby="cf-s3-h">
+              <span class="cf-num-d" aria-hidden="true">03</span>
+              <div class="cf-bar-d" aria-hidden="true"></div>
+              <span class="cf-eyebrow-d">Passo 03 · Proposta</span>
+              <h3 class="cf-step-h-d" id="cf-s3-h">Proposta com números e justificativa técnica.</h3>
+              <p class="cf-step-p-d">Apresento o caminho recomendado com projeção de economia real — você decide com segurança.</p>
+              <div class="cf-icon-box-d" aria-label="Ícone de proposta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+            </article>
+
+            <!-- Passo 04 -->
+            <article class="cf-step-d" data-cf="3" aria-labelledby="cf-s4-h">
+              <span class="cf-num-d" aria-hidden="true">04</span>
+              <div class="cf-bar-d" aria-hidden="true"></div>
+              <span class="cf-eyebrow-d">Passo 04 · Implementação</span>
+              <h3 class="cf-step-h-d" id="cf-s4-h">Implementação acompanhada do início à medição.</h3>
+              <p class="cf-step-p-d">Coloco em prática e acompanho o resultado. Você não fica sozinho em nenhuma etapa.</p>
+              <div class="cf-icon-box-d" aria-label="Ícone de implementação">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </article>
+
+          </div><!-- /cf-steps-grid -->
+        </div>
+      </div>
+
+      <!-- ── Seal ── -->
+      <div class="cf-seal" id="cf-seal" role="note">
+        <span class="cf-seal-dot" aria-hidden="true"></span>
+        <p class="cf-seal-text">Toda análise é gratuita e sem compromisso.</p>
+      </div>
+
+    </div><!-- /cf-inner -->
+  </section>
+
+  <!-- ═══ SECTION 10 — CONTATO ════════════════════════════════════════ -->
+  <section class="contato" id="contato" aria-labelledby="ct-heading">
+    <div class="ct-dot-bg" aria-hidden="true"></div>
+    <div class="ct-ambient" aria-hidden="true"></div>
+    <div class="ct-inner">
+
+      <!-- Header -->
+      <header class="ct-header" id="ct-header">
+        <div class="problema-badge" id="ct-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Fale comigo
+        </div>
+        <h2 class="ct-h2" id="ct-heading">
+          Descubra quanto sua empresa pode <em>economizar.</em>
+        </h2>
+        <p class="ct-sub">
+          Nossas consultorias proporcionam economias típicas de 10 a 32% sem necessidade de investimento inicial.
+        </p>
+      </header>
+
+      <!-- Two-column body -->
+      <div class="ct-body">
+
+        <!-- Left: copy + WhatsApp CTA -->
+        <div class="ct-left" id="ct-left">
+          <p class="ct-reforco" id="ct-reforco">
+            A análise é gratuita, sem compromisso e começa com uma conversa. Você sai dela sabendo, com números, onde está pagando a mais.
+          </p>
+
+          <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." class="ct-wa-btn" id="ct-wa-btn" rel="noopener noreferrer" target="_blank" aria-label="Falar agora no WhatsApp">
+            <svg class="ct-wa-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Falar agora no WhatsApp →
+          </a>
+
+          <div class="ct-divider" id="ct-divider" aria-hidden="true">
+            <div class="ct-divider-line"></div>
+            <span class="ct-divider-text">ou envie seus dados</span>
+            <div class="ct-divider-line"></div>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="ct-form-wrap" id="ct-form-wrap">
+          <form class="ct-form" id="ct-form" action="#" method="post" aria-label="Solicitar análise gratuita" novalidate>
+
+            <div class="ct-form-row">
+              <div class="ct-field">
+                <label class="ct-label" for="ct-nome">Nome</label>
+                <input class="ct-input" type="text" id="ct-nome" name="nome" placeholder="Seu nome completo" required autocomplete="name" />
+              </div>
+              <div class="ct-field">
+                <label class="ct-label" for="ct-email">E-mail</label>
+                <input class="ct-input" type="email" id="ct-email" name="email" placeholder="seu@email.com.br" required autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="ct-form-row">
+              <div class="ct-field">
+                <label class="ct-label" for="ct-tel">Telefone / WhatsApp</label>
+                <input class="ct-input" type="tel" id="ct-tel" name="telefone" placeholder="(xx) xxxxx-xxxx" required autocomplete="tel" />
+              </div>
+              <div class="ct-field">
+                <label class="ct-label" for="ct-consumo">Consumo médio mensal <span class="opt">(opcional)</span></label>
+                <input class="ct-input" type="text" id="ct-consumo" name="consumo" placeholder="Ex: 50.000 kWh/mês" />
+              </div>
+            </div>
+
+            <div class="ct-field">
+              <label class="ct-label" for="ct-msg">Mensagem</label>
+              <textarea class="ct-textarea" id="ct-msg" name="mensagem" placeholder="Descreva brevemente sua instalação ou dúvida…" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="ct-submit">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Solicitar análise gratuita
+            </button>
+            <p class="ct-microcopy">Sem custo, sem compromisso. Resposta em até 1 dia útil.</p>
+
+          </form>
+        </div>
+
+      </div><!-- /ct-body -->
+    </div><!-- /ct-inner -->
+  </section>
+
   </main>
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer" id="footer" role="contentinfo">
+    <div class="footer-mesh" aria-hidden="true"></div>
+    <div class="footer-orb" style="top:-80px;left:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(61,127,97,.13) 0%,transparent 70%);" aria-hidden="true"></div>
+    <div class="footer-orb" style="bottom:-60px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 70%);" aria-hidden="true"></div>
+
+    <div class="footer-inner">
+
+      <!-- CTA strip -->
+      <div class="footer-cta-strip">
+        <p class="footer-cta-text">
+          Sua empresa pode estar pagando mais do que deveria.<br>
+          <em>Descubra quanto pode economizar.</em>
+        </p>
+        <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." class="footer-cta-btn" rel="noopener noreferrer" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Solicitar análise gratuita
+        </a>
+      </div>
+
+      <!-- Top grid -->
+      <div class="footer-top">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="footer-logo">AFB <span>Consultoria Energética</span></div>
+          <p class="footer-tagline">Engenharia elétrica aplicada à redução de custos. Análise técnica completa — fatura, contratação, qualidade de energia e ICMS.</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn de Arthur Brandão">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" rel="noopener noreferrer" target="_blank" aria-label="Instagram de Arthur Brandão">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://wa.me/55XXXXXXXXXXX" class="footer-social-link" rel="noopener noreferrer" target="_blank" aria-label="WhatsApp de Arthur Brandão">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Nav -->
+        <nav class="footer-nav-group" aria-label="Navegação do rodapé">
+          <p class="footer-nav-label">Navegação</p>
+          <a href="#problema" class="footer-nav-link">O Problema</a>
+          <a href="#metodo" class="footer-nav-link">O Método</a>
+          <a href="#solucoes" class="footer-nav-link">Soluções</a>
+          <a href="#diferenciais" class="footer-nav-link">Por Que Trabalhar Comigo</a>
+          <a href="#como-funciona" class="footer-nav-link">Como Funciona</a>
+          <a href="#contato" class="footer-nav-link">Contato</a>
+        </nav>
+
+        <!-- Contact -->
+        <div class="footer-nav-group">
+          <p class="footer-nav-label">Contato</p>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            WhatsApp: (xx) xxxxx-xxxx
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            contato@arthurbrandao.com.br
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Minas Gerais e demais estados
+          </div>
+        </div>
+
+      </div><!-- /footer-top -->
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 AFB Consultoria Energética. Todos os direitos reservados.</p>
+        <nav class="footer-legal" aria-label="Links legais">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Uso</a>
+        </nav>
+      </div>
+
+    </div><!-- /footer-inner -->
+  </footer>
+
+  <!-- ── Floating WhatsApp CTA ───────────────────────────────────────── -->
+  <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." class="float-wa" id="float-wa" rel="noopener noreferrer" target="_blank" aria-label="Falar agora no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Falar agora
+  </a>
+
+  <!-- ── Back to top ─────────────────────────────────────────────────── -->
+  <button class="back-to-top" id="back-to-top" aria-label="Voltar ao topo da página">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   <!-- ═══ SCRIPTS ══════════════════════════════════════════════════════ -->
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -2053,6 +3929,123 @@
           scrollTrigger: { trigger: '#metodo-reforco', start: 'top 90%', once: true } }
       );
 
+      /* ── Seção 05 — Soluções ────────────────────────────────────────── */
+      gsap.fromTo('#sol-badge',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: .7, ease: 'power3.out',
+          scrollTrigger: { trigger: '#sol-header', start: 'top 90%', once: true } }
+      );
+      gsap.fromTo('#sol-header',
+        { opacity: 0 },
+        { opacity: 1, duration: .5, ease: 'power2.out',
+          scrollTrigger: { trigger: '#sol-header', start: 'top 90%', once: true } }
+      );
+      gsap.fromTo('#sol-hero-card',
+        { opacity: 0, x: -28, scale: .97 },
+        { opacity: 1, x: 0, scale: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: '#sol-hero-card', start: 'top 86%', once: true } }
+      );
+      document.querySelectorAll('[data-sol]').forEach(el => {
+        const d = parseFloat(el.dataset.sol) * 0.09;
+        gsap.fromTo(el,
+          { opacity: 0, y: 34, scale: .97 },
+          { opacity: 1, y: 0, scale: 1, duration: .8, ease: 'power3.out', delay: d,
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
+        );
+      });
+      gsap.fromTo('#sol-info-strip',
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: .6, ease: 'power2.out',
+          scrollTrigger: { trigger: '#sol-info-strip', start: 'top 90%', once: true } }
+      );
+
+      /* ── Seção 07 — Diferencial ──────────────────────────────────── */
+      gsap.fromTo('#dif-badge',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: .7, ease: 'power3.out',
+          scrollTrigger: { trigger: '#dif-header', start: 'top 88%', once: true } }
+      );
+      gsap.fromTo('#dif-header',
+        { opacity: 0, y: 26 },
+        { opacity: 1, y: 0, duration: .85, ease: 'power3.out', delay: .12,
+          scrollTrigger: { trigger: '#dif-header', start: 'top 88%', once: true } }
+      );
+      gsap.fromTo('#dif-hero',
+        { opacity: 0, y: 44, scale: .97 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.05, ease: 'power3.out',
+          scrollTrigger: { trigger: '#dif-hero', start: 'top 86%', once: true } }
+      );
+
+      /* ── Seção 09 — Como Funciona ────────────────────────────────── */
+      gsap.fromTo('#cf-badge',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: .7, ease: 'power3.out',
+          scrollTrigger: { trigger: '#cf-header', start: 'top 88%', once: true } }
+      );
+      gsap.fromTo('#cf-header',
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: .88, ease: 'power3.out', delay: .1,
+          scrollTrigger: { trigger: '#cf-header', start: 'top 88%', once: true } }
+      );
+      /* credential card — entrada do card completo */
+      gsap.fromTo('#cf-cred-card',
+        { opacity: 0, y: 40, scale: .98 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.05, ease: 'power3.out',
+          scrollTrigger: { trigger: '#cf-cred-card', start: 'top 84%', once: true } }
+      );
+      /* steps stagger — disparam após card aparecer */
+      document.querySelectorAll('[data-cf]').forEach(el => {
+        const d = .25 + parseFloat(el.dataset.cf) * 0.14;
+        gsap.fromTo(el,
+          { opacity: 0, y: 22, scale: .97 },
+          { opacity: 1, y: 0, scale: 1, duration: .78, ease: 'power3.out', delay: d,
+            scrollTrigger: { trigger: '#cf-cred-card', start: 'top 84%', once: true } }
+        );
+      });
+      /* seal */
+      gsap.fromTo('#cf-seal',
+        { opacity: 0, y: 22, scale: .97 },
+        { opacity: 1, y: 0, scale: 1, duration: .9, ease: 'power3.out',
+          scrollTrigger: { trigger: '#cf-seal', start: 'top 90%', once: true } }
+      );
+
+      /* ── contato ─────────────────────────────────────────────── */
+      gsap.fromTo('#ct-badge',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: .7, ease: 'power3.out',
+          scrollTrigger: { trigger: '#ct-header', start: 'top 88%', once: true } }
+      );
+      gsap.fromTo('#ct-header',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: .9, ease: 'power3.out', delay: .1,
+          scrollTrigger: { trigger: '#ct-header', start: 'top 88%', once: true } }
+      );
+      gsap.fromTo('#ct-left',
+        { opacity: 0, x: -38 },
+        { opacity: 1, x: 0, duration: .9, ease: 'power3.out',
+          scrollTrigger: { trigger: '#ct-left', start: 'top 86%', once: true } }
+      );
+      gsap.fromTo('#ct-reforco',
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: .72, ease: 'power3.out',
+          scrollTrigger: { trigger: '#ct-left', start: 'top 86%', once: true } }
+      );
+      gsap.fromTo('#ct-wa-btn',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: .72, ease: 'power3.out', delay: .14,
+          scrollTrigger: { trigger: '#ct-left', start: 'top 86%', once: true } }
+      );
+      gsap.fromTo('#ct-divider',
+        { opacity: 0 },
+        { opacity: 1, duration: .55, ease: 'power2.out', delay: .26,
+          scrollTrigger: { trigger: '#ct-left', start: 'top 86%', once: true } }
+      );
+      gsap.fromTo('#ct-form-wrap',
+        { opacity: 0, x: 38, scale: .98 },
+        { opacity: 1, x: 0, scale: 1, duration: 1.05, ease: 'power3.out',
+          scrollTrigger: { trigger: '#ct-form-wrap', start: 'top 86%', once: true } }
+      );
+
     } else {
       /* reduced motion: show everything immediately */
       document.querySelectorAll(
@@ -2076,6 +4069,27 @@
       document.querySelectorAll('#metodo-badge,#metodo-heading,#metodo-subintro,#metodo-reforco')
         .forEach(el => { el.style.opacity = '1'; });
       document.querySelectorAll('[data-mr]').forEach(el => { el.style.opacity = '1'; });
+      /* solucoes: show immediately */
+      const solHero = document.getElementById('sol-hero-card');
+      if (solHero) solHero.style.opacity = '1';
+      document.querySelectorAll('[data-sol]').forEach(el => { el.style.opacity = '1'; });
+      const solHeader = document.getElementById('sol-header');
+      if (solHeader) { solHeader.style.opacity = '1'; }
+      const solBadge = document.getElementById('sol-badge');
+      if (solBadge) { solBadge.style.opacity = '1'; }
+      const solInfo = document.getElementById('sol-info-strip');
+      if (solInfo) solInfo.style.opacity = '1';
+      /* diferencial: show immediately */
+      document.querySelectorAll('#dif-header,#dif-hero')
+        .forEach(el => { el.style.opacity = '1'; });
+      /* como funciona: show immediately */
+      document.querySelectorAll('#cf-header,#cf-cred-card,#cf-seal,[data-cf]')
+        .forEach(el => { el.style.opacity = '1'; });
+      const cfFill = document.getElementById('cf-conn-fill');
+      if (cfFill) cfFill.style.width = '100%';
+      /* contato: show immediately */
+      document.querySelectorAll('#ct-header,#ct-left,#ct-reforco,#ct-wa-btn,#ct-divider,#ct-form-wrap')
+        .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
     }
 
     /* ── Custom cursor — 12 segmentos, GPU via translate3d ─────────── */
@@ -2193,6 +4207,70 @@
         ring.style.transform = 'translate(-50%,-50%) scale(1)';
       });
     }
+
+    /* ── Form validation ──────────────────────────────────────────── */
+    const ctForm = document.getElementById('ct-form');
+    if (ctForm) {
+      const fields = ctForm.querySelectorAll('.ct-input, .ct-textarea');
+      fields.forEach(el => {
+        el.addEventListener('blur', () => {
+          if (el.hasAttribute('required') && !el.value.trim()) {
+            el.classList.add('error'); el.classList.remove('success');
+          } else if (el.value.trim()) {
+            el.classList.add('success'); el.classList.remove('error');
+          }
+        });
+        el.addEventListener('input', () => {
+          if (el.value.trim()) {
+            el.classList.remove('error'); el.classList.add('success');
+          } else if (el.hasAttribute('required')) {
+            el.classList.remove('success');
+          }
+        });
+      });
+      ctForm.addEventListener('submit', e => {
+        e.preventDefault();
+        let valid = true;
+        fields.forEach(el => {
+          if (el.hasAttribute('required') && !el.value.trim()) {
+            el.classList.add('error'); valid = false;
+          }
+        });
+        if (valid) {
+          /* TODO: integrate with Formspree / EmailJS / backend */
+          const btn = ctForm.querySelector('.ct-submit');
+          btn.textContent = '✓ Enviado! Entraremos em contato em breve.';
+          btn.disabled = true;
+          btn.style.background = 'var(--accent)';
+          btn.style.opacity = '.8';
+        }
+      });
+    }
+
+    /* ── Back to top ──────────────────────────────────────────────── */
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      window.addEventListener('scroll', () => {
+        btt.classList.toggle('visible', window.scrollY > 500);
+      }, { passive: true });
+      btt.addEventListener('click', () => {
+        if (window.lenis) { window.lenis.scrollTo(0, { duration: 1.2 }); }
+        else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      });
+    }
+
+    /* register float-wa and back-to-top with cursor enlarge */
+    document.querySelectorAll('.float-wa, .back-to-top, .footer-cta-btn, .footer-social-link, .footer-nav-link, .footer-legal a, .ct-wa-btn, .ct-submit')
+      .forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          const r = document.getElementById('cursor-ring');
+          if (r) { r.style.width = r.style.height = '44px'; r.style.borderColor = 'rgba(61,127,97,.9)'; }
+        });
+        el.addEventListener('mouseleave', () => {
+          const r = document.getElementById('cursor-ring');
+          if (r) { r.style.width = r.style.height = '28px'; r.style.borderColor = 'rgba(61,127,97,.68)'; }
+        });
+      });
 
   })();
   </script>
