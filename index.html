@@ -545,7 +545,21 @@
       .main-card { max-width: 380px; }
     }
     @media (max-width: 640px) {
-      .float-counter, .float-progress { display: none; }
+      /* reposicionados para dentro da imagem — sem offsets negativos */
+      .float-counter {
+        right: .6rem; top: 3rem;
+        min-width: 138px; max-width: 152px;
+        padding: .85rem 1rem;
+      }
+      .float-progress {
+        left: .6rem; bottom: .8rem;
+        min-width: 0; width: 188px;
+        padding: .85rem 1rem;
+      }
+      .float-counter-label, .float-progress-title { font-size: .7rem; }
+      .phrase-from, .phrase-to { font-size: 1.2rem; }
+      .float-counter-unit { font-size: .63rem; }
+      .frentes-list li { font-size: .62rem; }
     }
 
     /* ─── SCROLL HINT ────────────────────────────────────────────────── */
