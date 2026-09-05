@@ -14,52 +14,63 @@
 <meta property="og:locale"      content="pt_BR" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#16202b;
-  --ink2:#55636f;
-  --ink3:#7d8b97;
+  /* paleta — design-system3 */
+  --forest:#0D3C1F;
+  --sage:#4A6B5A;
+  --muted:#7A9E8A;
+  --accent:#3D7F61;
+  --accent-light:#5BA87A;
+  --teal:#14b8a6;
+  --orange:#F69066;
+
+  /* aliases usados pelo restante do CSS e pelo script — nomes preservados, valores realinhados */
+  --ink:var(--forest);
+  --ink2:var(--sage);
+  --ink3:var(--muted);
   --surface:#ffffff;
-  --canvas:#e9edf1;
-  --line:#d3dbe2;
-  --line-soft:#e5eaee;
-  --sub:#9c4a22;
-  --qee:#1d5b99;
-  --icms:#2c7a4d;
-  --hot:#a8341f;
-  --warm:#b07d10;
-  --cold:#5c6b78;
-  --focus:#1d5b99;
-  --radius:6px;
-}
-:root:not([data-theme="light"]){
-  @media (prefers-color-scheme: dark){
-    --ink:#e6ecf1; --ink2:#a6b3be; --ink3:#7f8d99;
-    --surface:#1a232c; --canvas:#111820; --line:#2f3b46; --line-soft:#26313b;
-    --sub:#d98553; --qee:#6aa6de; --icms:#5fb883;
-    --hot:#e07a63; --warm:#dcb04a; --cold:#98a6b2; --focus:#6aa6de;
-  }
-}
-:root[data-theme="dark"]{
-  --ink:#e6ecf1; --ink2:#a6b3be; --ink3:#7f8d99;
-  --surface:#1a232c; --canvas:#111820; --line:#2f3b46; --line-soft:#26313b;
-  --sub:#d98553; --qee:#6aa6de; --icms:#5fb883;
-  --hot:#e07a63; --warm:#dcb04a; --cold:#98a6b2; --focus:#6aa6de;
+  --canvas:#F7FAF7;
+  --line:rgba(61,127,97,.15);
+  --line-soft:rgba(61,127,97,.08);
+
+  /* as três categorias do diagnóstico — subestação / qualidade de energia / ICMS */
+  --sub:var(--accent);
+  --qee:var(--teal);
+  --icms:var(--orange);
+
+  /* os três níveis de oportunidade no resultado */
+  --hot:var(--accent);
+  --warm:var(--orange);
+  --cold:var(--muted);
+
+  --focus:var(--accent);
+
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-body:'Inter', system-ui, sans-serif;
+
+  --shadow-card:0 4px 24px rgba(13,60,31,.06), 0 0 0 1px rgba(61,127,97,.07);
+  --shadow-float:0 10px 36px rgba(13,60,31,.09), 0 2px 8px rgba(13,60,31,.04);
+  --r-card:16px;
+  --r-pill:9999px;
+  --r-input:10px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--canvas); color:var(--ink);
-  font-family:"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family:var(--font-body);
   font-size:16px; line-height:1.5; font-variant-numeric:tabular-nums;
 }
 .wrap{max-width:680px; margin:0 auto; padding:0 16px 80px}
 
 /* ---------- topo ---------- */
 header.top{padding:32px 0 20px}
+.logo{display:inline-block; margin-bottom:18px}
+.logo img{height:44px; width:auto; display:block}
 .kicker{font-size:.8125rem; color:var(--ink2); letter-spacing:.01em}
-h1{font-size:1.75rem; line-height:1.2; font-weight:600; margin:8px 0 10px; max-width:22ch}
+h1{font-family:var(--font-display); font-size:1.75rem; line-height:1.2; font-weight:600; margin:8px 0 10px; max-width:22ch}
 header.top p{margin:0; color:var(--ink2); font-size:.9375rem; max-width:60ch}
 .rail{display:flex; gap:4px; margin:22px 0 4px}
 .rail span{height:3px; flex:1; background:var(--line); border-radius:2px; transition:background .25s}
@@ -71,9 +82,10 @@ header.top p{margin:0; color:var(--ink2); font-size:.9375rem; max-width:60ch}
 .step{display:none}
 .step.on{display:block}
 .panel{
-  background:var(--surface); border:1px solid var(--line);
+  background:var(--surface);
   border-left:4px solid var(--tint, var(--ink2));
-  border-radius:var(--radius); padding:22px 20px 8px; margin-bottom:16px;
+  border-radius:var(--r-card); padding:22px 20px 8px; margin-bottom:16px;
+  box-shadow:var(--shadow-card);
 }
 .panel > h2{font-size:1.125rem; font-weight:600; margin:0 0 4px}
 .panel > .note{font-size:.875rem; color:var(--ink2); margin:0 0 18px; max-width:62ch}
@@ -89,8 +101,9 @@ header.top p{margin:0; color:var(--ink2); font-size:.9375rem; max-width:60ch}
 .opt{position:relative}
 .opt input{position:absolute; opacity:0; width:1px; height:1px}
 .opt span{
-  display:block; padding:8px 13px; border:1px solid var(--line); border-radius:var(--radius);
+  display:block; padding:8px 13px; border:1px solid var(--line); border-radius:var(--r-pill);
   font-size:.875rem; color:var(--ink); cursor:pointer; background:transparent; user-select:none;
+  transition:border-color .2s, box-shadow .2s, background .2s;
 }
 .opt input:checked + span{border-color:var(--tint,var(--ink)); background:color-mix(in srgb, var(--tint,var(--ink)) 12%, transparent); font-weight:500}
 .opt input:focus-visible + span{outline:2px solid var(--focus); outline-offset:2px}
@@ -98,33 +111,42 @@ header.top p{margin:0; color:var(--ink2); font-size:.9375rem; max-width:60ch}
 .opts.stack .opt span{width:100%}
 
 input[type=text], textarea{
-  width:100%; font:inherit; color:var(--ink); background:transparent;
-  border:1px solid var(--line); border-radius:var(--radius); padding:9px 11px; margin-top:8px;
+  width:100%; font:inherit; color:var(--ink); background:var(--canvas);
+  border:1.5px solid var(--line); border-radius:var(--r-input); padding:.82rem 1.05rem; margin-top:8px;
+  transition:border-color .2s, box-shadow .2s, background .2s;
 }
 textarea{min-height:82px; resize:vertical}
-input[type=text]:focus, textarea:focus{outline:2px solid var(--focus); outline-offset:1px; border-color:transparent}
+input[type=text]:focus, textarea:focus{
+  outline:none; border-color:var(--accent); background:var(--surface);
+  box-shadow:0 0 0 4px rgba(61,127,97,.1);
+}
 
 /* ---------- navegação ---------- */
 .nav{display:flex; gap:10px; align-items:center; margin-top:6px}
-button{font:inherit; cursor:pointer; border-radius:var(--radius); border:1px solid transparent; padding:11px 20px}
-.primary{background:var(--ink); color:var(--surface); font-weight:500}
-.primary:hover{opacity:.88}
-.ghost{background:transparent; color:var(--ink2); border-color:var(--line)}
-.ghost:hover{color:var(--ink)}
+button{font:inherit; cursor:pointer; border-radius:var(--r-pill); border:1px solid transparent; padding:11px 20px}
+.primary{
+  background:var(--accent); color:var(--surface); font-weight:600;
+  box-shadow:0 4px 18px rgba(61,127,97,.26);
+  transition:background .25s, transform .22s, box-shadow .22s;
+}
+.primary:hover{background:var(--forest); transform:translateY(-2px); box-shadow:0 8px 28px rgba(13,60,31,.24)}
+.ghost{background:transparent; color:var(--sage); border-color:var(--line)}
+.ghost:hover{color:var(--forest); border-color:var(--accent)}
 button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
 .saved{margin-left:auto; font-size:.8125rem; color:var(--ink3)}
 
 /* ---------- resultado ---------- */
 .result-head{padding:8px 0 20px}
-.result-head h2{font-size:1.5rem; margin:0 0 6px; font-weight:600}
+.result-head h2{font-family:var(--font-display); font-size:1.5rem; margin:0 0 6px; font-weight:600}
 .result-head p{margin:0; color:var(--ink2); font-size:.9375rem}
 .card{
-  background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--tint);
-  border-radius:var(--radius); padding:18px 20px; margin-bottom:14px;
+  background:var(--surface); border-left:4px solid var(--tint);
+  border-radius:var(--r-card); padding:18px 20px; margin-bottom:14px;
+  box-shadow:var(--shadow-card);
 }
 .card .top-row{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
 .card h3{margin:0; font-size:1.0625rem; font-weight:600}
-.verdict{font-size:.8125rem; font-weight:600; padding:3px 10px; border-radius:20px; border:1px solid currentColor; white-space:nowrap}
+.verdict{font-size:.8125rem; font-weight:600; padding:3px 10px; border-radius:var(--r-pill); border:1px solid currentColor; white-space:nowrap}
 .v-alta{color:var(--hot)} .v-media{color:var(--warm)} .v-baixa{color:var(--cold)} .v-na{color:var(--ink3)}
 .meter{height:8px; background:var(--line-soft); border-radius:4px; margin:14px 0 14px; overflow:hidden}
 .meter i{display:block; height:100%; background:var(--tint); border-radius:4px; transition:width .5s ease}
@@ -132,12 +154,13 @@ button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
 .why li{margin-bottom:5px}
 .action{margin:14px 0 0; font-size:.875rem; padding-top:12px; border-top:1px solid var(--line-soft)}
 .action b{font-weight:600}
-.miss{background:transparent; border:1px dashed var(--line); border-radius:var(--radius); padding:14px 16px; font-size:.875rem; color:var(--ink2); margin-bottom:14px}
-.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--ink); color:var(--surface); padding:10px 18px; border-radius:var(--radius); font-size:.875rem; opacity:0; pointer-events:none; transition:opacity .2s}
+.miss{background:transparent; border:1px dashed var(--line); border-radius:var(--r-card); padding:14px 16px; font-size:.875rem; color:var(--ink2); margin-bottom:14px}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--forest); color:var(--surface); padding:10px 18px; border-radius:var(--r-pill); font-size:.875rem; opacity:0; pointer-events:none; transition:opacity .2s; box-shadow:var(--shadow-float)}
 .toast.on{opacity:1}
 footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px solid var(--line); padding-top:14px}
 
 @media (max-width:520px){
+  .logo img{height:34px}
   h1{font-size:1.5rem}
   .panel{padding:18px 16px 6px}
   .opts .opt span{padding:9px 12px}
@@ -150,7 +173,7 @@ footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px so
   body{background:#fff}
   .step{display:block !important; break-inside:avoid}
   .nav, .rail, .rail-label, .toast{display:none !important}
-  .panel, .card{border-color:#bbb; break-inside:avoid}
+  .panel, .card{border:1px solid #bbb; box-shadow:none; break-inside:avoid}
 }
 </style>
 </head>
@@ -158,6 +181,9 @@ footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px so
 <div class="wrap">
 
 <header class="top">
+  <a class="logo" href="/" aria-label="AFB Consultoria Energética — página inicial">
+    <img src="assets/images/logo-diagnostico.png" alt="AFB Consultoria Energética" />
+  </a>
   <div class="kicker">Consultoria em energia elétrica e tributos</div>
   <h1>Diagnóstico da instalação elétrica e do crédito de ICMS</h1>
   <p>São cinco blocos de perguntas rápidas, em linguagem simples. Se não souber alguma resposta, marque “não sei” — isso também é informação útil. Leva de 4 a 6 minutos.</p>
