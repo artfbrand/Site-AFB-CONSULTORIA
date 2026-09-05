@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico elétrico e tributário</title>
+<meta name="description" content="Avaliação gratuita em 5 minutos: descubra seu potencial de crédito de ICMS sobre energia, qualidade de energia e manutenção de subestação." />
+<meta name="robots" content="noindex" />
+<meta property="og:type"        content="website" />
+<meta property="og:title"       content="Diagnóstico elétrico e tributário" />
+<meta property="og:description" content="Avaliação gratuita em 5 minutos: descubra seu potencial de crédito de ICMS sobre energia, qualidade de energia e manutenção de subestação." />
+<meta property="og:url"         content="https://www.afbconsultoria.com.br/diagnostico" />
+<meta property="og:image"       content="https://www.afbconsultoria.com.br/assets/images/og-image.jpg" />
+<meta property="og:locale"      content="pt_BR" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16202b;
+  --ink2:#55636f;
+  --ink3:#7d8b97;
+  --surface:#ffffff;
+  --canvas:#e9edf1;
+  --line:#d3dbe2;
+  --line-soft:#e5eaee;
+  --sub:#9c4a22;
+  --qee:#1d5b99;
+  --icms:#2c7a4d;
+  --hot:#a8341f;
+  --warm:#b07d10;
+  --cold:#5c6b78;
+  --focus:#1d5b99;
+  --radius:6px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --ink:#e6ecf1; --ink2:#a6b3be; --ink3:#7f8d99;
+    --surface:#1a232c; --canvas:#111820; --line:#2f3b46; --line-soft:#26313b;
+    --sub:#d98553; --qee:#6aa6de; --icms:#5fb883;
+    --hot:#e07a63; --warm:#dcb04a; --cold:#98a6b2; --focus:#6aa6de;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e6ecf1; --ink2:#a6b3be; --ink3:#7f8d99;
+  --surface:#1a232c; --canvas:#111820; --line:#2f3b46; --line-soft:#26313b;
+  --sub:#d98553; --qee:#6aa6de; --icms:#5fb883;
+  --hot:#e07a63; --warm:#dcb04a; --cold:#98a6b2; --focus:#6aa6de;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--canvas); color:var(--ink);
+  font-family:"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size:16px; line-height:1.5; font-variant-numeric:tabular-nums;
+}
+.wrap{max-width:680px; margin:0 auto; padding:0 16px 80px}
+
+/* ---------- topo ---------- */
+header.top{padding:32px 0 20px}
+.kicker{font-size:.8125rem; color:var(--ink2); letter-spacing:.01em}
+h1{font-size:1.75rem; line-height:1.2; font-weight:600; margin:8px 0 10px; max-width:22ch}
+header.top p{margin:0; color:var(--ink2); font-size:.9375rem; max-width:60ch}
+.rail{display:flex; gap:4px; margin:22px 0 4px}
+.rail span{height:3px; flex:1; background:var(--line); border-radius:2px; transition:background .25s}
+.rail span.done{background:var(--ink2)}
+.rail span.now{background:var(--focus)}
+.rail-label{font-size:.8125rem; color:var(--ink3); margin-bottom:22px}
+
+/* ---------- seção ---------- */
+.step{display:none}
+.step.on{display:block}
+.panel{
+  background:var(--surface); border:1px solid var(--line);
+  border-left:4px solid var(--tint, var(--ink2));
+  border-radius:var(--radius); padding:22px 20px 8px; margin-bottom:16px;
+}
+.panel > h2{font-size:1.125rem; font-weight:600; margin:0 0 4px}
+.panel > .note{font-size:.875rem; color:var(--ink2); margin:0 0 18px; max-width:62ch}
+
+.q{padding:16px 0; border-top:1px solid var(--line-soft)}
+.q:first-of-type{border-top:none; padding-top:4px}
+.q > label.qt, .qt{display:block; font-size:.9375rem; font-weight:500; margin-bottom:3px}
+.qt .n{color:var(--ink3); font-weight:400; margin-right:6px}
+.hint{font-size:.8125rem; color:var(--ink2); margin:0 0 10px; max-width:60ch}
+
+/* opções */
+.opts{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.opt{position:relative}
+.opt input{position:absolute; opacity:0; width:1px; height:1px}
+.opt span{
+  display:block; padding:8px 13px; border:1px solid var(--line); border-radius:var(--radius);
+  font-size:.875rem; color:var(--ink); cursor:pointer; background:transparent; user-select:none;
+}
+.opt input:checked + span{border-color:var(--tint,var(--ink)); background:color-mix(in srgb, var(--tint,var(--ink)) 12%, transparent); font-weight:500}
+.opt input:focus-visible + span{outline:2px solid var(--focus); outline-offset:2px}
+.opts.stack{flex-direction:column}
+.opts.stack .opt span{width:100%}
+
+input[type=text], textarea{
+  width:100%; font:inherit; color:var(--ink); background:transparent;
+  border:1px solid var(--line); border-radius:var(--radius); padding:9px 11px; margin-top:8px;
+}
+textarea{min-height:82px; resize:vertical}
+input[type=text]:focus, textarea:focus{outline:2px solid var(--focus); outline-offset:1px; border-color:transparent}
+
+/* ---------- navegação ---------- */
+.nav{display:flex; gap:10px; align-items:center; margin-top:6px}
+button{font:inherit; cursor:pointer; border-radius:var(--radius); border:1px solid transparent; padding:11px 20px}
+.primary{background:var(--ink); color:var(--surface); font-weight:500}
+.primary:hover{opacity:.88}
+.ghost{background:transparent; color:var(--ink2); border-color:var(--line)}
+.ghost:hover{color:var(--ink)}
+button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+.saved{margin-left:auto; font-size:.8125rem; color:var(--ink3)}
+
+/* ---------- resultado ---------- */
+.result-head{padding:8px 0 20px}
+.result-head h2{font-size:1.5rem; margin:0 0 6px; font-weight:600}
+.result-head p{margin:0; color:var(--ink2); font-size:.9375rem}
+.card{
+  background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--tint);
+  border-radius:var(--radius); padding:18px 20px; margin-bottom:14px;
+}
+.card .top-row{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.card h3{margin:0; font-size:1.0625rem; font-weight:600}
+.verdict{font-size:.8125rem; font-weight:600; padding:3px 10px; border-radius:20px; border:1px solid currentColor; white-space:nowrap}
+.v-alta{color:var(--hot)} .v-media{color:var(--warm)} .v-baixa{color:var(--cold)} .v-na{color:var(--ink3)}
+.meter{height:8px; background:var(--line-soft); border-radius:4px; margin:14px 0 14px; overflow:hidden}
+.meter i{display:block; height:100%; background:var(--tint); border-radius:4px; transition:width .5s ease}
+.why{margin:0; padding-left:18px; font-size:.875rem; color:var(--ink2)}
+.why li{margin-bottom:5px}
+.action{margin:14px 0 0; font-size:.875rem; padding-top:12px; border-top:1px solid var(--line-soft)}
+.action b{font-weight:600}
+.miss{background:transparent; border:1px dashed var(--line); border-radius:var(--radius); padding:14px 16px; font-size:.875rem; color:var(--ink2); margin-bottom:14px}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--ink); color:var(--surface); padding:10px 18px; border-radius:var(--radius); font-size:.875rem; opacity:0; pointer-events:none; transition:opacity .2s}
+.toast.on{opacity:1}
+footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px solid var(--line); padding-top:14px}
+
+@media (max-width:520px){
+  h1{font-size:1.5rem}
+  .panel{padding:18px 16px 6px}
+  .opts .opt span{padding:9px 12px}
+  .nav{flex-wrap:wrap}
+  .nav button{flex:1 1 auto}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none !important}}
+
+@media print{
+  body{background:#fff}
+  .step{display:block !important; break-inside:avoid}
+  .nav, .rail, .rail-label, .toast{display:none !important}
+  .panel, .card{border-color:#bbb; break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">Consultoria em energia elétrica e tributos</div>
+  <h1>Diagnóstico da instalação elétrica e do crédito de ICMS</h1>
+  <p>São cinco blocos de perguntas rápidas, em linguagem simples. Se não souber alguma resposta, marque “não sei” — isso também é informação útil. Leva de 4 a 6 minutos.</p>
+  <div class="rail" id="rail"></div>
+  <div class="rail-label" id="railLabel"></div>
+</header>
+
+<main id="form"></main>
+
+<div class="nav" id="nav">
+  <button class="ghost" id="btnBack" type="button">Voltar</button>
+  <button class="primary" id="btnNext" type="button">Continuar</button>
+  <span class="saved" id="saved"></span>
+</div>
+
+<footer>
+  As respostas ficam salvas apenas neste navegador. O resultado é uma triagem inicial, não substitui visita técnica nem parecer contábil.
+</footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+var SIM = "Acontece", NAO = "Não acontece", NS = "Não sei";
+
+var SECTIONS = [
+  {
+    id:"s0", title:"Sobre a empresa", tint:"var(--ink2)",
+    note:"Só para saber com quem estamos falando e qual o porte da instalação.",
+    fields:[
+      {id:"empresa", type:"text", label:"Nome da empresa"},
+      {id:"cidade", type:"text", label:"Cidade e estado"},
+      {id:"respondente", type:"text", label:"Quem está respondendo (nome e cargo)"},
+      {id:"contato", type:"text", label:"E-mail ou WhatsApp para retorno"},
+      {id:"conta", type:"single", label:"Qual o valor médio da conta de energia por mês?",
+       hint:"Se tiver mais de uma unidade, some tudo. Um valor aproximado já serve.",
+       options:["Até R$ 10 mil","R$ 10 mil a R$ 50 mil","R$ 50 mil a R$ 150 mil","Acima de R$ 150 mil","Não sei"]},
+      {id:"tensao", type:"single", label:"A empresa é atendida em alta ou baixa tensão?",
+       hint:"Alta tensão: existe uma subestação, cabine ou transformador próprio na entrada. Baixa tensão: a energia chega direto no padrão, como numa casa.",
+       options:["Alta tensão — temos subestação ou cabine própria","Baixa tensão — só o padrão de entrada","Não sei"], stack:true},
+      {id:"unidades", type:"single", label:"Quantas unidades ou plantas a empresa tem?",
+       options:["1","2 ou 3","4 ou mais"]},
+      {id:"responsavel", type:"single", label:"Quem cuida da parte elétrica hoje?",
+       options:["Eletricista ou equipe interna","Empresa terceirizada","Ninguém definido","Não sei"], stack:true}
+    ]
+  },
+  {
+    id:"s1", title:"Subestação e manutenção", tint:"var(--sub)",
+    note:"Este bloco trata da entrada de energia da empresa: transformador, chaves, disjuntores e cabine.",
+    skipIf:function(a){ return a.tensao === "Baixa tensão — só o padrão de entrada"; },
+    fields:[
+      {id:"se_tipo", type:"single", label:"Sua subestação é aérea ou abrigada?",
+       hint:"Aérea: fica em poste, exposta ao tempo. Abrigada: fica dentro de uma sala ou cabine fechada.",
+       options:["Aérea (em poste, ao tempo)","Abrigada (em sala ou cabine)","Temos as duas","Não sei"], stack:true},
+      {id:"se_ultima", type:"single", label:"Quando foi a última manutenção da subestação?",
+       options:["Menos de 1 ano","Entre 1 e 3 anos","Mais de 3 anos","Nunca fizemos","Não sei"], stack:true},
+      {id:"se_contrato", type:"single", label:"Existe manutenção periódica contratada hoje?",
+       options:["Sim, temos contrato","Não, chamamos só quando quebra","Não sei"], stack:true},
+      {id:"se_seguro", type:"single", label:"A empresa tem seguro patrimonial?",
+       options:["Sim","Não","Não sei"]},
+      {id:"se_laudo_seguro", type:"single", label:"A seguradora já pediu laudo ou comprovante de manutenção elétrica?",
+       showIf:function(a){return a.se_seguro === "Sim";},
+       options:["Sim, já pediram","Não","Não sei"], stack:true},
+      {id:"se_paradas", type:"single", label:"Nos últimos 2 anos houve parada não programada por problema elétrico?",
+       hint:"Queda de energia interna, transformador, disjuntor ou chave que desarmou e parou a operação.",
+       options:["Nenhuma","1 ou 2 vezes","3 ou mais vezes","Não sei"], stack:true},
+      {id:"se_docs", type:"multi", label:"Quais destes documentos a empresa possui hoje?",
+       hint:"Marque todos os que existem e estão atualizados.",
+       options:["Prontuário de instalações elétricas (NR-10)","Diagrama unifilar atualizado","Laudo de aterramento ou SPDA","Laudo de termografia","Nenhum desses, ou não sei"], stack:true},
+      {id:"se_notif", type:"single", label:"Já receberam notificação ou inspeção da concessionária sobre a instalação?",
+       options:["Sim","Não","Não sei"]},
+      {id:"se_custo", type:"single", label:"Quanto custa, aproximadamente, uma hora de operação parada?",
+       hint:"Considere produção perdida, pessoas paradas e perda de material.",
+       options:["Menos de R$ 1 mil","R$ 1 mil a R$ 10 mil","Mais de R$ 10 mil","Não sei"], stack:true}
+    ]
+  },
+  {
+    id:"s2", title:"Comportamento da energia no dia a dia", tint:"var(--qee)",
+    note:"Aqui a pergunta é simples: acontece ou não acontece na sua empresa?",
+    fields:[
+      {id:"q_queima", type:"single", label:"Equipamentos queimam com mais frequência do que deveriam?",
+       hint:"Placas eletrônicas, fontes, motores, inversores, computadores.", options:[SIM,NAO,NS]},
+      {id:"q_flicker", type:"single", label:"As lâmpadas piscam ou oscilam de intensidade?",
+       hint:"Principalmente quando uma máquina grande liga.", options:[SIM,NAO,NS]},
+      {id:"q_reset", type:"single", label:"Algum equipamento eletrônico perde configuração, reinicia ou dá erro sozinho?",
+       hint:"Inversores de frequência, CLPs, CNCs, balanças, sistemas de automação.", options:[SIM,NAO,NS]},
+      {id:"q_aquece", type:"single", label:"Cabos, quadros, disjuntores ou o transformador esquentam mais que o normal?",
+       options:[SIM,NAO,NS]},
+      {id:"q_disj", type:"single", label:"Disjuntores desarmam sem que a carga esteja alta?",
+       options:[SIM,NAO,NS]},
+      {id:"q_cap", type:"single", label:"O banco de capacitores dá problema?",
+       hint:"Queima fusível, estufa, fica desligado ou ninguém mexe nele há anos.",
+       options:["Sim, dá problema","Não, funciona bem","Não temos banco de capacitores","Não sei"], stack:true},
+      {id:"q_reativo", type:"single", label:"Na conta de luz aparece cobrança de energia reativa, ultrapassagem ou excedente de demanda?",
+       hint:"São linhas extras na fatura, além do consumo normal. Se tiver a conta em mãos, vale conferir.",
+       options:["Sim, aparece","Não aparece","Não sei"], stack:true},
+      {id:"q_maquina", type:"single", label:"Alguma máquina não entrega a produção esperada ou falha sem explicação?",
+       options:[SIM,NAO,NS]},
+      {id:"q_novos", type:"multi", label:"A empresa instalou algum destes nos últimos anos?",
+       options:["Energia solar","Inversores de frequência","Máquinas novas ou automação","Iluminação LED em larga escala","Nenhum desses"], stack:true},
+      {id:"q_medicao", type:"single", label:"Já foi feita alguma medição ou monitoramento da qualidade da energia?",
+       options:["Sim, já medimos","Nunca medimos","Não sei"], stack:true},
+      {id:"q_livre", type:"textarea", label:"Se pudesse resolver um problema elétrico hoje, qual seria?",
+       hint:"Escreva com suas palavras. Opcional."}
+    ]
+  },
+  {
+    id:"s3", title:"Energia e ICMS", tint:"var(--icms)",
+    note:"Parte da energia usada na produção pode gerar crédito de ICMS. Estas perguntas dizem se isso se aplica à sua empresa.",
+    fields:[
+      {id:"i_regime", type:"single", label:"Qual o regime tributário da empresa?",
+       hint:"Se não souber, sua contabilidade responde em um minuto.",
+       options:["Simples Nacional","Lucro Presumido","Lucro Real","Não sei"], stack:true},
+      {id:"i_ind", type:"single", label:"A empresa transforma matéria-prima em produto dentro da unidade?",
+       hint:"Corta, monta, mistura, fabrica, beneficia ou embala industrialmente.",
+       options:["Sim, transformamos","Parcialmente","Não, somos comércio ou serviços"], stack:true},
+      {id:"i_proc", type:"textarea", label:"Descreva em poucas linhas o que a empresa produz e as principais etapas ou máquinas.",
+       showIf:function(a){ return a.i_ind === "Sim, transformamos" || a.i_ind === "Parcialmente"; }},
+      {id:"i_exp", type:"single", label:"A empresa exporta?",
+       options:["Não","Sim, até 30% do faturamento","Sim, mais de 30%"], stack:true},
+      {id:"i_titular", type:"single", label:"A conta de energia está no CNPJ da empresa?",
+       hint:"Às vezes fica no nome do proprietário do imóvel ou do condomínio.",
+       showIf:function(a){ return a.i_regime !== "Simples Nacional"; },
+       options:["Sim, no CNPJ","Não, em outro nome","Não sei"], stack:true},
+      {id:"i_saldo", type:"single", label:"A empresa tem crédito de ICMS sobrando que não consegue usar?",
+       hint:"Chamado de saldo credor acumulado. A contabilidade sabe responder.",
+       showIf:function(a){ return a.i_regime !== "Simples Nacional"; },
+       options:["Sim, sobra crédito","Não, usamos tudo","Não sei"], stack:true},
+      {id:"i_laudo", type:"single", label:"A empresa já fez laudo técnico de crédito de ICMS sobre energia?",
+       showIf:function(a){ return a.i_regime !== "Simples Nacional"; },
+       options:["Nunca fizemos","Sim, há menos de 1 ano","Sim, há mais de 1 ano","Não sei"], stack:true},
+      {id:"i_pct", type:"single", label:"Quanto da energia é consumida pela produção, e não pelo administrativo?",
+       hint:"Uma estimativa basta.",
+       showIf:function(a){ return a.i_regime !== "Simples Nacional"; },
+       options:["Menos de 30%","Entre 30% e 60%","Mais de 60%","Não sei"], stack:true},
+      {id:"i_cont", type:"single", label:"Quem cuida da parte fiscal?",
+       options:["Contabilidade interna","Escritório externo","Não sei"], stack:true}
+    ]
+  },
+  {
+    id:"s4", title:"Próximo passo", tint:"var(--ink2)",
+    note:"Três perguntas rápidas e o diagnóstico aparece na tela.",
+    fields:[
+      {id:"f_prior", type:"single", label:"Resolver esses pontos é prioridade para os próximos 6 meses?",
+       options:["Sim, é prioridade","Talvez","Não agora"], stack:true},
+      {id:"f_decisor", type:"text", label:"Além de você, quem decide sobre esse tipo de contratação?"},
+      {id:"f_visita", type:"single", label:"Podemos agendar uma visita técnica de avaliação, sem custo?",
+       options:["Sim, quero agendar","Prefiro receber uma proposta antes","Não por enquanto"], stack:true},
+      {id:"f_obs", type:"textarea", label:"Algo mais que devemos saber?"}
+    ]
+  }
+];
+
+var KEY = "diag-eletrico-v1";
+var answers = {};
+var step = 0;
+
+/* ---------- persistência ---------- */
+function save(){
+  try{
+    localStorage.setItem(KEY, JSON.stringify(answers));
+    var s = document.getElementById("saved");
+    s.textContent = "Respostas salvas";
+    clearTimeout(save._t);
+    save._t = setTimeout(function(){ s.textContent = ""; }, 1800);
+  }catch(e){ /* modo privado ou storage cheio: segue sem salvar */ }
+}
+function load(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw) answers = JSON.parse(raw) || {};
+  }catch(e){ answers = {}; }
+}
+
+/* ---------- render ---------- */
+function visibleSections(){
+  return SECTIONS.filter(function(s){ return !(s.skipIf && s.skipIf(answers)); });
+}
+
+function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+function renderField(f, idx){
+  if(f.showIf && !f.showIf(answers)) return "";
+  var h = '<div class="q" data-f="'+f.id+'">';
+  h += '<span class="qt"><span class="n">'+idx+'.</span>'+esc(f.label)+'</span>';
+  if(f.hint) h += '<p class="hint">'+esc(f.hint)+'</p>';
+  if(f.type === "text"){
+    h += '<input type="text" data-id="'+f.id+'" value="'+esc(answers[f.id]||"")+'">';
+  } else if(f.type === "textarea"){
+    h += '<textarea data-id="'+f.id+'">'+esc(answers[f.id]||"")+'</textarea>';
+  } else if(f.type === "single"){
+    h += '<div class="opts'+(f.stack?" stack":"")+'">';
+    f.options.forEach(function(o,i){
+      var ck = answers[f.id] === o ? " checked" : "";
+      h += '<label class="opt"><input type="radio" name="'+f.id+'" data-id="'+f.id+'" value="'+esc(o)+'"'+ck+'><span>'+esc(o)+'</span></label>';
+    });
+    h += '</div>';
+  } else if(f.type === "multi"){
+    var cur = answers[f.id] || [];
+    h += '<div class="opts'+(f.stack?" stack":"")+'">';
+    f.options.forEach(function(o){
+      var ck = cur.indexOf(o) > -1 ? " checked" : "";
+      h += '<label class="opt"><input type="checkbox" data-id="'+f.id+'" value="'+esc(o)+'"'+ck+'><span>'+esc(o)+'</span></label>';
+    });
+    h += '</div>';
+  }
+  return h + '</div>';
+}
+
+function render(){
+  var secs = visibleSections();
+  if(step > secs.length) step = secs.length;
+  var form = document.getElementById("form");
+
+  if(step === secs.length){ renderResult(); return; }
+
+  var s = secs[step];
+  var html = '<section class="step on"><div class="panel" style="--tint:'+s.tint+'">';
+  html += '<h2>'+esc(s.title)+'</h2><p class="note">'+esc(s.note)+'</p>';
+  var n = 0;
+  s.fields.forEach(function(f){
+    if(f.showIf && !f.showIf(answers)) return;
+    n++;
+    html += renderField(f, n);
+  });
+  html += '</div></section>';
+  form.innerHTML = html;
+  form.querySelectorAll(".panel").forEach(function(p){ p.style.setProperty("--tint", s.tint); });
+
+  document.getElementById("nav").style.display = "flex";
+  document.getElementById("btnBack").style.visibility = step === 0 ? "hidden" : "visible";
+  document.getElementById("btnNext").textContent = step === secs.length - 1 ? "Ver diagnóstico" : "Continuar";
+  drawRail(secs.length);
+  window.scrollTo({top:0, behavior:"instant"});
+}
+
+function drawRail(total){
+  var rail = document.getElementById("rail");
+  rail.innerHTML = "";
+  for(var i=0;i<total;i++){
+    var sp = document.createElement("span");
+    if(i < step) sp.className = "done";
+    else if(i === step) sp.className = "now";
+    rail.appendChild(sp);
+  }
+  var lbl = document.getElementById("railLabel");
+  lbl.textContent = step >= total ? "Diagnóstico concluído" : "Etapa " + (step+1) + " de " + total + " · " + visibleSections()[step].title;
+}
+
+/* ---------- entrada ---------- */
+document.getElementById("form").addEventListener("change", function(e){
+  var el = e.target, id = el.getAttribute("data-id");
+  if(!id) return;
+  if(el.type === "checkbox"){
+    var box = el.closest(".opts");
+    var vals = [];
+    box.querySelectorAll("input:checked").forEach(function(c){ vals.push(c.value); });
+    answers[id] = vals;
+  } else {
+    answers[id] = el.value;
+  }
+  save();
+  // relê condicionais dentro da etapa sem perder o foco geral
+  var secs = visibleSections();
+  if(step < secs.length){
+    var needs = secs[step].fields.some(function(f){ return f.showIf; });
+    if(needs && (el.type === "radio")) render();
+  }
+});
+document.getElementById("form").addEventListener("input", function(e){
+  var el = e.target, id = el.getAttribute("data-id");
+  if(!id) return;
+  if(el.tagName === "INPUT" && el.type === "text" || el.tagName === "TEXTAREA"){
+    answers[id] = el.value; save();
+  }
+});
+
+document.getElementById("btnNext").addEventListener("click", function(){
+  step++; render();
+});
+document.getElementById("btnBack").addEventListener("click", function(){
+  if(step > 0){ step--; render(); }
+});
+
+/* ---------- pontuação ---------- */
+function scoreSub(){
+  var a = answers, why = [], sc = 0, max = 19;
+  if(a.tensao === "Baixa tensão — só o padrão de entrada")
+    return {na:true, why:["A empresa não tem subestação própria."], action:"Não há serviço de subestação a oferecer. Vale checar o quadro geral e a qualidade de energia."};
+
+  if(a.se_tipo && a.se_tipo.indexOf("Aérea") === 0){ sc+=1; why.push("Subestação aérea: exposta a chuva, poeira, animais e vegetação, exige inspeção mais frequente."); }
+  if(a.se_tipo === "Temos as duas"){ sc+=1; why.push("Mais de um arranjo de subestação, o que amplia o escopo de manutenção."); }
+
+  var u = a.se_ultima;
+  if(u === "Entre 1 e 3 anos"){ sc+=2; why.push("Última manutenção entre 1 e 3 anos: já passou do intervalo anual recomendado."); }
+  else if(u === "Mais de 3 anos"){ sc+=3.5; why.push("Mais de 3 anos sem manutenção: risco elevado de falha e de recusa de cobertura pelo seguro."); }
+  else if(u === "Nunca fizemos"){ sc+=4; why.push("Nunca houve manutenção na subestação."); }
+  else if(u === "Não sei"){ sc+=3; why.push("Não há registro conhecido da última manutenção, o que normalmente significa que ela não é controlada."); }
+
+  if(a.se_contrato === "Não, chamamos só quando quebra"){ sc+=2; why.push("Manutenção apenas corretiva, sem contrato periódico."); }
+  else if(a.se_contrato === "Não sei"){ sc+=1; }
+
+  if(a.se_seguro === "Sim"){ sc+=1; why.push("Existe seguro patrimonial: a apólice costuma exigir comprovação de manutenção elétrica em caso de sinistro."); }
+  if(a.se_laudo_seguro === "Sim, já pediram"){ sc+=2; why.push("A seguradora já pediu laudo ou comprovante — há uma exigência formal em aberto."); }
+
+  if(a.se_paradas === "1 ou 2 vezes"){ sc+=1.5; why.push("Houve parada não programada por causa elétrica nos últimos 2 anos."); }
+  else if(a.se_paradas === "3 ou mais vezes"){ sc+=3; why.push("Três ou mais paradas não programadas: há uma falha recorrente não resolvida."); }
+  else if(a.se_paradas === "Não sei"){ sc+=0.5; }
+
+  var docs = a.se_docs || [];
+  if(docs.indexOf("Nenhum desses, ou não sei") > -1 || docs.length === 0){
+    sc+=3; why.push("Não há documentação técnica da instalação (prontuário, unifilar, aterramento ou termografia).");
+  } else {
+    var faltam = 4 - docs.length;
+    if(faltam > 0){ sc += Math.min(faltam*0.5, 2); why.push("Documentação técnica incompleta: faltam " + faltam + " dos quatro documentos básicos."); }
+  }
+
+  if(a.se_notif === "Sim"){ sc+=2; why.push("Houve notificação ou inspeção da concessionária, o que costuma vir com prazo para regularizar."); }
+
+  if(a.se_custo === "Mais de R$ 10 mil"){ sc+=1; why.push("Cada hora parada custa mais de R$ 10 mil: uma manutenção preventiva se paga em uma única falha evitada."); }
+  else if(a.se_custo === "R$ 1 mil a R$ 10 mil"){ sc+=0.5; }
+
+  var v = sc >= 8 ? "alta" : sc >= 4 ? "media" : "baixa";
+  var action = v === "alta"
+    ? "Oferecer manutenção preventiva com termografia e emissão de laudo, apresentando o custo da parada como comparação. Argumento mais forte: cobertura do seguro."
+    : v === "media"
+      ? "Propor uma inspeção técnica inicial de baixo custo para levantar o estado real e gerar a documentação faltante."
+      : "Instalação aparentemente controlada. Manter contato e oferecer renovação anual do laudo.";
+  return {score:sc, max:max, verdict:v, why:why, action:action};
+}
+
+function scoreQee(){
+  var a = answers, why = [], sc = 0, max = 16;
+  function chk(id, txt){
+    if(a[id] === SIM){ sc+=1.5; why.push(txt); }
+    else if(a[id] === NS){ sc+=0.3; }
+  }
+  chk("q_queima","Equipamentos queimam com frequência acima do normal.");
+  chk("q_flicker","As lâmpadas oscilam quando cargas grandes entram — sinal clássico de flutuação de tensão.");
+  chk("q_reset","Eletrônicos perdem configuração ou reiniciam sozinhos, típico de distorção ou afundamento de tensão.");
+  chk("q_aquece","Há aquecimento anormal em cabos, quadros ou transformador, indicando corrente excessiva ou mau contato.");
+  chk("q_disj","Disjuntores desarmam sem sobrecarga aparente.");
+  chk("q_maquina","Máquinas não entregam a produção esperada, com falhas sem causa identificada.");
+
+  if(a.q_cap === "Sim, dá problema"){ sc+=1.5; why.push("O banco de capacitores apresenta problemas, o que costuma indicar presença de harmônicos."); }
+  else if(a.q_cap === "Não sei"){ sc+=0.3; }
+
+  if(a.q_reativo === "Sim, aparece"){ sc+=2; why.push("A fatura traz cobrança de reativo, ultrapassagem ou excedente — dinheiro sendo pago todo mês por um problema corrigível."); }
+  else if(a.q_reativo === "Não sei"){ sc+=0.3; }
+
+  var nv = a.q_novos || [], addNew = 0, listNew = [];
+  if(nv.indexOf("Energia solar") > -1){ addNew += 1; listNew.push("energia solar"); }
+  if(nv.indexOf("Inversores de frequência") > -1){ addNew += 1; listNew.push("inversores de frequência"); }
+  if(nv.indexOf("Máquinas novas ou automação") > -1){ addNew += 0.5; listNew.push("automação"); }
+  if(nv.indexOf("Iluminação LED em larga escala") > -1){ addNew += 0.5; listNew.push("LED em larga escala"); }
+  if(addNew > 0){ sc += Math.min(addNew, 2.5); why.push("Instalação de " + listNew.join(", ") + ": cargas que injetam harmônicos na rede e mudam o comportamento elétrico da planta."); }
+
+  if(a.q_medicao === "Nunca medimos"){ sc+=1; why.push("A qualidade da energia nunca foi medida, então os sintomas nunca foram atribuídos a uma causa."); }
+  else if(a.q_medicao === "Não sei"){ sc+=0.5; }
+
+  var v = sc >= 6 ? "alta" : sc >= 3 ? "media" : "baixa";
+  var action = v === "alta"
+    ? "Propor estudo de qualidade de energia com medição de 7 dias. Começar pela conta de luz, que mostra o prejuízo em número já no primeiro encontro."
+    : v === "media"
+      ? "Há sintomas isolados. Sugerir uma medição curta e focada no ponto mais crítico, ou análise das últimas faturas."
+      : "Poucos sintomas relatados. Vale revisar as faturas antes de propor medição.";
+  return {score:sc, max:max, verdict:v, why:why, action:action};
+}
+
+function scoreIcms(){
+  var a = answers, why = [], sc = 0, max = 16;
+
+  if(a.i_regime === "Simples Nacional")
+    return {na:true, why:["Empresa no Simples Nacional: não se apropria de crédito de ICMS sobre energia."],
+            action:"Descartar o laudo de ICMS. Concentrar a conversa em subestação e qualidade de energia."};
+
+  if(a.i_ind === "Não, somos comércio ou serviços" && a.i_exp === "Não")
+    return {na:true, why:["Não há processo de industrialização nem exportação, que são as portas de entrada para o crédito."],
+            action:"Descartar o laudo de ICMS neste momento. Se houver expansão para produção própria, revisitar."};
+
+  var c = a.conta;
+  if(c === "Até R$ 10 mil"){ sc+=1; why.push("Conta de energia até R$ 10 mil: o crédito existe, mas o valor recuperável tende a ser modesto."); }
+  else if(c === "R$ 10 mil a R$ 50 mil"){ sc+=2.5; why.push("Conta entre R$ 10 mil e R$ 50 mil por mês: base relevante para apuração."); }
+  else if(c === "R$ 50 mil a R$ 150 mil"){ sc+=4; why.push("Conta entre R$ 50 mil e R$ 150 mil: base alta, o retroativo tende a ser expressivo."); }
+  else if(c === "Acima de R$ 150 mil"){ sc+=5; why.push("Conta acima de R$ 150 mil por mês: maior potencial de recuperação da carteira."); }
+  else { sc+=1; why.push("Valor da conta não informado — confirmar antes de dimensionar a proposta."); }
+
+  if(a.i_ind === "Sim, transformamos"){ sc+=3; why.push("Há processo de industrialização, que é a condição central para o crédito."); }
+  else if(a.i_ind === "Parcialmente"){ sc+=2; why.push("Industrialização parcial: o laudo precisa separar bem o que é produção do que é apoio."); }
+
+  if(a.i_exp === "Sim, mais de 30%"){ sc+=1.5; why.push("Parcela relevante do faturamento vem de exportação, o que reforça o direito ao crédito."); }
+  else if(a.i_exp === "Sim, até 30% do faturamento"){ sc+=1; why.push("Há exportação, que também dá base ao aproveitamento."); }
+
+  if(a.i_laudo === "Nunca fizemos"){ sc+=3; why.push("Nunca foi feito laudo técnico: há crédito retroativo não aproveitado."); }
+  else if(a.i_laudo === "Sim, há mais de 1 ano"){ sc+=2; why.push("O laudo existente está desatualizado — mudanças de processo e de máquinas alteram o percentual."); }
+  else if(a.i_laudo === "Não sei"){ sc+=2; why.push("Não se sabe se já houve laudo; confirmar com a contabilidade."); }
+
+  if(a.i_saldo === "Não, usamos tudo"){ sc+=1.5; why.push("Não há saldo credor acumulado: o crédito apurado vira caixa de verdade."); }
+  else if(a.i_saldo === "Sim, sobra crédito"){ sc-=1.5; why.push("Já existe saldo credor acumulado: o crédito seria apurado, mas dificilmente vira dinheiro no curto prazo."); }
+  else if(a.i_saldo === "Não sei"){ sc+=0.5; }
+
+  if(a.i_titular === "Sim, no CNPJ"){ sc+=1; }
+  else if(a.i_titular === "Não, em outro nome"){ sc-=2; why.push("A conta de energia não está no CNPJ da empresa, o que trava o aproveitamento até ser regularizada."); }
+
+  if(a.i_pct === "Mais de 60%"){ sc+=1; why.push("Mais de 60% da energia vai para a produção, o que aponta um percentual de crédito alto."); }
+  else if(a.i_pct === "Entre 30% e 60%"){ sc+=0.5; }
+
+  if(a.i_regime === "Não sei") why.push("Regime tributário não confirmado: checar com a contabilidade antes de avançar.");
+
+  if(sc < 0) sc = 0;
+  var v = sc >= 8 ? "alta" : sc >= 5 ? "media" : "baixa";
+  var action = v === "alta"
+    ? "Solicitar as três últimas faturas e o cadastro fiscal, fazer uma estimativa preliminar do crédito e apresentar em valor de caixa. Envolver a contabilidade desde o início."
+    : v === "media"
+      ? "Há base, mas com pontos a esclarecer. Pedir as faturas e alinhar com a contabilidade antes de propor o laudo."
+      : "Potencial baixo no momento. Registrar na base e revisitar se o processo produtivo ou o regime mudar.";
+  return {score:sc, max:max, verdict:v, why:why, action:action};
+}
+
+/* ---------- resultado ---------- */
+var LABEL = {alta:"Oportunidade alta", media:"Oportunidade média", baixa:"Oportunidade baixa"};
+
+function card(title, tint, r){
+  var h = '<div class="card" style="--tint:'+tint+'">';
+  h += '<div class="top-row"><h3>'+esc(title)+'</h3>';
+  if(r.na){
+    h += '<span class="verdict v-na">Não se aplica</span></div>';
+  } else {
+    h += '<span class="verdict v-'+r.verdict+'">'+LABEL[r.verdict]+'</span></div>';
+    var pct = Math.max(4, Math.min(100, Math.round(r.score / r.max * 100)));
+    h += '<div class="meter"><i style="width:'+pct+'%"></i></div>';
+  }
+  if(r.why.length){
+    h += '<ul class="why">';
+    r.why.forEach(function(w){ h += '<li>'+esc(w)+'</li>'; });
+    h += '</ul>';
+  }
+  h += '<p class="action"><b>Próximo passo:</b> '+esc(r.action)+'</p>';
+  return h + '</div>';
+}
+
+function missing(){
+  var need = [], a = answers;
+  if(!a.conta || a.conta === "Não sei") need.push("valor médio da conta de energia");
+  if(!a.tensao) need.push("alta ou baixa tensão");
+  if(!a.i_regime || a.i_regime === "Não sei") need.push("regime tributário");
+  if(!a.i_ind) need.push("se há industrialização");
+  return need;
+}
+
+function renderResult(){
+  var rs = scoreSub(), rq = scoreQee(), ri = scoreIcms();
+  var quentes = [rs,rq,ri].filter(function(r){ return !r.na && r.verdict === "alta"; }).length;
+
+  var resumo;
+  if(quentes >= 2) resumo = "Duas ou mais frentes com oportunidade alta. Vale agendar visita técnica e levar proposta combinada.";
+  else if(quentes === 1) resumo = "Uma frente clara de oportunidade. Concentrar a abordagem nela em vez de oferecer tudo de uma vez.";
+  else resumo = "Nenhuma frente com sinal forte. Manter o contato na base e retomar em alguns meses.";
+
+  if(answers.f_visita === "Sim, quero agendar") resumo += " O cliente pediu visita técnica — retornar em até 48 horas.";
+  else if(answers.f_prior === "Sim, é prioridade") resumo += " O tema é prioridade nos próximos 6 meses.";
+
+  var h = '<section class="step on"><div class="result-head"><h2>Resultado do diagnóstico</h2><p>'+esc(resumo)+'</p></div>';
+
+  var need = missing();
+  if(need.length) h += '<div class="miss">Para fechar a leitura, ainda falta confirmar: '+esc(need.join(", "))+'. E peça sempre as três últimas faturas de energia: elas confirmam boa parte das respostas acima.</div>';
+
+  h += card("Manutenção em subestação", "var(--sub)", rs);
+  h += card("Qualidade de energia", "var(--qee)", rq);
+  h += card("Crédito de ICMS sobre energia", "var(--icms)", ri);
+  h += '</section>';
+
+  document.getElementById("form").innerHTML = h;
+
+  var nav = document.getElementById("nav");
+  nav.innerHTML = '<button class="ghost" id="btnBack2" type="button">Voltar</button>'
+    + '<button class="primary" id="btnCopy" type="button">Copiar respostas</button>'
+    + '<button class="ghost" id="btnPrint" type="button">Imprimir ou salvar em PDF</button>'
+    + '<button class="ghost" id="btnReset" type="button">Novo diagnóstico</button>';
+
+  document.getElementById("btnBack2").onclick = function(){ step--; rebuildNav(); render(); };
+  document.getElementById("btnCopy").onclick = function(){ copyAll(rs,rq,ri,resumo); };
+  document.getElementById("btnPrint").onclick = function(){ window.print(); };
+  document.getElementById("btnReset").onclick = function(){
+    if(!confirm("Isso apaga todas as respostas deste navegador. Continuar?")) return;
+    answers = {}; step = 0;
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    rebuildNav(); render();
+  };
+  drawRail(visibleSections().length);
+  window.scrollTo({top:0, behavior:"instant"});
+}
+
+function rebuildNav(){
+  document.getElementById("nav").innerHTML =
+    '<button class="ghost" id="btnBack" type="button">Voltar</button>'
+    + '<button class="primary" id="btnNext" type="button">Continuar</button>'
+    + '<span class="saved" id="saved"></span>';
+  document.getElementById("btnNext").addEventListener("click", function(){ step++; render(); });
+  document.getElementById("btnBack").addEventListener("click", function(){ if(step>0){ step--; render(); } });
+}
+
+function copyAll(rs,rq,ri,resumo){
+  var L = [];
+  L.push("DIAGNÓSTICO ELÉTRICO E TRIBUTÁRIO");
+  L.push("Data: " + new Date().toLocaleDateString("pt-BR"));
+  L.push("");
+  visibleSections().forEach(function(s){
+    L.push("== " + s.title.toUpperCase() + " ==");
+    s.fields.forEach(function(f){
+      if(f.showIf && !f.showIf(answers)) return;
+      var v = answers[f.id];
+      if(Array.isArray(v)) v = v.join("; ");
+      L.push(f.label + " -> " + (v && String(v).trim() ? v : "(sem resposta)"));
+    });
+    L.push("");
+  });
+  L.push("== LEITURA COMERCIAL ==");
+  L.push(resumo);
+  [["Subestação",rs],["Qualidade de energia",rq],["Crédito de ICMS",ri]].forEach(function(p){
+    var r = p[1];
+    L.push("");
+    L.push(p[0] + ": " + (r.na ? "não se aplica" : LABEL[r.verdict]));
+    r.why.forEach(function(w){ L.push("  - " + w); });
+    L.push("  Próximo passo: " + r.action);
+  });
+  var txt = L.join("\n");
+  var done = function(){ toast("Respostas copiadas"); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt, done); });
+  } else fallback(txt, done);
+}
+function fallback(txt, done){
+  var ta = document.createElement("textarea");
+  ta.value = txt; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); done(); }
+  catch(e){ toast("Não foi possível copiar neste navegador"); }
+  document.body.removeChild(ta);
+}
+function toast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(function(){ t.classList.remove("on"); }, 2200);
+}
+
+load();
+render();
+})();
+</script>
+</body>
+</html>
