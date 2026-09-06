@@ -46,6 +46,7 @@
   --cold:var(--muted);
 
   --focus:var(--accent);
+  --danger:#d95252;
 
   --font-display:'Playfair Display', Georgia, serif;
   --font-body:'Inter', system-ui, sans-serif;
@@ -93,6 +94,9 @@ header.top p:last-of-type{margin-bottom:0}
 .q:first-of-type{border-top:none; padding-top:4px}
 .q > label.qt, .qt{display:block; font-size:.9375rem; font-weight:500; margin-bottom:3px}
 .qt .n{color:var(--ink3); font-weight:400; margin-right:6px}
+.q.invalid input[type=text], .q.invalid textarea{border-color:var(--danger); box-shadow:0 0 0 3px rgba(217,82,82,.1)}
+.q.invalid .opts .opt span{border-color:var(--danger)}
+.field-error{color:var(--danger); font-size:.8125rem; margin-top:8px}
 .hint{font-size:.8125rem; color:var(--ink2); margin:0 0 10px; max-width:60ch}
 
 /* opções */
@@ -134,6 +138,15 @@ button{font:inherit; cursor:pointer; border-radius:var(--r-pill); border:1px sol
 button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
 .saved{margin-left:auto; font-size:.8125rem; color:var(--ink3)}
 
+/* ---------- obrigado ---------- */
+.thanks{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:18px; padding:72px 16px 64px; max-width:480px; margin:0 auto;
+}
+.thanks-logo{height:140px; width:auto; display:block; margin-bottom:8px}
+.thanks h2{font-family:var(--font-display); font-size:1.625rem; font-weight:600; margin:0}
+.thanks p{margin:0; color:var(--ink2); font-size:.9375rem; line-height:1.6; max-width:42ch}
+
 /* ---------- resultado ---------- */
 .result-head{padding:8px 0 20px}
 .result-head h2{font-family:var(--font-display); font-size:1.5rem; margin:0 0 6px; font-weight:600}
@@ -156,7 +169,6 @@ button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
 .miss{background:transparent; border:1px dashed var(--line); border-radius:var(--r-card); padding:14px 16px; font-size:.875rem; color:var(--ink2); margin-bottom:14px}
 .toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--forest); color:var(--surface); padding:10px 18px; border-radius:var(--r-pill); font-size:.875rem; opacity:0; pointer-events:none; transition:opacity .2s; box-shadow:var(--shadow-float)}
 .toast.on{opacity:1}
-footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px solid var(--line); padding-top:14px}
 
 @media (max-width:520px){
   h1{font-size:1.5rem}
@@ -164,6 +176,8 @@ footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px so
   .opts .opt span{padding:9px 12px}
   .nav{flex-wrap:wrap}
   .nav button{flex:1 1 auto}
+  .thanks{padding:56px 16px 48px}
+  .thanks-logo{height:104px}
 }
 @media (prefers-reduced-motion: reduce){*{transition:none !important}}
 
@@ -197,9 +211,6 @@ footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px so
   <span class="saved" id="saved"></span>
 </div>
 
-<footer>
-  As respostas ficam salvas apenas neste navegador. O resultado é uma triagem inicial, não substitui visita técnica nem parecer contábil.
-</footer>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -289,7 +300,7 @@ var SECTIONS = [
       {id:"q_medicao", type:"single", label:"Já foi feita alguma medição ou monitoramento da qualidade da energia?",
        options:["Sim, já medimos","Nunca medimos","Não sei"], stack:true},
       {id:"q_livre", type:"textarea", label:"Se pudesse resolver um problema elétrico hoje, qual seria?",
-       hint:"Escreva com suas palavras. Opcional."}
+       hint:"Escreva com suas palavras."}
     ]
   },
   {
@@ -339,6 +350,7 @@ var SECTIONS = [
 var KEY = "diag-eletrico-v1";
 var answers = {};
 var step = 0;
+var stepAttempted = false;
 
 /* ---------- persistência ---------- */
 function save(){
@@ -392,12 +404,14 @@ function renderField(f, idx){
   return h + '</div>';
 }
 
-function render(){
+function render(keepScroll){
   var secs = visibleSections();
   if(step > secs.length) step = secs.length;
   var form = document.getElementById("form");
 
-  if(step === secs.length){ renderResult(); return; }
+  if(step === secs.length){ renderThanks(); return; }
+
+  document.querySelector("header.top").style.display = "";
 
   var s = secs[step];
   var html = '<section class="step on"><div class="panel" style="--tint:'+s.tint+'">';
@@ -414,9 +428,9 @@ function render(){
 
   document.getElementById("nav").style.display = "flex";
   document.getElementById("btnBack").style.visibility = step === 0 ? "hidden" : "visible";
-  document.getElementById("btnNext").textContent = step === secs.length - 1 ? "Ver diagnóstico" : "Continuar";
+  document.getElementById("btnNext").textContent = step === secs.length - 1 ? "Enviar" : "Continuar";
   drawRail(secs.length);
-  window.scrollTo({top:0, behavior:"instant"});
+  if(!keepScroll) window.scrollTo({top:0, behavior:"instant"});
 }
 
 function drawRail(total){
@@ -429,7 +443,7 @@ function drawRail(total){
     rail.appendChild(sp);
   }
   var lbl = document.getElementById("railLabel");
-  lbl.textContent = step >= total ? "Diagnóstico concluído" : "Etapa " + (step+1) + " de " + total + " · " + visibleSections()[step].title;
+  lbl.textContent = step >= total ? "Formulário enviado" : "Etapa " + (step+1) + " de " + total + " · " + visibleSections()[step].title;
 }
 
 /* ---------- entrada ---------- */
@@ -445,26 +459,72 @@ document.getElementById("form").addEventListener("change", function(e){
     answers[id] = el.value;
   }
   save();
+  clearInvalid(el);
   // relê condicionais dentro da etapa sem perder o foco geral
   var secs = visibleSections();
   if(step < secs.length){
     var needs = secs[step].fields.some(function(f){ return f.showIf; });
-    if(needs && (el.type === "radio")) render();
+    if(needs && (el.type === "radio")){
+      render(true);
+      if(stepAttempted) validateStep(true);
+    }
   }
 });
 document.getElementById("form").addEventListener("input", function(e){
   var el = e.target, id = el.getAttribute("data-id");
   if(!id) return;
   if(el.tagName === "INPUT" && el.type === "text" || el.tagName === "TEXTAREA"){
-    answers[id] = el.value; save();
+    answers[id] = el.value; save(); clearInvalid(el);
   }
 });
 
-document.getElementById("btnNext").addEventListener("click", function(){
+/* ---------- respostas obrigatórias ---------- */
+function isFilled(v){
+  return Array.isArray(v) ? v.length > 0 : !!(v && String(v).trim());
+}
+function clearInvalid(el){
+  var q = el.closest(".q");
+  if(!q || !q.classList.contains("invalid")) return;
+  if(!isFilled(answers[el.getAttribute("data-id")])) return;
+  q.classList.remove("invalid");
+  var err = q.querySelector(".field-error");
+  if(err) err.remove();
+}
+function validateStep(silent){
+  var secs = visibleSections();
+  var s = secs[step];
+  document.querySelectorAll(".q.invalid").forEach(function(q){
+    q.classList.remove("invalid");
+    var err = q.querySelector(".field-error");
+    if(err) err.remove();
+  });
+  var firstInvalid = null;
+  s.fields.forEach(function(f){
+    if(f.showIf && !f.showIf(answers)) return;
+    if(isFilled(answers[f.id])) return;
+    var q = document.querySelector('.q[data-f="'+f.id+'"]');
+    if(!q) return;
+    q.classList.add("invalid");
+    var err = document.createElement("div");
+    err.className = "field-error";
+    err.textContent = "Resposta obrigatória.";
+    q.appendChild(err);
+    if(!firstInvalid) firstInvalid = q;
+  });
+  if(firstInvalid){
+    if(!silent) firstInvalid.scrollIntoView({behavior:"smooth", block:"center"});
+    return false;
+  }
+  return true;
+}
+function goNext(){
+  if(!validateStep()){ stepAttempted = true; toast("Responda todas as perguntas para continuar"); return; }
+  stepAttempted = false;
   step++; render();
-});
+}
+document.getElementById("btnNext").addEventListener("click", goNext);
 document.getElementById("btnBack").addEventListener("click", function(){
-  if(step > 0){ step--; render(); }
+  if(step > 0){ stepAttempted = false; step--; render(); }
 });
 
 /* ---------- pontuação ---------- */
@@ -629,6 +689,22 @@ function missing(){
   return need;
 }
 
+function renderThanks(){
+  // O diagnóstico (scoreSub/scoreQee/scoreIcms) e o resumo em texto (copyAll) continuam
+  // disponíveis abaixo — deixam de ser exibidos ao cliente e passam a ser a base do
+  // envio automático para e-mail/banco de dados da AFB, integração a ser feita depois.
+  document.querySelector("header.top").style.display = "none";
+  var h = '<section class="step on"><div class="thanks">'
+    + '<img class="thanks-logo" src="assets/images/logo-diagnostico.png" alt="AFB Consultoria Energética">'
+    + '<h2>Formulário enviado com sucesso.</h2>'
+    + '<p>Obrigado por preencher o diagnóstico. Iremos analisar as respostas e entraremos em contato em breve.</p>'
+    + '</div></section>';
+  document.getElementById("form").innerHTML = h;
+  document.getElementById("nav").style.display = "none";
+  document.getElementById("nav").innerHTML = "";
+  window.scrollTo({top:0, behavior:"instant"});
+}
+
 function renderResult(){
   var rs = scoreSub(), rq = scoreQee(), ri = scoreIcms();
   var quentes = [rs,rq,ri].filter(function(r){ return !r.na && r.verdict === "alta"; }).length;
@@ -677,7 +753,7 @@ function rebuildNav(){
     '<button class="ghost" id="btnBack" type="button">Voltar</button>'
     + '<button class="primary" id="btnNext" type="button">Continuar</button>'
     + '<span class="saved" id="saved"></span>';
-  document.getElementById("btnNext").addEventListener("click", function(){ step++; render(); });
+  document.getElementById("btnNext").addEventListener("click", goNext);
   document.getElementById("btnBack").addEventListener("click", function(){ if(step>0){ step--; render(); } });
 }
 
