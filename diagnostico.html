@@ -243,18 +243,18 @@ var SECTIONS = [
       {id:"se_ultima", type:"single", label:"Quando foi a última manutenção da subestação?",
        options:["Menos de 1 ano","Entre 1 e 3 anos","Mais de 3 anos","Nunca fizemos","Não sei"], stack:true},
       {id:"se_contrato", type:"single", label:"Existe manutenção periódica contratada hoje?",
-       options:["Sim, temos contrato","Não, chamamos só quando quebra","Não sei"], stack:true},
+       options:["Sim, temos contrato","Não, chamamos quando há problema","Não sei"], stack:true},
       {id:"se_seguro", type:"single", label:"A empresa tem seguro patrimonial?",
        options:["Sim","Não","Não sei"]},
       {id:"se_laudo_seguro", type:"single", label:"A seguradora já pediu laudo ou comprovante de manutenção elétrica?",
        showIf:function(a){return a.se_seguro === "Sim";},
        options:["Sim, já pediram","Não","Não sei"], stack:true},
-      {id:"se_paradas", type:"single", label:"Nos últimos 2 anos houve parada não programada por problema elétrico?",
+      {id:"se_paradas", type:"single", label:"No último ano houve parada não programada por problema elétrico?",
        hint:"Queda de energia interna, transformador, disjuntor ou chave que desarmou e parou a operação.",
        options:["Nenhuma","1 ou 2 vezes","3 ou mais vezes","Não sei"], stack:true},
       {id:"se_docs", type:"multi", label:"Quais destes documentos a empresa possui hoje?",
        hint:"Marque todos os que existem e estão atualizados.",
-       options:["Prontuário de instalações elétricas (NR-10)","Diagrama unifilar atualizado","Laudo de aterramento ou SPDA","Laudo de termografia","Nenhum desses, ou não sei"], stack:true},
+       options:["PIE — Prontuário de Instalações Elétricas (NR-10)","Diagrama Unifilar Atualizado","Relatório Técnico de Manutenção na Subestação","Laudo de Aterramento e SPDA","Laudo de Termografia","Nenhum destes","Não sei"], stack:true},
       {id:"se_notif", type:"single", label:"Já receberam notificação ou inspeção da concessionária sobre a instalação?",
        options:["Sim","Não","Não sei"]},
       {id:"se_custo", type:"single", label:"Quanto custa, aproximadamente, uma hora de operação parada?",
@@ -270,16 +270,16 @@ var SECTIONS = [
        hint:"Placas eletrônicas, fontes, motores, inversores, computadores.", options:[SIM,NAO,NS]},
       {id:"q_flicker", type:"single", label:"As lâmpadas piscam ou oscilam de intensidade?",
        hint:"Principalmente quando uma máquina grande liga.", options:[SIM,NAO,NS]},
-      {id:"q_reset", type:"single", label:"Algum equipamento eletrônico perde configuração, reinicia ou dá erro sozinho?",
-       hint:"Inversores de frequência, CLPs, CNCs, balanças, sistemas de automação.", options:[SIM,NAO,NS]},
+      {id:"q_reset", type:"single", label:"Algum equipamento eletrônico perde configuração, reinicia ou apresenta erro sozinho?",
+       hint:"Inversores de frequência, CLPs, CNCs, balanças, sistemas de automação, máquinas e dispositivos eletrônicos.", options:[SIM,NAO,NS]},
       {id:"q_aquece", type:"single", label:"Cabos, quadros, disjuntores ou o transformador esquentam mais que o normal?",
        options:[SIM,NAO,NS]},
-      {id:"q_disj", type:"single", label:"Disjuntores desarmam sem que a carga esteja alta?",
+      {id:"q_disj", type:"single", label:"Disjuntores desarmam indevidamente?",
        options:[SIM,NAO,NS]},
-      {id:"q_cap", type:"single", label:"O banco de capacitores dá problema?",
+      {id:"q_cap", type:"single", label:"O banco de capacitores apresenta problema?",
        hint:"Queima fusível, estufa, fica desligado ou ninguém mexe nele há anos.",
-       options:["Sim, dá problema","Não, funciona bem","Não temos banco de capacitores","Não sei"], stack:true},
-      {id:"q_reativo", type:"single", label:"Na conta de luz aparece cobrança de energia reativa, ultrapassagem ou excedente de demanda?",
+       options:["Sim, apresenta problema","Não, funciona bem","Não temos banco de capacitores","Não sei"], stack:true},
+      {id:"q_reativo", type:"single", label:"Na conta de energia aparece cobrança de energia reativa, ultrapassagem ou excedente de demanda?",
        hint:"São linhas extras na fatura, além do consumo normal. Se tiver a conta em mãos, vale conferir.",
        options:["Sim, aparece","Não aparece","Não sei"], stack:true},
       {id:"q_maquina", type:"single", label:"Alguma máquina não entrega a produção esperada ou falha sem explicação?",
@@ -314,9 +314,6 @@ var SECTIONS = [
        hint:"Chamado de saldo credor acumulado. A contabilidade sabe responder.",
        showIf:function(a){ return a.i_regime !== "Simples Nacional"; },
        options:["Sim, sobra crédito","Não, usamos tudo","Não sei"], stack:true},
-      {id:"i_laudo", type:"single", label:"A empresa já fez laudo técnico de crédito de ICMS sobre energia?",
-       showIf:function(a){ return a.i_regime !== "Simples Nacional"; },
-       options:["Nunca fizemos","Sim, há menos de 1 ano","Sim, há mais de 1 ano","Não sei"], stack:true},
       {id:"i_pct", type:"single", label:"Quanto da energia é consumida pela produção, e não pelo administrativo?",
        hint:"Uma estimativa basta.",
        showIf:function(a){ return a.i_regime !== "Simples Nacional"; },
@@ -329,7 +326,7 @@ var SECTIONS = [
     id:"s4", title:"Próximo passo", tint:"var(--ink2)",
     note:"Três perguntas rápidas e o diagnóstico aparece na tela.",
     fields:[
-      {id:"f_prior", type:"single", label:"Resolver esses pontos é prioridade para os próximos 6 meses?",
+      {id:"f_prior", type:"single", label:"Resolver algum desses pontos é prioridade para os próximos 6 meses?",
        options:["Sim, é prioridade","Talvez","Não agora"], stack:true},
       {id:"f_decisor", type:"text", label:"Além de você, quem decide sobre esse tipo de contratação?"},
       {id:"f_visita", type:"single", label:"Podemos agendar uma visita técnica de avaliação, sem custo?",
@@ -485,7 +482,7 @@ function scoreSub(){
   else if(u === "Nunca fizemos"){ sc+=4; why.push("Nunca houve manutenção na subestação."); }
   else if(u === "Não sei"){ sc+=3; why.push("Não há registro conhecido da última manutenção, o que normalmente significa que ela não é controlada."); }
 
-  if(a.se_contrato === "Não, chamamos só quando quebra"){ sc+=2; why.push("Manutenção apenas corretiva, sem contrato periódico."); }
+  if(a.se_contrato === "Não, chamamos quando há problema"){ sc+=2; why.push("Manutenção apenas corretiva, sem contrato periódico."); }
   else if(a.se_contrato === "Não sei"){ sc+=1; }
 
   if(a.se_seguro === "Sim"){ sc+=1; why.push("Existe seguro patrimonial: a apólice costuma exigir comprovação de manutenção elétrica em caso de sinistro."); }
@@ -496,11 +493,11 @@ function scoreSub(){
   else if(a.se_paradas === "Não sei"){ sc+=0.5; }
 
   var docs = a.se_docs || [];
-  if(docs.indexOf("Nenhum desses, ou não sei") > -1 || docs.length === 0){
-    sc+=3; why.push("Não há documentação técnica da instalação (prontuário, unifilar, aterramento ou termografia).");
+  if(docs.indexOf("Nenhum destes") > -1 || docs.indexOf("Não sei") > -1 || docs.length === 0){
+    sc+=3; why.push("Não há documentação técnica da instalação (PIE, unifilar, relatório de manutenção, aterramento ou termografia).");
   } else {
-    var faltam = 4 - docs.length;
-    if(faltam > 0){ sc += Math.min(faltam*0.5, 2); why.push("Documentação técnica incompleta: faltam " + faltam + " dos quatro documentos básicos."); }
+    var faltam = 5 - docs.length;
+    if(faltam > 0){ sc += Math.min(faltam*0.5, 2); why.push("Documentação técnica incompleta: faltam " + faltam + " dos cinco documentos básicos."); }
   }
 
   if(a.se_notif === "Sim"){ sc+=2; why.push("Houve notificação ou inspeção da concessionária, o que costuma vir com prazo para regularizar."); }
@@ -530,7 +527,7 @@ function scoreQee(){
   chk("q_disj","Disjuntores desarmam sem sobrecarga aparente.");
   chk("q_maquina","Máquinas não entregam a produção esperada, com falhas sem causa identificada.");
 
-  if(a.q_cap === "Sim, dá problema"){ sc+=1.5; why.push("O banco de capacitores apresenta problemas, o que costuma indicar presença de harmônicos."); }
+  if(a.q_cap === "Sim, apresenta problema"){ sc+=1.5; why.push("O banco de capacitores apresenta problemas, o que costuma indicar presença de harmônicos."); }
   else if(a.q_cap === "Não sei"){ sc+=0.3; }
 
   if(a.q_reativo === "Sim, aparece"){ sc+=2; why.push("A fatura traz cobrança de reativo, ultrapassagem ou excedente — dinheiro sendo pago todo mês por um problema corrigível."); }
@@ -556,7 +553,7 @@ function scoreQee(){
 }
 
 function scoreIcms(){
-  var a = answers, why = [], sc = 0, max = 16;
+  var a = answers, why = [], sc = 0, max = 13;
 
   if(a.i_regime === "Simples Nacional")
     return {na:true, why:["Empresa no Simples Nacional: não se apropria de crédito de ICMS sobre energia."],
@@ -579,10 +576,6 @@ function scoreIcms(){
   if(a.i_exp === "Sim, mais de 30%"){ sc+=1.5; why.push("Parcela relevante do faturamento vem de exportação, o que reforça o direito ao crédito."); }
   else if(a.i_exp === "Sim, até 30% do faturamento"){ sc+=1; why.push("Há exportação, que também dá base ao aproveitamento."); }
 
-  if(a.i_laudo === "Nunca fizemos"){ sc+=3; why.push("Nunca foi feito laudo técnico: há crédito retroativo não aproveitado."); }
-  else if(a.i_laudo === "Sim, há mais de 1 ano"){ sc+=2; why.push("O laudo existente está desatualizado — mudanças de processo e de máquinas alteram o percentual."); }
-  else if(a.i_laudo === "Não sei"){ sc+=2; why.push("Não se sabe se já houve laudo; confirmar com a contabilidade."); }
-
   if(a.i_saldo === "Não, usamos tudo"){ sc+=1.5; why.push("Não há saldo credor acumulado: o crédito apurado vira caixa de verdade."); }
   else if(a.i_saldo === "Sim, sobra crédito"){ sc-=1.5; why.push("Já existe saldo credor acumulado: o crédito seria apurado, mas dificilmente vira dinheiro no curto prazo."); }
   else if(a.i_saldo === "Não sei"){ sc+=0.5; }
@@ -596,7 +589,7 @@ function scoreIcms(){
   if(a.i_regime === "Não sei") why.push("Regime tributário não confirmado: checar com a contabilidade antes de avançar.");
 
   if(sc < 0) sc = 0;
-  var v = sc >= 8 ? "alta" : sc >= 5 ? "media" : "baixa";
+  var v = sc >= 6.5 ? "alta" : sc >= 4 ? "media" : "baixa";
   var action = v === "alta"
     ? "Solicitar as três últimas faturas e o cadastro fiscal, fazer uma estimativa preliminar do crédito e apresentar em valor de caixa. Envolver a contabilidade desde o início."
     : v === "media"
