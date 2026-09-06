@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laudo de Crédito de ICMS · AFB Consultoria Energética</title>
-  <meta name="description" content="Levantamento técnico do percentual de energia aplicado à produção para apuração do crédito de ICMS, inclusive retroativo." />
+  <title>Estudo de Qualidade de Energia (QEE) · AFB Consultoria Energética</title>
+  <meta name="description" content="Medimos e analisamos a energia da instalação para identificar perdas, distúrbios que danificam equipamentos e riscos à operação." />
 
-  <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
-  <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+  <link rel="icon" type="image/png" href="../../assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="../../assets/images/favicon.png" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="Laudo de Crédito de ICMS · AFB Consultoria Energética" />
-  <meta property="og:description" content="Levantamento técnico do percentual de energia aplicado à produção para apuração do crédito de ICMS, inclusive retroativo." />
-  <meta property="og:url"         content="https://www.afbconsultoria.com.br/servicos/credito-icms-energia" />
+  <meta property="og:title"       content="Estudo de Qualidade de Energia (QEE) · AFB Consultoria Energética" />
+  <meta property="og:description" content="Medimos e analisamos a energia da instalação para identificar perdas, distúrbios que danificam equipamentos e riscos à operação." />
+  <meta property="og:url"         content="https://www.afbconsultoria.com.br/servicos/eficiencia-energetica/qualidade-de-energia" />
   <meta property="og:image"       content="https://www.afbconsultoria.com.br/assets/images/og-image.jpg" />
   <meta property="og:locale"      content="pt_BR" />
   <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="Laudo de Crédito de ICMS · AFB Consultoria Energética" />
-  <meta name="twitter:description" content="Levantamento técnico do percentual de energia aplicado à produção para apuração do crédito de ICMS, inclusive retroativo." />
+  <meta name="twitter:title"      content="Estudo de Qualidade de Energia (QEE) · AFB Consultoria Energética" />
+  <meta name="twitter:description" content="Medimos e analisamos a energia da instalação para identificar perdas, distúrbios que danificam equipamentos e riscos à operação." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -57,7 +57,7 @@
     .nav-item-dropdown > a[aria-expanded="true"] .nav-caret { transform: rotate(180deg); }
     .nav-dropdown {
       position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px);
-      width: 300px; padding: .55rem; border-radius: var(--r-card); background: #fff;
+      width: 320px; padding: .55rem; border-radius: var(--r-card); background: #fff;
       border: 1px solid rgba(61,127,97,.1); box-shadow: var(--shadow-float);
       opacity: 0; visibility: hidden; pointer-events: none;
       transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 60;
@@ -67,7 +67,10 @@
     .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: var(--bg-alt); }
     .nav-dropdown-title { font-size: .92rem; font-weight: 600; color: var(--forest); }
     .nav-dropdown-sub { font-size: .78rem; color: var(--muted); }
-    .nav-item-dropdown > a:focus-visible, .nav-dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+    .nav-dropdown-subitem { display: block; padding: .5rem .8rem .5rem 1.7rem; border-radius: 10px; font-size: .84rem; color: var(--sage); transition: background .15s, color .15s; }
+    .nav-dropdown-subitem:hover, .nav-dropdown-subitem:focus-visible { background: var(--bg-alt); color: var(--forest); }
+    .nav-dropdown-divider { height: 1px; background: rgba(61,127,97,.1); margin: .4rem .6rem; }
+    .nav-item-dropdown > a:focus-visible, .nav-dropdown-item:focus-visible, .nav-dropdown-subitem:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
     .nav-right { display: flex; align-items: center; gap: 2.4rem; }
     .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: .5rem; border-radius: 8px; transition: background .2s; }
     .nav-hamburger:hover { background: rgba(61,127,97,.08); }
@@ -89,7 +92,7 @@
         border-bottom: 1px solid rgba(61,127,97,.12); max-height: 0; overflow: hidden; opacity: 0;
         transition: max-height .35s ease, opacity .25s ease; z-index: 99;
       }
-      .nav-mobile-menu.open { max-height: 640px; opacity: 1; }
+      .nav-mobile-menu.open { max-height: 760px; opacity: 1; }
       .nav-mobile-menu ul { list-style: none; display: flex; flex-direction: column; padding: .75rem 2rem 1.25rem; margin: 0; }
       .nav-mobile-menu ul li a { display: block; padding: .9rem 0; font-size: 1rem; font-weight: 500; color: var(--sage); border-bottom: 1px solid rgba(61,127,97,.08); transition: color .2s, padding-left .2s; }
       .nav-mobile-menu ul li:last-child a { border-bottom: none; }
@@ -101,8 +104,9 @@
       .nav-mobile-caret { width: 16px; height: 16px; transition: transform .25s ease; }
       .nav-mobile-subtoggle[aria-expanded="true"] .nav-mobile-caret { transform: rotate(180deg); }
       .nav-mobile-submenu { list-style: none; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s ease, opacity .25s ease; padding-left: 1rem; margin: 0; }
-      .nav-mobile-submenu.open { max-height: 280px; opacity: 1; }
+      .nav-mobile-submenu.open { max-height: 440px; opacity: 1; }
       .nav-mobile-submenu li a { padding: .7rem 0; font-size: .92rem; border-bottom: 1px dashed rgba(61,127,97,.08); }
+      .nav-mobile-submenu li a.nav-mobile-subsub { padding: .75rem 0 .75rem 1rem; font-size: .86rem; color: var(--muted); }
       .nav-mobile-submenu li:last-child a { border-bottom: none; }
     }
     @media (max-width: 480px) {
@@ -114,8 +118,7 @@
     .svc-back { display: inline-flex; align-items: center; gap: .4rem; font-size: .88rem; font-weight: 600; color: var(--accent); margin-bottom: 2rem; }
     .svc-back:hover { color: var(--forest); }
     .svc-detail-kicker { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
-    .svc-detail-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--forest); margin-top: .6rem; max-width: 20ch; }
-    .svc-detail-subtitle { font-size: 1.15rem; font-weight: 500; color: var(--sage); margin-top: .9rem; }
+    .svc-detail-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--forest); margin-top: .6rem; max-width: 22ch; }
     .svc-detail-desc { font-size: 1.02rem; line-height: 1.75; color: var(--sage); margin-top: 1.3rem; max-width: 60ch; }
     .svc-badge {
       display: inline-flex; align-items: center; gap: .5rem; margin-top: 2rem;
@@ -126,7 +129,7 @@
     .svc-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
     .svc-cta { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(61,127,97,.12); }
     .svc-cta-btn {
-      display: inline-flex; align-items: center; gap: .65rem;
+      display: inline-flex; align-items: center; gap: .65rem; min-height: 44px;
       padding: .9rem 2rem; border-radius: var(--r-pill);
       background: var(--accent); color: #fff; font-size: .92rem; font-weight: 600;
       box-shadow: 0 4px 18px rgba(61,127,97,.28);
@@ -216,14 +219,11 @@
                 <span class="nav-dropdown-title">Eficiência Energética</span>
                 <span class="nav-dropdown-sub">Redução de custos com energia</span>
               </a>
-              <a href="/servicos/qualidade-de-energia" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Estudos de QEE</span>
-                <span class="nav-dropdown-sub">Qualidade de Energia Elétrica</span>
-              </a>
-              <a href="/servicos/credito-icms-energia" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Laudo de Crédito de ICMS</span>
-                <span class="nav-dropdown-sub">Recuperação sobre a energia elétrica</span>
-              </a>
+              <a href="/servicos/eficiencia-energetica/analise-tarifaria" role="menuitem" class="nav-dropdown-subitem">Análise Tarifária</a>
+              <a href="/servicos/eficiencia-energetica/mercado-livre" role="menuitem" class="nav-dropdown-subitem">Mercado Livre de Energia</a>
+              <a href="/servicos/eficiencia-energetica/qualidade-de-energia" role="menuitem" class="nav-dropdown-subitem">Qualidade de Energia (QEE)</a>
+              <a href="/servicos/eficiencia-energetica/credito-icms" role="menuitem" class="nav-dropdown-subitem">Crédito de ICMS</a>
+              <div class="nav-dropdown-divider" aria-hidden="true"></div>
               <a href="/servicos/manutencao-subestacao" role="menuitem" class="nav-dropdown-item">
                 <span class="nav-dropdown-title">Manutenção em Subestações</span>
                 <span class="nav-dropdown-sub">Média tensão, preventiva e laudos</span>
@@ -233,7 +233,7 @@
         </ul>
 
         <a href="/" class="nav-logo-center" aria-label="AFB Consultoria Energética — página inicial">
-          <img src="../assets/images/logo-horizontal-v2.png" alt="AFB Consultoria Energética" />
+          <img src="../../assets/images/logo-horizontal-v2.png" alt="AFB Consultoria Energética" />
         </a>
 
         <div class="nav-right">
@@ -263,8 +263,10 @@
             </div>
             <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel" aria-hidden="true">
               <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-              <li><a href="/servicos/qualidade-de-energia">Estudos de QEE</a></li>
-              <li><a href="/servicos/credito-icms-energia">Laudo de Crédito de ICMS</a></li>
+              <li><a href="/servicos/eficiencia-energetica/analise-tarifaria" class="nav-mobile-subsub">Análise Tarifária</a></li>
+              <li><a href="/servicos/eficiencia-energetica/mercado-livre" class="nav-mobile-subsub">Mercado Livre de Energia</a></li>
+              <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia" class="nav-mobile-subsub">Qualidade de Energia (QEE)</a></li>
+              <li><a href="/servicos/eficiencia-energetica/credito-icms" class="nav-mobile-subsub">Crédito de ICMS</a></li>
               <li><a href="/servicos/manutencao-subestacao">Manutenção em Subestações</a></li>
             </ul>
           </li>
@@ -278,15 +280,14 @@
 
   <main>
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos">← Serviços</a>
-      <div class="svc-detail-kicker">Serviços</div>
-      <h1 class="svc-detail-h1">Laudo de Crédito de ICMS</h1>
-      <p class="svc-detail-subtitle">Recuperação sobre a energia elétrica</p>
-      <p class="svc-detail-desc">Levantamento técnico do percentual de energia aplicado à produção para apuração do crédito de ICMS, inclusive retroativo.</p>
+      <a class="svc-back" href="/servicos/eficiencia-energetica">← Eficiência Energética</a>
+      <div class="svc-detail-kicker">Eficiência Energética</div>
+      <h1 class="svc-detail-h1">Estudo de Qualidade de Energia (QEE)</h1>
+      <p class="svc-detail-desc">Medimos e analisamos a energia da instalação para identificar perdas, distúrbios que danificam equipamentos e riscos à operação. Inclui correção do fator de potência para eliminar multas por reativo, estudo do perfil de consumo e diagnóstico com plano de ação priorizado.</p>
       <div class="svc-badge"><span class="svc-badge-dot" aria-hidden="true"></span>Conteúdo em construção</div>
 
       <div class="svc-cta">
-        <a class="svc-cta-btn" href="/diagnostico">Faça o diagnóstico gratuito</a>
+        <a class="svc-cta-btn" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Estudo%20de%20Qualidade%20de%20Energia%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
       </div>
     </div>
   </main>

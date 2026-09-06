@@ -1,3 +1,7 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/servicos/qualidade-de-energia", "destination": "/servicos/eficiencia-energetica/qualidade-de-energia", "permanent": true },
+    { "source": "/servicos/credito-icms-energia", "destination": "/servicos/eficiencia-energetica/credito-icms", "permanent": true }
+  ]
 }

@@ -57,7 +57,7 @@
     .nav-item-dropdown > a[aria-expanded="true"] .nav-caret { transform: rotate(180deg); }
     .nav-dropdown {
       position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px);
-      width: 300px; padding: .55rem; border-radius: var(--r-card); background: #fff;
+      width: 320px; padding: .55rem; border-radius: var(--r-card); background: #fff;
       border: 1px solid rgba(61,127,97,.1); box-shadow: var(--shadow-float);
       opacity: 0; visibility: hidden; pointer-events: none;
       transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 60;
@@ -67,7 +67,10 @@
     .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: var(--bg-alt); }
     .nav-dropdown-title { font-size: .92rem; font-weight: 600; color: var(--forest); }
     .nav-dropdown-sub { font-size: .78rem; color: var(--muted); }
-    .nav-item-dropdown > a:focus-visible, .nav-dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+    .nav-dropdown-subitem { display: block; padding: .5rem .8rem .5rem 1.7rem; border-radius: 10px; font-size: .84rem; color: var(--sage); transition: background .15s, color .15s; }
+    .nav-dropdown-subitem:hover, .nav-dropdown-subitem:focus-visible { background: var(--bg-alt); color: var(--forest); }
+    .nav-dropdown-divider { height: 1px; background: rgba(61,127,97,.1); margin: .4rem .6rem; }
+    .nav-item-dropdown > a:focus-visible, .nav-dropdown-item:focus-visible, .nav-dropdown-subitem:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
     .nav-right { display: flex; align-items: center; gap: 2.4rem; }
     .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: .5rem; border-radius: 8px; transition: background .2s; }
     .nav-hamburger:hover { background: rgba(61,127,97,.08); }
@@ -89,7 +92,7 @@
         border-bottom: 1px solid rgba(61,127,97,.12); max-height: 0; overflow: hidden; opacity: 0;
         transition: max-height .35s ease, opacity .25s ease; z-index: 99;
       }
-      .nav-mobile-menu.open { max-height: 640px; opacity: 1; }
+      .nav-mobile-menu.open { max-height: 760px; opacity: 1; }
       .nav-mobile-menu ul { list-style: none; display: flex; flex-direction: column; padding: .75rem 2rem 1.25rem; margin: 0; }
       .nav-mobile-menu ul li a { display: block; padding: .9rem 0; font-size: 1rem; font-weight: 500; color: var(--sage); border-bottom: 1px solid rgba(61,127,97,.08); transition: color .2s, padding-left .2s; }
       .nav-mobile-menu ul li:last-child a { border-bottom: none; }
@@ -101,8 +104,9 @@
       .nav-mobile-caret { width: 16px; height: 16px; transition: transform .25s ease; }
       .nav-mobile-subtoggle[aria-expanded="true"] .nav-mobile-caret { transform: rotate(180deg); }
       .nav-mobile-submenu { list-style: none; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s ease, opacity .25s ease; padding-left: 1rem; margin: 0; }
-      .nav-mobile-submenu.open { max-height: 280px; opacity: 1; }
+      .nav-mobile-submenu.open { max-height: 440px; opacity: 1; }
       .nav-mobile-submenu li a { padding: .7rem 0; font-size: .92rem; border-bottom: 1px dashed rgba(61,127,97,.08); }
+      .nav-mobile-submenu li a.nav-mobile-subsub { padding: .75rem 0 .75rem 1rem; font-size: .86rem; color: var(--muted); }
       .nav-mobile-submenu li:last-child a { border-bottom: none; }
     }
     @media (max-width: 480px) {
@@ -216,14 +220,11 @@
                 <span class="nav-dropdown-title">Eficiência Energética</span>
                 <span class="nav-dropdown-sub">Redução de custos com energia</span>
               </a>
-              <a href="/servicos/qualidade-de-energia" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Estudos de QEE</span>
-                <span class="nav-dropdown-sub">Qualidade de Energia Elétrica</span>
-              </a>
-              <a href="/servicos/credito-icms-energia" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Laudo de Crédito de ICMS</span>
-                <span class="nav-dropdown-sub">Recuperação sobre a energia elétrica</span>
-              </a>
+              <a href="/servicos/eficiencia-energetica/analise-tarifaria" role="menuitem" class="nav-dropdown-subitem">Análise Tarifária</a>
+              <a href="/servicos/eficiencia-energetica/mercado-livre" role="menuitem" class="nav-dropdown-subitem">Mercado Livre de Energia</a>
+              <a href="/servicos/eficiencia-energetica/qualidade-de-energia" role="menuitem" class="nav-dropdown-subitem">Qualidade de Energia (QEE)</a>
+              <a href="/servicos/eficiencia-energetica/credito-icms" role="menuitem" class="nav-dropdown-subitem">Crédito de ICMS</a>
+              <div class="nav-dropdown-divider" aria-hidden="true"></div>
               <a href="/servicos/manutencao-subestacao" role="menuitem" class="nav-dropdown-item">
                 <span class="nav-dropdown-title">Manutenção em Subestações</span>
                 <span class="nav-dropdown-sub">Média tensão, preventiva e laudos</span>
@@ -263,8 +264,10 @@
             </div>
             <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel" aria-hidden="true">
               <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-              <li><a href="/servicos/qualidade-de-energia">Estudos de QEE</a></li>
-              <li><a href="/servicos/credito-icms-energia">Laudo de Crédito de ICMS</a></li>
+              <li><a href="/servicos/eficiencia-energetica/analise-tarifaria" class="nav-mobile-subsub">Análise Tarifária</a></li>
+              <li><a href="/servicos/eficiencia-energetica/mercado-livre" class="nav-mobile-subsub">Mercado Livre de Energia</a></li>
+              <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia" class="nav-mobile-subsub">Qualidade de Energia (QEE)</a></li>
+              <li><a href="/servicos/eficiencia-energetica/credito-icms" class="nav-mobile-subsub">Crédito de ICMS</a></li>
               <li><a href="/servicos/manutencao-subestacao">Manutenção em Subestações</a></li>
             </ul>
           </li>

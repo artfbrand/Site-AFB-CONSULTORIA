@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eficiência Energética · AFB Consultoria Energética</title>
-  <meta name="description" content="Revisão de demanda contratada, enquadramento tarifário e ações de redução de consumo, com ganho já na próxima fatura." />
+  <title>Análise Tarifária e Relatório GMT · AFB Consultoria Energética</title>
+  <meta name="description" content="Estudamos o histórico de consumo, avaliamos o enquadramento tarifário e a demanda contratada ideal, e identificamos multas por reativo, ultrapassagem e demais custos evitáveis." />
 
-  <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
-  <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+  <link rel="icon" type="image/png" href="../../assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="../../assets/images/favicon.png" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="Eficiência Energética · AFB Consultoria Energética" />
-  <meta property="og:description" content="Revisão de demanda contratada, enquadramento tarifário e ações de redução de consumo, com ganho já na próxima fatura." />
-  <meta property="og:url"         content="https://www.afbconsultoria.com.br/servicos/eficiencia-energetica" />
+  <meta property="og:title"       content="Análise Tarifária e Relatório GMT · AFB Consultoria Energética" />
+  <meta property="og:description" content="Estudamos o histórico de consumo, avaliamos o enquadramento tarifário e a demanda contratada ideal, e identificamos multas por reativo, ultrapassagem e demais custos evitáveis." />
+  <meta property="og:url"         content="https://www.afbconsultoria.com.br/servicos/eficiencia-energetica/analise-tarifaria" />
   <meta property="og:image"       content="https://www.afbconsultoria.com.br/assets/images/og-image.jpg" />
   <meta property="og:locale"      content="pt_BR" />
   <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="Eficiência Energética · AFB Consultoria Energética" />
-  <meta name="twitter:description" content="Revisão de demanda contratada, enquadramento tarifário e ações de redução de consumo, com ganho já na próxima fatura." />
+  <meta name="twitter:title"      content="Análise Tarifária e Relatório GMT · AFB Consultoria Energética" />
+  <meta name="twitter:description" content="Estudamos o histórico de consumo, avaliamos o enquadramento tarifário e a demanda contratada ideal, e identificamos multas por reativo, ultrapassagem e demais custos evitáveis." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -113,131 +113,30 @@
       .nav { height: 76px; } .nav-logo-center img { height: 58px; } main { padding-top: 76px; }
     }
 
-    /* ─── ELEMENTOS COMPARTILHADOS DA PÁGINA ─────────────────────────────── */
-    .ee-kicker { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
-    .ee-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--forest); margin-top: .6rem; }
-    .ee-btn-primary {
-      display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
-      padding: .95rem 2rem; border-radius: var(--r-pill); min-height: 44px;
+    /* ─── CONTEÚDO DA PÁGINA ────────────────────────────────────────────── */
+    .svc-detail { max-width: 900px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .svc-back { display: inline-flex; align-items: center; gap: .4rem; font-size: .88rem; font-weight: 600; color: var(--accent); margin-bottom: 2rem; }
+    .svc-back:hover { color: var(--forest); }
+    .svc-detail-kicker { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+    .svc-detail-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--forest); margin-top: .6rem; max-width: 22ch; }
+    .svc-detail-desc { font-size: 1.02rem; line-height: 1.75; color: var(--sage); margin-top: 1.3rem; max-width: 60ch; }
+    .svc-badge {
+      display: inline-flex; align-items: center; gap: .5rem; margin-top: 2rem;
+      padding: .55rem 1.1rem; border-radius: var(--r-pill);
+      background: var(--bg-alt); border: 1px dashed rgba(61,127,97,.35);
+      font-size: .82rem; font-weight: 600; color: var(--muted);
+    }
+    .svc-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+    .svc-cta { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(61,127,97,.12); }
+    .svc-cta-btn {
+      display: inline-flex; align-items: center; gap: .65rem; min-height: 44px;
+      padding: .9rem 2rem; border-radius: var(--r-pill);
       background: var(--accent); color: #fff; font-size: .92rem; font-weight: 600;
       box-shadow: 0 4px 18px rgba(61,127,97,.28);
       transition: background .2s, transform .22s var(--ease-out), box-shadow .22s;
     }
-    .ee-btn-primary:hover { background: var(--forest); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,60,31,.28); }
-    .ee-btn-secondary {
-      display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
-      padding: .9rem 1.9rem; border-radius: var(--r-pill); min-height: 44px;
-      background: transparent; color: var(--accent); font-size: .92rem; font-weight: 600;
-      border: 1.5px solid rgba(61,127,97,.35);
-      transition: border-color .2s, color .2s, background .2s;
-    }
-    .ee-btn-secondary:hover { border-color: var(--accent); background: var(--bg-alt); color: var(--forest); }
-
-    /* ─── 1. HERO ─────────────────────────────────────────────────────────── */
-    .ee-hero { background: var(--bg); padding: 5rem 3rem 4.5rem; }
-    .ee-hero-inner { max-width: 780px; margin: 0 auto; }
-    .ee-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.3rem, 5vw, 3.6rem); color: var(--forest); margin-top: .7rem; }
-    .ee-hero-text { font-size: 1.06rem; line-height: 1.75; color: var(--sage); margin-top: 1.5rem; max-width: 62ch; }
-    .ee-hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.2rem; }
-
-    /* ─── 2. SINAIS DE ALERTA ─────────────────────────────────────────────── */
-    .ee-alert { background: var(--bg-alt); padding: 4.5rem 3rem; }
-    .ee-alert-inner { max-width: 640px; margin: 0 auto; }
-    .ee-alert-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.1rem; }
-    .ee-alert-list li { position: relative; padding-left: 1.6rem; font-size: 1rem; line-height: 1.6; color: var(--sage); }
-    .ee-alert-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 2px; background: var(--accent); }
-    .ee-alert-close { margin-top: 2.2rem; font-style: italic; color: var(--forest); font-size: 1.02rem; font-weight: 500; }
-
-    /* ─── 3. DIFERENCIAIS ─────────────────────────────────────────────────── */
-    .ee-diff { background: var(--bg); padding: 4.5rem 3rem; }
-    .ee-diff-inner { max-width: 1000px; margin: 0 auto; }
-    .ee-diff-list { list-style: none; margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem 2.5rem; }
-    .ee-diff-list li { position: relative; padding-left: 1.6rem; font-size: .98rem; line-height: 1.6; color: var(--sage); }
-    .ee-diff-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 2px; background: var(--orange); }
-    @media (max-width: 767px) { .ee-diff-list { grid-template-columns: 1fr; } }
-
-    /* ─── 4. SUB-SERVIÇOS ─────────────────────────────────────────────────── */
-    .ee-services { background: var(--bg-alt); padding: 4.5rem 3rem 5rem; }
-    .ee-services-inner { max-width: 1120px; margin: 0 auto; }
-    .ee-services-lead { margin-top: 1rem; font-size: 1rem; color: var(--sage); max-width: 60ch; }
-    .ee-services-grid { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .ee-service-card {
-      background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card);
-      padding: 2rem; display: flex; flex-direction: column; gap: .8rem;
-    }
-    .ee-service-num { font-family: var(--font-display); font-weight: 700; font-size: 2.1rem; color: var(--orange); line-height: 1; opacity: .9; }
-    .ee-service-title { font-family: var(--font-display); font-weight: 700; font-size: 1.22rem; color: var(--forest); }
-    .ee-service-title a:hover { color: var(--accent); }
-    .ee-service-text { font-size: .92rem; line-height: 1.65; color: var(--sage); flex-grow: 1; }
-    .ee-service-wa {
-      align-self: flex-start; display: inline-flex; align-items: center; gap: .5rem; min-height: 44px;
-      padding: .7rem 1.3rem; border-radius: var(--r-pill);
-      background: var(--accent); color: #fff; font-size: .84rem; font-weight: 600;
-      transition: background .2s, transform .2s;
-    }
-    .ee-service-wa:hover { background: var(--forest); transform: translateY(-1px); }
-    @media (max-width: 767px) { .ee-services-grid { grid-template-columns: 1fr; } }
-
-    /* ─── 5. COMO FUNCIONA ────────────────────────────────────────────────── */
-    .ee-how { background: var(--bg); padding: 5rem 3rem; }
-    .ee-how-inner { max-width: 1120px; margin: 0 auto; }
-    .ee-how-track { margin-top: 3rem; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-    .ee-how-track::before { content: ""; position: absolute; top: 19px; left: 3%; right: 3%; height: 1px; background: rgba(61,127,97,.25); }
-    .ee-how-step { position: relative; padding-top: 2.7rem; }
-    .ee-how-num { position: absolute; top: 0; left: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--orange); background: var(--bg); padding-right: .7rem; }
-    .ee-how-title { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; color: var(--forest); margin-bottom: .5rem; }
-    .ee-how-text { font-size: .89rem; line-height: 1.6; color: var(--sage); }
-    @media (max-width: 1023px) {
-      .ee-how-track { grid-template-columns: 1fr; gap: 2.2rem; }
-      .ee-how-track::before { top: 0; bottom: 0; left: 17px; right: auto; width: 1px; height: auto; }
-      .ee-how-step { padding-top: 0; padding-left: 3.2rem; }
-      .ee-how-num { position: absolute; top: -.15rem; left: 0; background: var(--bg); padding-right: 0; width: 36px; text-align: center; }
-    }
-
-    /* ─── 6. FAQ ──────────────────────────────────────────────────────────── */
-    .ee-faq { background: var(--bg-alt); padding: 4.5rem 3rem 5rem; }
-    .ee-faq-inner { max-width: 700px; margin: 0 auto; }
-    .ee-faq-list { margin-top: 2rem; border-top: 1px solid rgba(61,127,97,.15); }
-    .ee-faq-item { border-bottom: 1px solid rgba(61,127,97,.15); }
-    .ee-faq-item h3 { font-size: inherit; font-weight: inherit; }
-    .ee-faq-q {
-      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px;
-      background: none; border: none; text-align: left; cursor: pointer;
-      padding: 1.2rem .2rem; font: inherit; font-size: .98rem; font-weight: 600; color: var(--forest);
-    }
-    .ee-faq-caret { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent); transition: transform .25s ease; }
-    .ee-faq-q[aria-expanded="true"] .ee-faq-caret { transform: rotate(180deg); }
-    .ee-faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
-    .ee-faq-a { padding: 0 .2rem 1.3rem; }
-    .ee-faq-a p { font-size: .92rem; line-height: 1.7; color: var(--sage); max-width: 62ch; }
-    .ee-faq-pending { font-style: italic; color: var(--muted); }
-
-    /* ─── 7. CHAMADA FINAL ────────────────────────────────────────────────── */
-    .ee-final { background: var(--forest); padding: 5rem 3rem; }
-    .ee-final-inner { max-width: 700px; margin: 0 auto; text-align: center; }
-    .ee-final-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4vw, 2.6rem); color: #FAF9F6; }
-    .ee-final-text { margin-top: 1rem; font-size: 1rem; line-height: 1.7; color: rgba(250,249,246,.78); }
-    .ee-final-cta { margin-top: 2.2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
-    .ee-final-btn-primary {
-      display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 44px;
-      padding: .95rem 2rem; border-radius: var(--r-pill);
-      background: var(--orange); color: #fff; font-size: .92rem; font-weight: 600;
-      box-shadow: 0 4px 18px rgba(246,144,102,.3);
-      transition: background .2s, transform .22s var(--ease-out);
-    }
-    .ee-final-btn-primary:hover { background: #E35D30; transform: translateY(-2px); }
-    .ee-final-btn-secondary {
-      display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 44px;
-      padding: .9rem 1.9rem; border-radius: var(--r-pill);
-      background: transparent; color: #FAF9F6; font-size: .92rem; font-weight: 600;
-      border: 1.5px solid rgba(255,255,255,.3);
-      transition: border-color .2s, background .2s;
-    }
-    .ee-final-btn-secondary:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.08); }
-
-    @media (max-width: 767px) {
-      .ee-hero, .ee-alert, .ee-diff, .ee-services, .ee-how, .ee-faq, .ee-final { padding-left: 1.5rem; padding-right: 1.5rem; }
-    }
+    .svc-cta-btn:hover { background: var(--forest); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,60,31,.28); }
+    @media (max-width: 767px) { .svc-detail { padding: 2.5rem 1.5rem 4rem; } }
 
     /* ─── FOOTER ─────────────────────────────────────────────────────────── */
     .site-footer { background: var(--forest); color: #FAF9F6; padding: 4.5rem 0 0; position: relative; overflow: hidden; }
@@ -334,7 +233,7 @@
         </ul>
 
         <a href="/" class="nav-logo-center" aria-label="AFB Consultoria Energética — página inicial">
-          <img src="../assets/images/logo-horizontal-v2.png" alt="AFB Consultoria Energética" />
+          <img src="../../assets/images/logo-horizontal-v2.png" alt="AFB Consultoria Energética" />
         </a>
 
         <div class="nav-right">
@@ -380,205 +279,17 @@
   </header>
 
   <main>
+    <div class="svc-detail">
+      <a class="svc-back" href="/servicos/eficiencia-energetica">← Eficiência Energética</a>
+      <div class="svc-detail-kicker">Eficiência Energética</div>
+      <h1 class="svc-detail-h1">Análise Tarifária e Relatório GMT</h1>
+      <p class="svc-detail-desc">Estudamos o histórico de consumo, avaliamos o enquadramento tarifário e a demanda contratada ideal, e identificamos multas por reativo, ultrapassagem e demais custos evitáveis. Fazemos a representação junto à concessionária e acompanhamos a adequação até a economia aparecer na fatura.</p>
+      <div class="svc-badge"><span class="svc-badge-dot" aria-hidden="true"></span>Conteúdo em construção</div>
 
-    <!-- 1. HERO -->
-    <section class="ee-hero">
-      <div class="ee-hero-inner">
-        <div class="ee-kicker">Reduza sua conta de energia</div>
-        <h1 class="ee-h1">Eficiência Energética</h1>
-        <p class="ee-hero-text">A maior parte do que se paga a mais em energia não está no consumo. Está no contrato, no enquadramento tarifário e em cobranças que passam despercebidas todo mês. Analisamos sua fatura, corrigimos o que está mal dimensionado e negociamos melhores condições de compra. A redução aparece na fatura seguinte, sem obra e sem investimento inicial.</p>
-        <div class="ee-hero-cta">
-          <a class="ee-btn-primary" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20servi%C3%A7os%20de%20Efici%C3%AAncia%20Energ%C3%A9tica%21" target="_blank" rel="noopener noreferrer">Quero reduzir minha conta</a>
-          <a class="ee-btn-secondary" href="/diagnostico">Fazer diagnóstico gratuito</a>
-        </div>
+      <div class="svc-cta">
+        <a class="svc-cta-btn" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20An%C3%A1lise%20Tarif%C3%A1ria%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
       </div>
-    </section>
-
-    <!-- 2. SINAIS DE ALERTA -->
-    <section class="ee-alert">
-      <div class="ee-alert-inner">
-        <div class="ee-kicker">Como identificar</div>
-        <h2 class="ee-h2">Sua empresa provavelmente paga mais do que deveria se...</h2>
-        <ul class="ee-alert-list">
-          <li>A demanda contratada não é revisada há mais de dois anos</li>
-          <li>Aparecem multas por ultrapassagem ou energia reativa na fatura</li>
-          <li>Ninguém sabe dizer qual é a modalidade tarifária contratada</li>
-          <li>A empresa nunca comparou o preço da energia fora da concessionária</li>
-          <li>Equipamentos queimam com frequência e ninguém identificou a causa</li>
-          <li>A energia aplicada à produção nunca foi separada para fins de ICMS</li>
-        </ul>
-        <p class="ee-alert-close">Cada um desses pontos tem correção conhecida e retorno mensurável.</p>
-      </div>
-    </section>
-
-    <!-- 3. DIFERENCIAIS -->
-    <section class="ee-diff">
-      <div class="ee-diff-inner">
-        <div class="ee-kicker">Por que a LUMUS</div>
-        <h2 class="ee-h2">Análise técnica, não palpite comercial</h2>
-        <ul class="ee-diff-list">
-          <li>Análise completa da fatura e do histórico de consumo</li>
-          <li>Representação técnica junto à concessionária de energia</li>
-          <li>Estratégia definida pelo perfil da operação, não por modelo pronto</li>
-          <li>Acompanhamento contínuo para confirmar a economia nas faturas seguintes</li>
-          <li>Laudo técnico com ART quando o serviço exigir</li>
-          <li>Contabilidade parceira especializada nos casos de crédito de ICMS</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 4. SUB-SERVIÇOS -->
-    <section class="ee-services">
-      <div class="ee-services-inner">
-        <div class="ee-kicker">O que oferecemos</div>
-        <h2 class="ee-h2">Quatro frentes, uma só análise</h2>
-        <p class="ee-services-lead">Começamos sempre pela fatura. A partir dela definimos quais frentes fazem sentido para a sua operação.</p>
-
-        <div class="ee-services-grid">
-          <article class="ee-service-card">
-            <span class="ee-service-num" aria-hidden="true">01</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/analise-tarifaria">Análise Tarifária e Relatório GMT</a></h3>
-            <p class="ee-service-text">Estudamos o histórico de consumo, avaliamos o enquadramento tarifário e a demanda contratada ideal, e identificamos multas por reativo, ultrapassagem e demais custos evitáveis. Fazemos a representação junto à concessionária e acompanhamos a adequação até a economia aparecer na fatura.</p>
-            <a class="ee-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20An%C3%A1lise%20Tarif%C3%A1ria%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ee-service-card">
-            <span class="ee-service-num" aria-hidden="true">02</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/mercado-livre">Migração para o Mercado Livre de Energia</a></h3>
-            <p class="ee-service-text">Somos credenciados nas principais comercializadoras do país e cotamos com todas elas para apresentar a melhor proposta por kWh. Intermediamos a negociação do início ao fim. Trabalhamos com Mercado Livre de Energia, Geração Distribuída e energia por assinatura.</p>
-            <a class="ee-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Migra%C3%A7%C3%A3o%20para%20o%20Mercado%20Livre%20de%20Energia%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ee-service-card">
-            <span class="ee-service-num" aria-hidden="true">03</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Estudo de Qualidade de Energia (QEE)</a></h3>
-            <p class="ee-service-text">Medimos e analisamos a energia da instalação para identificar perdas, distúrbios que danificam equipamentos e riscos à operação. Inclui correção do fator de potência para eliminar multas por reativo, estudo do perfil de consumo e diagnóstico com plano de ação priorizado.</p>
-            <a class="ee-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Estudo%20de%20Qualidade%20de%20Energia%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ee-service-card">
-            <span class="ee-service-num" aria-hidden="true">04</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/credito-icms">Laudo de Crédito de ICMS sobre Energia</a></h3>
-            <p class="ee-service-text">A energia aplicada ao processo produtivo gera direito a crédito de ICMS, parcela que costuma ser relevante na conta conforme o perfil de consumo. Elaboramos o relatório técnico acompanhado de ART, que dá respaldo à apropriação e reduz a exposição em fiscalizações. Atuamos junto a contabilidade parceira especializada.</p>
-            <a class="ee-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Laudo%20de%20Cr%C3%A9dito%20de%20ICMS%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. COMO FUNCIONA -->
-    <section class="ee-how">
-      <div class="ee-how-inner">
-        <div class="ee-kicker">Do primeiro contato ao resultado</div>
-        <h2 class="ee-h2">Como funciona</h2>
-        <div class="ee-how-track">
-          <div class="ee-how-step">
-            <span class="ee-how-num" aria-hidden="true">01</span>
-            <h3 class="ee-how-title">Diagnóstico</h3>
-            <p class="ee-how-text">Você responde o diagnóstico online ou nos envia as três últimas faturas. Devolvemos uma leitura inicial do que há de recuperável, sem compromisso.</p>
-          </div>
-          <div class="ee-how-step">
-            <span class="ee-how-num" aria-hidden="true">02</span>
-            <h3 class="ee-how-title">Análise técnica</h3>
-            <p class="ee-how-text">Levantamento em campo e medição quando o caso exigir, com apuração dos números que sustentam cada recomendação.</p>
-          </div>
-          <div class="ee-how-step">
-            <span class="ee-how-num" aria-hidden="true">03</span>
-            <h3 class="ee-how-title">Execução</h3>
-            <p class="ee-how-text">Representação junto à concessionária, negociação com comercializadoras ou emissão do laudo técnico, conforme a frente contratada.</p>
-          </div>
-          <div class="ee-how-step">
-            <span class="ee-how-num" aria-hidden="true">04</span>
-            <h3 class="ee-how-title">Acompanhamento</h3>
-            <p class="ee-how-text">Monitoramos as faturas seguintes para confirmar que a economia se manteve e ajustar o que for necessário.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. PERGUNTAS FREQUENTES -->
-    <section class="ee-faq">
-      <div class="ee-faq-inner">
-        <div class="ee-kicker">Dúvidas frequentes</div>
-        <h2 class="ee-h2">Perguntas frequentes</h2>
-
-        <div class="ee-faq-list">
-          <div class="ee-faq-item">
-            <h3><button class="ee-faq-q" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
-              Preciso investir em equipamentos para reduzir a conta?
-              <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button></h3>
-            <div class="ee-faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
-              <p>Na maior parte dos casos, não. Boa parte da economia vem de ajuste contratual, reenquadramento tarifário e correção de cobranças indevidas, que não exigem obra nem parada de produção.</p>
-            </div>
-          </div>
-
-          <div class="ee-faq-item">
-            <h3><button class="ee-faq-q" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
-              Em quanto tempo aparece o resultado?
-              <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button></h3>
-            <div class="ee-faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
-              <p>Ajustes de demanda e de enquadramento costumam refletir já no próximo ciclo de faturamento. Migração para o mercado livre e apuração de crédito de ICMS seguem prazos próprios, que informamos no início do trabalho.</p>
-            </div>
-          </div>
-
-          <div class="ee-faq-item">
-            <h3><button class="ee-faq-q" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
-              A operação precisa parar?
-              <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button></h3>
-            <div class="ee-faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
-              <p>Não. As medições são feitas com a planta em funcionamento, justamente para capturar o comportamento real da instalação.</p>
-            </div>
-          </div>
-
-          <div class="ee-faq-item">
-            <h3><button class="ee-faq-q" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
-              Vocês atendem empresas de que porte?
-              <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button></h3>
-            <div class="ee-faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
-              <p>Atendemos empresas atendidas em alta e em baixa tensão, de pequeno a grande porte. O que define o potencial não é o tamanho, é o perfil de consumo e o contrato vigente.</p>
-            </div>
-          </div>
-
-          <div class="ee-faq-item">
-            <h3><button class="ee-faq-q" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
-              Aproveitar o crédito de ICMS traz risco de autuação?
-              <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button></h3>
-            <div class="ee-faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
-              <p>O risco existe quando a apropriação é feita sem base técnica. Por isso o laudo é acompanhado de ART e conduzido junto a contabilidade especializada, para que a empresa tenha respaldo documental diante de fiscalização.</p>
-            </div>
-          </div>
-
-          <!-- PENDENTE: resposta desta pergunta ainda não foi definida pelo cliente -->
-          <div class="ee-faq-item">
-            <h3><button class="ee-faq-q" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
-              Como funciona a contratação?
-              <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button></h3>
-            <div class="ee-faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
-              <p class="ee-faq-pending">Conteúdo em construção.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. CHAMADA FINAL -->
-    <section class="ee-final">
-      <div class="ee-final-inner">
-        <h2 class="ee-final-h2">Comece pela fatura</h2>
-        <p class="ee-final-text">Envie as três últimas contas de energia ou responda o diagnóstico online. Em poucos dias você recebe uma leitura do que há de recuperável na sua operação.</p>
-        <div class="ee-final-cta">
-          <a class="ee-final-btn-primary" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20servi%C3%A7os%20de%20Efici%C3%AAncia%20Energ%C3%A9tica%21" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-          <a class="ee-final-btn-secondary" href="/diagnostico">Fazer diagnóstico gratuito</a>
-        </div>
-      </div>
-    </section>
-
+    </div>
   </main>
 
   <footer class="site-footer" id="footer" role="contentinfo">
@@ -725,16 +436,6 @@
         svcMobilePanel.setAttribute('aria-hidden', String(!isOpen));
       });
     }
-
-    /* ── Acordeão de perguntas frequentes ─────────────────────────── */
-    document.querySelectorAll('.ee-faq-q').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var isOpen = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!isOpen));
-        var panel = document.getElementById(btn.getAttribute('aria-controls'));
-        if (panel) panel.hidden = isOpen;
-      });
-    });
 
     var btt = document.getElementById('back-to-top');
     if (btt) {
