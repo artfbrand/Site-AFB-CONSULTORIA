@@ -234,7 +234,7 @@ var SECTIONS = [
   },
   {
     id:"s1", title:"Subestação e manutenção", tint:"var(--sub)",
-    note:"Este bloco trata da entrada de energia da empresa: transformador, chaves, disjuntores e cabine.",
+    note:"Este bloco trata da entrada de energia da empresa e visa entender como está a segurança operacional das suas instalações.",
     skipIf:function(a){ return a.tensao === "Baixa tensão — somente o padrão de entrada"; },
     fields:[
       {id:"se_tipo", type:"single", label:"Sua subestação é aérea ou abrigada?",
