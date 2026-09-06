@@ -1,5 +1,5 @@
 /*
- * Registro canônico dos serviços da AFB Consultoria Energética.
+ * Registro canônico dos serviços da AFB Engenharia & Consultoria Elétrica.
  *
  * Este site é HTML/CSS/JS estático, sem build e sem framework — não há
  * templating que leia este arquivo automaticamente. Ele existe como a
