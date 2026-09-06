@@ -178,6 +178,37 @@
       transition: color .2s;
     }
     .nav-links a:hover { color: var(--forest); }
+    /* ── Dropdown desktop "Serviços" ── */
+    .nav-item-dropdown { position: relative; }
+    .nav-item-dropdown > a { display: flex; align-items: center; gap: .3rem; }
+    .nav-caret { width: 13px; height: 13px; transition: transform .2s ease; }
+    .nav-item-dropdown > a[aria-expanded="true"] .nav-caret { transform: rotate(180deg); }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      width: 300px; padding: .55rem; border-radius: var(--r-card);
+      background: #fff; border: 1px solid rgba(61,127,97,.1);
+      box-shadow: var(--shadow-float);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, visibility .18s;
+      z-index: 60;
+    }
+    .nav-dropdown.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-item {
+      display: flex; flex-direction: column; gap: .15rem;
+      padding: .65rem .8rem; border-radius: 10px;
+      transition: background .15s;
+    }
+    .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: var(--bg-alt); }
+    .nav-dropdown-title { font-size: .92rem; font-weight: 600; color: var(--forest); }
+    .nav-dropdown-sub { font-size: .78rem; color: var(--muted); }
+    .nav-item-dropdown > a:focus-visible,
+    .nav-dropdown-item:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px;
+    }
     .nav-right {
       display: flex; align-items: center; gap: 2.4rem;
     }
@@ -247,7 +278,7 @@
         z-index: 99;
       }
       .nav-mobile-menu.open {
-        max-height: 320px;
+        max-height: 640px;
         opacity: 1;
       }
       .nav-mobile-menu ul {
@@ -264,6 +295,27 @@
       }
       .nav-mobile-menu ul li:last-child a { border-bottom: none; }
       .nav-mobile-menu ul li a:hover { color: var(--forest); padding-left: .4rem; }
+      /* ── item expansível "Serviços" ── */
+      .nav-mobile-item-dropdown { border-bottom: 1px solid rgba(61,127,97,.08); }
+      .nav-mobile-row { display: flex; align-items: stretch; }
+      .nav-mobile-row a { flex: 1; border-bottom: none; }
+      .nav-mobile-subtoggle {
+        background: none; border: none; padding: 0 .2rem 0 .8rem; cursor: pointer;
+        color: var(--sage); display: flex; align-items: center;
+      }
+      .nav-mobile-caret { width: 16px; height: 16px; transition: transform .25s ease; }
+      .nav-mobile-subtoggle[aria-expanded="true"] .nav-mobile-caret { transform: rotate(180deg); }
+      .nav-mobile-submenu {
+        list-style: none; max-height: 0; overflow: hidden; opacity: 0;
+        transition: max-height .3s ease, opacity .25s ease;
+        padding-left: 1rem; margin: 0;
+      }
+      .nav-mobile-submenu.open { max-height: 280px; opacity: 1; }
+      .nav-mobile-submenu li a {
+        padding: .7rem 0; font-size: .92rem;
+        border-bottom: 1px dashed rgba(61,127,97,.08);
+      }
+      .nav-mobile-submenu li:last-child a { border-bottom: none; }
     }
     @media (max-width: 480px) {
       .nav { height: 76px; }
@@ -940,6 +992,30 @@
         <ul class="nav-links" role="list">
           <li><a href="#solucoes">Soluções</a></li>
           <li><a href="#como-funciona">Como Funciona</a></li>
+          <li class="nav-item-dropdown">
+            <a href="/servicos" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
+              Serviços
+              <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="nav-dropdown" id="nav-servicos-dropdown" role="menu" aria-labelledby="nav-servicos-trigger">
+              <a href="/servicos/eficiencia-energetica" role="menuitem" class="nav-dropdown-item">
+                <span class="nav-dropdown-title">Eficiência Energética</span>
+                <span class="nav-dropdown-sub">Redução de custos com energia</span>
+              </a>
+              <a href="/servicos/qualidade-de-energia" role="menuitem" class="nav-dropdown-item">
+                <span class="nav-dropdown-title">Estudos de QEE</span>
+                <span class="nav-dropdown-sub">Qualidade de Energia Elétrica</span>
+              </a>
+              <a href="/servicos/credito-icms-energia" role="menuitem" class="nav-dropdown-item">
+                <span class="nav-dropdown-title">Laudo de Crédito de ICMS</span>
+                <span class="nav-dropdown-sub">Recuperação sobre a energia elétrica</span>
+              </a>
+              <a href="/servicos/manutencao-subestacao" role="menuitem" class="nav-dropdown-item">
+                <span class="nav-dropdown-title">Manutenção em Subestações</span>
+                <span class="nav-dropdown-sub">Média tensão, preventiva e laudos</span>
+              </a>
+            </div>
+          </li>
         </ul>
 
         <!-- logo — centro absoluto -->
@@ -968,6 +1044,20 @@
         <ul>
           <li><a href="#solucoes">Soluções</a></li>
           <li><a href="#como-funciona">Como Funciona</a></li>
+          <li class="nav-mobile-item-dropdown">
+            <div class="nav-mobile-row">
+              <a href="/servicos">Serviços</a>
+              <button class="nav-mobile-subtoggle" id="nav-mobile-servicos-toggle" aria-expanded="false" aria-controls="nav-mobile-servicos-panel" aria-label="Expandir lista de serviços">
+                <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </div>
+            <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel" aria-hidden="true">
+              <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
+              <li><a href="/servicos/qualidade-de-energia">Estudos de QEE</a></li>
+              <li><a href="/servicos/credito-icms-energia">Laudo de Crédito de ICMS</a></li>
+              <li><a href="/servicos/manutencao-subestacao">Manutenção em Subestações</a></li>
+            </ul>
+          </li>
           <li><a href="#quem-somos">Quem Somos</a></li>
           <li><a href="#contato">Contato</a></li>
           <li><a href="/diagnostico">Diagnóstico gratuito</a></li>
@@ -3628,6 +3718,49 @@
           hamburger.setAttribute('aria-expanded', 'false');
           mobileMenu.setAttribute('aria-hidden', 'true');
         });
+      });
+    }
+
+    /* ── Dropdown desktop "Serviços" ─────────────────────────────── */
+    const svcTrigger = document.getElementById('nav-servicos-trigger');
+    const svcDropdown = document.getElementById('nav-servicos-dropdown');
+    const svcItem = svcTrigger ? svcTrigger.closest('.nav-item-dropdown') : null;
+    if (svcTrigger && svcDropdown && svcItem) {
+      let svcCloseTimer;
+      const openSvc = () => {
+        clearTimeout(svcCloseTimer);
+        svcDropdown.classList.add('open');
+        svcTrigger.setAttribute('aria-expanded', 'true');
+      };
+      const closeSvc = (returnFocus) => {
+        svcDropdown.classList.remove('open');
+        svcTrigger.setAttribute('aria-expanded', 'false');
+        if (returnFocus) svcTrigger.focus();
+      };
+      svcItem.addEventListener('mouseenter', openSvc);
+      svcItem.addEventListener('mouseleave', () => {
+        svcCloseTimer = setTimeout(() => closeSvc(false), 150);
+      });
+      svcTrigger.addEventListener('focus', openSvc);
+      svcItem.addEventListener('focusout', (e) => {
+        if (!svcItem.contains(e.relatedTarget)) closeSvc(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && svcDropdown.classList.contains('open')) closeSvc(true);
+      });
+      document.addEventListener('click', (e) => {
+        if (!svcItem.contains(e.target)) closeSvc(false);
+      });
+    }
+
+    /* ── Item expansível "Serviços" no menu mobile ───────────────── */
+    const svcMobileToggle = document.getElementById('nav-mobile-servicos-toggle');
+    const svcMobilePanel = document.getElementById('nav-mobile-servicos-panel');
+    if (svcMobileToggle && svcMobilePanel) {
+      svcMobileToggle.addEventListener('click', () => {
+        const isOpen = svcMobilePanel.classList.toggle('open');
+        svcMobileToggle.setAttribute('aria-expanded', String(isOpen));
+        svcMobilePanel.setAttribute('aria-hidden', String(!isOpen));
       });
     }
 
