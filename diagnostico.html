@@ -68,8 +68,9 @@ body{
 /* ---------- topo ---------- */
 header.top{padding:32px 0 20px}
 .kicker{font-size:.8125rem; color:var(--ink2); letter-spacing:.01em}
-h1{font-family:var(--font-display); font-size:1.75rem; line-height:1.2; font-weight:600; margin:8px 0 10px; max-width:22ch}
-header.top p{margin:0; color:var(--ink2); font-size:.9375rem; max-width:60ch}
+h1{font-family:var(--font-display); font-size:1.75rem; line-height:1.2; font-weight:600; margin:8px auto 10px; max-width:22ch; text-align:center}
+header.top p{margin:0 0 .75rem; color:var(--ink2); font-size:.9375rem; max-width:60ch}
+header.top p:last-of-type{margin-bottom:0}
 .rail{display:flex; gap:4px; margin:22px 0 4px}
 .rail span{height:3px; flex:1; background:var(--line); border-radius:2px; transition:background .25s}
 .rail span.done{background:var(--ink2)}
@@ -178,9 +179,12 @@ footer{margin-top:28px; font-size:.8125rem; color:var(--ink3); border-top:1px so
 <div class="wrap">
 
 <header class="top">
-  <div class="kicker">Consultoria em energia elétrica e tributos</div>
-  <h1>Diagnóstico da instalação elétrica e do crédito de ICMS</h1>
-  <p>São cinco blocos de perguntas rápidas, em linguagem simples. Se não souber alguma resposta, marque “não sei” — isso também é informação útil. Leva de 4 a 6 minutos.</p>
+  <div class="kicker">CONSULTORIA EM EFICIÊNCIA ENERGÉTICA, REDUÇÃO DE CUSTOS E SEGURANÇA OPERACIONAL</div>
+  <h1>Formulário Diagnóstico da Instalação Elétrica</h1>
+  <p>Este diagnóstico foi desenvolvido para proporcionar uma visão inicial das condições técnicas, operacionais e econômicas da sua instalação elétrica, permitindo identificar oportunidades de redução de custos, aumento da eficiência energética e melhoria da segurança operacional.</p>
+  <p>O formulário é composto por cinco blocos de perguntas objetivas, elaborados para obter as principais informações sobre a instalação e o perfil de consumo da empresa.</p>
+  <p>Tempo estimado de preenchimento: 4 a 6 minutos.</p>
+  <p>Não sabe alguma resposta? Sem problema. Selecione a opção “Não sei”. Essa informação também é relevante para direcionarmos corretamente a análise e identificarmos quais pontos precisam de uma avaliação técnica mais aprofundada.</p>
   <div class="rail" id="rail"></div>
   <div class="rail-label" id="railLabel"></div>
 </header>
@@ -208,28 +212,30 @@ var SIM = "Acontece", NAO = "Não acontece", NS = "Não sei";
 var SECTIONS = [
   {
     id:"s0", title:"Sobre a empresa", tint:"var(--ink2)",
-    note:"Só para saber com quem estamos falando e qual o porte da instalação.",
+    note:"Nesta etapa, buscamos compreender o porte, segmento de atuação e características operacionais da empresa, estabelecendo o contexto necessário para uma análise mais precisa da instalação elétrica.",
     fields:[
       {id:"empresa", type:"text", label:"Nome da empresa"},
-      {id:"cidade", type:"text", label:"Cidade e estado"},
-      {id:"respondente", type:"text", label:"Quem está respondendo (nome e cargo)"},
-      {id:"contato", type:"text", label:"E-mail ou WhatsApp para retorno"},
+      {id:"cidade", type:"text", label:"Cidade e Estado"},
+      {id:"nome", type:"text", label:"Nome"},
+      {id:"cargo", type:"text", label:"Cargo"},
+      {id:"email", type:"text", label:"Email"},
+      {id:"whatsapp", type:"text", label:"WhatsApp"},
       {id:"conta", type:"single", label:"Qual o valor médio da conta de energia por mês?",
        hint:"Se tiver mais de uma unidade, some tudo. Um valor aproximado já serve.",
        options:["Até R$ 10 mil","R$ 10 mil a R$ 50 mil","R$ 50 mil a R$ 150 mil","Acima de R$ 150 mil","Não sei"]},
       {id:"tensao", type:"single", label:"A empresa é atendida em alta ou baixa tensão?",
        hint:"Alta tensão: existe uma subestação, cabine ou transformador próprio na entrada. Baixa tensão: a energia chega direto no padrão, como numa casa.",
-       options:["Alta tensão — temos subestação ou cabine própria","Baixa tensão — só o padrão de entrada","Não sei"], stack:true},
+       options:["Alta tensão — temos subestação própria","Baixa tensão — somente o padrão de entrada","Não sei"], stack:true},
       {id:"unidades", type:"single", label:"Quantas unidades ou plantas a empresa tem?",
        options:["1","2 ou 3","4 ou mais"]},
-      {id:"responsavel", type:"single", label:"Quem cuida da parte elétrica hoje?",
-       options:["Eletricista ou equipe interna","Empresa terceirizada","Ninguém definido","Não sei"], stack:true}
+      {id:"responsavel", type:"single", label:"Quem é o responsável pela elétrica hoje?",
+       options:["Equipe interna","Empresa terceirizada","Ninguém definido","Não sei"], stack:true}
     ]
   },
   {
     id:"s1", title:"Subestação e manutenção", tint:"var(--sub)",
     note:"Este bloco trata da entrada de energia da empresa: transformador, chaves, disjuntores e cabine.",
-    skipIf:function(a){ return a.tensao === "Baixa tensão — só o padrão de entrada"; },
+    skipIf:function(a){ return a.tensao === "Baixa tensão — somente o padrão de entrada"; },
     fields:[
       {id:"se_tipo", type:"single", label:"Sua subestação é aérea ou abrigada?",
        hint:"Aérea: fica em poste, exposta ao tempo. Abrigada: fica dentro de uma sala ou cabine fechada.",
@@ -467,7 +473,7 @@ document.getElementById("btnBack").addEventListener("click", function(){
 /* ---------- pontuação ---------- */
 function scoreSub(){
   var a = answers, why = [], sc = 0, max = 19;
-  if(a.tensao === "Baixa tensão — só o padrão de entrada")
+  if(a.tensao === "Baixa tensão — somente o padrão de entrada")
     return {na:true, why:["A empresa não tem subestação própria."], action:"Não há serviço de subestação a oferecer. Vale checar o quadro geral e a qualidade de energia."};
 
   if(a.se_tipo && a.se_tipo.indexOf("Aérea") === 0){ sc+=1; why.push("Subestação aérea: exposta a chuva, poeira, animais e vegetação, exige inspeção mais frequente."); }
