@@ -92,7 +92,7 @@
         border-bottom: 1px solid rgba(61,127,97,.12); max-height: 0; overflow: hidden; opacity: 0;
         transition: max-height .35s ease, opacity .25s ease; z-index: 99;
       }
-      .nav-mobile-menu.open { max-height: 760px; opacity: 1; }
+      .nav-mobile-menu.open { max-height: 1050px; opacity: 1; }
       .nav-mobile-menu ul { list-style: none; display: flex; flex-direction: column; padding: .75rem 2rem 1.25rem; margin: 0; }
       .nav-mobile-menu ul li a { display: block; padding: .9rem 0; font-size: 1rem; font-weight: 500; color: var(--sage); border-bottom: 1px solid rgba(61,127,97,.08); transition: color .2s, padding-left .2s; }
       .nav-mobile-menu ul li:last-child a { border-bottom: none; }
@@ -104,7 +104,7 @@
       .nav-mobile-caret { width: 16px; height: 16px; transition: transform .25s ease; }
       .nav-mobile-subtoggle[aria-expanded="true"] .nav-mobile-caret { transform: rotate(180deg); }
       .nav-mobile-submenu { list-style: none; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s ease, opacity .25s ease; padding-left: 1rem; margin: 0; }
-      .nav-mobile-submenu.open { max-height: 440px; opacity: 1; }
+      .nav-mobile-submenu.open { max-height: 700px; opacity: 1; }
       .nav-mobile-submenu li a { padding: .7rem 0; font-size: .92rem; border-bottom: 1px dashed rgba(61,127,97,.08); }
       .nav-mobile-submenu li a.nav-mobile-subsub { padding: .75rem 0 .75rem 1rem; font-size: .86rem; color: var(--muted); }
       .nav-mobile-submenu li:last-child a { border-bottom: none; }
@@ -217,10 +217,17 @@
               <a href="/servicos/eficiencia-energetica/qualidade-de-energia" role="menuitem" class="nav-dropdown-subitem">Qualidade de Energia (QEE)</a>
               <a href="/servicos/eficiencia-energetica/credito-icms" role="menuitem" class="nav-dropdown-subitem">Crédito de ICMS</a>
               <div class="nav-dropdown-divider" aria-hidden="true"></div>
-              <a href="/servicos/manutencao-subestacao" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Manutenção em Subestações</span>
-                <span class="nav-dropdown-sub">Média tensão, preventiva e laudos</span>
+              <a href="/servicos/subestacoes" role="menuitem" class="nav-dropdown-item">
+                <span class="nav-dropdown-title">Subestações Elétricas</span>
+                <span class="nav-dropdown-sub">Segurança, média tensão e conformidade</span>
               </a>
+              <a href="/servicos/subestacoes/manutencao-preventiva" role="menuitem" class="nav-dropdown-subitem">Manutenção Preventiva</a>
+              <a href="/servicos/subestacoes/ensaios-eletricos" role="menuitem" class="nav-dropdown-subitem">Ensaios Elétricos</a>
+              <a href="/servicos/subestacoes/termografia" role="menuitem" class="nav-dropdown-subitem">Termografia</a>
+              <a href="/servicos/subestacoes/ensaio-rele-de-protecao" role="menuitem" class="nav-dropdown-subitem">Relé de Proteção</a>
+              <a href="/servicos/subestacoes/estudo-de-seletividade" role="menuitem" class="nav-dropdown-subitem">Proteção e Seletividade</a>
+              <a href="/servicos/subestacoes/analise-de-oleo-isolante" role="menuitem" class="nav-dropdown-subitem">Análise de Óleo Isolante</a>
+              <a href="/servicos/subestacoes/projeto-de-subestacao" role="menuitem" class="nav-dropdown-subitem">Projeto de Subestação</a>
             </div>
           </li>
         </ul>
@@ -260,7 +267,14 @@
               <li><a href="/servicos/eficiencia-energetica/mercado-livre" class="nav-mobile-subsub">Mercado Livre de Energia</a></li>
               <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia" class="nav-mobile-subsub">Qualidade de Energia (QEE)</a></li>
               <li><a href="/servicos/eficiencia-energetica/credito-icms" class="nav-mobile-subsub">Crédito de ICMS</a></li>
-              <li><a href="/servicos/manutencao-subestacao">Manutenção em Subestações</a></li>
+              <li><a href="/servicos/subestacoes">Subestações Elétricas</a></li>
+              <li><a href="/servicos/subestacoes/manutencao-preventiva" class="nav-mobile-subsub">Manutenção Preventiva</a></li>
+              <li><a href="/servicos/subestacoes/ensaios-eletricos" class="nav-mobile-subsub">Ensaios Elétricos</a></li>
+              <li><a href="/servicos/subestacoes/termografia" class="nav-mobile-subsub">Termografia</a></li>
+              <li><a href="/servicos/subestacoes/ensaio-rele-de-protecao" class="nav-mobile-subsub">Relé de Proteção</a></li>
+              <li><a href="/servicos/subestacoes/estudo-de-seletividade" class="nav-mobile-subsub">Proteção e Seletividade</a></li>
+              <li><a href="/servicos/subestacoes/analise-de-oleo-isolante" class="nav-mobile-subsub">Análise de Óleo Isolante</a></li>
+              <li><a href="/servicos/subestacoes/projeto-de-subestacao" class="nav-mobile-subsub">Projeto de Subestação</a></li>
             </ul>
           </li>
           <li><a href="/#quem-somos">Quem Somos</a></li>

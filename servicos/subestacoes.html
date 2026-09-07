@@ -3,21 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+  /* Âncoras antigas de /servicos/manutencao-subestacao#id não sobrevivem ao
+     redirect 301 (o servidor não enxerga o fragmento). Este mapeamento
+     reencaminha quem chega com uma âncora antiga para a sub-página nova. */
+  (function () {
+    "use strict";
+    var map = {
+      "manutencao-preventiva": "manutencao-preventiva",
+      "ensaios-eletricos": "ensaios-eletricos",
+      "termografia": "termografia",
+      "reles-protecao": "ensaio-rele-de-protecao",
+      "protecao-seletividade": "estudo-de-seletividade",
+      "oleo-isolante": "analise-de-oleo-isolante",
+      "projeto-subestacao": "projeto-de-subestacao"
+    };
+    var hash = window.location.hash.replace("#", "");
+    if (map[hash]) {
+      window.location.replace("/servicos/subestacoes/" + map[hash]);
+    }
+  })();
+  </script>
   <title>Manutenção em Subestações de Média Tensão | AFB Engenharia &amp; Consultoria Elétrica</title>
-  <meta name="description" content="Manutenção preventiva, ensaios elétricos, termografia e relatório técnico com ART para instalações de média tensão." />
+  <meta name="description" content="Manutenção preventiva em subestações de média tensão com ensaios elétricos, termografia e relatório técnico com ART. Conformidade com NR-10 e ABNT NBR 14039." />
+  <link rel="canonical" href="https://www.afbconsultoria.com.br/servicos/subestacoes" />
 
   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
   <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
 
   <meta property="og:type"        content="website" />
   <meta property="og:title"       content="Manutenção em Subestações de Média Tensão | AFB Engenharia &amp; Consultoria Elétrica" />
-  <meta property="og:description" content="Manutenção preventiva, ensaios elétricos, termografia e relatório técnico com ART para instalações de média tensão." />
-  <meta property="og:url"         content="https://www.afbconsultoria.com.br/servicos/manutencao-subestacao" />
+  <meta property="og:description" content="Manutenção preventiva em subestações de média tensão com ensaios elétricos, termografia e relatório técnico com ART. Conformidade com NR-10 e ABNT NBR 14039." />
+  <meta property="og:url"         content="https://www.afbconsultoria.com.br/servicos/subestacoes" />
   <meta property="og:image"       content="https://www.afbconsultoria.com.br/assets/images/og-image.jpg" />
   <meta property="og:locale"      content="pt_BR" />
   <meta name="twitter:card"       content="summary_large_image" />
   <meta name="twitter:title"      content="Manutenção em Subestações de Média Tensão | AFB Engenharia &amp; Consultoria Elétrica" />
-  <meta name="twitter:description" content="Manutenção preventiva, ensaios elétricos, termografia e relatório técnico com ART para instalações de média tensão." />
+  <meta name="twitter:description" content="Manutenção preventiva em subestações de média tensão com ensaios elétricos, termografia e relatório técnico com ART. Conformidade com NR-10 e ABNT NBR 14039." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.afbconsultoria.com.br/" },
+      { "@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://www.afbconsultoria.com.br/servicos" },
+      { "@type": "ListItem", "position": 3, "name": "Manutenção em Subestações", "item": "https://www.afbconsultoria.com.br/servicos/subestacoes" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Manutenção em Subestações de Média Tensão",
+    "name": "Manutenção em Subestações de Média Tensão",
+    "description": "Manutenção preventiva em subestações de média tensão com ensaios elétricos, termografia e relatório técnico com ART. Conformidade com NR-10 e ABNT NBR 14039.",
+    "provider": { "@type": "Organization", "name": "AFB Engenharia & Consultoria Elétrica", "url": "https://www.afbconsultoria.com.br/" },
+    "areaServed": { "@type": "Place", "name": "Minas Gerais e demais estados" },
+    "url": "https://www.afbconsultoria.com.br/servicos/subestacoes",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Frentes de manutenção em subestações",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção Preventiva em Subestação", "url": "https://www.afbconsultoria.com.br/servicos/subestacoes/manutencao-preventiva" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaios Elétricos em Equipamentos de Subestação", "url": "https://www.afbconsultoria.com.br/servicos/subestacoes/ensaios-eletricos" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Termografia em Instalações Elétricas", "url": "https://www.afbconsultoria.com.br/servicos/subestacoes/termografia" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaio e Parametrização de Relé de Proteção", "url": "https://www.afbconsultoria.com.br/servicos/subestacoes/ensaio-rele-de-protecao" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Estudo de Proteção e Seletividade", "url": "https://www.afbconsultoria.com.br/servicos/subestacoes/estudo-de-seletividade" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Análise de Óleo Isolante de Transformador", "url": "https://www.afbconsultoria.com.br/servicos/subestacoes/analise-de-oleo-isolante" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Projeto de Subestação e Documentação Técnica", "url": "https://www.afbconsultoria.com.br/servicos/subestacoes/projeto-de-subestacao" } }
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Com que frequência a manutenção deve ser feita?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A prática consolidada é a campanha anual, e é o intervalo que seguradoras e auditorias costumam esperar. Instalações antigas, aéreas ou em ambiente agressivo podem exigir intervalo menor. A termografia pode ser feita com frequência maior, já que não exige parada." }
+      },
+      {
+        "@type": "Question",
+        "name": "A empresa precisa parar para fazer a manutenção?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Os ensaios exigem a subestação desenergizada, então há parada programada. Planejamos a janela junto com a sua equipe, normalmente em fim de semana ou período de baixa, e dimensionamos a equipe para encurtar o tempo. A termografia é a exceção: exige a instalação energizada e em carga." }
+      },
+      {
+        "@type": "Question",
+        "name": "Nossa subestação nunca teve manutenção. É um problema começar agora?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Não, é a situação mais comum. Nesse caso a primeira campanha funciona também como levantamento: definimos o estado real, geramos a documentação que não existe e organizamos as pendências por prioridade, para que a correção seja feita em etapas." }
+      },
+      {
+        "@type": "Question",
+        "name": "O relatório serve para a seguradora?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. O documento traz o que foi executado, os valores medidos, o registro fotográfico e a ART vinculada, que é o conjunto normalmente exigido para comprovar manutenção em caso de sinistro. Vale confirmar com o seu corretor as exigências específicas da apólice." }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês executam as correções que o relatório apontar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. As recomendações podem ser executadas por nós ou pela sua equipe, e o relatório é escrito de forma a permitir as duas coisas. Não condicionamos a entrega do diagnóstico à contratação do reparo." }
+      }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -92,7 +184,7 @@
         border-bottom: 1px solid rgba(61,127,97,.12); max-height: 0; overflow: hidden; opacity: 0;
         transition: max-height .35s ease, opacity .25s ease; z-index: 99;
       }
-      .nav-mobile-menu.open { max-height: 760px; opacity: 1; }
+      .nav-mobile-menu.open { max-height: 1050px; opacity: 1; }
       .nav-mobile-menu ul { list-style: none; display: flex; flex-direction: column; padding: .75rem 2rem 1.25rem; margin: 0; }
       .nav-mobile-menu ul li a { display: block; padding: .9rem 0; font-size: 1rem; font-weight: 500; color: var(--sage); border-bottom: 1px solid rgba(61,127,97,.08); transition: color .2s, padding-left .2s; }
       .nav-mobile-menu ul li:last-child a { border-bottom: none; }
@@ -104,7 +196,7 @@
       .nav-mobile-caret { width: 16px; height: 16px; transition: transform .25s ease; }
       .nav-mobile-subtoggle[aria-expanded="true"] .nav-mobile-caret { transform: rotate(180deg); }
       .nav-mobile-submenu { list-style: none; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s ease, opacity .25s ease; padding-left: 1rem; margin: 0; }
-      .nav-mobile-submenu.open { max-height: 440px; opacity: 1; }
+      .nav-mobile-submenu.open { max-height: 700px; opacity: 1; }
       .nav-mobile-submenu li a { padding: .7rem 0; font-size: .92rem; border-bottom: 1px dashed rgba(61,127,97,.08); }
       .nav-mobile-submenu li a.nav-mobile-subsub { padding: .75rem 0 .75rem 1rem; font-size: .86rem; color: var(--muted); }
       .nav-mobile-submenu li:last-child a { border-bottom: none; }
@@ -112,6 +204,16 @@
     @media (max-width: 480px) {
       .nav { height: 76px; } .nav-logo-center img { height: 58px; } main { padding-top: 76px; }
     }
+
+    /* ─── BREADCRUMB ──────────────────────────────────────────────────────── */
+    .svc-breadcrumb { max-width: 1100px; margin: 0 auto; padding: 1.4rem 3rem 0; }
+    .svc-breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; }
+    .svc-breadcrumb li { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
+    .svc-breadcrumb li:not(:last-child)::after { content: "/"; color: rgba(61,127,97,.35); }
+    .svc-breadcrumb a { color: var(--sage); transition: color .2s; }
+    .svc-breadcrumb a:hover { color: var(--forest); }
+    .svc-breadcrumb li[aria-current="page"] { color: var(--forest); font-weight: 600; }
+    @media (max-width: 767px) { .svc-breadcrumb { padding: 1.1rem 1.5rem 0; } }
 
     /* ─── ELEMENTOS COMPARTILHADOS DA PÁGINA ─────────────────────────────── */
     .ms-kicker { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -134,11 +236,13 @@
     .ms-btn-secondary:hover { border-color: var(--accent); background: var(--bg-alt); color: var(--forest); }
 
     /* ─── 1. HERO ─────────────────────────────────────────────────────────── */
-    .ms-hero { background: var(--bg); padding: 5rem 3rem 4.5rem; }
+    .ms-hero { background: var(--bg); padding: 2.5rem 3rem 4.5rem; }
     .ms-hero-inner { max-width: 800px; margin: 0 auto; }
     .ms-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 4.6vw, 3.4rem); color: var(--forest); margin-top: .7rem; max-width: 18ch; }
     .ms-hero-text { font-size: 1.06rem; line-height: 1.75; color: var(--sage); margin-top: 1.5rem; max-width: 64ch; }
     .ms-hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.2rem; }
+    .ms-hero-area { margin-top: 1.4rem; display: flex; align-items: center; gap: .5rem; font-size: .85rem; color: var(--sage); }
+    .ms-hero-area-icon { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; }
 
     /* ─── 2. O QUE ESTÁ EM JOGO (banda escura) ───────────────────────────── */
     .ms-risk { background: var(--forest); padding: 5rem 3rem; }
@@ -148,6 +252,7 @@
     .ms-risk-lead { margin-top: 1.3rem; font-size: 1.02rem; line-height: 1.75; color: rgba(250,249,246,.82); max-width: 68ch; }
     .ms-risk-grid { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
     .ms-risk-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r-card); padding: 1.6rem; }
+    .ms-risk-card--priority { border-color: rgba(246,144,102,.5); background: rgba(246,144,102,.09); }
     .ms-risk-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: #FAF9F6; margin-bottom: .6rem; }
     .ms-risk-card p { font-size: .89rem; line-height: 1.65; color: rgba(250,249,246,.75); }
     @media (max-width: 767px) { .ms-risk-grid { grid-template-columns: 1fr; } }
@@ -192,28 +297,25 @@
     @media (max-width: 900px) { .ms-scope-list { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 640px) { .ms-diagram { display: none; } .ms-scope-list { grid-template-columns: 1fr; } }
 
-    /* ─── 5. ESCOPO: ENSAIOS E SERVIÇOS ───────────────────────────────────── */
+    /* ─── 5. O QUE OFERECEMOS ─────────────────────────────────────────────── */
     .ms-services { background: var(--bg); padding: 4.5rem 3rem 5rem; }
     .ms-services-inner { max-width: 1120px; margin: 0 auto; }
     .ms-services-lead { margin-top: 1rem; font-size: 1rem; color: var(--sage); max-width: 62ch; }
-    .ms-services-grid { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .ms-service-card {
-      background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card);
-      padding: 1.9rem; display: flex; flex-direction: column; gap: .7rem;
-      scroll-margin-top: 152px;
-    }
-    .ms-service-title { font-family: var(--font-display); font-weight: 700; font-size: 1.14rem; color: var(--forest); }
-    .ms-service-text { font-size: .9rem; line-height: 1.62; color: var(--sage); flex-grow: 1; }
-    .ms-service-wa {
-      align-self: flex-start; display: inline-flex; align-items: center; gap: .5rem; min-height: 44px;
-      padding: .68rem 1.25rem; border-radius: var(--r-pill);
-      background: var(--accent); color: #fff; font-size: .82rem; font-weight: 600;
-      transition: background .2s, transform .2s;
-    }
-    .ms-service-wa:hover { background: var(--forest); transform: translateY(-1px); }
-    @media (max-width: 1024px) { .ms-service-card { scroll-margin-top: 128px; } }
-    @media (max-width: 768px) { .ms-service-card { scroll-margin-top: 110px; } .ms-services-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 480px) { .ms-service-card { scroll-margin-top: 96px; } }
+    .ms-offer-grid { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .ms-offer-featured { background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-float); border: 2px solid var(--accent); padding: 2.4rem; display: flex; flex-direction: column; gap: .9rem; }
+    .ms-offer-featured-tag { font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+    .ms-offer-featured-title { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: var(--forest); }
+    .ms-offer-featured-title a:hover { color: var(--accent); }
+    .ms-offer-featured-text { font-size: 1rem; line-height: 1.7; color: var(--sage); max-width: 64ch; }
+    .ms-offer-rest { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .ms-offer-card { background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 1.6rem; display: flex; flex-direction: column; gap: .6rem; }
+    .ms-offer-card-title { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; color: var(--forest); }
+    .ms-offer-card-title a:hover { color: var(--accent); }
+    .ms-offer-card-text { font-size: .86rem; line-height: 1.6; color: var(--sage); flex-grow: 1; }
+    .ms-offer-card-link { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; font-size: .8rem; font-weight: 600; color: var(--accent); }
+    .ms-offer-card-link:hover { color: var(--forest); }
+    @media (max-width: 900px) { .ms-offer-rest { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .ms-offer-rest { grid-template-columns: 1fr; } .ms-offer-featured { padding: 1.8rem; } }
 
     /* ─── 6. O ENTREGÁVEL ─────────────────────────────────────────────────── */
     .ms-deliverable { background: var(--bg-alt); padding: 5rem 3rem; }
@@ -280,14 +382,6 @@
       transition: background .2s, transform .22s var(--ease-out);
     }
     .ms-final-btn-primary:hover { background: #E35D30; transform: translateY(-2px); }
-    .ms-final-btn-secondary {
-      display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 44px;
-      padding: .9rem 1.9rem; border-radius: var(--r-pill);
-      background: transparent; color: #FAF9F6; font-size: .92rem; font-weight: 600;
-      border: 1.5px solid rgba(255,255,255,.3);
-      transition: border-color .2s, background .2s;
-    }
-    .ms-final-btn-secondary:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.08); }
 
     @media (max-width: 767px) {
       .ms-hero, .ms-risk, .ms-why, .ms-scope, .ms-services, .ms-deliverable, .ms-how, .ms-faq, .ms-final { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -379,10 +473,17 @@
               <a href="/servicos/eficiencia-energetica/qualidade-de-energia" role="menuitem" class="nav-dropdown-subitem">Qualidade de Energia (QEE)</a>
               <a href="/servicos/eficiencia-energetica/credito-icms" role="menuitem" class="nav-dropdown-subitem">Crédito de ICMS</a>
               <div class="nav-dropdown-divider" aria-hidden="true"></div>
-              <a href="/servicos/manutencao-subestacao" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Manutenção em Subestações</span>
-                <span class="nav-dropdown-sub">Média tensão, preventiva e laudos</span>
+              <a href="/servicos/subestacoes" role="menuitem" class="nav-dropdown-item">
+                <span class="nav-dropdown-title">Subestações Elétricas</span>
+                <span class="nav-dropdown-sub">Segurança, média tensão e conformidade</span>
               </a>
+              <a href="/servicos/subestacoes/manutencao-preventiva" role="menuitem" class="nav-dropdown-subitem">Manutenção Preventiva</a>
+              <a href="/servicos/subestacoes/ensaios-eletricos" role="menuitem" class="nav-dropdown-subitem">Ensaios Elétricos</a>
+              <a href="/servicos/subestacoes/termografia" role="menuitem" class="nav-dropdown-subitem">Termografia</a>
+              <a href="/servicos/subestacoes/ensaio-rele-de-protecao" role="menuitem" class="nav-dropdown-subitem">Relé de Proteção</a>
+              <a href="/servicos/subestacoes/estudo-de-seletividade" role="menuitem" class="nav-dropdown-subitem">Proteção e Seletividade</a>
+              <a href="/servicos/subestacoes/analise-de-oleo-isolante" role="menuitem" class="nav-dropdown-subitem">Análise de Óleo Isolante</a>
+              <a href="/servicos/subestacoes/projeto-de-subestacao" role="menuitem" class="nav-dropdown-subitem">Projeto de Subestação</a>
             </div>
           </li>
         </ul>
@@ -422,7 +523,14 @@
               <li><a href="/servicos/eficiencia-energetica/mercado-livre" class="nav-mobile-subsub">Mercado Livre de Energia</a></li>
               <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia" class="nav-mobile-subsub">Qualidade de Energia (QEE)</a></li>
               <li><a href="/servicos/eficiencia-energetica/credito-icms" class="nav-mobile-subsub">Crédito de ICMS</a></li>
-              <li><a href="/servicos/manutencao-subestacao">Manutenção em Subestações</a></li>
+              <li><a href="/servicos/subestacoes">Subestações Elétricas</a></li>
+              <li><a href="/servicos/subestacoes/manutencao-preventiva" class="nav-mobile-subsub">Manutenção Preventiva</a></li>
+              <li><a href="/servicos/subestacoes/ensaios-eletricos" class="nav-mobile-subsub">Ensaios Elétricos</a></li>
+              <li><a href="/servicos/subestacoes/termografia" class="nav-mobile-subsub">Termografia</a></li>
+              <li><a href="/servicos/subestacoes/ensaio-rele-de-protecao" class="nav-mobile-subsub">Relé de Proteção</a></li>
+              <li><a href="/servicos/subestacoes/estudo-de-seletividade" class="nav-mobile-subsub">Proteção e Seletividade</a></li>
+              <li><a href="/servicos/subestacoes/analise-de-oleo-isolante" class="nav-mobile-subsub">Análise de Óleo Isolante</a></li>
+              <li><a href="/servicos/subestacoes/projeto-de-subestacao" class="nav-mobile-subsub">Projeto de Subestação</a></li>
             </ul>
           </li>
           <li><a href="/#quem-somos">Quem Somos</a></li>
@@ -435,6 +543,14 @@
 
   <main>
 
+    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Início</a></li>
+        <li><a href="/servicos">Serviços</a></li>
+        <li aria-current="page">Manutenção em Subestações</li>
+      </ol>
+    </nav>
+
     <!-- 1. HERO -->
     <section class="ms-hero">
       <div class="ms-hero-inner">
@@ -443,6 +559,10 @@
         <p class="ms-hero-text">A subestação é o ponto por onde toda a energia da empresa passa. Quando ela falha, não falha um setor: para a operação inteira. Executamos manutenção preventiva com ensaios elétricos, termografia, ajustes mecânicos e funcionais, e entregamos relatório técnico com ART, diagnóstico do que foi encontrado e as ações recomendadas em ordem de prioridade.</p>
         <div class="ms-hero-cta">
           <a class="ms-btn-primary" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20servi%C3%A7os%20de%20Manuten%C3%A7%C3%A3o%20em%20Subesta%C3%A7%C3%B5es%21" target="_blank" rel="noopener noreferrer">Solicitar avaliação</a>
+        </div>
+        <div class="ms-hero-area" role="text">
+          <svg class="ms-hero-area-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Atendimento em Minas Gerais e demais estados
         </div>
       </div>
     </section>
@@ -454,6 +574,10 @@
         <h2 class="ms-risk-h2">Uma subestação sem manutenção não avisa antes de falhar</h2>
         <p class="ms-risk-lead">A degradação é silenciosa. Contatos que oxidam, isolamento que perde rigidez, óleo que envelhece, relé que não foi ensaiado — nada disso aparece numa inspeção visual. Os equipamentos seguem operando normalmente até o momento em que apresentam uma falha. E quando isto acontece, o prejuízo vai muito além do reparo.</p>
         <div class="ms-risk-grid">
+          <div class="ms-risk-card ms-risk-card--priority">
+            <h3>Segurança das pessoas</h3>
+            <p>Falha em média tensão não é só prejuízo material. Arco elétrico, curto-circuito e explosão de equipamento podem causar acidentes graves. Manutenção com ensaios, proteção corretamente ajustada e equipe habilitada é o que reduz essa probabilidade a um nível aceitável. Depois do acidente, a pergunta que vem é sempre a mesma: quando foi a última manutenção?</p>
+          </div>
           <div class="ms-risk-card">
             <h3>Parada de produção</h3>
             <p>Uma falha em média tensão não se resolve em uma hora. O prazo depende de peça, de equipe especializada e de disponibilidade da concessionária. A operação fica parada todo este tempo.</p>
@@ -469,10 +593,6 @@
           <div class="ms-risk-card">
             <h3>Responsabilidade legal</h3>
             <p>Trabalho em média tensão sem NR-10 e sem responsável técnico com ART transfere para a empresa toda a exposição em caso de acidente ou fiscalização.</p>
-          </div>
-          <div class="ms-risk-card">
-            <h3>Segurança das pessoas</h3>
-            <p>Falha em média tensão não é só prejuízo material. Arco elétrico, curto-circuito e explosão de equipamento podem causar acidentes graves. Manutenção com ensaios, proteção corretamente ajustada e equipe habilitada é o que reduz essa probabilidade a um nível aceitável. Depois do acidente, a pergunta que vem é sempre a mesma: quando foi a última manutenção?</p>
           </div>
         </div>
       </div>
@@ -590,55 +710,53 @@
       </div>
     </section>
 
-    <!-- 5. ESCOPO: ENSAIOS E SERVIÇOS -->
+    <!-- 5. O QUE OFERECEMOS -->
     <section class="ms-services">
       <div class="ms-services-inner">
         <div class="ms-kicker">O que oferecemos</div>
-        <h2 class="ms-h2">Nossos serviços</h2>
-        <p class="ms-services-lead">A campanha pode ser contratada completa ou por frente, conforme a necessidade e o momento da instalação.</p>
+        <h2 class="ms-h2">Da campanha completa ao ensaio específico</h2>
+        <p class="ms-services-lead">A maior parte dos clientes contrata a campanha preventiva completa. Cada frente também pode ser contratada isoladamente, conforme a necessidade e o momento da instalação.</p>
 
-        <div class="ms-services-grid">
-          <article class="ms-service-card" id="manutencao-preventiva">
-            <h3 class="ms-service-title">Manutenção Preventiva Completa</h3>
-            <p class="ms-service-text">Inspeção detalhada, limpeza técnica de isoladores e cubículos, reaperto de conexões com torque controlado, lubrificação e ajustes mecânicos e funcionais em disjuntores e seccionadoras. É a base da campanha, sobre a qual os ensaios são executados.</p>
-            <a class="ms-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Manuten%C3%A7%C3%A3o%20Preventiva%20de%20Subesta%C3%A7%C3%A3o%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
+        <div class="ms-offer-grid">
+          <article class="ms-offer-featured">
+            <span class="ms-offer-featured-tag">Oferta principal</span>
+            <h3 class="ms-offer-featured-title"><a href="/servicos/subestacoes/manutencao-preventiva">Manutenção Preventiva em Subestação</a></h3>
+            <p class="ms-offer-featured-text">Inspeção detalhada, limpeza técnica de isoladores e cubículos, reaperto de conexões com torque controlado, lubrificação e ajustes mecânicos e funcionais em disjuntores e seccionadoras. É a base da campanha: reúne as seis frentes ao lado em uma única visita programada, com relatório técnico único ao final.</p>
+            <a class="ms-btn-primary" style="align-self: flex-start;" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Manuten%C3%A7%C3%A3o%20Preventiva%20de%20Subesta%C3%A7%C3%A3o%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
           </article>
 
-          <article class="ms-service-card" id="ensaios-eletricos">
-            <h3 class="ms-service-title">Ensaios Elétricos em Equipamentos</h3>
-            <p class="ms-service-text">Resistência de contato, resistência de isolamento, relação de transformação e suportabilidade dielétrica sob tensão aplicada. Executados em transformadores, TCs, TPs, disjuntores e seccionadoras, com valores medidos registrados em relatório para comparação nas campanhas seguintes.</p>
-            <a class="ms-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Ensaios%20El%C3%A9tricos%20em%20Subesta%C3%A7%C3%A3o%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ms-service-card" id="termografia">
-            <h3 class="ms-service-title">Termografia</h3>
-            <p class="ms-service-text">Inspeção termográfica com a instalação energizada e em carga, que é a única condição em que o defeito aparece. Identifica pontos quentes em conexões, chaves e cabos antes que evoluam para falha, com registro de imagem térmica e classificação de gravidade.</p>
-            <a class="ms-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Termografia%20em%20Subesta%C3%A7%C3%A3o%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ms-service-card" id="reles-protecao">
-            <h3 class="ms-service-title">Ensaios e Parametrização de Relés de Proteção</h3>
-            <p class="ms-service-text">Verificação funcional do relé com injeção de corrente e tensão, conferência dos ajustes e parametrização conforme o estudo de proteção. Um relé mal parametrizado atua onde não deveria, ou pior, não atua quando deveria.</p>
-            <a class="ms-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Ensaios%20e%20Parametriza%C3%A7%C3%A3o%20de%20Rel%C3%A9%20de%20Prote%C3%A7%C3%A3o%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ms-service-card" id="protecao-seletividade">
-            <h3 class="ms-service-title">Estudo de Proteção e Seletividade</h3>
-            <p class="ms-service-text">Cálculo de curto-circuito e coordenação das proteções para que apenas o dispositivo mais próximo do defeito atue, isolando o trecho afetado sem derrubar a planta inteira. Entregamos os ajustes a serem aplicados em cada dispositivo.</p>
-            <a class="ms-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Estudo%20de%20Prote%C3%A7%C3%A3o%20e%20Seletividade%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ms-service-card" id="oleo-isolante">
-            <h3 class="ms-service-title">Análise de Óleo Isolante</h3>
-            <p class="ms-service-text">Coleta e ensaio do óleo do transformador para avaliar rigidez dielétrica, teor de água, acidez e presença de gases dissolvidos. O óleo carrega o histórico interno do equipamento e antecipa falhas que nenhuma inspeção externa mostra.</p>
-            <a class="ms-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20An%C3%A1lise%20de%20%C3%93leo%20Isolante%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ms-service-card" id="projeto-subestacao">
-            <h3 class="ms-service-title">Projeto e Documentação de Subestação</h3>
-            <p class="ms-service-text">Projeto funcional, memorial descritivo, diagrama unifilar e databook completo, para instalações novas, ampliações ou regularização de subestações sem documentação. É o conjunto que a concessionária, a seguradora e a auditoria pedem.</p>
-            <a class="ms-service-wa" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Projeto%20de%20Subesta%C3%A7%C3%A3o%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
+          <div class="ms-offer-rest">
+            <article class="ms-offer-card">
+              <h3 class="ms-offer-card-title"><a href="/servicos/subestacoes/ensaios-eletricos">Ensaios Elétricos em Equipamentos de Subestação</a></h3>
+              <p class="ms-offer-card-text">Resistência de contato e de isolamento, relação de transformação e tensão aplicada em transformadores, TCs, TPs e disjuntores.</p>
+              <a class="ms-offer-card-link" href="/servicos/subestacoes/ensaios-eletricos">Saiba mais →</a>
+            </article>
+            <article class="ms-offer-card">
+              <h3 class="ms-offer-card-title"><a href="/servicos/subestacoes/termografia">Termografia em Instalações Elétricas</a></h3>
+              <p class="ms-offer-card-text">Inspeção termográfica com a instalação energizada. Identifica pontos quentes antes da falha, com laudo e classificação de gravidade.</p>
+              <a class="ms-offer-card-link" href="/servicos/subestacoes/termografia">Saiba mais →</a>
+            </article>
+            <article class="ms-offer-card">
+              <h3 class="ms-offer-card-title"><a href="/servicos/subestacoes/ensaio-rele-de-protecao">Ensaio e Parametrização de Relé de Proteção</a></h3>
+              <p class="ms-offer-card-text">Ensaio funcional com injeção de corrente e tensão, conferência de ajustes e parametrização conforme o estudo de proteção.</p>
+              <a class="ms-offer-card-link" href="/servicos/subestacoes/ensaio-rele-de-protecao">Saiba mais →</a>
+            </article>
+            <article class="ms-offer-card">
+              <h3 class="ms-offer-card-title"><a href="/servicos/subestacoes/estudo-de-seletividade">Estudo de Proteção e Seletividade</a></h3>
+              <p class="ms-offer-card-text">Cálculo de curto-circuito e coordenação dos dispositivos, para que só o mais próximo do defeito atue.</p>
+              <a class="ms-offer-card-link" href="/servicos/subestacoes/estudo-de-seletividade">Saiba mais →</a>
+            </article>
+            <article class="ms-offer-card">
+              <h3 class="ms-offer-card-title"><a href="/servicos/subestacoes/analise-de-oleo-isolante">Análise de Óleo Isolante de Transformador</a></h3>
+              <p class="ms-offer-card-text">Rigidez dielétrica, teor de água, acidez e gases dissolvidos. Antecipa falhas internas que a inspeção externa não mostra.</p>
+              <a class="ms-offer-card-link" href="/servicos/subestacoes/analise-de-oleo-isolante">Saiba mais →</a>
+            </article>
+            <article class="ms-offer-card">
+              <h3 class="ms-offer-card-title"><a href="/servicos/subestacoes/projeto-de-subestacao">Projeto de Subestação e Documentação Técnica</a></h3>
+              <p class="ms-offer-card-text">Diagrama unifilar, memorial descritivo e databook, para instalações novas, ampliações ou regularização.</p>
+              <a class="ms-offer-card-link" href="/servicos/subestacoes/projeto-de-subestacao">Saiba mais →</a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -772,6 +890,16 @@
     <div class="footer-orb" style="bottom:-60px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 70%);" aria-hidden="true"></div>
 
     <div class="footer-inner">
+      <div class="footer-cta-strip">
+        <p class="footer-cta-text">
+          Sua empresa pode estar pagando mais do que deveria.<br>
+          <em>Descubra quanto pode economizar.</em>
+        </p>
+        <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." class="footer-cta-btn" rel="noopener noreferrer" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Solicitar análise gratuita
+        </a>
+      </div>
 
       <div class="footer-top">
         <div class="footer-brand">
