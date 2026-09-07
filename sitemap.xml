@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  As 7 páginas de sub-serviço de /servicos/subestacoes estão com
-  <meta name="robots" content="noindex"> (conteúdo em esqueleto, ver
+  As demais páginas de sub-serviço de /servicos/subestacoes ainda estão
+  com <meta name="robots" content="noindex"> (conteúdo em esqueleto, ver
   comentário no <head> de cada uma). Por isso não entram aqui ainda —
   listar uma URL noindex no sitemap é um sinal contraditório para o
   Google. Assim que a copy definitiva for escrita e o noindex for
@@ -19,4 +19,5 @@
   <url><loc>https://www.afbconsultoria.com.br/servicos/eficiencia-energetica/credito-icms</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <url><loc>https://www.afbconsultoria.com.br/servicos/subestacoes</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.afbconsultoria.com.br/servicos/subestacoes/manutencao-preventiva</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
