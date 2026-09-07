@@ -265,7 +265,6 @@
     .ms-faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
     .ms-faq-a { padding: 0 .2rem 1.3rem; }
     .ms-faq-a p { font-size: .92rem; line-height: 1.7; color: var(--sage); max-width: 62ch; }
-    .ms-faq-pending { font-style: italic; color: var(--muted); }
 
     /* ─── 9. CHAMADA FINAL ────────────────────────────────────────────────── */
     .ms-final { background: var(--forest); padding: 5rem 3rem; }
@@ -441,7 +440,7 @@
       <div class="ms-hero-inner">
         <div class="ms-kicker">Instalações seguras e em conformidade</div>
         <h1 class="ms-h1">Manutenção em Subestações de Média Tensão</h1>
-        <p class="ms-hero-text">A subestação é o ponto por onde toda a energia da empresa passa. Quando ela falha, não falha um setor: para a operação inteira. Executamos manutenção preventiva com ensaios elétricos, termografia e ajustes funcionais, e entregamos relatório técnico com ART, diagnóstico do que foi encontrado e as ações recomendadas em ordem de prioridade.</p>
+        <p class="ms-hero-text">A subestação é o ponto por onde toda a energia da empresa passa. Quando ela falha, não falha um setor: para a operação inteira. Executamos manutenção preventiva com ensaios elétricos, termografia, ajustes mecânicos e funcionais, e entregamos relatório técnico com ART, diagnóstico do que foi encontrado e as ações recomendadas em ordem de prioridade.</p>
         <div class="ms-hero-cta">
           <a class="ms-btn-primary" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20servi%C3%A7os%20de%20Manuten%C3%A7%C3%A3o%20em%20Subesta%C3%A7%C3%B5es%21" target="_blank" rel="noopener noreferrer">Solicitar avaliação</a>
         </div>
@@ -504,7 +503,7 @@
         <p class="ms-scope-lead">A campanha cobre todos os componentes do conjunto, do ponto de entrega ao barramento de saída. Passe o mouse ou navegue pelo teclado sobre o diagrama para destacar cada item na lista.</p>
 
         <figure class="ms-diagram">
-          <svg class="ms-diagram-svg" viewBox="0 0 900 260" role="group" aria-labelledby="diag-title diag-desc">
+          <svg class="ms-diagram-svg" viewBox="0 0 900 280" role="group" aria-labelledby="diag-title diag-desc">
             <title id="diag-title">Diagrama unifilar simplificado de uma subestação de média tensão</title>
             <desc id="diag-desc">Da entrada até o barramento de saída: chave seccionadora, disjuntor de média tensão com relé de proteção associado, transformadores de corrente e de potencial, transformador de potência com sistema de aterramento, barramento com as conexões de saída, tudo dentro do cubículo da subestação.</desc>
 
@@ -556,22 +555,22 @@
               <text x="452" y="176" class="ms-diag-label" text-anchor="middle">Transformador</text>
             </g>
 
-            <g class="ms-diag-hot" tabindex="0" role="img" aria-label="Sistema de aterramento" data-equip="aterramento">
-              <line x1="452" y1="155" x2="452" y2="192" class="ms-diag-dashed"/>
-              <line x1="434" y1="192" x2="470" y2="192" class="ms-diag-symbol"/>
-              <line x1="440" y1="200" x2="464" y2="200" class="ms-diag-symbol"/>
-              <line x1="446" y1="208" x2="458" y2="208" class="ms-diag-symbol"/>
-              <text x="452" y="228" class="ms-diag-label" text-anchor="middle">Aterramento</text>
-            </g>
-
-            <line x1="476" y1="118" x2="560" y2="118" class="ms-diag-line"/>
+            <line x1="476" y1="118" x2="700" y2="118" class="ms-diag-line"/>
 
             <g class="ms-diag-hot" tabindex="0" role="img" aria-label="Barramentos, conexões e cabos" data-equip="barramento">
-              <line x1="560" y1="118" x2="792" y2="118" class="ms-diag-bus"/>
-              <line x1="610" y1="118" x2="610" y2="158" class="ms-diag-line"/>
-              <line x1="676" y1="118" x2="676" y2="158" class="ms-diag-line"/>
-              <line x1="742" y1="118" x2="742" y2="158" class="ms-diag-line"/>
-              <text x="676" y="178" class="ms-diag-label" text-anchor="middle">Barramento</text>
+              <line x1="700" y1="70" x2="700" y2="170" class="ms-diag-bus"/>
+              <line x1="700" y1="90" x2="760" y2="90" class="ms-diag-line"/>
+              <line x1="700" y1="130" x2="760" y2="130" class="ms-diag-line"/>
+              <line x1="700" y1="160" x2="760" y2="160" class="ms-diag-line"/>
+              <text x="700" y="190" class="ms-diag-label" text-anchor="middle">Barramento</text>
+            </g>
+
+            <g class="ms-diag-hot" tabindex="0" role="img" aria-label="Sistema de aterramento" data-equip="aterramento">
+              <line x1="430" y1="230" x2="430" y2="244" class="ms-diag-dashed"/>
+              <line x1="412" y1="244" x2="448" y2="244" class="ms-diag-symbol"/>
+              <line x1="418" y1="250" x2="442" y2="250" class="ms-diag-symbol"/>
+              <line x1="424" y1="256" x2="436" y2="256" class="ms-diag-symbol"/>
+              <text x="430" y="273" class="ms-diag-label" text-anchor="middle">Aterramento</text>
             </g>
           </svg>
           <figcaption>Passe o mouse, toque ou use Tab para destacar cada equipamento e localizá-lo na lista.</figcaption>
@@ -750,17 +749,6 @@
               <p>Sim. As recomendações podem ser executadas por nós ou pela sua equipe, e o relatório é escrito de forma a permitir as duas coisas. Não condicionamos a entrega do diagnóstico à contratação do reparo.</p>
             </div>
           </div>
-
-          <!-- PENDENTE: resposta desta pergunta ainda não foi definida pelo cliente -->
-          <div class="ms-faq-item">
-            <h3><button class="ms-faq-q" id="ms-faq-q6" aria-expanded="false" aria-controls="ms-faq-a6">
-              Atendem fora do estado?
-              <svg class="ms-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button></h3>
-            <div class="ms-faq-a" id="ms-faq-a6" role="region" aria-labelledby="ms-faq-q6" hidden>
-              <p class="ms-faq-pending">Conteúdo em construção.</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -772,7 +760,6 @@
         <p class="ms-final-text">Se a resposta for mais de um ano, ou se ninguém souber dizer, vale uma avaliação. Uma conversa rápida já indica o escopo e a urgência da sua instalação.</p>
         <div class="ms-final-cta">
           <a class="ms-final-btn-primary" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20servi%C3%A7os%20de%20Manuten%C3%A7%C3%A3o%20em%20Subesta%C3%A7%C3%B5es%21" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-          <a class="ms-final-btn-secondary" href="/diagnostico">Fazer diagnóstico gratuito</a>
         </div>
       </div>
     </section>
@@ -785,16 +772,6 @@
     <div class="footer-orb" style="bottom:-60px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 70%);" aria-hidden="true"></div>
 
     <div class="footer-inner">
-      <div class="footer-cta-strip">
-        <p class="footer-cta-text">
-          Sua empresa pode estar pagando mais do que deveria.<br>
-          <em>Descubra quanto pode economizar.</em>
-        </p>
-        <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." class="footer-cta-btn" rel="noopener noreferrer" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Solicitar análise gratuita
-        </a>
-      </div>
 
       <div class="footer-top">
         <div class="footer-brand">
