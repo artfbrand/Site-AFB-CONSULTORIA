@@ -298,9 +298,12 @@
     @media (max-width: 640px) { .ms-diagram { display: none; } .ms-scope-list { grid-template-columns: 1fr; } }
 
     /* ─── 5. O QUE OFERECEMOS ─────────────────────────────────────────────── */
-    .ms-services { background: var(--bg); padding: 4.5rem 3rem 5rem; }
+    .ms-services { background: var(--bg); padding: 4.5rem 3rem 5rem; scroll-margin-top: 152px; }
     .ms-services-inner { max-width: 1120px; margin: 0 auto; }
     .ms-services-lead { margin-top: 1rem; font-size: 1rem; color: var(--sage); max-width: 62ch; }
+    @media (max-width: 1024px) { .ms-services { scroll-margin-top: 128px; } }
+    @media (max-width: 768px) { .ms-services { scroll-margin-top: 110px; } }
+    @media (max-width: 480px) { .ms-services { scroll-margin-top: 96px; } }
     .ms-offer-grid { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
     .ms-offer-featured { background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-float); border: 2px solid var(--accent); padding: 2.4rem; display: flex; flex-direction: column; gap: .9rem; }
     .ms-offer-featured-tag { font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
@@ -635,10 +638,11 @@
             <line x1="0" y1="118" x2="70" y2="118" class="ms-diag-line"/>
 
             <g class="ms-diag-hot" tabindex="0" role="img" aria-label="Chaves seccionadoras" data-equip="chave">
-              <line x1="70" y1="118" x2="150" y2="118" class="ms-diag-line"/>
+              <line x1="70" y1="118" x2="82" y2="118" class="ms-diag-line"/>
               <circle cx="82" cy="118" r="4" class="ms-diag-node"/>
               <line x1="82" y1="118" x2="120" y2="96" class="ms-diag-symbol"/>
               <circle cx="122" cy="118" r="4" class="ms-diag-node"/>
+              <line x1="122" y1="118" x2="150" y2="118" class="ms-diag-line"/>
               <text x="110" y="150" class="ms-diag-label" text-anchor="middle">Chave seccionadora</text>
             </g>
 
@@ -711,9 +715,8 @@
     </section>
 
     <!-- 5. O QUE OFERECEMOS -->
-    <section class="ms-services">
+    <section class="ms-services" id="o-que-oferecemos">
       <div class="ms-services-inner">
-        <div class="ms-kicker">O que oferecemos</div>
         <h2 class="ms-h2">Da campanha completa ao ensaio específico</h2>
         <p class="ms-services-lead">A maior parte dos clientes contrata a campanha preventiva completa. Cada frente também pode ser contratada isoladamente, conforme a necessidade e o momento da instalação.</p>
 
