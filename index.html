@@ -468,7 +468,7 @@
       align-items: center; opacity: 0;
     }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: .45rem;
+      display: inline-flex; align-items: center; gap: .45rem; min-height: 44px;
       padding: .8rem 1.6rem;
       border-radius: var(--r-pill);
       background: var(--accent); color: #fff;
@@ -487,7 +487,7 @@
       box-shadow: 0 8px 28px rgba(13,60,31,.28);
     }
     .btn-secondary {
-      display: inline-flex; align-items: center; gap: .4rem;
+      display: inline-flex; align-items: center; gap: .4rem; min-height: 44px;
       padding: .78rem 1.45rem;
       border-radius: var(--r-pill);
       border: 1.5px solid rgba(61,127,97,.3);
@@ -1000,10 +1000,9 @@
       <div class="nav-inner">
         <!-- links — esquerda -->
         <ul class="nav-links" role="list">
-          <li><a href="#solucoes">Soluções</a></li>
           <li><a href="#como-funciona">Como Funciona</a></li>
           <li class="nav-item-dropdown">
-            <a href="/servicos" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
+            <a href="#solucoes" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
               Serviços
               <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
@@ -1056,11 +1055,10 @@
       <!-- dropdown mobile — oculto no desktop -->
       <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
         <ul>
-          <li><a href="#solucoes">Soluções</a></li>
           <li><a href="#como-funciona">Como Funciona</a></li>
           <li class="nav-mobile-item-dropdown">
             <div class="nav-mobile-row">
-              <a href="/servicos">Serviços</a>
+              <a href="#solucoes">Serviços</a>
               <button class="nav-mobile-subtoggle" id="nav-mobile-servicos-toggle" aria-expanded="false" aria-controls="nav-mobile-servicos-panel" aria-label="Expandir lista de serviços">
                 <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -2127,6 +2125,22 @@
 
       /* LEGENDA */
 
+      /* CTA para a página-pilar */
+      .sol-pilar-cta { display: flex; justify-content: center; padding-top: .75rem; opacity: 0; }
+      .sol-pilar-btn {
+        display: inline-flex; align-items: center; gap: .6rem; min-height: 44px;
+        padding: .9rem 2rem; border-radius: 9999px;
+        background: #0D3C1F; color: #FAF9F6;
+        font-size: .85rem; font-weight: 600;
+        box-shadow: 0 4px 20px rgba(13,60,31,.22);
+        transition: background .2s, transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s;
+      }
+      .sol-pilar-btn:hover {
+        background: #3D7F61; transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(61,127,97,.3);
+      }
+      .sol-pilar-btn:focus-visible { outline: 2px solid #3D7F61; outline-offset: 3px; }
+
       /* responsive */
       @media (max-width: 1024px) {
         .solucoes { padding-bottom: 5.5rem; }
@@ -2151,7 +2165,7 @@
         <header class="sol-header" id="sol-header">
           <div class="problema-badge" id="sol-badge">
             <span class="badge-dot" aria-hidden="true"></span>
-            Soluções
+            Primeira frente
           </div>
         </header>
 
@@ -2310,7 +2324,163 @@
 
         </div><!-- /sol-bottom-grid -->
 
+        <!-- CTA para a página-pilar de eficiência energética -->
+        <div class="sol-pilar-cta" id="sol-pilar-cta">
+          <a href="/servicos/eficiencia-energetica" class="sol-pilar-btn">
+            Ver todos os serviços de eficiência energética
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
       </div><!-- /sol-inner -->
+    </section>
+
+    <!-- ═══ SEÇÃO 06 — SUBESTAÇÕES / SEGUNDA FRENTE ═════════════════════ -->
+    <style>
+      /* ── Section 06 — Subestações ───────────────────────────────────── */
+      /* Os cards reutilizam as classes .sol-* da Seção 05 (mesmos efeitos:
+         shimmer, mesh, orbs, número fantasma) — só o cabeçalho, a faixa e o
+         CTA têm estilo próprio aqui. */
+      .subest {
+        background: #ffffff;
+        padding: 1rem 0 7rem;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid rgba(61,127,97,.12);
+      }
+      .subest-dot-bg {
+        position: absolute; inset: 0;
+        background-image: radial-gradient(circle, rgba(61,127,97,.11) 1px, transparent 1px);
+        background-size: 28px 28px;
+        pointer-events: none; opacity: .5;
+      }
+      .subest-inner {
+        max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+        position: relative; z-index: 1;
+        display: flex; flex-direction: column; gap: 1rem;
+      }
+      .subest-header {
+        display: flex; flex-direction: column; align-items: center;
+        text-align: center; gap: 1.15rem;
+        padding: 3rem 0 1.75rem; opacity: 0;
+      }
+      .subest-h2 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1.75rem, 3.2vw, 2.7rem);
+        font-weight: 700; color: #0D3C1F;
+        line-height: 1.16; letter-spacing: -.022em;
+        max-width: 22ch;
+      }
+      .subest-h2 em { font-style: normal; color: #E35D30; display: block; }
+      .subest-lead {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: .95rem; line-height: 1.78;
+        color: #4A6B5A; max-width: 62ch;
+      }
+      /* faixa de reforço — reusa .sol-info-strip com sotaque laranja */
+      .subest-strip-accent {
+        background: rgba(246,144,102,.07);
+        border-color: rgba(246,144,102,.32);
+      }
+      .subest-strip-accent .sol-info-text strong { color: #E35D30; }
+      .subest-strip-accent .sol-info-rule { background: linear-gradient(90deg, transparent, #E35D30); }
+      .subest-strip-accent .sol-info-rule-r { background: linear-gradient(90deg, #E35D30, transparent); }
+      .subest-cta { display: flex; justify-content: center; padding-top: .75rem; opacity: 0; }
+      @media (max-width: 767px) {
+        .subest { padding: 1rem 0 5rem; }
+        .subest-inner { padding: 0 1.5rem; }
+        .subest-header { padding: 2.25rem 0 1.25rem; }
+      }
+      @media (max-width: 480px) {
+        .subest-inner { padding: 0 1.25rem; }
+      }
+    </style>
+
+    <section class="subest" id="subestacoes" aria-labelledby="sub-heading">
+      <div class="subest-dot-bg" aria-hidden="true"></div>
+      <div class="subest-inner">
+
+        <header class="subest-header" id="sub-header">
+          <div class="problema-badge" id="sub-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Segunda frente
+          </div>
+          <h2 class="subest-h2" id="sub-heading">
+            A conta é só metade da história.
+            <em>A outra metade está na subestação.</em>
+          </h2>
+          <p class="subest-lead">
+            Toda a energia da empresa passa por um único ponto da instalação — a subestação. Quando esse ponto falha, não é um setor que para — é a operação inteira. E o prejuízo de uma parada em média tensão é imensurável: perda de produção, acidentes, incêndios, danos a equipamentos, entre outros.
+          </p>
+        </header>
+
+        <div class="sol-contratacao-grid">
+
+          <!-- Card 1 · Manutenção Preventiva — dark -->
+          <article class="sol-card sol-dark sol-shimmer" data-sol="0" aria-labelledby="sub-c1-h">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1s;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:180px;height:180px;top:-25%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.14) 0%,transparent 70%);filter:blur(26px);animation:icmsGlow 5s ease-in-out infinite;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:110px;height:110px;bottom:-12%;left:-6%;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 65%);filter:blur(16px);animation:icmsGlow 6.8s ease-in-out infinite 2s;"></div>
+            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">01</span>
+            <div class="sol-bar sol-bar-o" aria-hidden="true" style="z-index:4;"></div>
+            <span class="sol-ctag sol-ctag-d">Média tensão</span>
+            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-d">Frente 01 · Preventiva</span>
+              <h3 class="sol-title sol-ti-d" id="sub-c1-h">Manutenção Preventiva Completa</h3>
+              <p class="sol-text sol-tx-d">Campanha anual numa única parada programada, cobrindo todos os dispositivos do conjunto: transformador, disjuntor, TCs, TPs, relés, cabos, muflas e isoladores.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Campanha anual</div>
+            </div>
+          </article>
+
+          <!-- Card 2 · Ensaios e Termografia — sage -->
+          <article class="sol-card sol-sage" data-sol="1" aria-labelledby="sub-c2-h">
+            <span class="sol-ghost sol-ghost-s" aria-hidden="true">02</span>
+            <div class="sol-bar sol-bar-g" aria-hidden="true"></div>
+            <span class="sol-ctag sol-ctag-s">Média tensão</span>
+            <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-s">Frente 02 · Medição</span>
+              <h3 class="sol-title sol-ti-s" id="sub-c2-h">Ensaios, Termografia e Óleo Isolante</h3>
+              <p class="sol-text sol-tx-s">Ensaio com instrumento e valor registrado é o que revela a condição real do equipamento — não inspeção visual. Resistência de contato e de isolamento, relação de transformação, termografia com a instalação em carga e coleta de óleo isolante do transformador.</p>
+              <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>Valor medido</div>
+            </div>
+          </article>
+
+          <!-- Card 3 · Laudo com ART — dark -->
+          <article class="sol-card sol-dark sol-shimmer" data-sol="2" aria-labelledby="sub-c3-h">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(246,144,102,.5),transparent);z-index:3;pointer-events:none;animation:icmsScan 8s ease-in-out infinite 1.2s;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:200px;height:200px;top:-20%;right:-12%;background:radial-gradient(circle,rgba(246,144,102,.12) 0%,transparent 70%);filter:blur(28px);animation:icmsGlow 4.8s ease-in-out infinite;"></div>
+            <div class="sol-orb" aria-hidden="true" style="width:130px;height:130px;bottom:-15%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.12) 0%,transparent 65%);filter:blur(20px);animation:icmsGlow 6.2s ease-in-out infinite 2.4s;"></div>
+            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">03</span>
+            <div class="sol-bar sol-bar-o" aria-hidden="true" style="z-index:4;"></div>
+            <span class="sol-ctag sol-ctag-d">Média tensão</span>
+            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
+              <span class="sol-eyebrow sol-ey-d">Frente 03 · Documentação</span>
+              <h3 class="sol-title sol-ti-d" id="sub-c3-h">Laudo Técnico com ART</h3>
+              <p class="sol-text sol-tx-d">Relatório com o estado de cada equipamento, registro fotográfico, valores medidos e plano de ação priorizado. Conformidade com NR-10 e ABNT NBR 14039.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>NR-10 · NBR 14039 · NETA ATS</div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="sol-info-strip subest-strip-accent" id="sub-strip" role="note">
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(246,144,102,.4),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1.5s;"></div>
+          <div aria-hidden="true" style="position:absolute;width:240px;height:240px;top:-40%;right:-6%;background:radial-gradient(circle,rgba(246,144,102,.1) 0%,transparent 70%);filter:blur(30px);pointer-events:none;border-radius:50%;animation:icmsGlow 5s ease-in-out infinite;"></div>
+          <div class="sol-info-rule" aria-hidden="true"></div>
+          <p class="sol-info-text">Sem relatório de manutenção em dia, a seguradora tem argumento para negar a indenização — <strong>justamente no sinistro em que você mais precisa.</strong></p>
+          <div class="sol-info-rule sol-info-rule-r" aria-hidden="true"></div>
+        </div>
+
+        <div class="subest-cta" id="sub-cta">
+          <a href="/servicos/subestacoes" class="sol-pilar-btn">
+            Conhecer manutenção em subestações
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div><!-- /subest-inner -->
     </section>
 
   <div id="quem-somos" aria-hidden="true"></div>
@@ -3255,7 +3425,7 @@
     }
     .footer-cta-text em { font-style: normal; color: #F69066; }
     .footer-cta-btn {
-      display: inline-flex; align-items: center; gap: .65rem;
+      display: inline-flex; align-items: center; gap: .65rem; min-height: 44px; min-height: 44px;
       padding: .82rem 1.85rem; border-radius: var(--r-pill);
       background: var(--accent); color: #fff;
       font-size: .83rem; font-weight: 600; white-space: nowrap;
@@ -4065,6 +4235,33 @@
         { opacity: 1, y: 0, duration: .6, ease: 'power2.out',
           scrollTrigger: { trigger: '#sol-info-strip', start: 'top 90%', once: true } }
       );
+      gsap.fromTo('#sol-pilar-cta',
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: .6, ease: 'power2.out',
+          scrollTrigger: { trigger: '#sol-pilar-cta', start: 'top 92%', once: true } }
+      );
+
+      /* ── Seção 06 — Subestações ─────────────────────────────────────── */
+      gsap.fromTo('#sub-badge',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: .7, ease: 'power3.out',
+          scrollTrigger: { trigger: '#sub-header', start: 'top 88%', once: true } }
+      );
+      gsap.fromTo('#sub-header',
+        { opacity: 0 },
+        { opacity: 1, duration: .5, ease: 'power2.out',
+          scrollTrigger: { trigger: '#sub-header', start: 'top 88%', once: true } }
+      );
+      gsap.fromTo('#sub-strip',
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: .6, ease: 'power2.out',
+          scrollTrigger: { trigger: '#sub-strip', start: 'top 90%', once: true } }
+      );
+      gsap.fromTo('#sub-cta',
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: .6, ease: 'power2.out',
+          scrollTrigger: { trigger: '#sub-cta', start: 'top 92%', once: true } }
+      );
 
       /* ── Seção 07 — Diferencial ──────────────────────────────────── */
       gsap.fromTo('#dif-badge',
@@ -4185,6 +4382,11 @@
       if (solBadge) { solBadge.style.opacity = '1'; }
       const solInfo = document.getElementById('sol-info-strip');
       if (solInfo) solInfo.style.opacity = '1';
+      const solPilarCta = document.getElementById('sol-pilar-cta');
+      if (solPilarCta) solPilarCta.style.opacity = '1';
+      /* subestacoes: show immediately */
+      document.querySelectorAll('#sub-header,#sub-badge,#sub-strip,#sub-cta')
+        .forEach(el => { el.style.opacity = '1'; });
       /* diferencial: show immediately */
       document.querySelectorAll('#dif-header,#dif-hero')
         .forEach(el => { el.style.opacity = '1'; });

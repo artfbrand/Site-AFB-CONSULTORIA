@@ -140,7 +140,7 @@
     .footer-cta-text { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.4; color: #FAF9F6; }
     .footer-cta-text em { font-style: normal; color: #F69066; }
     .footer-cta-btn {
-      display: inline-flex; align-items: center; gap: .65rem; padding: .82rem 1.85rem; border-radius: var(--r-pill);
+      display: inline-flex; align-items: center; gap: .65rem; min-height: 44px; min-height: 44px; padding: .82rem 1.85rem; border-radius: var(--r-pill);
       background: var(--accent); color: #fff; font-size: .83rem; font-weight: 600; white-space: nowrap;
       box-shadow: 0 4px 16px rgba(61,127,97,.3); transition: background .2s, transform .22s var(--ease-out), box-shadow .22s; flex-shrink: 0;
     }
@@ -200,10 +200,9 @@
     <nav class="nav" role="navigation" aria-label="Navegação principal">
       <div class="nav-inner">
         <ul class="nav-links" role="list">
-          <li><a href="/#solucoes">Soluções</a></li>
           <li><a href="/#como-funciona">Como Funciona</a></li>
           <li class="nav-item-dropdown">
-            <a href="/servicos" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
+            <a href="/#solucoes" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
               Serviços
               <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
@@ -252,11 +251,10 @@
 
       <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
         <ul>
-          <li><a href="/#solucoes">Soluções</a></li>
           <li><a href="/#como-funciona">Como Funciona</a></li>
           <li class="nav-mobile-item-dropdown">
             <div class="nav-mobile-row">
-              <a href="/servicos">Serviços</a>
+              <a href="/#solucoes">Serviços</a>
               <button class="nav-mobile-subtoggle" id="nav-mobile-servicos-toggle" aria-expanded="false" aria-controls="nav-mobile-servicos-panel" aria-label="Expandir lista de serviços">
                 <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
