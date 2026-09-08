@@ -591,6 +591,120 @@
       .ds-card3d:hover, .ds-tag:hover, .ds-listitem:hover, .ds-step:hover .ds-node { transform: none; }
       .ds-sweep::before { transition: none; }
     }
+
+    /* ─── CARDS MALHADOS · padrão dos cards do Método na home ─────────────
+       Malha interna, orbes radiais (canto superior direito e inferior
+       esquerdo), linha de varredura, shimmer e alternância claro/escuro.
+       Os elementos decorativos são injetados por JS — o markup dos cards
+       permanece intocado. */
+    @keyframes dsCardGlow { 0%,100% { opacity: .45; transform: scale(1); } 50% { opacity: .85; transform: scale(1.1); } }
+    @keyframes dsCardScan { 0% { top: 8%; opacity: 0; } 8% { opacity: 1; } 92% { opacity: .55; } 100% { top: 92%; opacity: 0; } }
+    @keyframes dsCardShimmer { 0% { left: -60%; opacity: 0; } 35% { opacity: 1; } 65% { opacity: 1; } 100% { left: 160%; opacity: 0; } }
+
+    .ds-mcard { position: relative; overflow: hidden; }
+    .ds-mcard > *:not(.ds-mdeco) { position: relative; z-index: 4; }
+
+    /* malha */
+    .ds-mdeco-mesh {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .ds-mcard-sage .ds-mdeco-mesh {
+      background-image:
+        linear-gradient(rgba(13,60,31,.032) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13,60,31,.032) 1px, transparent 1px);
+    }
+
+    /* orbes — o degradê que desce da direita e sobe da esquerda */
+    .ds-mdeco-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 2; }
+    .ds-mdeco-orb-a {
+      width: 240px; height: 240px; top: -18%; right: -8%;
+      background: radial-gradient(circle, rgba(61,127,97,.2) 0%, transparent 70%);
+      filter: blur(24px); animation: dsCardGlow 4.2s ease-in-out infinite;
+    }
+    .ds-mdeco-orb-b {
+      width: 150px; height: 150px; bottom: -12%; left: -5%;
+      background: radial-gradient(circle, rgba(246,144,102,.12) 0%, transparent 65%);
+      filter: blur(18px); animation: dsCardGlow 5.8s ease-in-out infinite 1.2s;
+    }
+    .ds-mcard-sage .ds-mdeco-orb-a { background: radial-gradient(circle, rgba(61,127,97,.13) 0%, transparent 70%); }
+    .ds-mcard-sage .ds-mdeco-orb-b { background: radial-gradient(circle, rgba(246,144,102,.1) 0%, transparent 65%); }
+
+    /* linha de varredura descendo */
+    .ds-mdeco-scan {
+      position: absolute; left: 0; right: 0; height: 1px; z-index: 3; pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(61,127,97,.45), transparent);
+      animation: dsCardScan 6s ease-in-out infinite;
+    }
+    .ds-mcard-sage .ds-mdeco-scan { background: linear-gradient(90deg, transparent, rgba(61,127,97,.3), transparent); }
+
+    /* número fantasma */
+    .ds-mdeco-ghost {
+      position: absolute; top: .35rem; right: 1.1rem; z-index: 2;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 5.5rem; font-weight: 700; line-height: 1;
+      letter-spacing: -.04em; pointer-events: none;
+      color: rgba(255,255,255,.06);
+    }
+    .ds-mcard-sage .ds-mdeco-ghost { color: rgba(13,60,31,.06); }
+
+    /* shimmer atravessando os escuros */
+    .ds-mcard-dark::after {
+      content: ''; position: absolute; top: 0; left: -60%;
+      width: 42%; height: 100%; z-index: 3; pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+      animation: dsCardShimmer 5.5s ease-in-out infinite;
+    }
+
+    /* variantes de fundo */
+    .ds-mcard-dark {
+      background: #0D3C1F !important;
+      box-shadow: 0 8px 40px rgba(13,60,31,.22) !important;
+      border: 1px solid rgba(255,255,255,.07) !important;
+    }
+    .ds-mcard-sage {
+      background: #EFF6F1 !important;
+      box-shadow: 0 4px 20px rgba(13,60,31,.05) !important;
+      border: 1px solid rgba(61,127,97,.12) !important;
+    }
+
+    /* cores do conteúdo nos cards escuros */
+    .ds-mcard-dark .ee-service-title, .ds-mcard-dark .ee-service-title a,
+    .ds-mcard-dark .ms-offer-card-title, .ds-mcard-dark .ms-offer-card-title a,
+    .ds-mcard-dark .ms-offer-featured-title, .ds-mcard-dark .ms-offer-featured-title a,
+    .ds-mcard-dark .svc-related-list a { color: #FAF9F6; }
+    .ds-mcard-dark .ee-service-title a:hover,
+    .ds-mcard-dark .ms-offer-card-title a:hover,
+    .ds-mcard-dark .ms-offer-featured-title a:hover,
+    .ds-mcard-dark .svc-related-list a:hover { color: #8ABF9E; }
+    .ds-mcard-dark .ee-service-text,
+    .ds-mcard-dark .ms-offer-card-text,
+    .ds-mcard-dark .ms-offer-featured-text { color: rgba(212,232,220,.74); }
+    .ds-mcard-dark .ee-service-num { color: rgba(255,255,255,.14); }
+    .ds-mcard-dark .ms-offer-card-link { color: #8ABF9E; }
+    .ds-mcard-dark .ms-offer-card-link:hover { color: #FAF9F6; }
+    .ds-mcard-dark .ms-offer-featured-tag { color: rgba(246,144,102,.95); }
+
+    /* cores do conteúdo nos cards claros */
+    .ds-mcard-sage .ee-service-title, .ds-mcard-sage .ms-offer-card-title,
+    .ds-mcard-sage .ms-offer-featured-title, .ds-mcard-sage .svc-related-list a { color: var(--forest); }
+    .ds-mcard-sage .ee-service-text, .ds-mcard-sage .ms-offer-card-text,
+    .ds-mcard-sage .ms-offer-featured-text { color: var(--sage); }
+
+    /* relacionados das sub-páginas viram cards */
+    .ds-mcard-rel {
+      border-radius: var(--r-card); padding: 1.15rem 1.35rem;
+      display: flex; align-items: center; min-height: 64px;
+    }
+    .ds-mcard-rel a { font-size: .95rem; font-weight: 600; }
+    .svc-related-list { gap: .85rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ds-mdeco-orb, .ds-mdeco-scan, .ds-mcard-dark::after { animation: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -1312,6 +1426,49 @@
       el.dataset.dsi = Math.min(irmaos.indexOf(el), 5);
       el.classList.add('ds-reveal');
       io.observe(el);
+    });
+  })();
+  </script>
+
+  <script>
+  /* ── Cards malhados: mesmo tratamento dos cards do Método na home ─────
+     Malha, orbes radiais, varredura, shimmer e alternância claro/escuro.
+     Injetado por JS: o markup dos cards não é alterado. */
+  (function () {
+    "use strict";
+    function deco(cls, extra) {
+      var d = document.createElement('div');
+      d.className = 'ds-mdeco ' + cls + (extra ? ' ' + extra : '');
+      d.setAttribute('aria-hidden', 'true');
+      return d;
+    }
+
+    [
+      { sel: '.ms-offer-featured', padrao: ['dark'], numera: false },
+      { sel: '.ms-offer-card', padrao: ['sage','dark','sage','dark','sage','dark'], numera: true, inicio: 2 }
+    ].forEach(function (g) {
+      var cards = document.querySelectorAll(g.sel);
+      cards.forEach(function (card, i) {
+        var tom = g.padrao[i % g.padrao.length];
+        card.classList.add('ds-mcard', 'ds-mcard-' + tom);
+        if (g.rel) card.classList.add('ds-mcard-rel');
+
+        card.insertBefore(deco('ds-mdeco-mesh'), card.firstChild);
+        card.insertBefore(deco('ds-mdeco-orb', 'ds-mdeco-orb-a'), card.firstChild);
+        card.insertBefore(deco('ds-mdeco-orb', 'ds-mdeco-orb-b'), card.firstChild);
+
+        var scan = deco('ds-mdeco-scan');
+        scan.style.animationDelay = (i * 0.7) + 's';
+        card.insertBefore(scan, card.firstChild);
+
+        if (g.numera) {
+          var n = document.createElement('span');
+          n.className = 'ds-mdeco ds-mdeco-ghost';
+          n.setAttribute('aria-hidden', 'true');
+          n.textContent = ('0' + ((g.inicio || 1) + i)).slice(-2);
+          card.insertBefore(n, card.firstChild);
+        }
+      });
     });
   })();
   </script>
