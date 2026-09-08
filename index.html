@@ -2087,6 +2087,10 @@
       .sol-ey-m { color: rgba(212,232,220,.75); }
 
       /* title */
+      .sol-card-link { display: inline-block; padding: .15rem 0; transition: color .2s; }
+      .sol-ti-s .sol-card-link:hover { color: #3D7F61; }
+      .sol-ti-d .sol-card-link:hover { color: #8ABF9E; }
+      .sol-card-link:focus-visible { outline: 2px solid #3D7F61; outline-offset: 3px; border-radius: 4px; }
       .sol-title {
         font-family: 'Playfair Display', Georgia, serif;
         font-size: clamp(1rem, 1.3vw, 1.2rem);
@@ -2169,7 +2173,7 @@
           </div>
         </header>
 
-        <!-- ── Grid principal: hero image + cards 1-2 ── -->
+        <!-- ── Grid principal: hero image + serviços 01-02 ── -->
         <div class="sol-grid">
 
           <!-- HERO IMAGEM SUBESTAÇÃO — col-span-7, row-span-2 -->
@@ -2200,19 +2204,19 @@
             </div>
           </div>
 
-          <!-- Card 1 · Análise Técnica da Fatura — col-span-5 -->
+          <!-- Serviço 01 · Análise Tarifária — col-span-5 -->
           <article class="sol-card sol-sage sg-c1" data-sol="0" aria-labelledby="sc1-h">
             <span class="sol-ghost sol-ghost-s" aria-hidden="true">01</span>
             <div class="sol-bar sol-bar-g" aria-hidden="true"></div>
             <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
               <span class="sol-eyebrow sol-ey-s">Serviço 01 · Fatura</span>
-              <h3 class="sol-title sol-ti-s" id="sc1-h">Análise Técnica da Fatura</h3>
-              <p class="sol-text sol-tx-s">Revisão completa de enquadramento, cobranças e perfil de consumo. O ponto de partida de toda redução de custos.</p>
+              <h3 class="sol-title sol-ti-s" id="sc1-h"><a class="sol-card-link" href="/servicos/eficiencia-energetica/analise-tarifaria">Análise Tarifária</a></h3>
+              <p class="sol-text sol-tx-s">Histórico de consumo, enquadramento tarifário e demanda contratada ideal. Identificamos multas por reativo, ultrapassagem e demais custos evitáveis, e fazemos a representação junto à concessionária.</p>
               <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>Diagnóstico</div>
             </div>
           </article>
 
-          <!-- Card 2 · Gestão de Modalidade Tarifária — col-span-5 -->
+          <!-- Serviço 02 · Mercado Livre de Energia — col-span-5 -->
           <article class="sol-card sol-dark sol-shimmer sg-c2" data-sol="1" aria-labelledby="sc2-h">
             <div class="sol-mesh" aria-hidden="true"></div>
             <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 6s ease-in-out infinite .5s;"></div>
@@ -2221,65 +2225,14 @@
             <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">02</span>
             <div class="sol-bar sol-bar-g" aria-hidden="true" style="z-index:4;"></div>
             <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
-              <span class="sol-eyebrow sol-ey-d">Serviço 02 · Tarifa</span>
-              <h3 class="sol-title sol-ti-d" id="sc2-h">Gestão de Modalidade Tarifária</h3>
-              <p class="sol-text sol-tx-d">Ajuste da modalidade ao consumo real para parar de pagar pela tarifa errada.</p>
-              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Otimização</div>
+              <span class="sol-eyebrow sol-ey-d">Serviço 02 · Contratação</span>
+              <h3 class="sol-title sol-ti-d" id="sc2-h"><a class="sol-card-link" href="/servicos/eficiencia-energetica/mercado-livre">Mercado Livre de Energia</a></h3>
+              <p class="sol-text sol-tx-d">Somos credenciados nas principais comercializadoras do país e cotamos com todas elas para apresentar a melhor proposta por kWh. Inclui Mercado Livre, GD Livre e energia por assinatura.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Contratação</div>
             </div>
           </article>
 
         </div><!-- /sol-grid -->
-
-        <div class="sol-contratacao-grid">
-
-          <!-- Card 3 · Mercado Livre de Energia -->
-          <article class="sol-card sol-dark sol-shimmer" data-sol="2" aria-labelledby="sc3-h">
-            <div class="sol-mesh" aria-hidden="true"></div>
-            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1s;"></div>
-            <div class="sol-orb" aria-hidden="true" style="width:180px;height:180px;top:-25%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.14) 0%,transparent 70%);filter:blur(26px);animation:icmsGlow 5s ease-in-out infinite;"></div>
-            <div class="sol-orb" aria-hidden="true" style="width:110px;height:110px;bottom:-12%;left:-6%;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 65%);filter:blur(16px);animation:icmsGlow 6.8s ease-in-out infinite 2s;"></div>
-            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">03</span>
-            <div class="sol-bar sol-bar-g" aria-hidden="true" style="z-index:4;"></div>
-            <span class="sol-ctag sol-ctag-d">Contratação comparada</span>
-            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
-              <span class="sol-eyebrow sol-ey-d">Serviço 03 · ACL</span>
-              <h3 class="sol-title sol-ti-d" id="sc3-h">Mercado Livre de Energia</h3>
-              <p class="sol-text sol-tx-d">Liberdade para negociar energia e reduzir o custo do MWh com previsibilidade de longo prazo.</p>
-              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Mercado Livre</div>
-            </div>
-          </article>
-
-          <!-- Card 4 · GD Livre -->
-          <article class="sol-card sol-sage" data-sol="3" aria-labelledby="sc4-h">
-            <span class="sol-ghost sol-ghost-s" aria-hidden="true">04</span>
-            <div class="sol-bar sol-bar-g" aria-hidden="true"></div>
-            <span class="sol-ctag sol-ctag-s">Contratação comparada</span>
-            <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
-              <span class="sol-eyebrow sol-ey-s">Serviço 04 · Solar</span>
-              <h3 class="sol-title sol-ti-s" id="sc4-h">GD Livre</h3>
-              <p class="sol-text sol-tx-s">Geração distribuída sem investimento em usina própria, com desconto direto na fatura mensal.</p>
-              <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>GD Livre</div>
-            </div>
-          </article>
-
-          <!-- Card 5 · Energia por Assinatura -->
-          <article class="sol-card sol-dark sol-shimmer" data-sol="4" aria-labelledby="sc5-h">
-            <div class="sol-mesh" aria-hidden="true"></div>
-            <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(61,127,97,.45),transparent);z-index:3;pointer-events:none;animation:icmsScan 7s ease-in-out infinite 1s;"></div>
-            <div class="sol-orb" aria-hidden="true" style="width:180px;height:180px;top:-25%;right:-10%;background:radial-gradient(circle,rgba(61,127,97,.14) 0%,transparent 70%);filter:blur(26px);animation:icmsGlow 5.5s ease-in-out infinite .8s;"></div>
-            <div class="sol-orb" aria-hidden="true" style="width:110px;height:110px;bottom:-12%;left:-6%;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 65%);filter:blur(16px);animation:icmsGlow 6.8s ease-in-out infinite 2.5s;"></div>
-            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">05</span>
-            <div class="sol-bar sol-bar-g" aria-hidden="true" style="z-index:4;"></div>
-            <span class="sol-ctag sol-ctag-d">Contratação comparada</span>
-            <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
-              <span class="sol-eyebrow sol-ey-d">Serviço 05 · Adesão</span>
-              <h3 class="sol-title sol-ti-d" id="sc5-h">Energia por Assinatura</h3>
-              <p class="sol-text sol-tx-d">Economia mensal por adesão, sem obra e sem capital imobilizado.</p>
-              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Assinatura</div>
-            </div>
-          </article>
-
-        </div><!-- /sol-contratacao-grid -->
 
         <!-- Info strip — contratação (light reforço) -->
         <div class="sol-info-strip" id="sol-info-strip" role="note">
@@ -2291,34 +2244,34 @@
           <div class="sol-info-rule sol-info-rule-r" aria-hidden="true"></div>
         </div>
 
-        <!-- ── Grid inferior: Cards 6 + 7 ── -->
+        <!-- ── Grid inferior: serviços 03-04 ── -->
         <div class="sol-bottom-grid">
 
-          <!-- Card 6 · Estudos de QEE -->
-          <article class="sol-card sol-sage" data-sol="5" aria-labelledby="sc6-h">
-            <span class="sol-ghost sol-ghost-s" aria-hidden="true">06</span>
+          <!-- Serviço 03 · Qualidade de Energia -->
+          <article class="sol-card sol-sage" data-sol="2" aria-labelledby="sc3-h">
+            <span class="sol-ghost sol-ghost-s" aria-hidden="true">03</span>
             <div class="sol-bar sol-bar-g" aria-hidden="true"></div>
             <div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;">
-              <span class="sol-eyebrow sol-ey-s">Serviço 06 · QEE</span>
-              <h3 class="sol-title sol-ti-s" id="sc6-h">Estudos de Qualidade de Energia (QEE)</h3>
-              <p class="sol-text sol-tx-s">Diagnóstico da causa raiz que protege equipamentos e elimina perdas de energia na origem.</p>
-              <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>QEE</div>
+              <span class="sol-eyebrow sol-ey-s">Serviço 03 · QEE</span>
+              <h3 class="sol-title sol-ti-s" id="sc3-h"><a class="sol-card-link" href="/servicos/eficiencia-energetica/qualidade-de-energia">Qualidade de Energia (QEE)</a></h3>
+              <p class="sol-text sol-tx-s">Equipamento que queima sem explicação, máquina que trava, disjuntor que desarma sozinho: quase sempre a causa está na energia, não no equipamento. Medimos harmônicos, afundamentos, desequilíbrio e fator de potência ao longo de dias.</p>
+              <div class="sol-pill sol-pill-s"><span class="sol-pill-dot"></span>Causa raiz</div>
             </div>
           </article>
 
-          <!-- Card 7 · Laudo de Crédito de ICMS -->
-          <article class="sol-card sol-dark sol-shimmer" data-sol="6" aria-labelledby="sc7-h">
+          <!-- Serviço 04 · Crédito de ICMS -->
+          <article class="sol-card sol-dark sol-shimmer" data-sol="3" aria-labelledby="sc4-h">
             <div class="sol-mesh" aria-hidden="true"></div>
             <div aria-hidden="true" style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(246,144,102,.5),transparent);z-index:3;pointer-events:none;animation:icmsScan 8s ease-in-out infinite 1.2s;"></div>
             <div class="sol-orb" aria-hidden="true" style="width:200px;height:200px;top:-20%;right:-12%;background:radial-gradient(circle,rgba(246,144,102,.12) 0%,transparent 70%);filter:blur(28px);animation:icmsGlow 4.8s ease-in-out infinite;"></div>
             <div class="sol-orb" aria-hidden="true" style="width:130px;height:130px;bottom:-15%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.12) 0%,transparent 65%);filter:blur(20px);animation:icmsGlow 6.2s ease-in-out infinite 2.4s;"></div>
-            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">07</span>
+            <span class="sol-ghost sol-ghost-d" aria-hidden="true" style="z-index:2;">04</span>
             <div class="sol-bar sol-bar-o" aria-hidden="true" style="z-index:4;"></div>
             <div style="position:relative;z-index:4;display:flex;flex-direction:column;flex:1;">
-              <span class="sol-eyebrow sol-ey-d">Serviço 07 · ICMS</span>
-              <h3 class="sol-title sol-ti-d" id="sc7-h">Laudo de Crédito de ICMS</h3>
-              <p class="sol-text sol-tx-d">Identificação e recuperação de capital em créditos de ICMS no consumo de energia elétrica no setor produtivo — em média 20% da fatura todos os meses.</p>
-              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Recuperação ICMS</div>
+              <span class="sol-eyebrow sol-ey-d">Serviço 04 · ICMS</span>
+              <h3 class="sol-title sol-ti-d" id="sc4-h"><a class="sol-card-link" href="/servicos/eficiencia-energetica/credito-icms">Crédito de ICMS</a></h3>
+              <p class="sol-text sol-tx-d">A energia aplicada ao processo produtivo gera direito a crédito de ICMS, parcela relevante na conta conforme o perfil de consumo. Elaboramos o relatório técnico com ART, que dá respaldo à apropriação e reduz a exposição em fiscalização.</p>
+              <div class="sol-pill sol-pill-d"><span class="sol-pill-dot"></span>Recuperação de capital</div>
             </div>
           </article>
 
