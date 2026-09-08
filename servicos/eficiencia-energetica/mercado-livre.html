@@ -194,6 +194,23 @@
     @media (max-width: 767px) { .float-wa { right: 1.25rem; bottom: 1.25rem; } .back-to-top { right: 1.25rem; bottom: 4.5rem; } }
 
 
+    /* ─── BREADCRUMB ──────────────────────────────────────────────────────── */
+    .svc-breadcrumb { max-width: 900px; margin: 0 auto; padding: 1.4rem 3rem 0; }
+    .svc-breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; }
+    .svc-breadcrumb li { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
+    .svc-breadcrumb li:not(:last-child)::after { content: "/"; color: rgba(61,127,97,.35); }
+    .svc-breadcrumb a { color: var(--sage); transition: color .2s; }
+    .svc-breadcrumb a:hover { color: var(--forest); }
+    .svc-breadcrumb li[aria-current="page"] { color: var(--forest); font-weight: 600; }
+    @media (max-width: 767px) { .svc-breadcrumb { padding: 1.1rem 1.5rem 0; } }
+
+    /* ─── SERVIÇOS RELACIONADOS ──────────────────────────────────────────── */
+    .svc-related { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(61,127,97,.12); }
+    .svc-related-title { font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .svc-related-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .svc-related-list a { display: inline-flex; align-items: center; min-height: 44px; font-size: .96rem; font-weight: 600; color: var(--accent); }
+    .svc-related-list a:hover { color: var(--forest); }
+
     /* ─── ANIMAÇÕES · design-system3 + glass-green + ai-saas ──────────────
        Portado de: _design/assets/css/{combined-animations,ds3-light}.css,
        glass-green-effect/assets/css/effects.css e
@@ -539,13 +556,30 @@
   </header>
 
   <main>
+    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Início</a></li>
+        <li><a href="/servicos">Serviços</a></li>
+        <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
+        <li aria-current="page">Migração para o ACL - Ambiente de Contratação Livre</li>
+      </ol>
+    </nav>
+
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/eficiencia-energetica">← Eficiência Energética</a>
+      <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
       <div class="svc-detail-kicker">Eficiência Energética</div>
       <h1 class="svc-detail-h1">Migração para o ACL - Ambiente de Contratação Livre</h1>
       <p class="svc-detail-desc">Somos credenciados nas principais comercializadoras do país e cotamos com todas elas para apresentar a melhor proposta por kWh. Intermediamos a negociação do início ao fim. Trabalhamos com Mercado Livre de Energia, GD Livre e Energia por assinatura.</p>
       <div class="svc-cta">
         <a class="svc-cta-btn" href="https://wa.me/5584988822015?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Migra%C3%A7%C3%A3o%20para%20o%20Mercado%20Livre%20de%20Energia%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
+      </div>
+      <div class="svc-related">
+        <p class="svc-related-title">Serviços relacionados</p>
+        <ul class="svc-related-list">
+          <li><a href="/servicos/eficiencia-energetica/analise-tarifaria">Análise Tarifária e Relatório GMT</a></li>
+          <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Estudo de Qualidade de Energia (QEE)</a></li>
+          <li><a href="/servicos/eficiencia-energetica/credito-icms">Laudo de Crédito de ICMS sobre Energia</a></li>
+        </ul>
       </div>
     </div>
   </main>

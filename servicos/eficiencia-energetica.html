@@ -157,7 +157,10 @@
     @media (max-width: 767px) { .ee-diff-list { grid-template-columns: 1fr; } }
 
     /* ─── 4. SUB-SERVIÇOS ─────────────────────────────────────────────────── */
-    .ee-services { background: var(--bg-alt); padding: 4.5rem 3rem 5rem; }
+    .ee-services { background: var(--bg-alt); padding: 4.5rem 3rem 5rem; scroll-margin-top: 152px; }
+    @media (max-width: 1024px) { .ee-services { scroll-margin-top: 128px; } }
+    @media (max-width: 768px) { .ee-services { scroll-margin-top: 110px; } }
+    @media (max-width: 480px) { .ee-services { scroll-margin-top: 96px; } }
     .ee-services-inner { max-width: 1120px; margin: 0 auto; }
     .ee-services-lead { margin-top: 1rem; font-size: 1rem; color: var(--sage); max-width: 60ch; }
     .ee-services-grid { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -696,7 +699,7 @@
     </section>
 
     <!-- 4. SUB-SERVIÇOS -->
-    <section class="ee-services">
+    <section class="ee-services" id="o-que-oferecemos">
       <div class="ee-services-inner">
         <div class="ee-kicker">O que oferecemos</div>
         <h2 class="ee-h2">Quatro frentes, uma só análise</h2>
