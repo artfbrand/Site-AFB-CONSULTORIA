@@ -237,6 +237,84 @@
     .back-to-top:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(61,127,97,.32); color: #fff; }
     .back-to-top svg { width: 18px; height: 18px; }
     @media (max-width: 767px) { .float-wa { right: 1.25rem; bottom: 1.25rem; } .back-to-top { right: 1.25rem; bottom: 4.5rem; } }
+
+    /* ─── ANIMAÇÕES · design-system3 ──────────────────────────────────────
+       Keyframes e efeitos portados de _design/assets/css/combined-animations.css
+       e ds3-light.css. O markup não é tocado: as classes de reveal são
+       aplicadas por JS, então sem JS a página continua 100% visível. */
+    @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(32px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes particleRise { 0% { transform: translateY(0) scale(1); opacity: .55; } 100% { transform: translateY(-260px) scale(.25); opacity: 0; } }
+    @keyframes ambientMove { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(100px,-55px) scale(1.12); } }
+    @keyframes ambientMove2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px,65px) scale(.88); } }
+    @keyframes dsScanLine { 0% { top: -2px; opacity: 0; } 5% { opacity: 1; } 95% { opacity: .6; } 100% { top: 100%; opacity: 0; } }
+    @keyframes dsShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+
+    /* entrada do hero — CSS puro com "backwards", não depende de JS */
+    .ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5 {
+      animation: slideUpFade 1.05s cubic-bezier(.16,1,.3,1) backwards;
+    }
+    .ds-intro-1 { animation-delay: .08s; }
+    .ds-intro-2 { animation-delay: .22s; }
+    .ds-intro-3 { animation-delay: .36s; }
+    .ds-intro-4 { animation-delay: .5s; }
+    .ds-intro-5 { animation-delay: .64s; }
+
+    /* reveal no scroll — só ganha estado inicial quando o JS assume */
+    .ds-anim .ds-reveal { opacity: 0; transform: translateY(22px); }
+    .ds-anim .ds-reveal.ds-in {
+      animation: fadeUp .85s cubic-bezier(.16,1,.3,1) forwards;
+    }
+
+    /* luzes ambientes de fundo */
+    .ds-ambient {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+      will-change: transform;
+    }
+    .ds-ambient-1 {
+      top: 6%; left: -4%; width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(61,127,97,.09) 0%, transparent 70%);
+      filter: blur(70px); animation: ambientMove 13s ease-in-out infinite alternate;
+    }
+    .ds-ambient-2 {
+      bottom: 4%; right: -5%; width: 620px; height: 620px;
+      background: radial-gradient(circle, rgba(20,184,166,.05) 0%, transparent 70%);
+      filter: blur(80px); animation: ambientMove2 17s ease-in-out infinite alternate;
+    }
+
+    /* partículas subindo no hero */
+    .ds-particle {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      background: rgba(61,127,97,.24);
+      animation: particleRise linear infinite;
+    }
+
+    /* linha de varredura nas bandas escuras */
+    .ds-scan {
+      position: absolute; left: 0; width: 100%; height: 1px; pointer-events: none; z-index: 5;
+      background: linear-gradient(90deg, transparent, rgba(138,191,158,.22), rgba(20,184,166,.26), rgba(138,191,158,.22), transparent);
+      animation: dsScanLine 9s linear infinite;
+    }
+
+    /* brilho que atravessa o botão principal */
+    .ds-shine { position: relative; overflow: hidden; }
+    .ds-shine::after {
+      content: ""; position: absolute; top: 0; left: 0;
+      width: 40%; height: 100%; pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+      animation: dsShimmer 4.5s ease-in-out infinite;
+    }
+
+    /* hover 3D dos cards — .light-card do ds3-light.css */
+    .ds-lift { transition: transform .48s cubic-bezier(.4,0,.2,1), box-shadow .48s cubic-bezier(.4,0,.2,1); }
+    .ds-lift:hover { transform: translateY(-9px); box-shadow: 0 24px 64px rgba(13,60,31,.13), 0 0 40px rgba(61,127,97,.07); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5,
+      .ds-ambient, .ds-particle, .ds-scan, .ds-shine::after { animation: none !important; }
+      .ds-anim .ds-reveal { opacity: 1 !important; transform: none !important; }
+      .ds-lift:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -514,6 +592,90 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
+  })();
+  </script>
+
+  <script>
+  /* ── Animações do design-system3 ──────────────────────────────────────
+     Aplicadas por JS para não alterar o HTML: sem JS, a página continua
+     inteira visível. Respeita prefers-reduced-motion. */
+  (function () {
+    "use strict";
+    var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* entrada escalonada do hero */
+    [['.svc-breadcrumb', 1], ['.svc-back', 2], ['.svc-detail-kicker', 3], ['.svc-detail-h1', 4]].forEach(function (par) {
+      var el = document.querySelector(par[0]);
+      if (el) el.classList.add('ds-intro-' + par[1]);
+    });
+
+    /* luzes ambientes */
+    if (!reduz) {
+      [1, 2].forEach(function (n) {
+        var d = document.createElement('div');
+        d.className = 'ds-ambient ds-ambient-' + n;
+        d.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(d);
+      });
+
+      /* partículas subindo no hero */
+      var hero = document.querySelector('.svc-detail');
+      if (hero) {
+        if (getComputedStyle(hero).position === 'static') hero.style.position = 'relative';
+        [[6, 4, 9, 0], [17, 3, 12, 2], [34, 4, 11, 3.5], [58, 3, 13, 1.2], [72, 5, 10, 4.4], [88, 3, 14, 2.8]].forEach(function (p) {
+          var s = document.createElement('span');
+          s.className = 'ds-particle';
+          s.setAttribute('aria-hidden', 'true');
+          s.style.cssText = 'left:' + p[0] + '%;bottom:8%;width:' + p[1] + 'px;height:' + p[1] + 'px;animation-duration:' + p[2] + 's;animation-delay:' + p[3] + 's';
+          hero.appendChild(s);
+        });
+      }
+
+      /* linha de varredura nas bandas escuras */
+      [].forEach(function (sel) {
+        var banda = document.querySelector(sel);
+        if (!banda) return;
+        if (getComputedStyle(banda).position === 'static') banda.style.position = 'relative';
+        var l = document.createElement('div');
+        l.className = 'ds-scan';
+        l.setAttribute('aria-hidden', 'true');
+        banda.appendChild(l);
+      });
+
+      /* brilho nos botões principais */
+      var btns = '.svc-cta-btn';
+      if (btns) document.querySelectorAll(btns).forEach(function (b) { b.classList.add('ds-shine'); });
+
+      /* hover 3D nos cards */
+      var cds = null;
+      if (cds) document.querySelectorAll(cds).forEach(function (c) { c.classList.add('ds-lift'); });
+    }
+
+    /* reveal no scroll */
+    if (reduz || !('IntersectionObserver' in window)) return;
+    document.documentElement.classList.add('ds-anim');
+    var alvos = ['.svc-detail-desc', '.svc-cta', '.svc-related'];
+    var els = [];
+    alvos.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) { els.push(el); });
+    });
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.style.animationDelay = (parseInt(el.dataset.dsi || 0, 10) * 70) + 'ms';
+        el.classList.add('ds-in');
+        io.unobserve(el);
+      });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function (el) {
+      /* escalona irmãos do mesmo container */
+      var irmaos = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.tagName === el.tagName; });
+      el.dataset.dsi = Math.min(irmaos.indexOf(el), 5);
+      el.classList.add('ds-reveal');
+      io.observe(el);
+    });
   })();
   </script>
 </body>
