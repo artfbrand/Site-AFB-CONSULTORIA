@@ -3,6 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2TLLY5G438"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2TLLY5G438');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('wa.me') !== -1 || h.indexOf('api.whatsapp.com') !== -1) {
+      gtag('event', 'clique_whatsapp', { link_url: a.href, pagina: location.pathname });
+    } else if (h.indexOf('mailto:') === 0) {
+      gtag('event', 'clique_email', { pagina: location.pathname });
+    }
+  }, true);
+</script>
   <title>Migração para o ACL - Ambiente de Contratação Livre · AFB Engenharia &amp; Consultoria Elétrica</title>
   <meta name="description" content="Somos credenciados nas principais comercializadoras do país e cotamos com todas elas para apresentar a melhor proposta por kWh." />
   <link rel="canonical" href="https://www.afbenergia.com.br/servicos/eficiencia-energetica/mercado-livre" />

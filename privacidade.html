@@ -3,6 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2TLLY5G438"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2TLLY5G438');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('wa.me') !== -1 || h.indexOf('api.whatsapp.com') !== -1) {
+      gtag('event', 'clique_whatsapp', { link_url: a.href, pagina: location.pathname });
+    } else if (h.indexOf('mailto:') === 0) {
+      gtag('event', 'clique_email', { pagina: location.pathname });
+    }
+  }, true);
+</script>
   <title>Política de Privacidade | AFB Engenharia</title>
   <meta name="description" content="Como a AFB Engenharia coleta, usa e protege os dados pessoais enviados por este site, conforme a LGPD." />
   <link rel="canonical" href="https://www.afbenergia.com.br/privacidade" />
@@ -354,9 +372,11 @@
     <h2>Para que usamos</h2>
     <p>Para responder ao seu contato, elaborar análises e propostas e prestar os serviços contratados.</p>
     <h2>Compartilhamento</h2>
-    <p>Não vendemos seus dados. Podemos compartilhá-los apenas com parceiros necessários à execução do serviço que você solicitou (por exemplo, contabilidade parceira ou comercializadoras de energia), mediante sua autorização, e com prestadores que viabilizam o funcionamento do site e da comunicação (hospedagem e WhatsApp).</p>
+    <p>Não vendemos seus dados. Podemos compartilhá-los apenas com parceiros necessários à execução do serviço que você solicitou (por exemplo, contabilidade parceira ou comercializadoras de energia), mediante sua autorização, e com prestadores que viabilizam o funcionamento do site e da comunicação (hospedagem, WhatsApp e Google Analytics).</p>
     <h2>Armazenamento local</h2>
     <p>O formulário de diagnóstico pode salvar suas respostas temporariamente no próprio navegador, para que você não as perca. Você pode apagá-las limpando os dados do navegador.</p>
+    <h2>Medição de visitas</h2>
+    <p>Usamos o Google Analytics para entender, de forma estatística, como o site é utilizado (por exemplo, páginas visitadas e cliques nos botões de contato). Essa ferramenta utiliza cookies e coleta dados como tipo de dispositivo, navegador e localização aproximada, sem identificar você pelo nome. Você pode bloquear cookies nas configurações do seu navegador.</p>
     <h2>Por quanto tempo guardamos</h2>
     <p>Pelo tempo necessário às finalidades acima ou ao cumprimento de obrigações legais.</p>
     <h2>Seus direitos (LGPD)</h2>
