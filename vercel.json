@@ -2,6 +2,18 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.afbconsultorias.com.br" }],
+      "destination": "https://www.afbenergia.com.br/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "afbconsultorias.com.br" }],
+      "destination": "https://www.afbenergia.com.br/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.afbconsultorias.com.br" }],
       "destination": "https://www.afbenergia.com.br/:path*",
