@@ -1,6 +1,18 @@
 {
   "cleanUrls": true,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.afbconsultorias.com.br" }],
+      "destination": "https://www.afbenergia.com.br/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "afbconsultorias.com.br" }],
+      "destination": "https://www.afbenergia.com.br/:path*",
+      "permanent": true
+    },
     { "source": "/servicos/qualidade-de-energia", "destination": "/servicos/eficiencia-energetica/qualidade-de-energia", "permanent": true },
     { "source": "/servicos/credito-icms-energia", "destination": "/servicos/eficiencia-energetica/credito-icms", "permanent": true },
     { "source": "/servicos/manutencao-subestacao", "destination": "/servicos/subestacoes", "permanent": true }
