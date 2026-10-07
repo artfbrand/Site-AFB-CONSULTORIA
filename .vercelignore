@@ -1,0 +1,10 @@
+# Arquivos internos que nao devem ser publicados no site
+_design/
+ai-saas-landing-27.aura.build/
+glass-green-effect/
+*.md
+*.pdf
+package-lock.json
+.env*
+assets/icons/demo.html
+Logo em Alta Resolução - VARIAÇAO 2.png
