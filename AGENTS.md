@@ -84,13 +84,11 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- Concluídos e na main: A, B1, B2, C, D, E, F1.
-- Na v2-estrutura, aguardando merge: F1b e F1b-2 (Diagnóstico 360° ligado; o formulário ainda não envia dados, o que foi aceito pelo Arthur enquanto o site não é divulgado).
+- Concluídos e na main: A, B1, B2, C, D, E, F1, F1b, F1b-2 (Diagnóstico 360° ligado; o formulário ainda não envia dados, aceito pelo Arthur enquanto o site não é divulgado) e H (página Correção de Fator de Potência).
 - Próximas etapas, nesta ordem:
-  1. Nova página de serviço: Correção de Fator de Potência (Eficiência Energética).
-  2. G1 e G2: efeitos visuais da Home levados às páginas internas (piloto e depois o site todo).
-  3. F2: auditorias finais de SEO e conversão.
-  4. Formulário do Diagnóstico 360° (envio de dados, agradecimento, LGPD, evento GA4).
+  1. G1 e G2: efeitos visuais da Home levados às páginas internas (piloto e depois o site todo).
+  2. F2: auditorias finais de SEO e conversão.
+  3. Formulário do Diagnóstico 360° (envio de dados, agradecimento, LGPD, evento GA4).
 - Pendências conhecidas (não mexer sem prompt):
   - limpeza de arquivos antigos (.png substituídos, logo-diagnostico.png, servicos-data.js)
   - troca da foto de termografia
