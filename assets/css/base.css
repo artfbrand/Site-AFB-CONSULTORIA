@@ -219,6 +219,7 @@ main { padding-top: 132px; }
 .back-to-top:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(61,127,97,.32); color: #fff; }
 .back-to-top svg { width: 18px; height: 18px; }
 @media (max-width: 767px) {
-  .float-wa { right: 1.25rem; bottom: 1.25rem; width: 56px; height: 56px; padding: 0; border-radius: 50%; justify-content: center; gap: 0; font-size: 0; }
+  .float-wa { right: 1.25rem; bottom: 1.25rem; width: 56px; height: 56px; padding: 0; border-radius: 50%; justify-content: center; gap: 0; font-size: 0; border: 2px solid rgba(255,255,255,.35); }
+  .float-wa svg { width: 24px; height: 24px; }
   .back-to-top { right: 1.25rem; bottom: calc(1.25rem + 56px + 12px); }
 }
