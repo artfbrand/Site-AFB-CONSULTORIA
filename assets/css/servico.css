@@ -330,6 +330,30 @@
 .svc-equip-text a, .svc-faq-item p a { color: var(--accent); text-decoration: underline; }
 .svc-equip-text a:hover, .svc-faq-item p a:hover { color: var(--forest); }
 
+/* ─── Fotos de campo nas páginas de serviço ──────────────────────────── */
+.svc-photo { margin-top: 2.5rem; max-width: 720px; }
+.svc-photo img { width: auto; height: auto; max-width: 100%; max-height: 520px; border-radius: var(--r-card); box-shadow: var(--shadow-card); }
+
+/* ─── Quem Somos ─────────────────────────────────────────────────────── */
+.about-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2.5rem; align-items: center; }
+.about-hero .svc-detail-h1 { margin-top: 0; }
+.about-hero-photo img { width: 100%; height: auto; max-height: 520px; object-fit: cover; border-radius: var(--r-card); box-shadow: var(--shadow-card); }
+.svc-text { margin-top: 1rem; font-size: 1rem; line-height: 1.75; color: var(--sage); max-width: 62ch; }
+.svc-list a { color: var(--accent); text-decoration: underline; }
+.svc-list a:hover { color: var(--forest); }
+@media (max-width: 767px) { .about-hero { grid-template-columns: 1fr; gap: 2rem; } }
+
+/* ─── Contato ────────────────────────────────────────────────────────── */
+.contact-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.contact-card { background: #fff; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 1.6rem; display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; }
+.contact-card-title { font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.contact-card-value { font-size: 1.05rem; font-weight: 600; line-height: 1.5; color: var(--forest); }
+.contact-card .svc-cta-btn { margin-top: .4rem; }
+.contact-card-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--accent); text-decoration: underline; }
+.contact-card-link:hover { color: var(--forest); }
+.contact-legal { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(61,127,97,.12); font-size: .82rem; color: var(--muted); }
+@media (max-width: 767px) { .contact-grid { grid-template-columns: 1fr; } }
+
 /* ─── Contraste dos cards escuros de "Serviços relacionados" ─────────── */
 .svc-related-list li.ds-mcard-dark a { color: var(--white); }
 .svc-related-list li.ds-mcard-dark a:hover { color: #8ABF9E; }

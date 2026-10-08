@@ -513,6 +513,16 @@
     .ms-front-links a:hover { color: var(--forest); }
     .ds-mcard-dark .ms-front-links a { color: var(--white); }
     .ds-mcard-dark .ms-front-links a:hover { color: #8ABF9E; }
+    /* ─── Bloco C: foto na seção "Ensaio medido" ───────────────────────── */
+    .ms-why-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; }
+    .ms-why-grid .ms-why-list { grid-template-columns: 1fr; }
+    .ms-why-photo img { width: 100%; height: auto; max-height: 520px; object-fit: cover; border-radius: var(--r-card); box-shadow: var(--shadow-card); }
+    @media (max-width: 1023px) {
+      .ms-why-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .ms-why-grid .ms-why-list { grid-template-columns: 1fr 1fr; }
+      .ms-why-photo { max-width: 520px; }
+    }
+    @media (max-width: 767px) { .ms-why-grid .ms-why-list { grid-template-columns: 1fr; } }
   </style>
   <script type="application/ld+json">
   {
@@ -591,8 +601,8 @@
 
         <div class="nav-right">
           <ul class="nav-links" role="list">
-            <li><a href="/#quem-somos">Quem Somos</a></li>
-            <li><a href="/#contato">Contato</a></li>
+            <li><a href="/quem-somos">Quem Somos</a></li>
+            <li><a href="/contato">Contato</a></li>
             <li><a class="nav-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." target="_blank" rel="noopener" aria-label="Solicitar análise pelo WhatsApp (abre em nova aba)">Solicitar análise</a></li>
           </ul>
           <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu de navegação" aria-expanded="false">
@@ -633,8 +643,8 @@
             </ul>
           </li>
           <li><a href="/#como-funciona">Como Funciona</a></li>
-          <li><a href="/#quem-somos">Quem Somos</a></li>
-          <li><a href="/#contato">Contato</a></li>
+          <li><a href="/quem-somos">Quem Somos</a></li>
+          <li><a href="/contato">Contato</a></li>
           <li><a class="nav-btn nav-btn-mobile" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." target="_blank" rel="noopener" aria-label="Solicitar análise pelo WhatsApp (abre em nova aba)">Solicitar análise</a></li>
         </ul>
       </div>
@@ -647,7 +657,7 @@
       <ol>
         <li><a href="/">Início</a></li>
         <li><a href="/servicos">Serviços</a></li>
-        <li aria-current="page">Manutenção em Subestações</li>
+        <li aria-current="page">Subestações</li>
       </ol>
     </nav>
 
@@ -701,17 +711,24 @@
     <!-- 3. POR QUE A AFB -->
     <section class="ms-why">
       <div class="ms-why-inner">
-        <div class="ms-kicker">Por que a AFB</div>
-        <h2 class="ms-h2">Ensaio medido, não inspeção visual</h2>
-        <p class="ms-why-lead">Boa parte do que se vende como manutenção de subestação é limpeza e reaperto. Isso é necessário, mas não diz em que estado o equipamento está. O que revela condição é ensaio com instrumento e valor registrado.</p>
-        <ul class="ms-why-list">
-          <li>Ensaios elétricos com instrumentação calibrada e valores medidos em relatório</li>
-          <li>Conformidade com NR-10, ABNT NBR 14039 e práticas de ensaio da NETA ATS</li>
-          <li>Emissão de ART para todo serviço que exigir responsabilidade técnica</li>
-          <li>Relatório técnico com registro fotográfico e diagnóstico por equipamento</li>
-          <li>Ações recomendadas em ordem de prioridade, com o risco de cada pendência</li>
-          <li>Histórico comparável entre campanhas, para acompanhar a evolução dos ensaios</li>
-        </ul>
+        <div class="ms-why-grid">
+          <div class="ms-why-text">
+            <div class="ms-kicker">Por que a AFB</div>
+            <h2 class="ms-h2">Ensaio medido, não inspeção visual</h2>
+            <p class="ms-why-lead">Boa parte do que se vende como manutenção de subestação é limpeza e reaperto. Isso é necessário, mas não diz em que estado o equipamento está. O que revela condição é ensaio com instrumento e valor registrado.</p>
+            <ul class="ms-why-list">
+              <li>Ensaios elétricos com instrumentação calibrada e valores medidos em relatório</li>
+              <li>Conformidade com NR-10, ABNT NBR 14039 e práticas de ensaio da NETA ATS</li>
+              <li>Emissão de ART para todo serviço que exigir responsabilidade técnica</li>
+              <li>Relatório técnico com registro fotográfico e diagnóstico por equipamento</li>
+              <li>Ações recomendadas em ordem de prioridade, com o risco de cada pendência</li>
+              <li>Histórico comparável entre campanhas, para acompanhar a evolução dos ensaios</li>
+            </ul>
+          </div>
+          <figure class="ms-why-photo">
+            <img src="/assets/images/fotos/subestacao-transformador-seco.jpg" alt="Engenheiro da AFB fazendo anotações diante de um transformador a seco em subestação" width="880" height="1126" loading="lazy" decoding="async" />
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -1015,8 +1032,8 @@
           <a href="/servicos/eficiencia-energetica" class="footer-nav-link">Eficiência Energética</a>
           <a href="/servicos/subestacoes" class="footer-nav-link">Subestações</a>
           <a href="/#como-funciona" class="footer-nav-link">Como Funciona</a>
-          <a href="/#quem-somos" class="footer-nav-link">Quem Somos</a>
-          <a href="/#contato" class="footer-nav-link">Contato</a>
+          <a href="/quem-somos" class="footer-nav-link">Quem Somos</a>
+          <a href="/contato" class="footer-nav-link">Contato</a>
         </nav>
 
         <div class="footer-nav-group">
@@ -1031,13 +1048,17 @@
           </div>
           <div class="footer-contact-item">
             <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rua Roberto Belizário Viana, 218, Centro, Pedro Leopoldo/MG, CEP 33250-054
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             Minas Gerais e demais estados
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copy">© 2026 AFB Engenharia &amp; Consultoria Elétrica. Todos os direitos reservados.</p>
+        <p class="footer-copy">© 2026 AFB Engenharia &amp; Consultoria Elétrica. Todos os direitos reservados. · CNPJ 69.350.036/0001-00</p>
         <nav class="footer-legal" aria-label="Links legais">
           <a href="/privacidade">Política de Privacidade</a>
         </nav>
