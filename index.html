@@ -1897,6 +1897,35 @@
       </div>
     </section>
 
+    <style>
+      .mid-cta {
+        padding: 4.5rem 0;
+        background: var(--bg-alt);
+      }
+      .mid-cta-inner {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        text-align: center;
+      }
+      .mid-cta .ct-h2 { margin: 0; }
+      .mid-cta .ct-sub { max-width: 680px; margin: 1rem auto 1.6rem; }
+      .mid-cta .ct-wa-btn { min-height: 48px; padding: .82rem 1.65rem; }
+      @media (max-width: 767px) {
+        .mid-cta { padding: 3.5rem 0; }
+        .mid-cta-inner { padding: 0 1.25rem; }
+      }
+    </style>
+    <section class="mid-cta" aria-labelledby="mid-cta-heading">
+      <div class="mid-cta-inner">
+        <h2 class="ct-h2" id="mid-cta-heading">Não sabe por qual frente começar?</h2>
+        <p class="ct-sub">O diagnóstico gratuito mostra onde está o maior retorno: no contrato, na instalação, no imposto ou na subestação.</p>
+        <a href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="ct-wa-btn" target="_blank" rel="noopener">
+          Solicitar diagnóstico gratuito
+        </a>
+      </div>
+    </section>
+
   <div id="quem-somos" aria-hidden="true"></div>
 
   <!-- ════════════════════════════════════════════════════════════════════ -->
@@ -2250,6 +2279,43 @@
 
 
     </div><!-- /dif-inner -->
+  </section>
+
+  <style>
+    .em-campo {
+      padding: 6rem 0;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .em-campo-inner { max-width: 1280px; margin: 0 auto; padding: 0 3rem; }
+    .em-campo-header { max-width: 680px; margin-bottom: 2.25rem; }
+    .em-campo-h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.3vw, 3rem); line-height: 1.1; color: var(--forest); }
+    .em-campo-header p { margin-top: .9rem; color: var(--sage); line-height: 1.7; }
+    .em-campo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .em-campo-photo { overflow: hidden; border-radius: var(--r-card); background: var(--bg-alt); aspect-ratio: 4 / 5; }
+    .em-campo-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease-out); }
+    .em-campo-photo:hover img { transform: scale(1.03); }
+    @media (min-width: 1025px) { .em-campo-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    @media (max-width: 767px) {
+      .em-campo { padding: 4.5rem 0; }
+      .em-campo-inner { padding: 0 1.25rem; }
+      .em-campo-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .5rem; }
+      .em-campo-photo { flex: 0 0 78vw; scroll-snap-align: start; }
+    }
+  </style>
+  <section class="em-campo" aria-labelledby="em-campo-heading">
+    <div class="em-campo-inner">
+      <header class="em-campo-header">
+        <h2 class="em-campo-h2" id="em-campo-heading">Em campo</h2>
+        <p>Ensaios, medições e inspeções em subestações de média tensão.</p>
+      </header>
+      <div class="em-campo-grid">
+        <div class="em-campo-photo"><img src="/assets/images/fotos/subestacao-transformador-seco.jpg" alt="Transformador a seco em subestação de média tensão" width="880" height="1126" loading="lazy" decoding="async"></div>
+        <div class="em-campo-photo"><img src="/assets/images/fotos/subestacao-paineis-reles.jpg" alt="Painéis com relés de proteção em subestação" width="898" height="1200" loading="lazy" decoding="async"></div>
+        <div class="em-campo-photo"><img src="/assets/images/fotos/subestacao-ensaio-transformador-seco.jpg" alt="Ensaio elétrico em transformador a seco" width="899" height="896" loading="lazy" decoding="async"></div>
+        <div class="em-campo-photo"><img src="/assets/images/fotos/subestacao-transformador-oleo.jpg" alt="Transformador a óleo em subestação" width="598" height="802" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
   </section>
 
   <!-- ═══ SEÇÃO 09 — COMO FUNCIONA ════════════════════════════════════ -->

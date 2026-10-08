@@ -20,7 +20,8 @@
     '.afb-ck button:focus-visible{outline:2px solid var(--accent,#3D7F61);outline-offset:2px}' +
     '@media (max-width:767px){.afb-ck{left:8px;right:8px;bottom:8px;max-width:none;padding:14px}.afb-ck p{font-size:13px}.afb-ck-btns button{flex:1}' +
     'body.afb-ck-open .float-wa{bottom:calc(var(--afb-ck-h,170px) + 16px)!important}' +
-    'body.afb-ck-open .back-to-top{bottom:calc(var(--afb-ck-h,170px) + 16px + 56px + 12px)!important}}';
+    'body.afb-ck-open .back-to-top{bottom:calc(var(--afb-ck-h,170px) + 16px + 56px + 12px)!important}}' +
+    '@media (min-width:1025px){.afb-ck{left:auto;right:16px}body.afb-ck-open .float-wa{bottom:calc(var(--afb-ck-h,170px) + 16px)!important}body.afb-ck-open .back-to-top{bottom:calc(var(--afb-ck-h,170px) + 16px + 56px + 12px)!important}}';
   function measure() { if (banner && !banner.hidden) { document.documentElement.style.setProperty('--afb-ck-h', banner.offsetHeight + 'px'); } }
   function hide() { banner.hidden = true; document.body.classList.remove('afb-ck-open'); }
   function build() {
