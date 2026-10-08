@@ -93,7 +93,8 @@ a { text-decoration: none; color: inherit; }
 .nav-mobile-menu { display: none; }
 main { padding-top: 132px; }
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .nav-links { gap: 2rem; }
+  .nav-links { gap: 1.5rem; }
+  .nav-btn { padding: .55rem 1rem; }
 }
 @media (max-width: 1024px) {
   .nav { height: 108px; }
@@ -218,6 +219,6 @@ main { padding-top: 132px; }
 .back-to-top:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(61,127,97,.32); color: #fff; }
 .back-to-top svg { width: 18px; height: 18px; }
 @media (max-width: 767px) {
-  .float-wa { right: 1.25rem; bottom: 1.25rem; }
-  .back-to-top { right: 1.25rem; bottom: 4.5rem; }
+  .float-wa { right: 1.25rem; bottom: 1.25rem; width: 56px; height: 56px; padding: 0; border-radius: 50%; justify-content: center; gap: 0; font-size: 0; }
+  .back-to-top { right: 1.25rem; bottom: calc(1.25rem + 56px + 12px); }
 }
