@@ -366,13 +366,16 @@
     <nav class="nav" role="navigation" aria-label="Navegação principal">
       <div class="nav-inner">
         <ul class="nav-links" role="list">
-          <li><a href="/#como-funciona">Como Funciona</a></li>
           <li class="nav-item-dropdown">
-            <a href="/#solucoes" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
+            <a href="/servicos" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
               Serviços
               <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
             <div class="nav-dropdown" id="nav-servicos-dropdown" role="menu" aria-labelledby="nav-servicos-trigger">
+              <a href="/servicos" role="menuitem" class="nav-dropdown-item">
+                <span class="nav-dropdown-title">Todos os serviços</span>
+              </a>
+              <div class="nav-dropdown-divider" aria-hidden="true"></div>
               <a href="/servicos/eficiencia-energetica" role="menuitem" class="nav-dropdown-item">
                 <span class="nav-dropdown-title">Eficiência Energética</span>
                 <span class="nav-dropdown-sub">Redução de custos com energia</span>
@@ -395,6 +398,7 @@
               <a href="/servicos/subestacoes/projeto-de-subestacao" role="menuitem" class="nav-dropdown-subitem">Projeto de Subestação</a>
             </div>
           </li>
+          <li><a href="/#como-funciona">Como Funciona</a></li>
         </ul>
 
         <a href="/" class="nav-logo-center" aria-label="AFB Engenharia &amp; Consultoria Elétrica — página inicial">
@@ -405,7 +409,7 @@
           <ul class="nav-links" role="list">
             <li><a href="/#quem-somos">Quem Somos</a></li>
             <li><a href="/#contato">Contato</a></li>
-            <li><a href="/diagnostico">Diagnóstico gratuito</a></li>
+            <li><a class="nav-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." target="_blank" rel="noopener" aria-label="Solicitar análise pelo WhatsApp (abre em nova aba)">Solicitar análise</a></li>
           </ul>
           <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu de navegação" aria-expanded="false">
             <span class="ham-line"></span>
@@ -417,15 +421,15 @@
 
       <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
         <ul>
-          <li><a href="/#como-funciona">Como Funciona</a></li>
           <li class="nav-mobile-item-dropdown">
             <div class="nav-mobile-row">
-              <a href="/#solucoes">Serviços</a>
+              <a href="/servicos">Serviços</a>
               <button class="nav-mobile-subtoggle" id="nav-mobile-servicos-toggle" aria-expanded="false" aria-controls="nav-mobile-servicos-panel" aria-label="Expandir lista de serviços">
                 <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
             </div>
             <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel" aria-hidden="true">
+              <li><a href="/servicos">Todos os serviços</a></li>
               <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
               <li><a href="/servicos/eficiencia-energetica/analise-tarifaria" class="nav-mobile-subsub">Análise Tarifária</a></li>
               <li><a href="/servicos/eficiencia-energetica/mercado-livre" class="nav-mobile-subsub">Mercado Livre de Energia</a></li>
@@ -441,9 +445,10 @@
               <li><a href="/servicos/subestacoes/projeto-de-subestacao" class="nav-mobile-subsub">Projeto de Subestação</a></li>
             </ul>
           </li>
+          <li><a href="/#como-funciona">Como Funciona</a></li>
           <li><a href="/#quem-somos">Quem Somos</a></li>
           <li><a href="/#contato">Contato</a></li>
-          <li><a href="/diagnostico">Diagnóstico gratuito</a></li>
+          <li><a class="nav-btn nav-btn-mobile" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." target="_blank" rel="noopener" aria-label="Solicitar análise pelo WhatsApp (abre em nova aba)">Solicitar análise</a></li>
         </ul>
       </div>
     </nav>

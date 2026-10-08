@@ -53,6 +53,9 @@ a { text-decoration: none; color: inherit; }
 .nav-links { display: flex; align-items: center; gap: 3.3rem; list-style: none; }
 .nav-links a { font-size: 1.05rem; font-weight: 500; color: var(--sage); transition: color .2s; }
 .nav-links a:hover { color: var(--forest); }
+.nav-btn { display: inline-block; background: var(--forest); color: var(--white); border-radius: var(--r-pill); padding: .65rem 1.25rem; font-family: var(--font-body); font-size: 1.05rem; font-weight: 600; white-space: nowrap; transition: background .2s; }
+.nav-btn:hover, .nav-btn:focus-visible { background: var(--accent); }
+.nav-links a.nav-btn, .nav-links a.nav-btn:hover { color: var(--white); }
 .nav-item-dropdown { position: relative; }
 .nav-item-dropdown > a { display: flex; align-items: center; gap: .3rem; }
 .nav-caret { width: 13px; height: 13px; transition: transform .2s ease; }
@@ -89,18 +92,16 @@ a { text-decoration: none; color: inherit; }
 .nav-hamburger.open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-mobile-menu { display: none; }
 main { padding-top: 132px; }
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .nav-links { gap: 2rem; }
+}
 @media (max-width: 1024px) {
   .nav { height: 108px; }
   .nav-logo-center img { height: 90px; }
   .nav-links { gap: 2.4rem; }
   .nav-inner { padding: 0 2rem; }
   main { padding-top: 108px; }
-}
-@media (max-width: 768px) {
-  .nav { height: 90px; }
-  .nav-logo-center img { height: 72px; }
   .nav-links { display: none; }
-  main { padding-top: 90px; }
   .nav-hamburger { display: flex; }
   .nav-mobile-menu {
     display: block; position: absolute; top: 100%; left: 0; right: 0;
@@ -128,6 +129,13 @@ main { padding-top: 132px; }
   .nav-mobile-submenu li a { padding: .7rem 0; font-size: .92rem; border-bottom: 1px dashed rgba(61,127,97,.08); }
   .nav-mobile-submenu li a.nav-mobile-subsub { padding: .75rem 0 .75rem 1rem; font-size: .86rem; color: var(--muted); }
   .nav-mobile-submenu li:last-child a { border-bottom: none; }
+  .nav-mobile-menu ul li a.nav-btn-mobile { display: block; text-align: center; margin-top: .75rem; padding: .85rem 1.25rem; font-size: 1rem; font-weight: 600; color: var(--white); border-bottom: none; }
+  .nav-mobile-menu ul li a.nav-btn-mobile:hover { color: var(--white); padding-left: 1.25rem; }
+}
+@media (max-width: 768px) {
+  .nav { height: 90px; }
+  .nav-logo-center img { height: 72px; }
+  main { padding-top: 90px; }
 }
 @media (max-width: 480px) {
   .nav { height: 76px; }
