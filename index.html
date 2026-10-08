@@ -459,6 +459,9 @@
       letter-spacing: -.02em;
       color: var(--forest);
     }
+    @media (min-width: 1025px) {
+      .hero-h1 { font-size: clamp(2rem, 3.2vw, 2.75rem); }
+    }
     .accent-text {
       color: var(--accent);
       position: relative; display: inline-block;
@@ -1119,7 +1122,7 @@
 
         <!-- logo — centro absoluto -->
         <a href="/" class="nav-logo-center" aria-label="AFB Engenharia &amp; Consultoria Elétrica — página inicial">
-          <img src="assets/images/logo-horizontal-v2.png" alt="AFB Engenharia &amp; Consultoria Elétrica" />
+          <img src="assets/images/logo-horizontal-v2.png" alt="AFB Engenharia &amp; Consultoria Elétrica" width="400" height="400" />
         </a>
 
         <!-- direita: links + hambúrguer mobile -->
@@ -1239,7 +1242,8 @@
             <div class="main-card">
               <img
                 class="main-card-img"
-                src="assets/images/subestacao-entardecer.png"
+                src="assets/images/subestacao-entardecer.webp"
+                width="1200" height="800"
                 alt="Subestação elétrica ao entardecer — instalação industrial"
                 id="main-photo"
                 loading="eager"
@@ -1326,10 +1330,11 @@
       <!-- fatura de fundo — ghost behind headline; inserir imagem em src -->
       <div class="problema-fatura-bg" id="fatura-bg" aria-hidden="true">
         <img
-          src="assets/images/home/conta-energia.png"
+          src="assets/images/home/conta-energia.webp"
           alt=""
+          width="800" height="800"
           class="fatura-bg-img"
-          loading="lazy"
+          loading="lazy" decoding="async"
           onerror="this.closest('.problema-fatura-bg').style.display='none'"
         />
       </div>
@@ -1364,7 +1369,7 @@
               <div class="pc-visual-glow" style="width:200px;height:200px;bottom:-12%;left:-8%;background:radial-gradient(circle,rgba(61,127,97,.28) 0%,transparent 65%);filter:blur(22px);"></div>
               <div class="pc-icms-scan" aria-hidden="true"></div>
               <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">01</span>
-              <img src="assets/images/home/fatura.png" alt="" aria-hidden="true" class="pc-fatura-img" loading="lazy" />
+              <img src="assets/images/home/fatura.webp" alt="" aria-hidden="true" width="800" height="635" class="pc-fatura-img" loading="lazy" decoding="async" />
               <div class="pc-photo-fade-dark"></div>
               <div class="pc-icms-badge">
                 <span class="pc-icms-badge-dot"></span>
@@ -1386,7 +1391,7 @@
               <div class="pc-visual-glow" style="width:200px;height:200px;bottom:-12%;right:-8%;background:radial-gradient(circle,rgba(61,127,97,.28) 0%,transparent 65%);filter:blur(22px);"></div>
               <div class="pc-icms-scan" aria-hidden="true"></div>
               <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">02</span>
-              <img src="assets/images/home/qualidade-energia.png" alt="" aria-hidden="true" class="pc-fatura-img" loading="lazy" />
+              <img src="assets/images/home/qualidade-energia.webp" alt="" aria-hidden="true" width="800" height="647" class="pc-fatura-img" loading="lazy" decoding="async" />
               <div class="pc-photo-fade-dark"></div>
               <div class="pc-icms-badge">
                 <span class="pc-icms-badge-dot"></span>
@@ -1414,7 +1419,7 @@
               <!-- número badge -->
               <span class="pc-num" aria-hidden="true" style="color:#F69066;opacity:.9;text-shadow:0 0 20px rgba(246,144,102,.4);">03</span>
               <!-- imagem ICMS -->
-              <img src="assets/images/home/credito-icms.png" alt="" aria-hidden="true" class="pc-fatura-img" loading="lazy" />
+              <img src="assets/images/home/credito-icms.webp" alt="" aria-hidden="true" width="800" height="580" class="pc-fatura-img" loading="lazy" decoding="async" />
               <!-- fade escuro → branco para integrar com pc-body -->
               <div class="pc-photo-fade-dark"></div>
               <!-- frosted badge -->
@@ -2976,7 +2981,8 @@
         <div class="cf-cred-photo">
           <img src="assets/images/home/ref-02.jpeg"
                alt="Arthur Brandão operando painel elétrico NXAIR de média tensão em subestação de campo"
-               class="cf-cred-img" loading="lazy" />
+               width="1094" height="1521"
+               class="cf-cred-img" loading="lazy" decoding="async" />
           <div class="cf-cred-photo-mask" aria-hidden="true"></div>
           <div class="cf-cred-photo-glow" aria-hidden="true"></div>
         </div>
