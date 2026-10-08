@@ -83,15 +83,15 @@
 - Avisos e riscos no topo do relatório.
 
 ## Estado atual
-- Concluídos: A (menu/rodapé), B1 (Eficiência), B2 (Subestações), C (Quem Somos/Contato), D (Home), E (desempenho).
-- Merge do Bloco E: feito (main = 08e927f).
-- Próximo: Bloco F, a revisão final. Ele inclui:
-  - auditorias de SEO e conversão
-  - banner de cookies no desktop sem cobrir o botão do topo
-  - chamada no meio da Home
-  - faixa de fotos "Em campo"
-  - testes finais
+- Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
+- Concluídos e na main: A, B1, B2, C, D, E, F1.
+- Na v2-estrutura, aguardando merge: F1b e F1b-2 (Diagnóstico 360° ligado; o formulário ainda não envia dados, o que foi aceito pelo Arthur enquanto o site não é divulgado).
+- Próximas etapas, nesta ordem:
+  1. Nova página de serviço: Correção de Fator de Potência (Eficiência Energética).
+  2. G1 e G2: efeitos visuais da Home levados às páginas internas (piloto e depois o site todo).
+  3. F2: auditorias finais de SEO e conversão.
+  4. Formulário do Diagnóstico 360° (envio de dados, agradecimento, LGPD, evento GA4).
 - Pendências conhecidas (não mexer sem prompt):
-  - formulários ainda não enviam dados
   - limpeza de arquivos antigos (.png substituídos, logo-diagnostico.png, servicos-data.js)
   - troca da foto de termografia
+  - botão flutuante do WhatsApp encostando no botão do topo no celular enquanto o banner de cookies está aberto
