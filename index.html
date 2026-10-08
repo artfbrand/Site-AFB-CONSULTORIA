@@ -2343,6 +2343,7 @@
     .diag-360 .sol-card { min-height: 0; }
     .diag-360-actions { display: flex; flex-direction: column; align-items: center; gap: .75rem; margin-top: 2rem; }
     .diag-360 .sol-pilar-cta { opacity: 1; }
+    .diag-360-actions .sol-more { align-self: center; }
     .diag-360-note { color: var(--sage); font-size: .9rem; text-align: center; }
     @media (max-width: 1023px) { .diag-360 .sol-bottom-grid { grid-template-columns: 1fr; } }
     @media (max-width: 767px) { .diag-360 { padding: 4.5rem 0; } }
@@ -2355,9 +2356,9 @@
         <p class="problema-intro">Responda o questionário sobre o seu consumo, a sua instalação e a sua fatura. Analisamos as respostas e você recebe um relatório com as oportunidades encontradas.</p>
       </header>
       <div class="sol-bottom-grid">
-        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Contratação de energia</h3><p class="sol-info-text">tarifa, modalidade e mercado</p></div></article>
-        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Instalação</h3><p class="sol-info-text">máquinas, equipamentos e subestação</p></div></article>
-        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Impostos</h3><p class="sol-info-text">ICMS na fatura de energia</p></div></article>
+        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Contratação de energia</h3><p class="sol-text sol-tx-s">tarifa, modalidade e mercado</p></div></article>
+        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Instalação</h3><p class="sol-text sol-tx-s">máquinas, equipamentos e subestação</p></div></article>
+        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Impostos</h3><p class="sol-text sol-tx-s">ICMS na fatura de energia</p></div></article>
       </div>
       <div class="diag-360-actions">
         <p class="diag-360-note">Gratuito e sem compromisso. Leva de 3 a 5 minutos para responder.</p>
@@ -3173,7 +3174,8 @@
         <h2 class="ct-h2" id="ct-heading">
           O diagnóstico é <em>gratuito e sem compromisso</em>
         </h2>
-        <p class="ct-sub">Começa com uma conversa e as últimas faturas. Você sai dela sabendo, com números, onde está pagando a mais.</p>
+        <p class="ct-sub" data-diag="off">Começa com uma conversa e as últimas faturas. Você sai dela sabendo, com números, onde está pagando a mais.</p>
+        <p class="ct-sub" data-diag="on">Começa com um questionário de 3 a 5 minutos. Você recebe um relatório que mostra, com números, onde está pagando a mais.</p>
       </header>
       <div class="ct-left ct-final" id="ct-left">
         <a data-diag="off" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="ct-wa-btn" id="ct-wa-btn" target="_blank" rel="noopener">
