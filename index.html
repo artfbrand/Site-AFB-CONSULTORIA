@@ -18,11 +18,14 @@
     var h = a.getAttribute('href') || '';
     if (h.indexOf('wa.me') !== -1 || h.indexOf('api.whatsapp.com') !== -1) {
       gtag('event', 'clique_whatsapp', { link_url: a.href, pagina: location.pathname });
+    } else if (h === '/diagnostico' || h.indexOf('/diagnostico?') === 0) {
+      gtag('event', 'clique_diagnostico', { link_url: a.href, pagina: location.pathname });
     } else if (h.indexOf('mailto:') === 0) {
       gtag('event', 'clique_email', { pagina: location.pathname });
     }
   }, true);
 </script>
+<script>window.DIAGNOSTICO_FORM_ATIVO = false; if (window.DIAGNOSTICO_FORM_ATIVO) document.documentElement.classList.add('diag-on');</script>
   <title>AFB Engenharia | Eficiência Energética e Subestações para Empresas</title>
   <meta name="description" content="Consultoria em eficiência energética e engenharia de subestações para empresas atendidas em média tensão. Diagnóstico energético gratuito. Pedro Leopoldo (MG)." />
   <link rel="canonical" href="https://www.afbenergia.com.br/" />
@@ -51,6 +54,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    html:not(.diag-on) [data-diag="on"] { display: none !important; }
+    html.diag-on [data-diag="off"] { display: none !important; }
     /* ─── DESIGN TOKENS (from design-system3) ─────────────────────────── */
     :root {
       --bg:          #F7FAF7;
@@ -512,6 +517,8 @@
       display: flex; flex-wrap: wrap; gap: .85rem;
       align-items: center; opacity: 0;
     }
+    .hero-diag-alt { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); font-size: .92rem; font-weight: 600; text-decoration: underline; }
+    .hero-diag-micro { flex-basis: 100%; font-size: .82rem; line-height: 1.5; color: var(--sage); }
     .btn-primary {
       display: inline-flex; align-items: center; gap: .45rem; min-height: 44px;
       padding: .8rem 1.6rem;
@@ -1199,20 +1206,21 @@
           </span>
 
           <!-- H1 — word-split done by JS -->
-          <h1 class="hero-h1" id="hero-heading" aria-label="Sua empresa paga caro pela energia em três lugares. Nós encontramos onde e corrigimos.">
-            <span class="h1-line1">Sua empresa paga caro pela energia em três lugares.</span>
+          <h1 class="hero-h1" id="hero-heading" aria-label="Sua empresa pode estar pagando mais do que deveria pela energia. Nós encontramos onde e corrigimos.">
+            <span class="h1-line1">Sua empresa pode estar pagando mais do que deveria pela energia.</span>
             <br aria-hidden="true"/>
             <span class="h1-line2">Nós encontramos onde e <span class="accent-text" id="accent-phrase">corrigimos.</span></span>
           </h1>
 
           <!-- subtitle -->
           <p class="hero-subtitle" id="hero-subtitle">
-            Para empresas atendidas em média tensão. Analisamos juntos o contrato de energia, a instalação e o imposto, com <span class="hero-subtitle-highlight">redução de 10% a 30%</span>, conforme o perfil de consumo e da instalação. E cuidamos da sua subestação, da manutenção ao projeto.
+            Para empresas atendidas em média tensão. Fazemos uma análise 360° em três frentes: contratação de energia, instalação (máquinas, equipamentos e subestação) e impostos na fatura. <strong class="hero-subtitle-highlight">A redução possível é de 10% a 30%</strong>, conforme o perfil de consumo e da instalação.
           </p>
 
           <!-- CTAs -->
           <div class="hero-ctas" id="hero-ctas">
             <a
+              data-diag="off"
               href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa."
               class="btn-primary"
               target="_blank" rel="noopener"
@@ -1222,6 +1230,9 @@
               </svg>
               Solicitar diagnóstico gratuito
             </a>
+            <a data-diag="on" href="/diagnostico" class="btn-primary">Fazer o Diagnóstico 360° gratuito</a>
+            <a data-diag="on" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="hero-diag-alt" target="_blank" rel="noopener">ou fale pelo WhatsApp</a>
+            <p class="hero-diag-micro" data-diag="on">Gratuito. Você recebe um relatório com as oportunidades encontradas nas três frentes.</p>
           </div>
 
           <!-- microprova -->
@@ -1379,7 +1390,7 @@
             <div class="pc-body">
               <span class="pc-tag">01 · Tarifa</span>
               <h3 class="pc-h3" id="pc-h3-tarifa">Você pode estar pagando pela tarifa errada há anos</h3>
-              <p class="pc-p">Enquadramento errado, modalidade tarifária inadequada e cobranças evitáveis drenam o caixa todo mês. A maioria das empresas paga sem desconfiar. O potencial de redução fica entre 10% e 30%, conforme o perfil de consumo. Boa parte das medidas não exige obra nem investimento: são correções técnicas e regulatórias junto à concessionária.</p>
+              <p class="pc-p">Enquadramento errado, modalidade tarifária inadequada e cobranças evitáveis, como a multa por baixo fator de potência, drenam o caixa todo mês. A maioria das empresas paga sem desconfiar. O potencial de redução fica entre 10% e 30%, conforme o perfil de consumo. Boa parte das medidas não exige obra nem investimento: são correções técnicas e regulatórias junto à concessionária.</p>
             </div>
           </article>
 
@@ -1401,7 +1412,7 @@
             <div class="pc-body">
               <span class="pc-tag">02 · Qualidade de Energia</span>
               <h3 class="pc-h3" id="pc-h3-qualidade">Os danos nos equipamentos começam antes de qualquer alarme</h3>
-              <p class="pc-p">Harmônicos, desequilíbrios e afundamentos de tensão queimam equipamentos aos poucos e elevam o consumo. O dano é silencioso, e a fatura raramente revela a causa.</p>
+              <p class="pc-p">Harmônicos, desequilíbrios e afundamentos de tensão queimam equipamentos aos poucos e elevam o consumo. O dano é silencioso, e a fatura raramente revela a causa. O estudo de qualidade de energia identifica esses distúrbios na sua instalação e indica a correção. O resultado é menos perda de energia, equipamentos que duram mais e menos manutenção causada por energia de má qualidade.</p>
             </div>
           </article>
 
@@ -1449,6 +1460,8 @@
             Análise gratuita e sem compromisso
             <span class="closing-sub-dot"></span>
           </div>
+          <a data-diag="off" class="sol-more sol-more-s" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Descubra as oportunidades da sua empresa no diagnóstico gratuito →</a>
+          <a data-diag="on" class="sol-more sol-more-s" href="/diagnostico">Descubra as oportunidades da sua empresa no diagnóstico gratuito →</a>
         </div>
 
       </div><!-- /problema-inner -->
@@ -1856,8 +1869,8 @@
       <div class="sol-dot-bg" aria-hidden="true"></div>
       <div class="sol-inner">
         <header class="sol-header" id="sol-header">
-          <h2 class="problema-h2" id="areas-heading">Energia mais barata e subestação confiável, com a mesma responsabilidade técnica</h2>
-          <p class="problema-intro">Atuamos nas duas pontas do custo da energia: como ela é comprada e tratada no fisco, e como ela chega e é usada na sua planta.</p>
+          <h2 class="problema-h2" id="areas-heading">Eficiência energética para pagar menos. Subestação em dia para não parar.</h2>
+          <p class="problema-intro">Atuamos nas duas pontas: como a energia é comprada e tributada, e como ela chega e é usada na sua planta.</p>
         </header>
         <div class="sol-bottom-grid">
           <article class="sol-card sol-sage" data-sol="0" aria-labelledby="area1-h">
@@ -1867,7 +1880,7 @@
               <h3 class="sol-title sol-ti-s" id="area1-h"><a class="sol-card-link" href="/servicos/eficiencia-energetica">Eficiência Energética</a></h3>
               <ul class="sol-list sol-list-s">
                 <li>Contratação: gestão de fatura, Mercado Livre e energia por assinatura</li>
-                <li>Instalação: qualidade de energia e correção de perdas</li>
+                <li>Instalação: qualidade de energia, correção do fator de potência e redução de perdas</li>
                 <li>Fiscal: laudo de crédito de ICMS</li>
               </ul>
               <a class="sol-more sol-more-s" href="/servicos/eficiencia-energetica">Ver eficiência energética</a>
@@ -1910,7 +1923,7 @@
       }
       .mid-cta .ct-h2 { margin: 0; }
       .mid-cta .ct-sub { max-width: 680px; margin: 1rem auto 1.6rem; }
-      .mid-cta .ct-wa-btn { min-height: 48px; padding: .82rem 1.65rem; }
+      .mid-cta .ct-wa-btn { min-height: 48px; padding: .82rem 1.65rem; opacity: 1; }
       @media (max-width: 767px) {
         .mid-cta { padding: 3.5rem 0; }
         .mid-cta-inner { padding: 0 1.25rem; }
@@ -1920,9 +1933,10 @@
       <div class="mid-cta-inner">
         <h2 class="ct-h2" id="mid-cta-heading">Não sabe por qual frente começar?</h2>
         <p class="ct-sub">O diagnóstico gratuito mostra onde está o maior retorno: no contrato, na instalação, no imposto ou na subestação.</p>
-        <a href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="ct-wa-btn" target="_blank" rel="noopener">
+        <a data-diag="off" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="ct-wa-btn" target="_blank" rel="noopener">
           Solicitar diagnóstico gratuito
         </a>
+        <a data-diag="on" href="/diagnostico" class="ct-wa-btn">Fazer o Diagnóstico 360° gratuito</a>
       </div>
     </section>
 
@@ -2253,7 +2267,7 @@
 
           <div class="dif-item">
             <h3 class="dif-item-h" id="dif2-h">Do campo à engenharia</h3>
-            <p class="dif-item-p">Começou como eletricista de redes e linhas aéreas, passou pela supervisão do Centro de Serviços Integrados da Distribuição e chegou a engenheiro de expansão de ativos de alta tensão.</p>
+            <p class="dif-item-p">Arthur começou como eletricista de redes e linhas aéreas, foi supervisor do Centro de Serviços Integrados da Distribuição e chegou a engenheiro de expansão de ativos de alta tensão. Por isso as recomendações consideram o que funciona em campo, não só no projeto.</p>
           </div>
 
           <div class="dif-divider-line" aria-hidden="true"></div>
@@ -2314,6 +2328,37 @@
         <div class="em-campo-photo"><img src="/assets/images/fotos/subestacao-paineis-reles.jpg" alt="Painéis com relés de proteção em subestação" width="898" height="1200" loading="lazy" decoding="async"></div>
         <div class="em-campo-photo"><img src="/assets/images/fotos/subestacao-ensaio-transformador-seco.jpg" alt="Ensaio elétrico em transformador a seco" width="899" height="896" loading="lazy" decoding="async"></div>
         <div class="em-campo-photo"><img src="/assets/images/fotos/subestacao-transformador-oleo.jpg" alt="Transformador a óleo em subestação" width="598" height="802" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .diag-360 { padding: 6rem 0; background: var(--bg-alt); }
+    .diag-360 .sol-header, .diag-360 .sol-card { opacity: 1; transform: none; }
+    .diag-360 .sol-bottom-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .diag-360 .sol-card { min-height: 0; }
+    .diag-360-actions { display: flex; flex-direction: column; align-items: center; gap: .75rem; margin-top: 2rem; }
+    .diag-360 .sol-pilar-cta { opacity: 1; }
+    .diag-360-note { color: var(--sage); font-size: .9rem; text-align: center; }
+    @media (max-width: 1023px) { .diag-360 .sol-bottom-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 767px) { .diag-360 { padding: 4.5rem 0; } }
+  </style>
+  <section class="solucoes diag-360" data-diag="on" aria-labelledby="diag-360-heading">
+    <div class="sol-inner">
+      <header class="sol-header">
+        <div class="problema-badge"><span class="badge-dot" aria-hidden="true"></span>DIAGNÓSTICO ENERGÉTICO 360°</div>
+        <h2 class="problema-h2" id="diag-360-heading">Descubra em qual das três frentes sua empresa está pagando a mais</h2>
+        <p class="problema-intro">Responda o questionário sobre o seu consumo, a sua instalação e a sua fatura. Analisamos as respostas e você recebe um relatório com as oportunidades encontradas.</p>
+      </header>
+      <div class="sol-bottom-grid">
+        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Contratação de energia</h3><p class="sol-info-text">tarifa, modalidade e mercado</p></div></article>
+        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Instalação</h3><p class="sol-info-text">máquinas, equipamentos e subestação</p></div></article>
+        <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Impostos</h3><p class="sol-info-text">ICMS na fatura de energia</p></div></article>
+      </div>
+      <div class="diag-360-actions">
+        <p class="diag-360-note">Gratuito e sem compromisso.</p>
+        <a class="sol-pilar-btn" href="/diagnostico">Fazer o Diagnóstico 360° gratuito</a>
+        <a class="sol-more sol-more-s" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Prefere conversar? Fale pelo WhatsApp</a>
       </div>
     </div>
   </section>
@@ -2855,6 +2900,7 @@
       font-size: .73rem; color: var(--muted);
       text-align: center; line-height: 1.5; margin-top: .35rem;
     }
+    .ct-final-link { color: var(--accent); text-decoration: underline; }
     .ct-input.error, .ct-textarea.error {
       border-color: #d95252; box-shadow: 0 0 0 3px rgba(217,82,82,.1);
     }
@@ -3126,13 +3172,15 @@
         <p class="ct-sub">Começa com uma conversa e as últimas faturas. Você sai dela sabendo, com números, onde está pagando a mais.</p>
       </header>
       <div class="ct-left ct-final" id="ct-left">
-        <a href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="ct-wa-btn" id="ct-wa-btn" target="_blank" rel="noopener">
+        <a data-diag="off" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="ct-wa-btn" id="ct-wa-btn" target="_blank" rel="noopener">
           <svg class="ct-wa-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
           Solicitar diagnóstico gratuito
         </a>
-        <p class="ct-microcopy">Retorno em horário comercial.</p>
+        <p class="ct-microcopy" data-diag="off">Retorno em horário comercial.</p>
+        <a data-diag="on" href="/diagnostico" class="ct-wa-btn">Fazer o Diagnóstico 360° gratuito</a>
+        <a data-diag="on" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="ct-microcopy ct-final-link" target="_blank" rel="noopener">ou fale pelo WhatsApp</a>
       </div>
     </div><!-- /ct-inner -->
   </section>
@@ -3651,7 +3699,7 @@
         { opacity: 1, x: 0, duration: .9, ease: 'power3.out',
           scrollTrigger: { trigger: '#ct-left', start: 'top 86%', once: true } }
       );
-      gsap.fromTo('#ct-wa-btn',
+      gsap.fromTo('#ct-left .ct-wa-btn',
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: .72, ease: 'power3.out', delay: .14,
           scrollTrigger: { trigger: '#ct-left', start: 'top 86%', once: true } }
@@ -3696,7 +3744,7 @@
       const cfFill = document.getElementById('cf-conn-fill');
       if (cfFill) cfFill.style.width = '100%';
       /* contato: show immediately */
-      document.querySelectorAll('#ct-header,#ct-left,#ct-wa-btn')
+      document.querySelectorAll('#ct-header,#ct-left,#ct-left .ct-wa-btn')
         .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
     }
 
