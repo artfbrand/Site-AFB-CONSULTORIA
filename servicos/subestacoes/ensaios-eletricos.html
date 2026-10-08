@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,30 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/subestacoes">Subestações</a></li>
-        <li aria-current="page">Ensaios Elétricos</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
-      <div class="svc-detail-kicker">Subestações de Média Tensão</div>
-      <h1 class="svc-detail-h1">Ensaios elétricos em equipamentos de subestação</h1>
-      <p class="svc-detail-desc">Limpeza e reaperto são necessários, mas não dizem em que estado o equipamento está. O que revela a condição é ensaio com instrumento calibrado e valor registrado. Assim você compara cada equipamento com as campanhas seguintes e vê se ele está se degradando.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20ensaios%20el%C3%A9tricos%20nos%20equipamentos%20da%20subesta%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Definir os ensaios pelo WhatsApp</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/subestacoes">Subestações</a></li>
+              <li aria-current="page">Ensaios Elétricos</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
+          <div class="svc-detail-kicker">Subestações de Média Tensão</div>
+          <h1 class="svc-detail-h1">Ensaios elétricos em equipamentos de subestação</h1>
+          <p class="svc-detail-desc">Limpeza e reaperto são necessários, mas não dizem em que estado o equipamento está. O que revela a condição é ensaio com instrumento calibrado e valor registrado. Assim você compara cada equipamento com as campanhas seguintes e vê se ele está se degradando.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20ensaios%20el%C3%A9tricos%20nos%20equipamentos%20da%20subesta%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Definir os ensaios pelo WhatsApp</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/fotos/subestacao-ensaio-transformador-seco.jpg" alt="Engenheiro da AFB realizando ensaio elétrico com instrumento em um transformador a seco" width="899" height="896" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
-      <figure class="svc-photo">
-        <img src="/assets/images/fotos/subestacao-ensaio-transformador-seco.jpg" alt="Engenheiro da AFB realizando ensaio elétrico com instrumento em um transformador a seco" width="899" height="896" loading="lazy" decoding="async" />
-      </figure>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>A subestação nunca passou por ensaios com instrumento</li>
           <li>A seguradora ou a auditoria pediu valores medidos</li>
           <li>Um equipamento vai voltar a operar depois de reparo</li>
@@ -227,7 +231,7 @@
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-equip">
         <h2 class="svc-h2">Ensaios por equipamento</h2>
         <div class="svc-equip">
           <h3 class="svc-equip-title">Transformadores de potência</h3>
@@ -271,7 +275,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Valores medidos por equipamento, registrados em relatório</li>
           <li>Diagnóstico e ações recomendadas em ordem de prioridade</li>
           <li>Base de comparação para as próximas campanhas</li>
@@ -279,7 +283,7 @@
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -399,6 +403,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

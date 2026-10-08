@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,30 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/subestacoes">Subestações</a></li>
-        <li aria-current="page">Manutenção Preventiva</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
-      <div class="svc-detail-kicker">Subestações de Média Tensão</div>
-      <h1 class="svc-detail-h1">Manutenção preventiva em subestação</h1>
-      <p class="svc-detail-desc">A degradação de uma subestação é silenciosa: contatos oxidam, o isolamento perde rigidez, o óleo envelhece. Nada disso aparece numa inspeção visual. Com a manutenção preventiva, você sabe o estado de cada equipamento, corrige o que está fora do padrão e passa a ter um histórico da instalação de um ano para o outro.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20a%20manuten%C3%A7%C3%A3o%20preventiva%20da%20subesta%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Agendar a manutenção</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/subestacoes">Subestações</a></li>
+              <li aria-current="page">Manutenção Preventiva</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
+          <div class="svc-detail-kicker">Subestações de Média Tensão</div>
+          <h1 class="svc-detail-h1">Manutenção preventiva em subestação</h1>
+          <p class="svc-detail-desc">A degradação de uma subestação é silenciosa: contatos oxidam, o isolamento perde rigidez, o óleo envelhece. Nada disso aparece numa inspeção visual. Com a manutenção preventiva, você sabe o estado de cada equipamento, corrige o que está fora do padrão e passa a ter um histórico da instalação de um ano para o outro.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20a%20manuten%C3%A7%C3%A3o%20preventiva%20da%20subesta%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Agendar a manutenção</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/fotos/subestacao-fusiveis-muflas.jpg" alt="Engenheiro da AFB registrando ensaio junto a chaves fusíveis e muflas de média tensão" width="592" height="818" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
-      <figure class="svc-photo">
-        <img src="/assets/images/fotos/subestacao-fusiveis-muflas.jpg" alt="Engenheiro da AFB registrando ensaio junto a chaves fusíveis e muflas de média tensão" width="592" height="818" loading="lazy" decoding="async" />
-      </figure>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>A última manutenção foi há mais de um ano, ou ninguém sabe dizer quando foi</li>
           <li>A seguradora ou a auditoria pediu comprovação de manutenção elétrica</li>
           <li>A operação não pode parar sem aviso</li>
@@ -229,7 +233,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Inspeção detalhada, limpeza técnica de isoladores e cubículos e reaperto de conexões com torque controlado</li>
           <li>Lubrificação e ajustes mecânicos e funcionais em disjuntores e seccionadoras</li>
           <li>Ensaios de resistência de contato, resistência de isolamento, resistência ôhmica, relação de transformação e tensão aplicada</li>
@@ -250,7 +254,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Relatório técnico com registro fotográfico e valores medidos por equipamento</li>
           <li>Ações recomendadas em ordem de prioridade, com o risco de cada pendência</li>
           <li>Histórico comparável com as campanhas seguintes</li>
@@ -258,7 +262,7 @@
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -378,6 +382,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

@@ -11,8 +11,10 @@
       document.querySelectorAll(sel).forEach(function (el) { el.classList.add(cls); });
     }
 
-    /* entrada escalonada do hero */
-    [['.svc-breadcrumb',1],['.svc-back',2],['.svc-detail-kicker',3],['.svc-detail-h1',4]].forEach(function (par) {
+    /* entrada escalonada do topo (CSS puro; o aparecer ao rolar fica com o efeitos.js) */
+    var topo = document.querySelector('.svc-top');
+    [['.svc-breadcrumb',1],['.svc-back',2],['.svc-detail-kicker',3],['.svc-detail-h1',4],['.svc-detail-desc',5],
+     ['.svc-highlight',6],['.svc-open-cta',6],['.svc-top-media',7]].forEach(function (par) {
       var el = document.querySelector(par[0]);
       if (el) el.classList.add('ds-intro-' + par[1]);
     });
@@ -38,7 +40,8 @@
         document.body.appendChild(d);
       });
 
-      var hero = document.querySelector('.svc-detail');
+      /* anéis e partículas só no topo antigo (Quem Somos e Contato); o topo novo usa a malha da Home */
+      var hero = topo ? null : document.querySelector('.svc-detail');
       if (hero) {
         if (getComputedStyle(hero).position === 'static') hero.style.position = 'relative';
         hero.style.overflow = 'hidden';
@@ -73,30 +76,6 @@
         banda.appendChild(l);
       });
     }
-
-    /* reveal no scroll */
-    if (reduz || !('IntersectionObserver' in window)) return;
-    document.documentElement.classList.add('ds-anim');
-    var els = [];
-    ['.svc-detail-desc','.svc-cta','.svc-related'].forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (el) { els.push(el); });
-    });
-    var io = new IntersectionObserver(function (entradas) {
-      entradas.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var el = e.target;
-        el.style.animationDelay = (parseInt(el.dataset.dsi || 0, 10) * 70) + 'ms';
-        el.classList.add('ds-in');
-        io.unobserve(el);
-      });
-    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
-
-    els.forEach(function (el) {
-      var irmaos = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.tagName === el.tagName; });
-      el.dataset.dsi = Math.min(irmaos.indexOf(el), 5);
-      el.classList.add('ds-reveal');
-      io.observe(el);
-    });
   })();
 
   /* ── Cards malhados: mesmo tratamento dos cards do Método na home ─────

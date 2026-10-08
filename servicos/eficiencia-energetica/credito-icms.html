@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,27 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-        <li aria-current="page">Laudo de Crédito de ICMS</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
-      <div class="svc-detail-kicker">Eficiência Energética</div>
-      <h1 class="svc-detail-h1">Laudo de crédito de ICMS sobre energia</h1>
-      <p class="svc-detail-desc">A energia aplicada ao processo produtivo gera direito a crédito de ICMS, parcela que costuma ser relevante na conta conforme o perfil de consumo. Elaboramos o relatório técnico acompanhado de ART, que dá respaldo técnico à apropriação do crédito e reduz o risco de questionamentos em fiscalizações. Atuamos junto à contabilidade parceira especializada para uma creditação segura.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20sobre%20o%20laudo%20de%20cr%C3%A9dito%20de%20ICMS%20sobre%20energia." target="_blank" rel="noopener">Avaliar pelo WhatsApp</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
+              <li aria-current="page">Laudo de Crédito de ICMS</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
+          <div class="svc-detail-kicker">Eficiência Energética</div>
+          <h1 class="svc-detail-h1">Laudo de crédito de ICMS sobre energia</h1>
+          <p class="svc-detail-desc">A energia aplicada ao processo produtivo gera direito a crédito de ICMS, parcela que costuma ser relevante na conta conforme o perfil de consumo. Elaboramos o relatório técnico acompanhado de ART, que dá respaldo técnico à apropriação do crédito e reduz o risco de questionamentos em fiscalizações. Atuamos junto à contabilidade parceira especializada para uma creditação segura.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20sobre%20o%20laudo%20de%20cr%C3%A9dito%20de%20ICMS%20sobre%20energia." target="_blank" rel="noopener">Avaliar pelo WhatsApp</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/home/credito-icms.webp" alt="Ilustração de uma fatura de energia com o ICMS destacado" width="800" height="580" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>A empresa usa energia no processo produtivo</li>
           <li>A energia aplicada à produção nunca foi separada para fins de ICMS</li>
           <li>A contabilidade precisa de base técnica para apropriar o crédito</li>
@@ -225,7 +232,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Levantamento das cargas e do processo produtivo</li>
           <li>Medição em campo quando o caso exigir</li>
           <li>Apuração da parcela de energia aplicada à produção</li>
@@ -246,13 +253,13 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Laudo técnico com ART</li>
           <li>Apoio da contabilidade parceira na creditação</li>
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -372,6 +379,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,30 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/subestacoes">Subestações</a></li>
-        <li aria-current="page">Relé de Proteção</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
-      <div class="svc-detail-kicker">Subestações de Média Tensão</div>
-      <h1 class="svc-detail-h1">Ensaio e parametrização de relé de proteção</h1>
-      <p class="svc-detail-desc">Um relé mal parametrizado atua onde não deveria, ou pior, não atua quando deveria. Verificamos o funcionamento do relé com injeção de corrente e tensão, conferimos os ajustes e parametrizamos conforme o estudo de proteção.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20ensaiar%20os%20rel%C3%A9s%20de%20prote%C3%A7%C3%A3o%20da%20subesta%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Agendar o ensaio dos relés</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/subestacoes">Subestações</a></li>
+              <li aria-current="page">Relé de Proteção</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
+          <div class="svc-detail-kicker">Subestações de Média Tensão</div>
+          <h1 class="svc-detail-h1">Ensaio e parametrização de relé de proteção</h1>
+          <p class="svc-detail-desc">Um relé mal parametrizado atua onde não deveria, ou pior, não atua quando deveria. Verificamos o funcionamento do relé com injeção de corrente e tensão, conferimos os ajustes e parametrizamos conforme o estudo de proteção.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20ensaiar%20os%20rel%C3%A9s%20de%20prote%C3%A7%C3%A3o%20da%20subesta%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Agendar o ensaio dos relés</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/fotos/subestacao-paineis-reles.jpg" alt="Engenheiro da AFB com notebook ao lado dos painéis de média tensão com relés de proteção" width="898" height="1200" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
-      <figure class="svc-photo">
-        <img src="/assets/images/fotos/subestacao-paineis-reles.jpg" alt="Engenheiro da AFB com notebook ao lado dos painéis de média tensão com relés de proteção" width="898" height="1200" loading="lazy" decoding="async" />
-      </figure>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>O relé nunca foi ensaiado, ou ninguém sabe quando foi</li>
           <li>Houve desligamento geral por uma falha pequena</li>
           <li>A carga ou a instalação mudou</li>
@@ -229,7 +233,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Ensaio funcional com injeção de corrente e tensão</li>
           <li>Levantamento das curvas e comparação com os ajustes parametrizados</li>
           <li>Parametrização conforme o estudo de proteção</li>
@@ -249,14 +253,14 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Relatório do ensaio com os valores de atuação</li>
           <li>Ajustes aplicados em cada relé</li>
           <li>ART</li>
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -376,6 +380,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

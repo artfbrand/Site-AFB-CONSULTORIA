@@ -66,13 +66,13 @@
 
   /* ── Aparecer ao rolar ───────────────────────────────────────────────── */
   /* fora: o que o servico.js/hub já anima e o que já foi marcado aqui */
-  function livre(el) { return !el.hasAttribute('data-fx') && !el.closest('.ds-reveal, [class*="ds-intro-"], .fx-intro-5, .fx-intro-6'); }
+  function livre(el) { return !el.hasAttribute('data-fx') && !el.closest('.ds-reveal, [class*="ds-intro-"]'); }
   function lista(sel) { return Array.prototype.filter.call(document.querySelectorAll(sel), livre); }
 
   var grupos = [];
   /* títulos e textos de abertura das seções (valores do #problema-heading / #problema-intro) */
   grupos.push({ els: lista('.svc-section > .svc-h2, .ms-h2, .ms-risk-h2, .ms-deliverable-h2, main section .ms-kicker, main section .ms-kicker-dark'), de: { y: 28 }, dur: .82 });
-  grupos.push({ els: lista('.ms-risk-lead, .ms-why-lead, .ms-scope-lead, .svc-faq-list'), de: { y: 18 }, dur: .68 });
+  grupos.push({ els: lista('.ms-risk-lead, .ms-why-lead, .ms-scope-lead, .svc-faq-list, .svc-related-title'), de: { y: 18 }, dur: .68 });
   /* painel de passos (valores do #cf-cred-card) */
   grupos.push({ els: lista('.svc-steps, .ms-how-track, .ms-why-photo'), de: { y: 40, scale: .98 }, dur: 1.05, inicio: 'top 84%' });
   /* chamada final (valores do #ct-header) */
@@ -81,7 +81,7 @@
     g.els.forEach(function (el) {
       el.setAttribute('data-fx', '');
       var de = Object.assign({ opacity: 0 }, g.de);
-      var para = { opacity: 1, y: 0, scale: 1, duration: g.dur, ease: 'power3.out',
+      var para = { opacity: 1, y: 0, scale: 1, duration: g.dur, ease: 'power3.out', clearProps: 'transform',
         scrollTrigger: { trigger: el, start: g.inicio || 'top 88%', once: true } };
       gsap.fromTo(el, de, para);
     });
@@ -95,13 +95,14 @@
       filhos.forEach(function (f) { f.setAttribute('data-fx', ''); });
       filhos.forEach(function (f, i) {
         gsap.fromTo(f, Object.assign({ opacity: 0 }, de),
-          { opacity: 1, y: 0, scale: 1, duration: .78, ease: 'power3.out', delay: (base || 0) + i * passo,
+          { opacity: 1, y: 0, scale: 1, duration: .78, ease: 'power3.out', delay: (base || 0) + i * passo, clearProps: 'transform',
             scrollTrigger: { trigger: pai, start: 'top 88%', once: true } });
       });
     });
   }
-  escalona('.svc-list:not(.fx-cards)', ':scope > li', { y: 18 }, .09);
-  escalona('.svc-list.fx-cards', ':scope > li', { y: 34, scale: .97 }, .09);
+  escalona('.svc-list:not(.fx-cards):not(.fx-check)', ':scope > li', { y: 18 }, .09);
+  escalona('.svc-list.fx-cards, .svc-list.fx-check, .svc-related-list', ':scope > li', { y: 34, scale: .97 }, .09);
+  escalona('.fx-equip', ':scope > .svc-equip', { y: 34, scale: .97 }, .09);
   escalona('.svc-steps', ':scope > li', { y: 22, scale: .97 }, .14, .25);
 
   document.documentElement.classList.add('fx-ready');

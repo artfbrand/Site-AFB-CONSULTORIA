@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,30 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/subestacoes">Subestações</a></li>
-        <li aria-current="page">Análise de Óleo Isolante</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
-      <div class="svc-detail-kicker">Subestações de Média Tensão</div>
-      <h1 class="svc-detail-h1">Análise de óleo isolante de transformador</h1>
-      <p class="svc-detail-desc">O óleo carrega o histórico interno do transformador. A análise avalia rigidez dielétrica, teor de água, acidez e gases dissolvidos, e antecipa falhas que nenhuma inspeção externa mostra. Quando o resultado pede, executamos o tratamento termovácuo ou a troca do óleo.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20a%20an%C3%A1lise%20do%20%C3%B3leo%20do%20transformador%20da%20minha%20empresa." target="_blank" rel="noopener">Agendar a coleta do óleo</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/subestacoes">Subestações</a></li>
+              <li aria-current="page">Análise de Óleo Isolante</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
+          <div class="svc-detail-kicker">Subestações de Média Tensão</div>
+          <h1 class="svc-detail-h1">Análise de óleo isolante de transformador</h1>
+          <p class="svc-detail-desc">O óleo carrega o histórico interno do transformador. A análise avalia rigidez dielétrica, teor de água, acidez e gases dissolvidos, e antecipa falhas que nenhuma inspeção externa mostra. Quando o resultado pede, executamos o tratamento termovácuo ou a troca do óleo.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20a%20an%C3%A1lise%20do%20%C3%B3leo%20do%20transformador%20da%20minha%20empresa." target="_blank" rel="noopener">Agendar a coleta do óleo</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/fotos/subestacao-transformador-oleo.jpg" alt="Engenheiro da AFB registrando medições sobre um transformador a óleo em subestação" width="598" height="802" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
-      <figure class="svc-photo">
-        <img src="/assets/images/fotos/subestacao-transformador-oleo.jpg" alt="Engenheiro da AFB registrando medições sobre um transformador a óleo em subestação" width="598" height="802" loading="lazy" decoding="async" />
-      </figure>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>O transformador nunca teve o óleo analisado</li>
           <li>O transformador é antigo ou opera muito carregado</li>
           <li>Houve aquecimento, ruído ou desligamento sem causa aparente</li>
@@ -229,7 +233,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Coleta do óleo do transformador</li>
           <li>Ensaios de rigidez dielétrica, teor de água e acidez</li>
           <li>Análise de gases dissolvidos</li>
@@ -250,14 +254,14 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Resultados dos ensaios do óleo</li>
           <li>Diagnóstico do estado do transformador</li>
           <li>Recomendação de ação</li>
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -377,6 +381,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

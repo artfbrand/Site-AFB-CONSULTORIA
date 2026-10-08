@@ -94,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -197,30 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/subestacoes">Subestações</a></li>
-        <li aria-current="page">Termografia</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
-      <div class="svc-detail-kicker">Subestações de Média Tensão</div>
-      <h1 class="svc-detail-h1">Termografia em instalações elétricas</h1>
-      <p class="svc-detail-desc">Inspeção termográfica com a instalação energizada e em carga, que é a única condição em que o defeito aparece. Você descobre pontos quentes em conexões, chaves e cabos antes que virem falha, sem parar a operação.</p>
-      <div class="svc-open-cta fx-intro-5">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20inspe%C3%A7%C3%A3o%20termogr%C3%A1fica%20na%20minha%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar a termografia</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/subestacoes">Subestações</a></li>
+              <li aria-current="page">Termografia</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
+          <div class="svc-detail-kicker">Subestações de Média Tensão</div>
+          <h1 class="svc-detail-h1">Termografia em instalações elétricas</h1>
+          <p class="svc-detail-desc">Inspeção termográfica com a instalação energizada e em carga, que é a única condição em que o defeito aparece. Você descobre pontos quentes em conexões, chaves e cabos antes que virem falha, sem parar a operação.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20inspe%C3%A7%C3%A3o%20termogr%C3%A1fica%20na%20minha%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar a termografia</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/fotos/termografia-inspecao.jpg" alt="Câmera termográfica apontada para chaves e conexões de uma instalação elétrica energizada" width="640" height="459" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
-      <figure class="svc-photo fx-intro-6">
-        <img src="/assets/images/fotos/termografia-inspecao.jpg" alt="Câmera termográfica apontada para chaves e conexões de uma instalação elétrica energizada" width="640" height="459" loading="lazy" decoding="async" />
-      </figure>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>A empresa não pode parar para inspecionar</li>
           <li>Cabos, quadros ou disjuntores esquentam mais que o normal</li>
           <li>Entre uma campanha de manutenção e outra</li>
@@ -257,7 +260,7 @@
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">

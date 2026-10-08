@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,27 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-        <li aria-current="page">Estudo de Qualidade de Energia</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
-      <div class="svc-detail-kicker">Eficiência Energética</div>
-      <h1 class="svc-detail-h1">Estudo de qualidade de energia (QEE)</h1>
-      <p class="svc-detail-desc">Equipamento que queima sem explicação, máquina que trava, disjuntor que desarma sozinho: quase sempre a causa está na qualidade da energia, não no equipamento. Medimos a instalação em operação, identificamos a causa e dimensionamos a solução, como filtros capacitivos, para que a sua planta trabalhe com uma energia limpa. Eliminar essas perdas pode representar até 20% da conta de energia, conforme o perfil da instalação, além de aumentar a vida útil dos equipamentos e reduzir custos com manutenção.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20um%20estudo%20de%20qualidade%20de%20energia." target="_blank" rel="noopener">Falar pelo WhatsApp</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
+              <li aria-current="page">Estudo de Qualidade de Energia</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
+          <div class="svc-detail-kicker">Eficiência Energética</div>
+          <h1 class="svc-detail-h1">Estudo de qualidade de energia (QEE)</h1>
+          <p class="svc-detail-desc">Equipamento que queima sem explicação, máquina que trava, disjuntor que desarma sozinho: quase sempre a causa está na qualidade da energia, não no equipamento. Medimos a instalação em operação, identificamos a causa e dimensionamos a solução, como filtros capacitivos, para que a sua planta trabalhe com uma energia limpa. Eliminar essas perdas pode representar até 20% da conta de energia, conforme o perfil da instalação, além de aumentar a vida útil dos equipamentos e reduzir custos com manutenção.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20um%20estudo%20de%20qualidade%20de%20energia." target="_blank" rel="noopener">Falar pelo WhatsApp</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/home/qualidade-energia.webp" alt="Ilustração de medição da qualidade da energia em uma instalação elétrica" width="800" height="647" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>Equipamentos queimam ou duram menos do que deveriam</li>
           <li>Máquinas travam ou reiniciam sozinhas</li>
           <li>Disjuntores desarmam sem sobrecarga aparente</li>
@@ -227,7 +234,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Instalação de analisadores de energia com a planta em operação</li>
           <li>Registro, ao longo de dias, de harmônicos, afundamentos, desequilíbrio, transitórios e fator de potência</li>
           <li>Identificação da causa dos problemas e das perdas de energia</li>
@@ -248,14 +255,14 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Relatório com as medições e o diagnóstico da causa</li>
           <li>Dimensionamento da solução (filtros capacitivos e demais correções)</li>
           <li>Plano de ação priorizado</li>
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -376,6 +383,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

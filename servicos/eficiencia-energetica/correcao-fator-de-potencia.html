@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,27 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-        <li aria-current="page">Correção de Fator de Potência</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
-      <div class="svc-detail-kicker">Eficiência Energética</div>
-      <h1 class="svc-detail-h1">Correção de fator de potência</h1>
-      <p class="svc-detail-desc">Sua empresa paga multa de energia reativa todo mês? Quando o fator de potência da instalação fica abaixo de 0,92, a distribuidora cobra a energia reativa excedente na fatura. Medimos a instalação, analisamos as faturas e projetamos o banco de capacitores certo para a sua carga, com ART. Nossa equipe instala o banco e acompanha as faturas seguintes para confirmar o resultado.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20a%20cobran%C3%A7a%20de%20energia%20reativa%20da%20minha%20empresa." target="_blank" rel="noopener">Enviar faturas pelo WhatsApp</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
+              <li aria-current="page">Correção de Fator de Potência</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
+          <div class="svc-detail-kicker">Eficiência Energética</div>
+          <h1 class="svc-detail-h1">Correção de fator de potência</h1>
+          <p class="svc-detail-desc">Sua empresa paga multa de energia reativa todo mês? Quando o fator de potência da instalação fica abaixo de 0,92, a distribuidora cobra a energia reativa excedente na fatura. Medimos a instalação, analisamos as faturas e projetamos o banco de capacitores certo para a sua carga, com ART. Nossa equipe instala o banco e acompanha as faturas seguintes para confirmar o resultado.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20avaliar%20a%20cobran%C3%A7a%20de%20energia%20reativa%20da%20minha%20empresa." target="_blank" rel="noopener">Enviar faturas pelo WhatsApp</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/fotos/subestacao-paineis-reles.jpg" alt="Painéis elétricos de média tensão" width="898" height="1200" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>A fatura traz cobrança de energia reativa excedente (UFER ou DMCR)</li>
           <li>A planta tem muitos motores, compressores ou outras cargas indutivas</li>
           <li>A cobrança voltou mesmo com um banco de capacitores instalado</li>
@@ -227,7 +234,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Análise das faturas para medir quanto a empresa paga de energia reativa</li>
           <li>Medição do fator de potência e das cargas, com a planta em operação</li>
           <li>Dimensionamento e projeto do banco: fixo, automático ou com filtro de harmônicos</li>
@@ -248,14 +255,14 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Projeto do banco de capacitores com ART</li>
           <li>Relatório com as medições antes e depois da correção</li>
           <li>Acompanhamento das faturas seguintes</li>
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -378,6 +385,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

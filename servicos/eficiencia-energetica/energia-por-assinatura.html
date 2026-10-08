@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,28 +197,34 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-        <li aria-current="page">Energia por Assinatura</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
-      <div class="svc-detail-kicker">Eficiência Energética</div>
-      <h1 class="svc-detail-h1">Energia por assinatura para empresas</h1>
-      <p class="svc-detail-desc">Na energia por assinatura, sua empresa recebe créditos de energia gerada em usinas de geração distribuída e paga por eles um valor menor que a tarifa da distribuidora. O desconto pode chegar a 30% sobre o consumo mensal, conforme o perfil de consumo. Não há obra, instalação de equipamentos nem investimento. Comparamos as opções disponíveis e acompanhamos a adesão.</p>
-      <p class="svc-highlight">Sem custo de consultoria para a sua empresa: nossa remuneração vem da comercializadora parceira.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20se%20a%20energia%20por%20assinatura%20vale%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Comparar pelo WhatsApp</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
+              <li aria-current="page">Energia por Assinatura</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/eficiencia-energetica#o-que-oferecemos">← Eficiência Energética</a>
+          <div class="svc-detail-kicker">Eficiência Energética</div>
+          <h1 class="svc-detail-h1">Energia por assinatura para empresas</h1>
+          <p class="svc-detail-desc">Na energia por assinatura, sua empresa recebe créditos de energia gerada em usinas de geração distribuída e paga por eles um valor menor que a tarifa da distribuidora. O desconto pode chegar a 30% sobre o consumo mensal, conforme o perfil de consumo. Não há obra, instalação de equipamentos nem investimento. Comparamos as opções disponíveis e acompanhamos a adesão.</p>
+          <p class="svc-highlight">Sem custo de consultoria para a sua empresa: nossa remuneração vem da comercializadora parceira.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20se%20a%20energia%20por%20assinatura%20vale%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Comparar pelo WhatsApp</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/subestacao-entardecer.webp" alt="Linhas de transmissão de energia ao entardecer" width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>Empresas atendidas em baixa ou em média tensão</li>
           <li>Quem quer reduzir a conta sem investir em placas solares próprias</li>
           <li>Quem não tem espaço ou não pode instalar geração no imóvel</li>
@@ -226,7 +233,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Análise das contas de energia da empresa</li>
           <li>Comparação das ofertas disponíveis</li>
           <li>Explicação das condições de contrato (prazo, carência e reajuste)</li>
@@ -246,14 +253,14 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Comparação das ofertas para o seu perfil</li>
           <li>Orientação em toda a adesão</li>
           <li>Conferência das primeiras faturas com os créditos</li>
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -373,6 +380,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

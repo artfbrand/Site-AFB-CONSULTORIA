@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,7 +94,7 @@
   }
   </script>
 </head>
-<body>
+<body class="svc-page">
 
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
@@ -196,27 +197,33 @@
   </header>
 
   <main>
-    <nav class="svc-breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/servicos/subestacoes">Subestações</a></li>
-        <li aria-current="page">Projeto de Subestação</li>
-      </ol>
-    </nav>
-
     <div class="svc-detail">
-      <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
-      <div class="svc-detail-kicker">Subestações de Média Tensão</div>
-      <h1 class="svc-detail-h1">Projeto de subestação e documentação técnica</h1>
-      <p class="svc-detail-desc">Você não precisa coordenar cada etapa sozinho. Elaboramos o projeto, conduzimos a aprovação na concessionária e acompanhamos até a subestação ser energizada. Vale para instalações novas, ampliações e regularização de subestações sem documentação.</p>
-      <div class="svc-open-cta">
-        <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20sobre%20o%20projeto%20de%20uma%20subesta%C3%A7%C3%A3o." target="_blank" rel="noopener">Falar sobre o meu projeto</a>
+      <div class="svc-top">
+        <div class="svc-top-text">
+          <nav class="svc-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Início</a></li>
+              <li><a href="/servicos">Serviços</a></li>
+              <li><a href="/servicos/subestacoes">Subestações</a></li>
+              <li aria-current="page">Projeto de Subestação</li>
+            </ol>
+          </nav>
+          <a class="svc-back" href="/servicos/subestacoes#o-que-oferecemos">← Subestações</a>
+          <div class="svc-detail-kicker">Subestações de Média Tensão</div>
+          <h1 class="svc-detail-h1">Projeto de subestação e documentação técnica</h1>
+          <p class="svc-detail-desc">Você não precisa coordenar cada etapa sozinho. Elaboramos o projeto, conduzimos a aprovação na concessionária e acompanhamos até a subestação ser energizada. Vale para instalações novas, ampliações e regularização de subestações sem documentação.</p>
+          <div class="svc-open-cta">
+            <a class="svc-cta-btn" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20sobre%20o%20projeto%20de%20uma%20subesta%C3%A7%C3%A3o." target="_blank" rel="noopener">Falar sobre o meu projeto</a>
+          </div>
+        </div>
+        <figure class="svc-top-media">
+          <img src="/assets/images/fotos/subestacao-transformador-seco.jpg" alt="Engenheiro da AFB fazendo anotações diante de um transformador a seco em subestação" width="880" height="1126" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
       </div>
 
       <section class="svc-section">
         <h2 class="svc-h2">Quando faz sentido</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-check">
           <li>A empresa vai construir uma subestação nova</li>
           <li>A carga vai aumentar e a subestação precisa ser ampliada</li>
           <li>A subestação existe, mas não tem documentação</li>
@@ -226,7 +233,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que fazemos</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Projeto funcional, diagrama unifilar e memorial descritivo</li>
           <li>Databook completo da instalação</li>
           <li>Aprovação do projeto na concessionária</li>
@@ -246,7 +253,7 @@
 
       <section class="svc-section">
         <h2 class="svc-h2">O que você recebe</h2>
-        <ul class="svc-list">
+        <ul class="svc-list fx-cards">
           <li>Projeto aprovado na concessionária</li>
           <li>Diagrama unifilar, memorial descritivo e databook</li>
           <li>Acompanhamento até a energização</li>
@@ -254,7 +261,7 @@
         </ul>
       </section>
 
-      <section class="svc-section">
+      <section class="svc-section fx-faq">
         <h2 class="svc-h2">Perguntas frequentes</h2>
         <div class="svc-faq-list">
           <details class="svc-faq-item">
@@ -374,6 +381,10 @@
 
 
   <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

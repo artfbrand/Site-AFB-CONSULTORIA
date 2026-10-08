@@ -52,7 +52,7 @@
 @keyframes dsFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 
 /* entrada do hero — CSS puro com "backwards", não depende de JS */
-.ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5 {
+.ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5, .ds-intro-6, .ds-intro-7 {
   animation: slideUpFade 1.05s cubic-bezier(.16,1,.3,1) backwards;
 }
 .ds-intro-1 { animation-delay: .08s; }
@@ -60,6 +60,8 @@
 .ds-intro-3 { animation-delay: .36s; }
 .ds-intro-4 { animation-delay: .5s; }
 .ds-intro-5 { animation-delay: .64s; }
+.ds-intro-6 { animation-delay: .78s; }
+.ds-intro-7 { animation-delay: .92s; }
 
 /* reveal no scroll — só ganha estado inicial quando o JS assume */
 .ds-anim .ds-reveal { opacity: 0; transform: translateY(22px); }
@@ -166,7 +168,7 @@
   background: linear-gradient(90deg, transparent, rgba(61,127,97,.2), rgba(13,60,31,.12), transparent); }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5,
+  .ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5, .ds-intro-6, .ds-intro-7,
   .ds-ambient, .ds-particle, .ds-ring, .ds-scan, .ds-float,
   .ds-shine::after, .ds-glow-border::before { animation: none !important; }
   .ds-anim .ds-reveal { opacity: 1 !important; transform: none !important; }
@@ -357,3 +359,38 @@
 /* ─── Contraste dos cards escuros de "Serviços relacionados" ─────────── */
 .svc-related-list li.ds-mcard-dark a { color: var(--white); }
 .svc-related-list li.ds-mcard-dark a:hover { color: #8ABF9E; }
+
+/* ─── Bloco G2: modelo das páginas de serviço (só body.svc-page) ────────────
+   Container de 1200px como o da Home, topo em duas colunas a partir de 1025px
+   e grades de cartões. Quem Somos e Contato não usam a classe e não mudam. */
+.svc-page .svc-detail { max-width: 1200px; padding: 1.4rem 2rem 6rem; }
+.svc-page .svc-top { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+.svc-page .svc-top .svc-breadcrumb { max-width: none; margin: 0 0 1.6rem; padding: 0; }
+.svc-page .svc-detail-h1 { max-width: 20ch; }
+.svc-page .svc-detail-desc, .svc-page .svc-highlight { max-width: 70ch; }
+.svc-page .svc-top-media { margin: 0; }
+.svc-page .svc-top-media img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: cover; }
+@media (min-width: 1025px) {
+  .svc-page .svc-top { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 4rem; }
+  .svc-page .svc-top-media img { max-height: 520px; }
+}
+.svc-page .svc-section { margin-top: 5rem; }
+.svc-page .svc-list { max-width: none; }
+.svc-page .svc-equip-text, .svc-page .svc-faq-item p { max-width: 70ch; }
+.svc-page .fx-equip { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.svc-page .fx-equip > .svc-h2 { grid-column: 1 / -1; margin-bottom: .5rem; }
+@media (min-width: 768px) { .svc-page .fx-equip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1025px) { .svc-page .fx-equip { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.svc-page .svc-steps { max-width: none; }
+.svc-page .fx-faq { max-width: 820px; margin-left: auto; margin-right: auto; }
+.svc-page .fx-faq .svc-faq-list { max-width: none; }
+.svc-page .svc-final { margin-top: 5rem; padding: 4.5rem 3rem; }
+.svc-page .svc-related { margin-top: 4rem; }
+.svc-page .svc-related-list { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 768px) { .svc-page .svc-related-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1025px) { .svc-page .svc-related-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 767px) {
+  .svc-page .svc-detail { padding: 1rem 1.25rem 4rem; }
+  .svc-page .svc-section { margin-top: 3.5rem; }
+  .svc-page .svc-final { margin-top: 3.5rem; padding: 3rem 1.25rem; }
+}
