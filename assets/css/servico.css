@@ -1,0 +1,328 @@
+/* Modelo das páginas de serviço do site AFB (eficiência energética) */
+/* ─── CONTEÚDO DA PÁGINA ────────────────────────────────────────────── */
+.svc-detail { max-width: 900px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+.svc-back { display: inline-flex; align-items: center; gap: .4rem; font-size: .88rem; font-weight: 600; color: var(--accent); margin-bottom: 2rem; }
+.svc-back:hover { color: var(--forest); }
+.svc-detail-kicker { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.svc-detail-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--forest); margin-top: .6rem; max-width: 22ch; }
+.svc-detail-desc { font-size: 1.02rem; line-height: 1.75; color: var(--sage); margin-top: 1.3rem; max-width: 60ch; }
+.svc-cta { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(61,127,97,.12); }
+.svc-cta-btn {
+  display: inline-flex; align-items: center; gap: .65rem; min-height: 44px;
+  padding: .9rem 2rem; border-radius: var(--r-pill);
+  background: var(--accent); color: #fff; font-size: .92rem; font-weight: 600;
+  box-shadow: 0 4px 18px rgba(61,127,97,.28);
+  transition: background .2s, transform .22s var(--ease-out), box-shadow .22s;
+}
+.svc-cta-btn:hover { background: var(--forest); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,60,31,.28); }
+@media (max-width: 767px) { .svc-detail { padding: 2.5rem 1.5rem 4rem; } }
+
+/* ─── BREADCRUMB ──────────────────────────────────────────────────────── */
+.svc-breadcrumb { max-width: 900px; margin: 0 auto; padding: 1.4rem 3rem 0; }
+.svc-breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; }
+.svc-breadcrumb li { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
+.svc-breadcrumb li:not(:last-child)::after { content: "/"; color: rgba(61,127,97,.35); }
+.svc-breadcrumb a { color: var(--sage); transition: color .2s; }
+.svc-breadcrumb a:hover { color: var(--forest); }
+.svc-breadcrumb li[aria-current="page"] { color: var(--forest); font-weight: 600; }
+@media (max-width: 767px) { .svc-breadcrumb { padding: 1.1rem 1.5rem 0; } }
+
+/* ─── SERVIÇOS RELACIONADOS ──────────────────────────────────────────── */
+.svc-related { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(61,127,97,.12); }
+.svc-related-title { font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.svc-related-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+.svc-related-list a { display: inline-flex; align-items: center; min-height: 44px; font-size: .96rem; font-weight: 600; color: var(--accent); }
+.svc-related-list a:hover { color: var(--forest); }
+
+/* ─── ANIMAÇÕES · design-system3 + glass-green + ai-saas ──────────────
+   Portado de: _design/assets/css/{combined-animations,ds3-light}.css,
+   glass-green-effect/assets/css/effects.css e
+   ai-saas-landing-27/assets/css/animations.css
+   O markup não é tocado: as classes são aplicadas por JS, então sem
+   JS a página continua 100% visível. */
+@keyframes slideUpFade { 0% { opacity: 0; transform: translateY(32px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes particleRise { 0% { transform: translateY(0) scale(1); opacity: .55; } 100% { transform: translateY(-260px) scale(.25); opacity: 0; } }
+@keyframes ambientMove { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(100px,-55px) scale(1.12); } }
+@keyframes ambientMove2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px,65px) scale(.88); } }
+@keyframes dsScanLine { 0% { top: -2px; opacity: 0; } 5% { opacity: 1; } 95% { opacity: .6; } 100% { top: 100%; opacity: 0; } }
+@keyframes dsShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+@keyframes dsRingPulse { 0%, 100% { transform: translateY(-50%) scale(1); opacity: .45; } 50% { transform: translateY(-50%) scale(1.05); opacity: .9; } }
+@keyframes dsBorderFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes dsFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+/* entrada do hero — CSS puro com "backwards", não depende de JS */
+.ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5 {
+  animation: slideUpFade 1.05s cubic-bezier(.16,1,.3,1) backwards;
+}
+.ds-intro-1 { animation-delay: .08s; }
+.ds-intro-2 { animation-delay: .22s; }
+.ds-intro-3 { animation-delay: .36s; }
+.ds-intro-4 { animation-delay: .5s; }
+.ds-intro-5 { animation-delay: .64s; }
+
+/* reveal no scroll — só ganha estado inicial quando o JS assume */
+.ds-anim .ds-reveal { opacity: 0; transform: translateY(22px); }
+.ds-anim .ds-reveal.ds-in { animation: fadeUp .85s cubic-bezier(.16,1,.3,1) forwards; }
+
+/* luzes ambientes de fundo */
+.ds-ambient { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; will-change: transform; }
+.ds-ambient-1 {
+  top: 6%; left: -4%; width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(61,127,97,.09) 0%, transparent 70%);
+  filter: blur(70px); animation: ambientMove 13s ease-in-out infinite alternate;
+}
+.ds-ambient-2 {
+  bottom: 4%; right: -5%; width: 620px; height: 620px;
+  background: radial-gradient(circle, rgba(20,184,166,.05) 0%, transparent 70%);
+  filter: blur(80px); animation: ambientMove2 17s ease-in-out infinite alternate;
+}
+
+/* partículas subindo no hero */
+.ds-particle {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: rgba(61,127,97,.24); animation: particleRise linear infinite;
+}
+
+/* anéis concêntricos no hero — .hero-ring do ds3-light */
+.ds-ring {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  border: 1px solid rgba(61,127,97,.1);
+  top: 50%; right: -14%; transform: translateY(-50%);
+  animation: dsRingPulse 8s ease-in-out infinite;
+}
+
+/* linha de varredura nas bandas escuras */
+.ds-scan {
+  position: absolute; left: 0; width: 100%; height: 1px; pointer-events: none; z-index: 5;
+  background: linear-gradient(90deg, transparent, rgba(138,191,158,.22), rgba(20,184,166,.26), rgba(138,191,158,.22), transparent);
+  animation: dsScanLine 9s linear infinite;
+}
+
+/* brilho contínuo atravessando o botão principal */
+.ds-shine { position: relative; overflow: hidden; }
+.ds-shine::after {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 40%; height: 100%; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  animation: dsShimmer 4.5s ease-in-out infinite;
+}
+
+/* varredura de luz no hover do botão — .button-hover do glass-green */
+.ds-sweep { position: relative; overflow: hidden; }
+.ds-sweep::before {
+  content: ""; position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%; pointer-events: none; z-index: 1;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
+  transition: left .55s cubic-bezier(.4,0,.2,1);
+}
+.ds-sweep:hover::before { left: 100%; }
+
+/* card 3D — .glow-card do glass-green, na paleta verde */
+.ds-card3d {
+  transition: transform .45s cubic-bezier(.4,0,.2,1), box-shadow .45s cubic-bezier(.4,0,.2,1), border-color .45s;
+  transform-style: preserve-3d;
+}
+.ds-card3d:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 25px 70px rgba(13,60,31,.16), 0 0 50px rgba(61,127,97,.12);
+}
+
+/* borda com gradiente correndo — .glow-border do glass-green */
+.ds-glow-border { position: relative; }
+.ds-glow-border::before {
+  content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
+  pointer-events: none; opacity: 0; transition: opacity .4s;
+  background: linear-gradient(120deg, rgba(61,127,97,.7), rgba(20,184,166,.35), rgba(246,144,102,.5), rgba(61,127,97,.7));
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: dsBorderFlow 4s linear infinite;
+}
+.ds-glow-border:hover::before { opacity: 1; }
+
+/* pills e badges — .tag-hover do glass-green / .light-tag do ds3 */
+.ds-tag { transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s, border-color .3s, background .3s; }
+.ds-tag:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 22px rgba(61,127,97,.16); }
+
+/* nós do "como funciona" — .process-node-light do ds3 */
+.ds-node { position: relative; transition: transform .4s cubic-bezier(.4,0,.2,1), color .3s; }
+.ds-node::before {
+  content: ""; position: absolute; inset: -8px -6px; border-radius: 9999px;
+  border: 1.5px solid transparent; transition: border-color .4s, transform .4s; pointer-events: none;
+}
+.ds-step:hover .ds-node { transform: scale(1.12); }
+.ds-step:hover .ds-node::before { border-color: rgba(246,144,102,.45); transform: scale(1.06); }
+
+/* item de lista que desliza no hover */
+.ds-listitem { transition: transform .3s cubic-bezier(.4,0,.2,1), color .3s; }
+.ds-listitem:hover { transform: translateX(5px); color: var(--forest); }
+
+/* flutuação suave — .animate-float do glass-green */
+.ds-float { animation: dsFloat 6.5s ease-in-out infinite; }
+
+/* divisor de seção — .section-divider-light do ds3 */
+.ds-divider { height: 1px; border: 0; margin: 0;
+  background: linear-gradient(90deg, transparent, rgba(61,127,97,.2), rgba(13,60,31,.12), transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5,
+  .ds-ambient, .ds-particle, .ds-ring, .ds-scan, .ds-float,
+  .ds-shine::after, .ds-glow-border::before { animation: none !important; }
+  .ds-anim .ds-reveal { opacity: 1 !important; transform: none !important; }
+  .ds-card3d:hover, .ds-tag:hover, .ds-listitem:hover, .ds-step:hover .ds-node { transform: none; }
+  .ds-sweep::before { transition: none; }
+}
+
+/* ─── CARDS MALHADOS · padrão dos cards do Método na home ─────────────
+   Malha interna, orbes radiais (canto superior direito e inferior
+   esquerdo), linha de varredura, shimmer e alternância claro/escuro.
+   Os elementos decorativos são injetados por JS — o markup dos cards
+   permanece intocado. */
+@keyframes dsCardGlow { 0%,100% { opacity: .45; transform: scale(1); } 50% { opacity: .85; transform: scale(1.1); } }
+@keyframes dsCardScan { 0% { top: 8%; opacity: 0; } 8% { opacity: 1; } 92% { opacity: .55; } 100% { top: 92%; opacity: 0; } }
+@keyframes dsCardShimmer { 0% { left: -60%; opacity: 0; } 35% { opacity: 1; } 65% { opacity: 1; } 100% { left: 160%; opacity: 0; } }
+
+.ds-mcard { position: relative; overflow: hidden; }
+.ds-mcard > *:not(.ds-mdeco) { position: relative; z-index: 4; }
+
+/* malha */
+.ds-mdeco-mesh {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.ds-mcard-sage .ds-mdeco-mesh {
+  background-image:
+    linear-gradient(rgba(13,60,31,.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,60,31,.032) 1px, transparent 1px);
+}
+
+/* orbes — o degradê que desce da direita e sobe da esquerda */
+.ds-mdeco-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 2; }
+.ds-mdeco-orb-a {
+  width: 240px; height: 240px; top: -18%; right: -8%;
+  background: radial-gradient(circle, rgba(61,127,97,.2) 0%, transparent 70%);
+  filter: blur(24px); animation: dsCardGlow 4.2s ease-in-out infinite;
+}
+.ds-mdeco-orb-b {
+  width: 150px; height: 150px; bottom: -12%; left: -5%;
+  background: radial-gradient(circle, rgba(246,144,102,.12) 0%, transparent 65%);
+  filter: blur(18px); animation: dsCardGlow 5.8s ease-in-out infinite 1.2s;
+}
+.ds-mcard-sage .ds-mdeco-orb-a { background: radial-gradient(circle, rgba(61,127,97,.13) 0%, transparent 70%); }
+.ds-mcard-sage .ds-mdeco-orb-b { background: radial-gradient(circle, rgba(246,144,102,.1) 0%, transparent 65%); }
+
+/* linha de varredura descendo */
+.ds-mdeco-scan {
+  position: absolute; left: 0; right: 0; height: 1px; z-index: 3; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(61,127,97,.45), transparent);
+  animation: dsCardScan 6s ease-in-out infinite;
+}
+.ds-mcard-sage .ds-mdeco-scan { background: linear-gradient(90deg, transparent, rgba(61,127,97,.3), transparent); }
+
+/* número fantasma */
+.ds-mdeco-ghost {
+  position: absolute; top: .35rem; right: 1.1rem; z-index: 2;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 5.5rem; font-weight: 700; line-height: 1;
+  letter-spacing: -.04em; pointer-events: none;
+  color: rgba(255,255,255,.06);
+}
+.ds-mcard-sage .ds-mdeco-ghost { color: rgba(13,60,31,.06); }
+
+/* shimmer atravessando os escuros */
+.ds-mcard-dark::after {
+  content: ''; position: absolute; top: 0; left: -60%;
+  width: 42%; height: 100%; z-index: 3; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+  animation: dsCardShimmer 5.5s ease-in-out infinite;
+}
+
+/* variantes de fundo */
+.ds-mcard-dark {
+  background: #0D3C1F !important;
+  box-shadow: 0 8px 40px rgba(13,60,31,.22) !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+}
+.ds-mcard-sage {
+  background: #EFF6F1 !important;
+  box-shadow: 0 4px 20px rgba(13,60,31,.05) !important;
+  border: 1px solid rgba(61,127,97,.12) !important;
+}
+
+/* cores do conteúdo nos cards escuros */
+.ds-mcard-dark .ee-service-title, .ds-mcard-dark .ee-service-title a,
+.ds-mcard-dark .ms-offer-card-title, .ds-mcard-dark .ms-offer-card-title a,
+.ds-mcard-dark .ms-offer-featured-title, .ds-mcard-dark .ms-offer-featured-title a,
+.ds-mcard-dark .svc-related-list a { color: #FAF9F6; }
+.ds-mcard-dark .ee-service-title a:hover,
+.ds-mcard-dark .ms-offer-card-title a:hover,
+.ds-mcard-dark .ms-offer-featured-title a:hover,
+.ds-mcard-dark .svc-related-list a:hover { color: #8ABF9E; }
+.ds-mcard-dark .ee-service-text,
+.ds-mcard-dark .ms-offer-card-text,
+.ds-mcard-dark .ms-offer-featured-text { color: rgba(212,232,220,.74); }
+.ds-mcard-dark .ee-service-num { color: rgba(255,255,255,.14); }
+.ds-mcard-dark .ms-offer-card-link { color: #8ABF9E; }
+.ds-mcard-dark .ms-offer-card-link:hover { color: #FAF9F6; }
+.ds-mcard-dark .ms-offer-featured-tag { color: rgba(246,144,102,.95); }
+
+/* cores do conteúdo nos cards claros */
+.ds-mcard-sage .ee-service-title, .ds-mcard-sage .ms-offer-card-title,
+.ds-mcard-sage .ms-offer-featured-title, .ds-mcard-sage .svc-related-list a { color: var(--forest); }
+.ds-mcard-sage .ee-service-text, .ds-mcard-sage .ms-offer-card-text,
+.ds-mcard-sage .ms-offer-featured-text { color: var(--sage); }
+
+/* relacionados das sub-páginas viram cards */
+.ds-mcard-rel {
+  border-radius: var(--r-card); padding: 1.15rem 1.35rem;
+  display: flex; align-items: center; min-height: 64px;
+}
+.ds-mcard-rel a { font-size: .95rem; font-weight: 600; }
+.svc-related-list { gap: .85rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-mdeco-orb, .ds-mdeco-scan, .ds-mcard-dark::after { animation: none !important; }
+}
+
+/* ─── SEÇÕES DO MODELO DE PÁGINA DE SERVIÇO ─────────────────────────── */
+.svc-open-cta { margin-top: 2rem; }
+.svc-highlight { margin-top: 1.5rem; max-width: 60ch; padding: 1.1rem 1.3rem; border-radius: var(--r-card); background: var(--bg-alt); border-left: 3px solid var(--accent); font-size: .98rem; line-height: 1.65; font-weight: 500; color: var(--forest); }
+.svc-section { margin-top: 3.5rem; }
+.svc-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--forest); }
+.svc-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.1rem; max-width: 62ch; }
+.svc-list li { position: relative; padding-left: 1.6rem; font-size: 1rem; line-height: 1.6; color: var(--sage); }
+.svc-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 2px; background: var(--accent); }
+.svc-steps { list-style: none; margin-top: 1.8rem; position: relative; display: flex; flex-direction: column; gap: 1.6rem; max-width: 62ch; }
+.svc-steps::before { content: ""; position: absolute; top: 0; bottom: 0; left: 17px; width: 1px; background: rgba(61,127,97,.25); }
+.svc-step { position: relative; padding-left: 3.2rem; }
+.svc-step-num { position: absolute; top: -.15rem; left: 0; width: 36px; text-align: center; background: var(--bg); font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--orange); }
+.svc-step-text { font-size: .98rem; line-height: 1.65; color: var(--sage); }
+.svc-step-title { font-weight: 700; color: var(--forest); }
+.svc-faq-list { margin-top: 1.5rem; border-top: 1px solid rgba(61,127,97,.15); max-width: 700px; }
+.svc-faq-item { border-bottom: 1px solid rgba(61,127,97,.15); }
+.svc-faq-item summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px; padding: 1.2rem .2rem; cursor: pointer; font-size: .98rem; font-weight: 600; color: var(--forest); }
+.svc-faq-item summary::-webkit-details-marker { display: none; }
+.svc-faq-item summary::after { content: ""; flex-shrink: 0; width: 8px; height: 8px; margin-right: .3rem; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg); transition: transform .25s ease; }
+.svc-faq-item[open] summary::after { transform: rotate(-135deg); }
+.svc-faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.svc-faq-item p { padding: 0 .2rem 1.3rem; font-size: .92rem; line-height: 1.7; color: var(--sage); max-width: 62ch; }
+.svc-final { margin-top: 3.5rem; background: var(--forest); border-radius: var(--r-card); padding: 3rem 2rem; text-align: center; }
+.svc-final-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 3.5vw, 2.3rem); color: #FAF9F6; }
+.svc-final-text { margin: 1rem auto 0; max-width: 52ch; font-size: 1rem; line-height: 1.7; color: rgba(250,249,246,.78); }
+.svc-final-btn {
+  margin-top: 2rem; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 44px;
+  padding: .95rem 2rem; border-radius: var(--r-pill);
+  background: var(--orange); color: #fff; font-size: .92rem; font-weight: 600;
+  box-shadow: 0 4px 18px rgba(246,144,102,.3);
+  transition: background .2s, transform .22s var(--ease-out);
+}
+.svc-final-btn:hover { background: #E35D30; transform: translateY(-2px); }
+@media (max-width: 767px) { .svc-final { padding: 2.5rem 1.5rem; } }
+
+/* ─── Contraste dos cards escuros de "Serviços relacionados" ─────────── */
+.svc-related-list li.ds-mcard-dark a { color: var(--white); }
+.svc-related-list li.ds-mcard-dark a:hover { color: #8ABF9E; }

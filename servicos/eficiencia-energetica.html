@@ -23,22 +23,22 @@
     }
   }, true);
 </script>
-  <title>Eficiência Energética · AFB Engenharia &amp; Consultoria Elétrica</title>
-  <meta name="description" content="Revisão de demanda contratada, enquadramento tarifário e ações de redução de consumo, com ganho já na próxima fatura." />
+  <title>Consultoria em Eficiência Energética para Empresas | AFB Engenharia</title>
+  <meta name="description" content="Contrato, instalação e impostos numa só análise, para empresas atendidas em média tensão. Redução de 10% a 30% no custo de energia, conforme o perfil." />
   <link rel="canonical" href="https://www.afbenergia.com.br/servicos/eficiencia-energetica" />
 
   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
   <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="Eficiência Energética · AFB Engenharia &amp; Consultoria Elétrica" />
-  <meta property="og:description" content="Revisão de demanda contratada, enquadramento tarifário e ações de redução de consumo, com ganho já na próxima fatura." />
+  <meta property="og:title"       content="Consultoria em Eficiência Energética para Empresas | AFB Engenharia" />
+  <meta property="og:description" content="Contrato, instalação e impostos numa só análise, para empresas atendidas em média tensão. Redução de 10% a 30% no custo de energia, conforme o perfil." />
   <meta property="og:url"         content="https://www.afbenergia.com.br/servicos/eficiencia-energetica" />
   <meta property="og:image"       content="https://www.afbenergia.com.br/assets/images/og-image.jpg" />
   <meta property="og:locale"      content="pt_BR" />
   <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="Eficiência Energética · AFB Engenharia &amp; Consultoria Elétrica" />
-  <meta name="twitter:description" content="Revisão de demanda contratada, enquadramento tarifário e ações de redução de consumo, com ganho já na próxima fatura." />
+  <meta name="twitter:title"      content="Consultoria em Eficiência Energética para Empresas | AFB Engenharia" />
+  <meta name="twitter:description" content="Contrato, instalação e impostos numa só análise, para empresas atendidas em média tensão. Redução de 10% a 30% no custo de energia, conforme o perfil." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -429,7 +429,42 @@
     @media (prefers-reduced-motion: reduce) {
       .ds-mdeco-orb, .ds-mdeco-scan, .ds-mcard-dark::after { animation: none !important; }
     }
+    /* ─── Bloco B1: nota do topo, 3 frentes e links dos cards ─────────── */
+    .ee-hero-note { margin-top: .9rem; font-size: .88rem; color: var(--muted); }
+    .ee-services-grid { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1023px) { .ee-services-grid { grid-template-columns: 1fr; } }
+    .ee-service-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0 1.1rem; margin-top: .2rem; }
+    .ee-service-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: .88rem; font-weight: 600; color: var(--accent); transition: color .2s; }
+    .ee-service-links a:hover { color: var(--forest); }
+    .ds-mcard-dark .ee-service-links a { color: var(--white); }
+    .ds-mcard-dark .ee-service-links a:hover { color: #8ABF9E; }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Início",
+        "item": "https://www.afbenergia.com.br/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Serviços",
+        "item": "https://www.afbenergia.com.br/servicos"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Eficiência Energética",
+        "item": "https://www.afbenergia.com.br/servicos/eficiencia-energetica"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -451,8 +486,9 @@
                 <span class="nav-dropdown-title">Eficiência Energética</span>
                 <span class="nav-dropdown-sub">Redução de custos com energia</span>
               </a>
-              <a href="/servicos/eficiencia-energetica/analise-tarifaria" role="menuitem" class="nav-dropdown-subitem">Análise Tarifária</a>
+              <a href="/servicos/eficiencia-energetica/gestao-de-fatura" role="menuitem" class="nav-dropdown-subitem">Gestão de Fatura</a>
               <a href="/servicos/eficiencia-energetica/mercado-livre" role="menuitem" class="nav-dropdown-subitem">Mercado Livre de Energia</a>
+              <a href="/servicos/eficiencia-energetica/energia-por-assinatura" role="menuitem" class="nav-dropdown-subitem">Energia por Assinatura</a>
               <a href="/servicos/eficiencia-energetica/qualidade-de-energia" role="menuitem" class="nav-dropdown-subitem">Qualidade de Energia (QEE)</a>
               <a href="/servicos/eficiencia-energetica/credito-icms" role="menuitem" class="nav-dropdown-subitem">Crédito de ICMS</a>
               <div class="nav-dropdown-divider" aria-hidden="true"></div>
@@ -502,8 +538,9 @@
             <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel" aria-hidden="true">
               <li><a href="/servicos">Todos os serviços</a></li>
               <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-              <li><a href="/servicos/eficiencia-energetica/analise-tarifaria" class="nav-mobile-subsub">Análise Tarifária</a></li>
+              <li><a href="/servicos/eficiencia-energetica/gestao-de-fatura" class="nav-mobile-subsub">Gestão de Fatura</a></li>
               <li><a href="/servicos/eficiencia-energetica/mercado-livre" class="nav-mobile-subsub">Mercado Livre de Energia</a></li>
+              <li><a href="/servicos/eficiencia-energetica/energia-por-assinatura" class="nav-mobile-subsub">Energia por Assinatura</a></li>
               <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia" class="nav-mobile-subsub">Qualidade de Energia (QEE)</a></li>
               <li><a href="/servicos/eficiencia-energetica/credito-icms" class="nav-mobile-subsub">Crédito de ICMS</a></li>
               <li><a href="/servicos/subestacoes">Subestações Elétricas</a></li>
@@ -531,12 +568,12 @@
     <section class="ee-hero">
       <div class="ee-hero-inner">
         <div class="ee-kicker">Reduza sua conta de energia</div>
-        <h1 class="ee-h1">Eficiência Energética</h1>
-        <p class="ee-hero-text">A maior parte do que se paga a mais em energia não está no consumo. Está no contrato, no enquadramento tarifário e em cobranças que passam despercebidas todo mês. Analisamos sua fatura, corrigimos o que está mal dimensionado e negociamos melhores condições de compra. A redução aparece na fatura seguinte, sem obra e sem investimento inicial.</p>
+        <h1 class="ee-h1">Consultoria em eficiência energética: contrato, instalação e impostos numa só análise</h1>
+        <p class="ee-hero-text">Para empresas atendidas em média tensão. Revisamos como a sua energia é comprada, como ela é consumida na planta e como é tratada no fisco. A redução fica entre 10% e 30%, conforme o perfil de consumo e da instalação.</p>
         <div class="ee-hero-cta">
-          <a class="ee-btn-primary" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20servi%C3%A7os%20de%20Efici%C3%AAncia%20Energ%C3%A9tica%21" target="_blank" rel="noopener noreferrer">Quero reduzir minha conta</a>
-          <a class="ee-btn-secondary" href="/diagnostico">Fazer diagnóstico gratuito</a>
+          <a class="ee-btn-primary" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20enviar%20as%20faturas%20de%20energia%20da%20minha%20empresa%20para%20uma%20an%C3%A1lise." target="_blank" rel="noopener">Enviar faturas pelo WhatsApp</a>
         </div>
+        <p class="ee-hero-note">Leitura inicial sem compromisso.</p>
       </div>
     </section>
 
@@ -544,104 +581,101 @@
     <section class="ee-alert">
       <div class="ee-alert-inner">
         <div class="ee-kicker">Como identificar</div>
-        <h2 class="ee-h2">Sua empresa provavelmente paga mais do que deveria se...</h2>
+        <h2 class="ee-h2">Sua empresa provavelmente paga mais do que deveria se…</h2>
         <ul class="ee-alert-list">
           <li>A demanda contratada não é revisada há mais de dois anos</li>
-          <li>Aparecem multas por ultrapassagem ou energia reativa na fatura</li>
-          <li>Ninguém sabe dizer qual é a modalidade tarifária contratada</li>
-          <li>A empresa nunca comparou o preço da energia fora da concessionária</li>
-          <li>Equipamentos queimam com frequência e ninguém identificou a causa</li>
-          <li>A energia aplicada à produção nunca foi separada para fins de ICMS</li>
+          <li>A fatura traz multas por ultrapassagem de demanda ou por energia reativa</li>
+          <li>A empresa nunca comparou o preço da energia fora da distribuidora</li>
+          <li>Equipamentos e máquinas queimam ou duram menos do que deveriam</li>
+          <li>A subestação não passa por manutenção preventiva</li>
+          <li>A energia usada na produção nunca foi separada para crédito de ICMS</li>
         </ul>
-        <p class="ee-alert-close">Cada um desses pontos tem correção conhecida e retorno mensurável.</p>
+        <p class="ee-alert-close">Cada um desses pontos tem correção conhecida e retorno que dá para medir.</p>
       </div>
     </section>
 
-    <!-- 3. DIFERENCIAIS -->
-    <section class="ee-diff">
-      <div class="ee-diff-inner">
-        <div class="ee-kicker">Por que a AFB</div>
-        <h2 class="ee-h2">Análise técnica, não palpite comercial</h2>
-        <ul class="ee-diff-list">
-          <li>Análise completa da fatura e do histórico de consumo</li>
-          <li>Representação técnica junto à concessionária de energia</li>
-          <li>Estratégia definida pelo perfil da operação, não por modelo pronto</li>
-          <li>Acompanhamento contínuo para confirmar a economia nas faturas seguintes</li>
-          <li>Laudo técnico acompanhado de ART</li>
-          <li>Contabilidade parceira especializada em creditação de ICMS</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 4. SUB-SERVIÇOS -->
+    <!-- 3. TRÊS FRENTES -->
     <section class="ee-services" id="o-que-oferecemos">
       <div class="ee-services-inner">
         <div class="ee-kicker">O que oferecemos</div>
-        <h2 class="ee-h2">Quatro frentes, uma só análise</h2>
-        <p class="ee-services-lead">Começamos sempre pela fatura. A partir dela definimos quais frentes fazem sentido para a sua operação.</p>
+        <h2 class="ee-h2">O custo da energia está em três lugares. Analisamos os três.</h2>
+        <p class="ee-services-lead">Quando contrato, instalação e impostos são tratados por pessoas diferentes, parte do custo fica sem dono. Na AFB, uma única análise cobre as três frentes.</p>
 
         <div class="ee-services-grid">
           <article class="ee-service-card">
             <span class="ee-service-num" aria-hidden="true">01</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/analise-tarifaria">Análise Tarifária e Relatório GMT</a></h3>
-            <p class="ee-service-text">Estudamos o histórico de consumo, avaliamos o enquadramento tarifário e a demanda contratada ideal, e identificamos multas por reativo, ultrapassagem e demais custos evitáveis. Fazemos a representação junto à concessionária e acompanhamos a adequação até a economia ser consolidada na fatura.</p>
-            <a class="ee-service-wa" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20An%C3%A1lise%20Tarif%C3%A1ria%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
+            <h3 class="ee-service-title">Contratação: pare de pagar caro pela energia que compra.</h3>
+            <p class="ee-service-text">Revisamos demanda contratada, modalidade tarifária e multas na fatura, e acompanhamos as faturas mês a mês. Se compensar, levamos a empresa ao Mercado Livre, à GD Livre ou à energia por assinatura, cotando com as maiores comercializadoras do país.</p>
+            <ul class="ee-service-links">
+              <li><a href="/servicos/eficiencia-energetica/gestao-de-fatura">Gestão de Fatura</a></li>
+              <li><a href="/servicos/eficiencia-energetica/mercado-livre">Mercado Livre</a></li>
+              <li><a href="/servicos/eficiencia-energetica/energia-por-assinatura">Energia por Assinatura</a></li>
+            </ul>
           </article>
 
           <article class="ee-service-card">
             <span class="ee-service-num" aria-hidden="true">02</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/mercado-livre">Migração para o ACL - Ambiente de Contratação Livre</a></h3>
-            <p class="ee-service-text">Somos credenciados nas principais comercializadoras do país e cotamos com todas elas para apresentar a melhor proposta por kWh. Intermediamos a negociação do início ao fim. Trabalhamos com Mercado Livre de Energia, GD Livre e Energia por assinatura.</p>
-            <a class="ee-service-wa" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Migra%C3%A7%C3%A3o%20para%20o%20Mercado%20Livre%20de%20Energia%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
+            <h3 class="ee-service-title">Instalação: menos perdas, menos queimas, menos risco de parada.</h3>
+            <p class="ee-service-text">Medimos a qualidade da energia com a planta em operação para encontrar perdas e a causa de queimas em equipamentos e máquinas. Dimensionamos a correção, como filtros capacitivos, para aumentar a vida útil dos ativos e reduzir o custo de manutenção. E avaliamos a subestação: se ela para, a empresa inteira para.</p>
+            <ul class="ee-service-links">
+              <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Qualidade de Energia</a></li>
+              <li><a href="/servicos/subestacoes">Subestações</a></li>
+            </ul>
           </article>
 
           <article class="ee-service-card">
             <span class="ee-service-num" aria-hidden="true">03</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Estudo de Qualidade de Energia (QEE)</a></h3>
-            <p class="ee-service-text">Equipamento que queima sem explicação, máquina que trava, disjuntor que desarma sozinho: quase sempre a causa está na qualidade da energia, não no equipamento. Instalamos analisadores na instalação em operação e registramos, ao longo de dias, harmônicos, afundamentos, desequilíbrio, transitórios e fator de potência. O resultado é o diagnóstico da causa, com plano de ação priorizado.</p>
-            <a class="ee-service-wa" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Estudo%20de%20Qualidade%20de%20Energia%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
-          </article>
-
-          <article class="ee-service-card">
-            <span class="ee-service-num" aria-hidden="true">04</span>
-            <h3 class="ee-service-title"><a href="/servicos/eficiencia-energetica/credito-icms">Laudo de Crédito de ICMS sobre Energia</a></h3>
-            <p class="ee-service-text">A energia aplicada ao processo produtivo gera direito a crédito de ICMS, parcela que costuma ser relevante na conta conforme o perfil de consumo. Elaboramos o relatório técnico acompanhado de ART, que dá respaldo técnico à apropriação do crédito e reduz o risco de questionamentos em fiscalizações. Atuamos junto a contabilidade parceira especializada para creditação segura.</p>
-            <a class="ee-service-wa" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20de%20Laudo%20de%20Cr%C3%A9dito%20de%20ICMS%21" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
+            <h3 class="ee-service-title">Fiscal: crédito de ICMS com segurança.</h3>
+            <p class="ee-service-text">Verificamos se a empresa tem direito a creditar o ICMS da energia usada na produção e se o crédito está sendo tomado com base técnica. Emitimos o laudo com ART e acompanhamos a creditação junto com a contabilidade parceira.</p>
+            <ul class="ee-service-links">
+              <li><a href="/servicos/eficiencia-energetica/credito-icms">Laudo de Crédito de ICMS</a></li>
+            </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 5. COMO FUNCIONA -->
+    <!-- 4. COMO FUNCIONA -->
     <section class="ee-how">
       <div class="ee-how-inner">
         <div class="ee-kicker">Do primeiro contato ao resultado</div>
-        <h2 class="ee-h2">Como funciona</h2>
+        <h2 class="ee-h2">Da fatura ao resultado em quatro passos</h2>
         <div class="ee-how-track">
           <div class="ee-how-step">
             <span class="ee-how-num" aria-hidden="true">01</span>
-            <h3 class="ee-how-title">Diagnóstico</h3>
-            <p class="ee-how-text">Você responde o diagnóstico online e nos envia as últimas faturas. Devolvemos uma leitura inicial do que há de recuperável, sem compromisso.</p>
+            <h3 class="ee-how-title">Faturas</h3>
+            <p class="ee-how-text">Você envia as últimas faturas pelo WhatsApp. Devolvemos uma leitura inicial do que há de recuperável.</p>
           </div>
           <div class="ee-how-step">
             <span class="ee-how-num" aria-hidden="true">02</span>
-            <h3 class="ee-how-title">Análise técnica</h3>
-            <p class="ee-how-text">Levantamento de dados e medição em campo quando o caso exigir, com apuração dos números que sustentam cada recomendação.</p>
+            <h3 class="ee-how-title">Análise</h3>
+            <p class="ee-how-text">Levantamos os dados e medimos em campo quando o caso exige. Cada recomendação vem com os números que a sustentam.</p>
           </div>
           <div class="ee-how-step">
             <span class="ee-how-num" aria-hidden="true">03</span>
             <h3 class="ee-how-title">Execução</h3>
-            <p class="ee-how-text">Representação junto à concessionária, negociação com comercializadoras e emissão do laudo técnico, conforme a frente contratada.</p>
+            <p class="ee-how-text">Ajustamos o contrato com a distribuidora, negociamos com as comercializadoras, dimensionamos as correções e emitimos os laudos, conforme as frentes contratadas.</p>
           </div>
           <div class="ee-how-step">
             <span class="ee-how-num" aria-hidden="true">04</span>
             <h3 class="ee-how-title">Acompanhamento</h3>
-            <p class="ee-how-text">Monitoramos as faturas seguintes para confirmar que a redução se manteve e ajustar o que for necessário.</p>
+            <p class="ee-how-text">Conferimos as faturas seguintes para garantir que a redução se mantenha.</p>
           </div>
         </div>
-        <div class="ee-how-cta">
-          <a class="ee-btn-primary" href="/diagnostico">Fazer diagnóstico gratuito</a>
-        </div>
+      </div>
+    </section>
+
+    <!-- 5. DIFERENCIAIS -->
+    <section class="ee-diff">
+      <div class="ee-diff-inner">
+        <div class="ee-kicker">Por que a AFB</div>
+        <h2 class="ee-h2">Recomendação técnica, com responsabilidade assinada</h2>
+        <ul class="ee-diff-list">
+          <li>Laudos acompanhados de ART</li>
+          <li>Representação técnica junto à distribuidora</li>
+          <li>Estratégia definida pelo perfil da operação, não por modelo pronto</li>
+          <li>Contabilidade parceira especializada em crédito de ICMS</li>
+        </ul>
       </div>
     </section>
 
@@ -649,56 +683,52 @@
     <section class="ee-faq">
       <div class="ee-faq-inner">
         <div class="ee-kicker">Dúvidas frequentes</div>
-        <h2 class="ee-h2">Perguntas frequentes</h2>
+        <h2 class="ee-h2">O que os gestores perguntam antes de começar</h2>
 
         <div class="ee-faq-list">
           <div class="ee-faq-item">
             <h3><button class="ee-faq-q" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
-              Preciso investir em equipamentos para reduzir a conta?
+              Preciso investir em equipamentos?
               <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button></h3>
             <div class="ee-faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
-              <p>Na maior parte dos casos, não. Boa parte da economia vem de ajuste contratual, reenquadramento tarifário e correção de cobranças indevidas, que não exigem obra nem parada de produção.</p>
+              <p>Na maior parte dos casos, não. Boa parte da economia vem de ajuste de contrato, reenquadramento tarifário e correção de cobranças. Quando a instalação pede correção, como filtros capacitivos, o investimento é apresentado antes de qualquer decisão.</p>
             </div>
           </div>
-
           <div class="ee-faq-item">
             <h3><button class="ee-faq-q" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
-              Em quanto tempo aparece o resultado?
+              Quando a economia aparece?
               <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button></h3>
             <div class="ee-faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
-              <p>Ajustes de demanda e de enquadramento costumam refletir já no próximo ciclo de faturamento. Migração para o mercado livre e apuração de crédito de ICMS seguem prazos próprios, que informamos no início do trabalho.</p>
+              <p>Ajustes de demanda e de enquadramento refletem já no próximo ciclo de faturamento. Mercado livre e crédito de ICMS têm prazos próprios, informados no início do trabalho.</p>
             </div>
           </div>
-
           <div class="ee-faq-item">
             <h3><button class="ee-faq-q" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
               A operação precisa parar?
               <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button></h3>
             <div class="ee-faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
-              <p>Não. As medições são feitas com a planta em funcionamento, justamente para capturar o comportamento real da instalação.</p>
+              <p>Não. As medições são feitas com a planta funcionando.</p>
             </div>
           </div>
-
           <div class="ee-faq-item">
             <h3><button class="ee-faq-q" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
-              Vocês atendem empresas de que porte?
+              Quanto custa a consultoria?
               <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button></h3>
             <div class="ee-faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
-              <p>Atendemos empresas atendidas em alta e em baixa tensão, de pequeno a grande porte. O que define o potencial não é o tamanho, é o perfil de consumo e o contrato vigente.</p>
+              <p>Em Mercado Livre e Energia por Assinatura, não há custo para a sua empresa: a remuneração vem da parceira. Nas demais frentes, o valor depende do escopo e vem na proposta.</p>
             </div>
           </div>
-
           <div class="ee-faq-item">
             <h3><button class="ee-faq-q" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
-              Aproveitar o crédito de ICMS traz risco de autuação?
+              Tomar o crédito de ICMS traz risco de autuação?
               <svg class="ee-faq-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button></h3>
             <div class="ee-faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
-              <p>O risco existe quando a apropriação é feita sem base técnica. Por isso o laudo é acompanhado de ART e conduzido junto a contabilidade especializada, para que a empresa tenha respaldo documental diante de fiscalização.</p>
+              <p>O risco existe quando o crédito é tomado sem base técnica. Por isso o laudo vem com ART e é conduzido junto à contabilidade especializada, para que a empresa tenha respaldo diante da fiscalização.</p>
             </div>
           </div>
         </div>
@@ -709,10 +739,9 @@
     <section class="ee-final">
       <div class="ee-final-inner">
         <h2 class="ee-final-h2">Comece pela fatura</h2>
-        <p class="ee-final-text">Envie as últimas contas de energia ou responda o diagnóstico online. Em poucos dias você recebe uma leitura do que há de recuperável na sua operação.</p>
+        <p class="ee-final-text">Envie as últimas faturas pelo WhatsApp. Devolvemos uma leitura do que há de recuperável em cada frente.</p>
         <div class="ee-final-cta">
-          <a class="ee-final-btn-primary" href="/diagnostico">Fazer diagnóstico gratuito</a>
-          <a class="ee-final-btn-secondary" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20tenho%20interesse%20nos%20servi%C3%A7os%20de%20Efici%C3%AAncia%20Energ%C3%A9tica%21" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+          <a class="ee-final-btn-primary" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20enviar%20as%20faturas%20de%20energia%20da%20minha%20empresa%20para%20uma%20an%C3%A1lise." target="_blank" rel="noopener">Enviar faturas pelo WhatsApp</a>
         </div>
       </div>
     </section>
