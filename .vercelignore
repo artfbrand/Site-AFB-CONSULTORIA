@@ -2,6 +2,7 @@
 _design/
 ai-saas-landing-27.aura.build/
 glass-green-effect/
+AGENTS.md
 *.md
 *.pdf
 package-lock.json
