@@ -8,6 +8,8 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var afbConsent = null; try { afbConsent = localStorage.getItem('afb_cookie_consent'); } catch (e) {}
+  gtag('consent', 'default', { analytics_storage: afbConsent === 'granted' ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('js', new Date());
   gtag('config', 'G-2TLLY5G438');
   document.addEventListener('click', function (e) {
@@ -1266,5 +1268,6 @@
     });
   })();
   </script>
+<script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

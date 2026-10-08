@@ -8,6 +8,8 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var afbConsent = null; try { afbConsent = localStorage.getItem('afb_cookie_consent'); } catch (e) {}
+  gtag('consent', 'default', { analytics_storage: afbConsent === 'granted' ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('js', new Date());
   gtag('config', 'G-2TLLY5G438');
   document.addEventListener('click', function (e) {
@@ -54,6 +56,8 @@
     .legal-page p { margin-top: .8rem; font-size: 1rem; line-height: 1.75; color: var(--sage); }
     .legal-page a { color: var(--accent); text-decoration: underline; }
     .legal-page a:hover { color: var(--forest); }
+    .legal-cookie-btn { margin-top: .4rem; background: transparent; color: var(--forest); border: 1px solid var(--forest); border-radius: var(--r-pill); padding: .6rem 1.2rem; font: 600 .9rem var(--font-body); cursor: pointer; }
+    .legal-cookie-btn:hover { background: var(--forest); color: var(--white); }
   </style>
 </head>
 <body>
@@ -159,7 +163,8 @@
     <h2>Armazenamento local</h2>
     <p>O formulário de diagnóstico pode salvar suas respostas temporariamente no próprio navegador, para que você não as perca. Você pode apagá-las limpando os dados do navegador.</p>
     <h2>Medição de visitas</h2>
-    <p>Usamos o Google Analytics para entender, de forma estatística, como o site é utilizado (por exemplo, páginas visitadas e cliques nos botões de contato). Essa ferramenta utiliza cookies e coleta dados como tipo de dispositivo, navegador e localização aproximada, sem identificar você pelo nome. Você pode bloquear cookies nas configurações do seu navegador.</p>
+    <p>Usamos o Google Analytics para entender, de forma estatística, como o site é utilizado (por exemplo, páginas visitadas e cliques nos botões de contato). Essa ferramenta utiliza cookies e coleta dados como tipo de dispositivo, navegador e localização aproximada, sem identificar você pelo nome. Os cookies de medição só são ativados se você clicar em “Aceitar” no aviso de cookies. Você também pode bloqueá-los nas configurações do seu navegador.</p>
+    <p><button type="button" class="legal-cookie-btn" onclick="window.afbAbrirPreferenciasCookies &amp;&amp; window.afbAbrirPreferenciasCookies()">Alterar preferências de cookies</button></p>
     <h2>Por quanto tempo guardamos</h2>
     <p>Pelo tempo necessário às finalidades acima ou ao cumprimento de obrigações legais.</p>
     <h2>Seus direitos (LGPD)</h2>
@@ -246,5 +251,6 @@
   </button>
 
   <script src="/assets/js/base.js"></script>
+<script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>
