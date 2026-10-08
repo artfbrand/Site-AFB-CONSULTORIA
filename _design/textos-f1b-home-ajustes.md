@@ -38,18 +38,18 @@ Arthur começou como eletricista de redes e linhas aéreas, foi supervisor do Ce
 
 ---
 
-## PARTE 2 — Espaço do Diagnóstico Energético 360° (pronto, mas DESLIGADO)
+## PARTE 2 — Diagnóstico Energético 360° (LIGADO desde já — decisão do Arthur em 08/10/2026)
 
-Estratégia: quando o formulário enviar dados, ele vira o caminho principal (decisão do Arthur) e o WhatsApp passa a ser a alternativa. Até lá, tudo fica escondido e o site continua exatamente como está, com o WhatsApp como principal.
-Um único interruptor liga tudo: `DIAGNOSTICO_FORM_ATIVO` (false agora).
+Estratégia: o formulário é o caminho principal (decisão do Arthur) e o WhatsApp é a alternativa. O site ainda não está sendo divulgado; os botões já ficam visíveis e levam a /diagnostico, e o envio dos dados será desenvolvido na fase do formulário.
+Um único interruptor controla tudo: `DIAGNOSTICO_FORM_ATIVO` = true. Com false, o site volta às versões com WhatsApp como principal.
 
-### 2.1 Topo (só aparece quando ligado)
+### 2.1 Topo (versão ligada)
 - Botão principal: Fazer o Diagnóstico 360° gratuito → /diagnostico
 - Link secundário logo abaixo/ao lado: ou fale pelo WhatsApp
-- Microtexto: Gratuito. Você recebe um relatório com as oportunidades encontradas nas três frentes.
+- Microtexto (substitui "Diagnóstico energético gratuito e sem compromisso." quando ligado): Gratuito, leva de 3 a 5 minutos. Você recebe um relatório com as oportunidades encontradas nas três frentes.
 - Quando ligado, o botão atual do WhatsApp do topo some (o link secundário o substitui).
 
-### 2.2 Seção nova "Diagnóstico Energético 360°" (só aparece quando ligada)
+### 2.2 Seção nova "Diagnóstico Energético 360°" (versão ligada)
 Local: depois da faixa "Em campo" e antes de "Como funciona".
 - Etiqueta: DIAGNÓSTICO ENERGÉTICO 360°
 - H2: Descubra em qual das três frentes sua empresa está pagando a mais
@@ -58,8 +58,7 @@ Local: depois da faixa "Em campo" e antes de "Como funciona".
   1. Contratação de energia — tarifa, modalidade e mercado
   2. Instalação — máquinas, equipamentos e subestação
   3. Impostos — ICMS na fatura de energia
-- Linha abaixo dos itens: Gratuito e sem compromisso. [DETALHE PENDENTE: tempo para responder]
-  (o executor coloca apenas "Gratuito e sem compromisso." e reporta o pendente)
+- Linha abaixo dos itens: Gratuito e sem compromisso. Leva de 3 a 5 minutos para responder.
 - Botão: Fazer o Diagnóstico 360° gratuito → /diagnostico
 - Link secundário: Prefere conversar? Fale pelo WhatsApp
 
@@ -71,12 +70,17 @@ Local: depois da faixa "Em campo" e antes de "Como funciona".
 - Desligado: como está.
 - Ligado: botão principal "Fazer o Diagnóstico 360° gratuito" → /diagnostico; abaixo, link "ou fale pelo WhatsApp".
 
+### 2.5 Como funciona — passos 1 e 2 (versão ligada; desligado fica como está)
+1. Diagnóstico 360° ou WhatsApp — Responda o questionário em 3 a 5 minutos ou, se preferir, conte pelo WhatsApp como é a operação.
+2. Análise e relatório — Analisamos fatura, contratação, qualidade de energia, ICMS e subestação, e você recebe um relatório com as oportunidades encontradas.
+(passos 3 e 4 sem mudança)
+
 ---
 
-## Antes de ligar o interruptor (checklist do Arthur, fase do formulário)
+## Antes de divulgar o site (checklist do Arthur, fase do formulário)
 1. O formulário envia os dados (para e-mail ou planilha) e foi testado.
 2. Tela de agradecimento dizendo o próximo passo e o prazo de retorno.
 3. Aviso de privacidade no formulário (LGPD) com link para /privacidade.
 4. Evento no Google Analytics para o envio do formulário.
-5. Tempo para responder medido (para preencher o [DETALHE PENDENTE]).
+5. Confirmar que o questionário leva de 3 a 5 minutos.
 6. Página /diagnostico com o nome "Diagnóstico Energético 360°".

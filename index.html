@@ -25,7 +25,7 @@
     }
   }, true);
 </script>
-<script>window.DIAGNOSTICO_FORM_ATIVO = false; if (window.DIAGNOSTICO_FORM_ATIVO) document.documentElement.classList.add('diag-on');</script>
+<script>window.DIAGNOSTICO_FORM_ATIVO = true; if (window.DIAGNOSTICO_FORM_ATIVO) document.documentElement.classList.add('diag-on');</script>
   <title>AFB Engenharia | Eficiência Energética e Subestações para Empresas</title>
   <meta name="description" content="Consultoria em eficiência energética e engenharia de subestações para empresas atendidas em média tensão. Diagnóstico energético gratuito. Pedro Leopoldo (MG)." />
   <link rel="canonical" href="https://www.afbenergia.com.br/" />
@@ -1232,11 +1232,11 @@
             </a>
             <a data-diag="on" href="/diagnostico" class="btn-primary">Fazer o Diagnóstico 360° gratuito</a>
             <a data-diag="on" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." class="hero-diag-alt" target="_blank" rel="noopener">ou fale pelo WhatsApp</a>
-            <p class="hero-diag-micro" data-diag="on">Gratuito. Você recebe um relatório com as oportunidades encontradas nas três frentes.</p>
+            <p class="hero-diag-micro" data-diag="on">Gratuito, leva de 3 a 5 minutos. Você recebe um relatório com as oportunidades encontradas nas três frentes.</p>
           </div>
 
           <!-- microprova -->
-          <div class="hero-microprova" id="hero-microprova" role="text">
+          <div class="hero-microprova" id="hero-microprova" role="text" data-diag="off">
             <span class="microprova-icon" aria-hidden="true">
               <svg viewBox="0 0 12 12">
                 <polyline points="2,6 5,9 10,3"/>
@@ -2334,7 +2334,7 @@
 
   <style>
     .diag-360 { padding: 6rem 0; background: var(--bg-alt); }
-    .diag-360 .sol-header, .diag-360 .sol-card { opacity: 1; transform: none; }
+    .diag-360 .sol-header, .diag-360 .sol-card, .diag-360 .problema-badge { opacity: 1; transform: none; }
     .diag-360 .sol-bottom-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .diag-360 .sol-card { min-height: 0; }
     .diag-360-actions { display: flex; flex-direction: column; align-items: center; gap: .75rem; margin-top: 2rem; }
@@ -2356,7 +2356,7 @@
         <article class="sol-card sol-sage"><div style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;"><h3 class="sol-title sol-ti-s">Impostos</h3><p class="sol-info-text">ICMS na fatura de energia</p></div></article>
       </div>
       <div class="diag-360-actions">
-        <p class="diag-360-note">Gratuito e sem compromisso.</p>
+        <p class="diag-360-note">Gratuito e sem compromisso. Leva de 3 a 5 minutos para responder.</p>
         <a class="sol-pilar-btn" href="/diagnostico">Fazer o Diagnóstico 360° gratuito</a>
         <a class="sol-more sol-more-s" href="https://wa.me/5531975549075?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20energ%C3%A9tico%20gratuito%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Prefere conversar? Fale pelo WhatsApp</a>
       </div>
@@ -3108,8 +3108,8 @@
               <span class="cf-num-d" aria-hidden="true">01</span>
               <div class="cf-bar-d" aria-hidden="true"></div>
               <span class="cf-eyebrow-d">Passo 01 · Contato</span>
-              <h3 class="cf-step-h-d" id="cf-s1-h">Conversa pelo WhatsApp</h3>
-              <p class="cf-step-p-d">Você conta como é a operação e quais são os principais desafios da empresa.</p>
+              <h3 class="cf-step-h-d" id="cf-s1-h"><span data-diag="off">Conversa pelo WhatsApp</span><span data-diag="on">Diagnóstico 360° ou WhatsApp</span></h3>
+              <p class="cf-step-p-d"><span data-diag="off">Você conta como é a operação e quais são os principais desafios da empresa.</span><span data-diag="on">Responda o questionário em 3 a 5 minutos ou, se preferir, conte pelo WhatsApp como é a operação.</span></p>
               <div class="cf-icon-box-d" aria-label="Ícone de contato">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
@@ -3120,8 +3120,8 @@
               <span class="cf-num-d" aria-hidden="true">02</span>
               <div class="cf-bar-d" aria-hidden="true"></div>
               <span class="cf-eyebrow-d">Passo 02 · Análise</span>
-              <h3 class="cf-step-h-d" id="cf-s2-h">Diagnóstico energético gratuito</h3>
-              <p class="cf-step-p-d">Analisamos fatura, contratação, qualidade de energia, ICMS e subestação, e mostramos onde o dinheiro está saindo.</p>
+              <h3 class="cf-step-h-d" id="cf-s2-h"><span data-diag="off">Diagnóstico energético gratuito</span><span data-diag="on">Análise e relatório</span></h3>
+              <p class="cf-step-p-d"><span data-diag="off">Analisamos fatura, contratação, qualidade de energia, ICMS e subestação, e mostramos onde o dinheiro está saindo.</span><span data-diag="on">Analisamos fatura, contratação, qualidade de energia, ICMS e subestação, e você recebe um relatório com as oportunidades encontradas.</span></p>
               <div class="cf-icon-box-d" aria-label="Ícone de análise">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               </div>
