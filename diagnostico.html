@@ -23,8 +23,8 @@
     }
   }, true);
 </script>
-<title>Diagnóstico elétrico e tributário</title>
-<meta name="description" content="Avaliação gratuita em 5 minutos: descubra seu potencial de crédito de ICMS sobre energia, qualidade de energia e manutenção de subestação." />
+<title>Diagnóstico Energético 360° | AFB Engenharia</title>
+<meta name="description" content="Diagnóstico gratuito para empresas: avalie contratação de energia, instalações elétricas e oportunidades de crédito de ICMS." />
 <link rel="canonical" href="https://www.afbenergia.com.br/diagnostico" />
 <link rel="icon" type="image/png" href="assets/images/favicon.png" />
 <meta name="robots" content="noindex" />
@@ -117,7 +117,7 @@ header.top p:last-of-type{margin-bottom:0}
 .q:first-of-type{border-top:none; padding-top:4px}
 .q > label.qt, .qt{display:block; font-size:.9375rem; font-weight:500; margin-bottom:3px}
 .qt .n{color:var(--ink3); font-weight:400; margin-right:6px}
-.q.invalid input[type=text], .q.invalid textarea{border-color:var(--danger); box-shadow:0 0 0 3px rgba(217,82,82,.1)}
+.q.invalid input[type=text], .q.invalid input[type=email], .q.invalid input[type=tel], .q.invalid textarea{border-color:var(--danger); box-shadow:0 0 0 3px rgba(217,82,82,.1)}
 .q.invalid .opts .opt span{border-color:var(--danger)}
 .field-error{color:var(--danger); font-size:.8125rem; margin-top:8px}
 .hint{font-size:.8125rem; color:var(--ink2); margin:0 0 10px; max-width:60ch}
@@ -136,13 +136,13 @@ header.top p:last-of-type{margin-bottom:0}
 .opts.stack{flex-direction:column}
 .opts.stack .opt span{width:100%}
 
-input[type=text], textarea{
+input[type=text], input[type=email], input[type=tel], textarea{
   width:100%; font:inherit; color:var(--ink); background:var(--canvas);
   border:1.5px solid var(--line); border-radius:var(--r-input); padding:.82rem 1.05rem; margin-top:8px;
   transition:border-color .2s, box-shadow .2s, background .2s;
 }
 textarea{min-height:82px; resize:vertical}
-input[type=text]:focus, textarea:focus{
+input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, textarea:focus{
   outline:none; border-color:var(--accent); background:var(--surface);
   box-shadow:0 0 0 4px rgba(61,127,97,.1);
 }
@@ -195,6 +195,7 @@ button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
 .toast.on{opacity:1}
 
 @media (max-width:520px){
+  .wrap, header.top, header.top p, h1, .panel, .panel > .note{width:100%; max-width:100%; min-width:0; overflow-wrap:anywhere}
   h1{font-size:1.5rem}
   .panel{padding:18px 16px 6px}
   .opts .opt span{padding:9px 12px}
@@ -218,11 +219,11 @@ button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
 
 <header class="top">
   <div class="kicker">CONSULTORIA EM EFICIÊNCIA ENERGÉTICA, REDUÇÃO DE CUSTOS E SEGURANÇA OPERACIONAL</div>
-  <h1>Formulário Diagnóstico da Instalação Elétrica</h1>
-  <p>Este diagnóstico foi desenvolvido para proporcionar uma visão inicial das condições técnicas, operacionais e econômicas da sua instalação elétrica, permitindo identificar oportunidades de redução de custos, aumento da eficiência energética e melhoria da segurança operacional.</p>
-  <p>O formulário é composto por cinco blocos de perguntas objetivas, elaborados para obter as principais informações sobre a instalação e o perfil de consumo da empresa.</p>
-  <p>Tempo estimado de preenchimento: 4 a 6 minutos.</p>
-  <p>Não sabe alguma resposta? Sem problema. Selecione a opção “Não sei”. Essa informação também é relevante para direcionarmos corretamente a análise e identificarmos quais pontos precisam de uma avaliação técnica mais aprofundada.</p>
+  <h1>Diagnóstico Energético 360° para Empresas</h1>
+  <p>Responda perguntas objetivas sobre contratação de energia, instalações elétricas e crédito de ICMS. Esta etapa ajuda a identificar onde pode haver oportunidades para sua empresa.</p>
+  <p>O formulário possui seis etapas e leva cerca de 5 minutos.</p>
+  <p>Não sabe alguma resposta? Sem problema. Selecione a opção ‘Não sei’.</p>
+  <p class="miss">Versão de validação: suas respostas ficam somente neste navegador e ainda não são enviadas para a AFB.</p>
   <div class="rail" id="rail"></div>
   <div class="rail-label" id="railLabel"></div>
 </header>
@@ -238,9 +239,11 @@ button:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
 </div>
 <div class="toast" id="toast"></div>
 
+<script>window.__diagValidationV1=true;</script>
 <script>
 (function(){
 "use strict";
+if(window.__diagValidationV1) return;
 
 var SIM = "Acontece", NAO = "Não acontece", NS = "Não sei";
 
@@ -828,6 +831,46 @@ function toast(msg){
 
 load();
 render();
+})();
+</script>
+<script>
+(function(){
+"use strict";
+var KEY="diag-energetico-360-validacao-v1", form=document.getElementById("form"), nav=document.getElementById("nav"), rail=document.getElementById("rail"), railLabel=document.getElementById("railLabel"), saved=document.getElementById("saved"), answers={}, step=0, done=false;
+function F(id,label,kind,opts,required,show,hint,type,exclusive){return{id:id,label:label,kind:kind,opts:opts||[],required:required!==false,show:show,hint:hint,type:type||"text",exclusive:exclusive||[]};}
+var low="Baixa tensão — somente o padrão de entrada";
+var sections=[
+{id:"empresa",title:"Sobre a empresa",note:"Estas informações ajudam a entender o porte e o perfil de consumo da operação.",tint:"var(--ink2)",fields:[
+F("empresa","Nome da empresa","text"),F("cidade","Cidade e Estado","text"),F("atividade","Qual é a principal atividade da empresa?","text",[],true,null,"Ex.: indústria de alimentos, metalúrgica, comércio, hospital ou agronegócio."),F("fatura","Qual é o valor médio da conta de energia por mês?","radio",["Até R$ 10 mil","R$ 10 mil a R$ 50 mil","R$ 50 mil a R$ 150 mil","Acima de R$ 150 mil","Não sei"]),F("entrada","Como a energia chega à empresa?","radio",["Alta tensão — temos subestação, cabine ou transformador próprio",low,"Não sei"]),F("unidades","Quantas unidades ou plantas a empresa possui?","radio",["1","2 ou 3","4 ou mais"])]},
+{id:"energia",title:"Energia e contratação",note:"Queremos entender como a empresa compra energia e se já avaliou alternativas para reduzir custos.",tint:"var(--accent)",fields:[
+F("contratacao","Como a empresa contrata energia hoje?","radio",["Mercado cativo — compra diretamente da distribuidora","Mercado Livre de Energia","Energia por assinatura ou geração compartilhada","Combina mais de uma modalidade","Não sei"]),F("geracao","A empresa possui ou está implantando geração própria?","radio",["Não possui","Sim, já está em operação","Está em implantação ou estudo","Não sei"]),F("fonteGeracao","Se possui ou está implantando geração própria, qual é a fonte?","check",["Solar fotovoltaica","Cogeração térmica ou gás natural","Biomassa ou biogás","Eólica","Hidrelétrica de pequeno porte","Outra","Não sei"],true,function(){return answers.geracao&&answers.geracao!=="Não possui";}),F("compensacao","Essa geração produz créditos que são compensados na conta de energia?","radio",["Sim, usamos sistema de compensação de energia","Não, a energia é consumida diretamente na unidade","Ainda não está em operação","Não sei"],true,function(){return answers.geracao==="Sim, já está em operação"||answers.geracao==="Está em implantação ou estudo";}),F("alternativas","Quais alternativas para economia de energia a empresa já avaliou?","check",["Migração para o Mercado Livre de Energia","Energia por assinatura ou geração compartilhada","Ajuste da demanda contratada","Mudança da modalidade tarifária","Correção de energia reativa ou fator de potência","Implantação ou ampliação de geração própria","Nenhuma dessas alternativas","Não sei"],true,null,null,"Nenhuma dessas alternativas|Não sei"),F("demanda","Quando a demanda contratada e a modalidade tarifária foram revisadas pela última vez?","radio",["Há menos de 1 ano","Entre 1 e 2 anos","Há mais de 2 anos","Nunca foram revisadas","Não sei"],true,function(){return answers.entrada&&answers.entrada!==low;}),F("reativa","A fatura apresenta cobrança por energia reativa ou ultrapassagem de demanda?","radio",["Sim","Não","Não sei"])]},
+{id:"subestacao",title:"Subestação e continuidade operacional",note:"Esta etapa avalia o risco de falhas elétricas interromperem a operação.",tint:"var(--warm)",show:function(){return answers.entrada!==low;},fields:[
+F("tipoSub","Tipo de subestação","radio",["Aérea","Abrigada","As duas","Não sei"]),F("manutencao","Última manutenção da subestação","radio",["Há menos de 1 ano","Entre 1 e 3 anos","Há mais de 3 anos","Nunca foi feita","Não sei"]),F("contratoManut","Existe contrato de manutenção","radio",["Sim","Somente quando surge um problema","Não","Não sei"]),F("quedas","Quedas ou interrupções de energia nos últimos 12 meses","radio",["Nenhuma","1 ou 2","3 ou mais","Não sei"]),F("parada","Custo estimado de uma hora de parada","radio",["Menos de R$ 1 mil","De R$ 1 mil a R$ 10 mil","Acima de R$ 10 mil","Não sei"]),F("documentos","Documentos disponíveis","check",["PIE e documentos da NR-10","Diagrama unifilar","Relatório de manutenção","Laudo de aterramento ou SPDA","Termografia","Nenhum destes","Não sei"],true,null,null,"Nenhum destes|Não sei")]},
+{id:"qualidade",title:"Qualidade da energia e instalações elétricas",note:"Alguns problemas elétricos aparecem como queimas, falhas, aquecimento ou perda de produtividade.",tint:"var(--hot)",fields:[
+F("problemas","Quais situações acontecem na instalação","check",["Queima de equipamentos","Luzes piscando","Máquinas, controladores ou computadores reiniciando","Aquecimento em painéis ou cabos","Desarme de disjuntores","Falhas em máquinas ou perda de produtividade","Nenhuma dessas situações","Não sei"],true,null,null,"Nenhuma dessas situações|Não sei"),F("banco","Situação do banco de capacitores","radio",["Funciona normalmente","Apresenta problemas ou está desligado","Não possui","Não sei"]),F("estudoQualidade","Já foi feito estudo de qualidade de energia","radio",["Sim","Nunca foi feito","Não sei"]),F("problemaAtual","Existe algum problema elétrico atual que deseja descrever","textarea",[],false,null,"Ex.: equipamento queima com frequência, desarme recorrente ou aquecimento em um painel.")]},
+{id:"fiscal",title:"Fiscal e crédito de ICMS",note:"Empresas que utilizam energia em processos de industrialização podem ter direito ao crédito de ICMS.",tint:"var(--accent)",fields:[
+F("regime","Regime tributário","radio",["Lucro real","Lucro presumido","Simples Nacional","Não sei"]),F("industrializacao","A empresa realiza industrialização","radio",["Sim","Parcialmente","Não, é comércio ou serviços","Não sei"]),F("processoProd","Descreva rapidamente o processo produtivo ou as máquinas utilizadas","textarea",[],true,function(){return answers.industrializacao==="Sim"||answers.industrializacao==="Parcialmente";},"Ex.: linhas de produção, fornos, câmaras frias, compressores ou equipamentos de grande porte."),F("exportacao","A empresa exporta","radio",["Sim","Não","Pretende exportar","Não sei"]),F("situacaoIcms","Como a empresa trata o ICMS sobre energia","radio",["Aproveita créditos","Não aproveita créditos","Não sabe informar","Possui benefício fiscal","Não se aplica"]),F("cnpjFatura","A fatura de energia está no CNPJ da empresa","radio",["Sim","Não","Não sei"]),F("consumoProd","A energia é usada no processo produtivo","radio",["Sim, principalmente","Parcialmente","Não","Não sei"])]},
+{id:"contato",title:"Contato e próximo passo",note:"Nesta versão de validação, estes dados não serão enviados para a AFB.",tint:"var(--ink2)",fields:[
+F("nome","Nome","text"),F("cargo","Cargo","text"),F("email","E-mail","text",[],false,null,null,"email"),F("whatsapp","WhatsApp","text",[],false,null,"Digite com DDD.","tel"),F("prioridade","Qual é a prioridade neste momento","radio",["Reduzir custos","Evitar paradas e riscos","Entender as oportunidades antes de decidir"]),F("decisores","Outras pessoas envolvidas na decisão","text",[],false),F("visita","Há interesse em visita técnica","radio",["Sim","Talvez","Não neste momento"]),F("adicional","Informações adicionais","textarea",[],false)]}
+];
+function allFields(){var a=[];sections.forEach(function(s){s.fields.forEach(function(f){a.push(f);});});return a;}
+function visibleSections(){return sections.filter(function(s){return !s.show||s.show();});}
+function isVisible(f){return !f.show||f.show();}
+function save(){try{sessionStorage.setItem(KEY,JSON.stringify(answers));}catch(e){saved.textContent="Não foi possível guardar temporariamente neste navegador";return;} saved.textContent="Respostas guardadas nesta sessão"; setTimeout(function(){if(saved.textContent==="Respostas guardadas nesta sessão")saved.textContent="";},1800);}
+function load(){try{var v=sessionStorage.getItem(KEY);if(v)answers=JSON.parse(v)||{};}catch(e){answers={};}}
+function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");}
+function clearHidden(){allFields().forEach(function(f){if(!isVisible(f))delete answers[f.id];}); sections.forEach(function(s){if(s.show&&!s.show())s.fields.forEach(function(f){delete answers[f.id];});});}
+function field(f,n){var val=answers[f.id], h='<div class="q" data-id="'+f.id+'"><label class="qt" for="'+f.id+'"><span class="n">'+n+'.</span>'+esc(f.label)+(f.required?"":" (opcional)")+'</label>'+(f.hint?'<p class="hint">'+esc(f.hint)+"</p>":"");
+if(f.kind==="text")h+='<input id="'+f.id+'" data-field="'+f.id+'" type="'+f.type+'" value="'+esc(val)+'" autocomplete="'+(f.type==="email"?"email":"off")+'">';
+else if(f.kind==="textarea")h+='<textarea id="'+f.id+'" data-field="'+f.id+'">'+esc(val)+"</textarea>";
+else {h+='<div class="opts '+(f.opts.length>5?"stack":"")+'">'; f.opts.forEach(function(o,i){var check=f.kind==="check"?Array.isArray(val)&&val.indexOf(o)>-1:val===o;h+='<label class="opt"><input data-field="'+f.id+'" type="'+(f.kind==="check"?"checkbox":"radio")+'" name="'+f.id+'" value="'+esc(o)+'"'+(check?" checked":"")+'><span>'+esc(o)+'</span></label>';});h+='</div>';} return h+'<p class="field-error" aria-live="polite"></p></div>';}
+function draw(){clearHidden(); var vs=visibleSections(); if(step>=vs.length)step=vs.length-1; if(done){form.innerHTML='<section class="thanks" aria-live="polite"><h2>Formulário concluído para validação</h2><p>Esta versão ainda não envia as respostas para a AFB. A integração de envio e a confirmação de recebimento serão adicionadas na próxima etapa.</p><div class="nav"><button class="ghost" id="review" type="button">Revisar respostas</button><button class="primary" id="restart" type="button">Limpar e começar novamente</button></div></section>';nav.innerHTML=""; rail.innerHTML=Array(vs.length+1).join('<span class="done"></span>');railLabel.textContent="Validação concluída";return;}
+var s=vs[step], q=0, html='<section class="step on"><div class="panel" style="--tint:'+s.tint+'"><h2>'+esc(s.title)+'</h2><p class="note">'+esc(s.note)+'</p>';s.fields.forEach(function(f){if(isVisible(f))html+=field(f,++q);});form.innerHTML=html+'</div></section>';rail.innerHTML=vs.map(function(_,i){return '<span class="'+(i<step?"done":i===step?"now":"")+'"></span>';}).join("");railLabel.textContent="Etapa "+(step+1)+" de "+vs.length;nav.innerHTML='<button class="ghost" id="btnBack" type="button"'+(step===0?" disabled":"")+'>Voltar</button><button class="primary" id="btnNext" type="button">'+(step===vs.length-1?"Concluir validação":"Continuar")+'</button><span class="saved" id="saved"></span>';saved=document.getElementById("saved");}
+function read(target){var id=target.getAttribute("data-field"), f=allFields().filter(function(x){return x.id===id;})[0];if(!f)return;if(f.kind==="check"){var vals=[].slice.call(form.querySelectorAll('input[data-field="'+id+'"]:checked')).map(function(i){return i.value;});if(f.exclusive.length&&target.checked&&f.exclusive.indexOf(target.value)>-1)vals=[target.value];else if(f.exclusive.length&&target.checked)vals=vals.filter(function(v){return f.exclusive.indexOf(v)===-1;});answers[id]=vals;}else answers[id]=target.value;clearHidden();save();}
+function invalid(f,msg){var q=form.querySelector('.q[data-id="'+f.id+'"]');if(q){q.classList.add("invalid");q.querySelector(".field-error").textContent=msg;}}
+function validate(){var vs=visibleSections(), s=vs[step], ok=true;form.querySelectorAll(".q.invalid").forEach(function(q){q.classList.remove("invalid");q.querySelector(".field-error").textContent="";});s.fields.forEach(function(f){if(!isVisible(f)||!f.required)return;var v=answers[f.id], empty=f.kind==="check"?!v||!v.length:!String(v||"").trim();if(empty){invalid(f,"Selecione ou preencha esta resposta para continuar.");ok=false;}});if(s.id==="contato"&&!String(answers.email||"").trim()&&!String(answers.whatsapp||"").trim()){invalid({id:"email"},"Informe pelo menos e-mail ou WhatsApp.");invalid({id:"whatsapp"},"Informe pelo menos e-mail ou WhatsApp.");ok=false;}if(!ok){var x=form.querySelector(".q.invalid input, .q.invalid textarea");if(x)x.focus();}return ok;}
+form.addEventListener("input",function(e){if(e.target.dataset.field)read(e.target);});form.addEventListener("change",function(e){if(e.target.dataset.field){read(e.target);draw();}});nav.addEventListener("click",function(e){if(e.target.id==="btnBack"&&step>0){step--;draw();}if(e.target.id==="btnNext"&&validate()){if(step===visibleSections().length-1){done=true;save();draw();}else{step++;draw();}}});form.addEventListener("click",function(e){if(e.target.id==="review"){done=false;step=visibleSections().length-1;draw();}if(e.target.id==="restart"&&confirm("Limpar as respostas desta validação e começar novamente?")){try{sessionStorage.removeItem(KEY);}catch(x){}answers={};step=0;done=false;draw();}});
+load();draw();
 })();
 </script>
 <script src="/assets/js/cookies.js" defer></script>
