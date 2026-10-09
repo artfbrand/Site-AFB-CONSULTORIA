@@ -47,6 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <style>
     /* ─── CONTEÚDO ──────────────────────────────────────────────────────── */
     .svc-hero { max-width: 1280px; margin: 0 auto; padding: 4.5rem 3rem 1rem; }
@@ -64,10 +65,10 @@
       padding: 2rem; transition: transform .25s var(--ease-out), box-shadow .25s;
     }
     .svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-float); }
-    .svc-card-eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+    .svc-card-eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--forest); }
     .svc-card-title { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--forest); }
     .svc-card-desc { font-size: .92rem; line-height: 1.65; color: var(--sage); flex-grow: 1; }
-    .svc-card-link { margin-top: .3rem; font-size: .88rem; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: .4rem; }
+    .svc-card-link { margin-top: .3rem; font-size: .88rem; font-weight: 600; color: var(--forest); display: inline-flex; align-items: center; gap: .4rem; }
     .svc-card:hover .svc-card-link { color: var(--forest); }
     .svc-card-title a { color: inherit; transition: color .2s; }
     .svc-card-title a:hover { color: var(--accent); }
@@ -84,7 +85,7 @@
     .svc-final-btn {
       margin-top: 2.2rem; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 44px;
       padding: .95rem 2rem; border-radius: var(--r-pill);
-      background: var(--orange); color: #fff; font-size: .92rem; font-weight: 600;
+      background: var(--orange); color: #0D3C1F; font-size: .92rem; font-weight: 600;
       box-shadow: 0 4px 18px rgba(246,144,102,.3);
       transition: background .2s, transform .22s var(--ease-out);
     }
@@ -330,6 +331,10 @@
   </button>
 
   <script src="/assets/js/base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 </body>
 </html>

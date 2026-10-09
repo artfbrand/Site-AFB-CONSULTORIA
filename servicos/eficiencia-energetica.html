@@ -45,6 +45,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
   <style>
     /* ─── ELEMENTOS COMPARTILHADOS DA PÁGINA ─────────────────────────────── */
     .ee-kicker { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -158,7 +159,7 @@
     .ee-final-btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 44px;
       padding: .95rem 2rem; border-radius: var(--r-pill);
-      background: var(--orange); color: #fff; font-size: .92rem; font-weight: 600;
+      background: var(--orange); color: #0D3C1F; font-size: .92rem; font-weight: 600;
       box-shadow: 0 4px 18px rgba(246,144,102,.3);
       transition: background .2s, transform .22s var(--ease-out);
     }
@@ -836,6 +837,10 @@
   </button>
 
   <script src="/assets/js/base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
   <script>
   (function () {
     "use strict";

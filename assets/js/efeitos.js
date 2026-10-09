@@ -71,10 +71,10 @@
 
   var grupos = [];
   /* títulos e textos de abertura das seções (valores do #problema-heading / #problema-intro) */
-  grupos.push({ els: lista('.svc-section > .svc-h2, .ms-h2, .ms-risk-h2, .ms-deliverable-h2, main section .ms-kicker, main section .ms-kicker-dark'), de: { y: 28 }, dur: .82 });
-  grupos.push({ els: lista('.ms-risk-lead, .ms-why-lead, .ms-scope-lead, .svc-faq-list, .svc-related-title'), de: { y: 18 }, dur: .68 });
+  grupos.push({ els: lista('.svc-section > .svc-h2, .ms-h2, .ms-risk-h2, .ms-deliverable-h2, main section .ms-kicker, main section .ms-kicker-dark, .ee-h2, main section .ee-kicker, .legal-page > h2'), de: { y: 28 }, dur: .82 });
+  grupos.push({ els: lista('.ms-risk-lead, .ms-why-lead, .ms-scope-lead, .svc-faq-list, .svc-related-title, .ee-services-lead, .svc-section > .svc-text'), de: { y: 18 }, dur: .68 });
   /* painel de passos (valores do #cf-cred-card) */
-  grupos.push({ els: lista('.svc-steps, .ms-how-track, .ms-why-photo'), de: { y: 40, scale: .98 }, dur: 1.05, inicio: 'top 84%' });
+  grupos.push({ els: lista('.svc-steps, .ms-how-track, .ee-how-track, .ms-why-photo'), de: { y: 40, scale: .98 }, dur: 1.05, inicio: 'top 84%' });
   /* chamada final (valores do #ct-header) */
   grupos.push({ els: lista('.svc-final'), de: { y: 30 }, dur: .9 });
   grupos.forEach(function (g) {
@@ -103,6 +103,8 @@
   escalona('.svc-list:not(.fx-cards):not(.fx-check)', ':scope > li', { y: 18 }, .09);
   escalona('.svc-list.fx-cards, .svc-list.fx-check, .svc-related-list', ':scope > li', { y: 34, scale: .97 }, .09);
   escalona('.fx-equip', ':scope > .svc-equip', { y: 34, scale: .97 }, .09);
+  escalona('.svc-grid', ':scope > .svc-card', { y: 34, scale: .97 }, .14);
+  escalona('.contact-grid', ':scope > .contact-card', { y: 34, scale: .97 }, .09);
   escalona('.svc-steps', ':scope > li', { y: 22, scale: .97 }, .14, .25);
 
   document.documentElement.classList.add('fx-ready');
