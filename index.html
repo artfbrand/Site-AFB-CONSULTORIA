@@ -182,12 +182,11 @@
       position: relative;
       max-width: 1280px; margin: 0 auto; width: 100%;
       padding: 0 3rem;
-      display: flex; align-items: center; justify-content: space-between;
+      display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
     }
-    /* logo absolutamente centrado entre os links e o CTA */
+    /* logo centralizado em coluna própria para não sobrepor os links */
     .nav-logo-center {
-      position: absolute;
-      left: 50%; transform: translateX(-50%);
       display: flex; align-items: center;
       pointer-events: auto; z-index: 1;
     }
@@ -254,6 +253,7 @@
     }
     .nav-right {
       display: flex; align-items: center; gap: 2.4rem;
+      justify-self: end;
     }
     /* ── Hambúrguer (mobile only) ── */
     .nav-hamburger {
@@ -294,7 +294,9 @@
     main { padding-top: 132px; }
     @media (min-width: 1025px) and (max-width: 1280px) {
       .nav-links { gap: 1.5rem; }
+      .nav-links a { font-size: .92rem; }
       .nav-btn { padding: .55rem 1rem; }
+      .nav-logo-center img { height: 90px; }
     }
     @media (max-width: 1024px) {
       .nav { height: 108px; }
@@ -1010,7 +1012,7 @@
       font-weight: 700; line-height: 1.52; color: var(--forest);
       font-style: italic;
     }
-    .problema-closing-text .closing-green { color: var(--accent); }
+    .problema-closing-text .closing-green { color: var(--forest); }
     .closing-sub {
       margin-top: 1.5rem;
       display: flex; align-items: center; justify-content: center; gap: .55rem;
@@ -1901,8 +1903,8 @@
       <div class="sol-inner">
         <header class="sol-header" id="sol-header">
           <span class="problema-badge"><span class="badge-dot" aria-hidden="true"></span>NOSSAS DUAS ÁREAS</span>
-          <h2 class="problema-h2" id="areas-heading">Eficiência energética para pagar menos.<br>
-            <span class="h2-accent">Subestação em dia para não parar.</span></h2>
+          <h2 class="problema-h2" id="areas-heading">Eficiência energética para reduzir custos.<br>
+            <span class="h2-accent">Subestações confiáveis para sua operação não parar.</span></h2>
           <p class="problema-intro">Atuamos nas duas pontas: como a energia é comprada e tributada, e como é utilizada na sua planta.</p>
         </header>
         <div class="sol-bottom-grid">
