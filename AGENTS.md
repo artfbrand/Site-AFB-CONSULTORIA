@@ -84,12 +84,10 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- Concluídos e na main: A, B1, B2, C, D, E, F1, F1b, F1b-2 (Diagnóstico 360° ligado; o formulário ainda não envia dados, aceito pelo Arthur enquanto o site não é divulgado) e H (página Correção de Fator de Potência).
-- Próximas etapas, nesta ordem:
-  1. G1 e G2: efeitos visuais da Home levados às páginas internas (piloto e depois o site todo).
-  2. F2: auditorias finais de SEO e conversão.
-  3. Formulário do Diagnóstico 360° (envio de dados, agradecimento, LGPD, evento GA4).
+- main com tudo até eee49f8.
+- Formulário do Diagnóstico 360° em finalização (Bloco FORM): envio pela função api/diagnostico.js (Vercel + Resend), com as variáveis RESEND_API_KEY, DIAG_TO e DIAG_FROM configuradas só na Vercel.
 - Pendências conhecidas (não mexer sem prompt):
+  - mega menu do G2b não implementado
   - limpeza de arquivos antigos (.png substituídos, logo-diagnostico.png, servicos-data.js)
   - troca da foto de termografia
-  - botão flutuante do WhatsApp encostando no botão do topo no celular enquanto o banner de cookies está aberto
+  - imagem conta-energia.webp com números fictícios na Home
