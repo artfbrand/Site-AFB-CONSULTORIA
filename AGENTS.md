@@ -89,4 +89,5 @@
 - Menu novo no ar: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu.
 - Pendências conhecidas (não mexer sem prompt):
   - revisão final: banner de cookies no celular, botão voltar ao topo x botão do WhatsApp, imagem conta-energia.webp com números fictícios na Home, limpeza de arquivos antigos (.png substituídos, logo-diagnostico.png, servicos-data.js)
-  - troca da chave da Resend por uma de "somente envio"
+  - troca da foto de termografia
+  - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)

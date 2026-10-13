@@ -297,7 +297,7 @@
       position: absolute; top: calc(100% + 14px); left: 50%;
       transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(-6px);
       width: min(880px, calc(100vw - 32px));
-      max-height: min(420px, calc(100vh - 150px)); overflow-y: auto; overscroll-behavior: contain;
+      max-height: min(420px, calc(100vh - 150px)); overflow-y: auto;
       padding: 1.25rem 1.25rem 0; border-radius: var(--r-card);
       background: #fff; border: 1px solid rgba(61,127,97,.1);
       box-shadow: var(--shadow-float);
@@ -1176,7 +1176,7 @@
               Serviços
               <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div class="nav-dropdown" id="nav-servicos-dropdown" data-lenis-prevent>
+            <div class="nav-dropdown" id="nav-servicos-dropdown">
               <div class="nav-mega-grid">
                 <div class="nav-mega-col">
                   <p class="nav-mega-title" id="nav-mega-eficiencia">Eficiência Energética</p>
@@ -3602,6 +3602,17 @@
         if (mobileMenu.classList.contains('open') && nav && !nav.contains(e.target)) setMobile(false, false);
       });
 
+      // Garante o menu fechado ao passar para o desktop (girar a tela/redimensionar) e ao voltar pelo histórico.
+      const desktopMq = window.matchMedia('(min-width: 1025px)');
+      const closeOnDesktop = () => {
+        if (desktopMq.matches && mobileMenu.classList.contains('open')) setMobile(false, false);
+      };
+      if (desktopMq.addEventListener) desktopMq.addEventListener('change', closeOnDesktop);
+      else if (desktopMq.addListener) desktopMq.addListener(closeOnDesktop);
+      window.addEventListener('pageshow', () => {
+        if (mobileMenu.classList.contains('open')) setMobile(false, false);
+      });
+
       // Acordeão: "Serviços" e, dentro dele, um grupo aberto por vez.
       const setPanel = (toggle, isOpen) => {
         const panel = document.getElementById(toggle.getAttribute('aria-controls'));
@@ -3636,6 +3647,9 @@
         const minLeft = inner ? Math.max(16, inner.getBoundingClientRect().left + parseFloat(getComputedStyle(inner).paddingLeft) - 12) : 16;
         const x = Math.max(16, Math.min(vw - 16 - w, Math.max(minLeft, desired)));
         svcDropdown.style.setProperty('--mega-x', Math.round(x - desired) + 'px');
+        // Fora disso a roda do mouse sobre o painel rola a página normalmente.
+        if (svcDropdown.scrollHeight > svcDropdown.clientHeight + 1) svcDropdown.setAttribute('data-lenis-prevent', '');
+        else svcDropdown.removeAttribute('data-lenis-prevent');
       };
       const openSvc = () => {
         clearTimeout(svcCloseTimer);

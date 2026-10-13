@@ -38,6 +38,17 @@
       if (mobileMenu.classList.contains('open') && nav && !nav.contains(e.target)) setMobile(false, false);
     });
 
+    // Garante o menu fechado ao passar para o desktop (girar a tela/redimensionar) e ao voltar pelo histórico.
+    var desktopMq = window.matchMedia('(min-width: 1025px)');
+    var closeOnDesktop = function () {
+      if (desktopMq.matches && mobileMenu.classList.contains('open')) setMobile(false, false);
+    };
+    if (desktopMq.addEventListener) desktopMq.addEventListener('change', closeOnDesktop);
+    else if (desktopMq.addListener) desktopMq.addListener(closeOnDesktop);
+    window.addEventListener('pageshow', function () {
+      if (mobileMenu.classList.contains('open')) setMobile(false, false);
+    });
+
     // Acordeão: "Serviços" e, dentro dele, um grupo aberto por vez.
     var setPanel = function (toggle, isOpen) {
       var panel = document.getElementById(toggle.getAttribute('aria-controls'));
@@ -72,6 +83,9 @@
       var minLeft = inner ? Math.max(16, inner.getBoundingClientRect().left + parseFloat(getComputedStyle(inner).paddingLeft) - 12) : 16;
       var x = Math.max(16, Math.min(vw - 16 - w, Math.max(minLeft, desired)));
       svcDropdown.style.setProperty('--mega-x', Math.round(x - desired) + 'px');
+      // Fora disso a roda do mouse sobre o painel rola a página normalmente.
+      if (svcDropdown.scrollHeight > svcDropdown.clientHeight + 1) svcDropdown.setAttribute('data-lenis-prevent', '');
+      else svcDropdown.removeAttribute('data-lenis-prevent');
     };
     var openSvc = function () {
       clearTimeout(svcCloseTimer);
