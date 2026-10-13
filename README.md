@@ -9,9 +9,6 @@ Site institucional one-page de Engenharia Elétrica e Consultoria em Energia.
 ├── index.html              # Site (hero + faixa de autoridade)
 ├── assets/
 │   └── images/
-│       ├── logo-horizontal.png
-│       ├── subestacao-entardecer.png
-│       └── icones.png
 ├── _design/                # Referências de design (não publicadas)
 │   ├── design-system3.html
 │   ├── orientacoes.md

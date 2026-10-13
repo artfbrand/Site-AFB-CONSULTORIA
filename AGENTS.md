@@ -84,17 +84,17 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- main com tudo até d237c11; a v2-estrutura tem a revisão final, ainda sem merge.
+- main com tudo até 6be80fa (revisão final); a v2-estrutura tem o Bloco SEO-1, ainda sem merge.
 - Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
-- Menu novo no ar: painel "Serviços" no desktop (não trava a rolagem; cursor nativo sobre ele) e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu.
-- Home: o cursor desenhado só esconde o cursor nativo quando está ativo (ponteiro fino, sem prefers-reduced-motion).
-- Revisão final (v2-estrutura):
-  - banner de cookies compacto no celular e espaço no fim da página enquanto ele está aberto (cookies.js)
-  - botões flutuantes com pelo menos 12px entre si e sem sobrepor o banner
-  - marca-d'água da Home trocada para fatura.webp (sem números fictícios)
-  - sem o prefixo "Clique Aqui — " na Home
-  - botão do rodapé: "Fazer o Diagnóstico 360°" → /diagnostico nas 22 páginas
-  - removidos os arquivos sem uso (PNGs antigos, conta-energia.webp, logo-diagnostico.png, logo-horizontal.png, icones.png, servicos-data.js); estrategia-seo.md movido para _design/
+- Menu: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu e na 404.
+- Revisão final no ar: banner de cookies compacto no celular, marca-d'água fatura.webp na Home, botão do rodapé "Fazer o Diagnóstico 360°" e limpeza dos arquivos antigos.
+- Bloco SEO-1 (v2-estrutura; textos em _design/textos-seo1-auditoria.md):
+  - link "ou faça o Diagnóstico 360° gratuito, em 3 a 5 minutos →" nas 7 páginas de Eficiência, /quem-somos e /contato (não nas de Subestações); classe .cta-alt-link no base.css
+  - /servicos: "Não sabe por onde começar?" com o diagnóstico como botão principal e o WhatsApp como link secundário
+  - região Belo Horizonte e região metropolitana no rodapé, em "Onde atendemos" (/quem-somos) e nos títulos/descrições de 7 páginas
+  - JSON-LD: ProfessionalService com @id #empresa, logo-horizontal-v2.png e areaServed em lista; Service aponta para #empresa; BreadcrumbList em /servicos
+  - evento GA4 clique_diagnostico também nas páginas internas (base.js)
+  - página 404.html na raiz (noindex, caminhos absolutos, fora do sitemap)
 - Pendências conhecidas (não mexer sem prompt):
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
