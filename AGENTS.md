@@ -84,10 +84,9 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- main com tudo até eee49f8.
-- Formulário do Diagnóstico 360° em finalização (Bloco FORM): envio pela função api/diagnostico.js (Vercel + Resend), com as variáveis RESEND_API_KEY, DIAG_TO e DIAG_FROM configuradas só na Vercel.
+- main com tudo até 0c39f69.
+- Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
+- Menu novo no ar: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu.
 - Pendências conhecidas (não mexer sem prompt):
-  - mega menu do G2b não implementado
-  - limpeza de arquivos antigos (.png substituídos, logo-diagnostico.png, servicos-data.js)
-  - troca da foto de termografia
-  - imagem conta-energia.webp com números fictícios na Home
+  - revisão final: banner de cookies no celular, botão voltar ao topo x botão do WhatsApp, imagem conta-energia.webp com números fictícios na Home, limpeza de arquivos antigos (.png substituídos, logo-diagnostico.png, servicos-data.js)
+  - troca da chave da Resend por uma de "somente envio"
