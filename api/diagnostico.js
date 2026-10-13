@@ -212,12 +212,17 @@ module.exports = async function handler(req, res) {
       }),
       signal: controle.signal
     });
-    if (!r.ok) {
-      console.log("diagnostico: 502 resend " + r.status);
+    var resposta = null;
+    try { resposta = await r.json(); } catch (e) {}
+    var id = resposta && typeof resposta.id === "string" ? resposta.id : "";
+    // Só confirma o envio quando a Resend responde 200 com o id do e-mail.
+    if (r.status !== 200 || !id) {
+      var erro = resposta && typeof resposta.name === "string" ? " " + resposta.name : "";
+      console.log("diagnostico: 502 resend status=" + r.status + (id ? " id=" + id : " sem id") + erro);
       return responder(res, 502, { ok: false });
     }
-    console.log("diagnostico: 200");
-    return responder(res, 200, { ok: true });
+    console.log("diagnostico: 200 resend status=200 id=" + id);
+    return responder(res, 200, { ok: true, id: id });
   } catch (e) {
     console.log("diagnostico: 502 resend indisponivel");
     return responder(res, 502, { ok: false });
