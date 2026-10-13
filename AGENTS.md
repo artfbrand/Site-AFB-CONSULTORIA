@@ -84,10 +84,17 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- main com tudo até 0c39f69.
+- main com tudo até d237c11; a v2-estrutura tem a revisão final, ainda sem merge.
 - Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
-- Menu novo no ar: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu.
+- Menu novo no ar: painel "Serviços" no desktop (não trava a rolagem; cursor nativo sobre ele) e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu.
+- Home: o cursor desenhado só esconde o cursor nativo quando está ativo (ponteiro fino, sem prefers-reduced-motion).
+- Revisão final (v2-estrutura):
+  - banner de cookies compacto no celular e espaço no fim da página enquanto ele está aberto (cookies.js)
+  - botões flutuantes com pelo menos 12px entre si e sem sobrepor o banner
+  - marca-d'água da Home trocada para fatura.webp (sem números fictícios)
+  - sem o prefixo "Clique Aqui — " na Home
+  - botão do rodapé: "Fazer o Diagnóstico 360°" → /diagnostico nas 22 páginas
+  - removidos os arquivos sem uso (PNGs antigos, conta-energia.webp, logo-diagnostico.png, logo-horizontal.png, icones.png, servicos-data.js); estrategia-seo.md movido para _design/
 - Pendências conhecidas (não mexer sem prompt):
-  - revisão final: banner de cookies no celular, botão voltar ao topo x botão do WhatsApp, imagem conta-energia.webp com números fictícios na Home, limpeza de arquivos antigos (.png substituídos, logo-diagnostico.png, servicos-data.js)
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
