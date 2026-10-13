@@ -111,6 +111,13 @@
     @media (pointer: fine) {
       #cursor-ring, #cursor-dot { display: block; }
     }
+    /* Áreas fixas acima do cursor personalizado (barra, painel "Serviços", menu ☰, banner de cookies e
+       botões flutuantes): cursor nativo nelas, e o cursor personalizado some enquanto o mouse está ali. */
+    body .nav, body .nav *, body .afb-ck, body .afb-ck * { cursor: auto; }
+    body .nav a, body .nav a *, body .nav button, body .nav button *,
+    body .afb-ck a, body .afb-ck button,
+    body .float-wa, body .float-wa *, body .back-to-top, body .back-to-top * { cursor: pointer; }
+    html.cursor-nativo #cursor-ring, html.cursor-nativo #cursor-dot, html.cursor-nativo .cursor-seg { visibility: hidden; }
 
     /* ─── KEYFRAMES ──────────────────────────────────────────────────── */
     @keyframes meshShift {
@@ -4079,6 +4086,7 @@
         const base = Math.max(3, 11 - i * 0.65);
         halfBase[i] = base / 2;
         const el = document.createElement('div');
+        el.className = 'cursor-seg';
         /* will-change:transform — único valor compositor-eligible para rAF contínuo */
         el.style.cssText =
           'position:fixed;top:0;left:0;border-radius:9999px;pointer-events:none;' +
@@ -4140,6 +4148,12 @@
       loop();
 
       window.addEventListener('mousemove', e => { tgtX = e.clientX; tgtY = e.clientY; }, { passive: true });
+      /* Sobre a barra, o painel, o menu ☰, o banner de cookies e os botões flutuantes vale o cursor nativo */
+      const AREAS_NATIVAS = '.nav, .afb-ck, .float-wa, .back-to-top';
+      document.addEventListener('pointerover', e => {
+        const t = e.target;
+        document.documentElement.classList.toggle('cursor-nativo', !!(t && t.closest && t.closest(AREAS_NATIVAS)));
+      }, { passive: true });
       window.addEventListener('mouseleave', () => {
         ring.style.opacity = dot.style.opacity = '0';
         segEls.forEach(el => el.style.opacity = '0');
