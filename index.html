@@ -374,9 +374,11 @@
       .nav-dropdown-trigger { font-size: .9375rem; }
     }
     @media (max-width: 1024px) {
-      .nav-right { gap: .5rem; }
+      /* barra do celular: logo à esquerda, ☰ à direita e o botão centralizado no espaço entre eles */
+      .nav-inner { grid-template-columns: auto minmax(0, 1fr); }
+      .nav-right { justify-self: stretch; gap: 0; }
       .nav-diag-mobile {
-        display: inline-flex; align-items: center; justify-content: center; min-height: 40px;
+        display: inline-flex; margin: 0 auto; align-items: center; justify-content: center; min-height: 40px;
         padding: 0 1rem; border-radius: var(--r-pill);
         background: var(--forest); color: var(--white);
         font-family: var(--font-body); font-size: .875rem; font-weight: 600; white-space: nowrap;
@@ -1223,7 +1225,7 @@
           <ul class="nav-links" role="list">
             <li><a href="/quem-somos">Quem Somos</a></li>
             <li><a href="/contato">Contato</a></li>
-            <li><a class="nav-btn" href="/diagnostico" aria-label="Abrir Diagnóstico 360° da instalação">Diagnóstico 360°</a></li>
+            <li><a class="nav-btn" href="/diagnostico" aria-label="Diagnóstico 360°">Diagnóstico 360°</a></li>
           </ul>
           <a class="nav-diag-mobile" href="/diagnostico">Diagnóstico 360°</a>
           <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-mobile-menu">
