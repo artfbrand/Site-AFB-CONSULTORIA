@@ -71,7 +71,7 @@ a { text-decoration: none; color: inherit; }
 main { padding-top: 132px; }
 @media (min-width: 1025px) and (max-width: 1280px) {
   .nav-links { gap: 1.5rem; }
-  .nav-links a { font-size: .92rem; }
+  .nav-links a { font-size: .9375rem; }
   .nav-btn { padding: .55rem 1rem; }
   .nav-logo-center img { height: 90px; }
 }
@@ -180,10 +180,11 @@ main { padding-top: 132px; }
 .nav-mobile-menu a:focus-visible,
 .nav-mobile-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .nav .nav-dropdown a.nav-mega-card-btn:focus-visible { outline: 2px solid #F69066; outline-offset: 3px; }
+.nav-links a, .nav-dropdown-trigger { white-space: nowrap; }
 .nav-diag-mobile { display: none; }
 html.afb-menu-aberto .nav { z-index: 10001; }
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .nav-dropdown-trigger { font-size: .92rem; }
+  .nav-dropdown-trigger { font-size: .9375rem; }
 }
 @media (max-width: 1024px) {
   .nav-right { gap: .5rem; }
