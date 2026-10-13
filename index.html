@@ -213,44 +213,6 @@
     }
     .nav-btn:hover, .nav-btn:focus-visible { background: var(--accent); }
     .nav-links a.nav-btn, .nav-links a.nav-btn:hover { color: var(--white); }
-    /* ── Dropdown desktop "Serviços" ── */
-    .nav-item-dropdown { position: relative; }
-    .nav-item-dropdown > a { display: flex; align-items: center; gap: .3rem; }
-    .nav-caret { width: 13px; height: 13px; transition: transform .2s ease; }
-    .nav-item-dropdown > a[aria-expanded="true"] .nav-caret { transform: rotate(180deg); }
-    .nav-dropdown {
-      position: absolute; top: calc(100% + 14px); left: 50%;
-      transform: translateX(-50%) translateY(-6px);
-      width: 320px; padding: .55rem; border-radius: var(--r-card);
-      background: #fff; border: 1px solid rgba(61,127,97,.1);
-      box-shadow: var(--shadow-float);
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transition: opacity .18s ease, transform .18s ease, visibility .18s;
-      z-index: 60;
-    }
-    .nav-dropdown.open {
-      opacity: 1; visibility: visible; pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
-    }
-    .nav-dropdown-item {
-      display: flex; flex-direction: column; gap: .15rem;
-      padding: .65rem .8rem; border-radius: 10px;
-      transition: background .15s;
-    }
-    .nav-dropdown-item:hover, .nav-dropdown-item:focus-visible { background: var(--bg-alt); }
-    .nav-dropdown-title { font-size: 1rem; font-weight: 700; color: var(--forest); }
-    .nav-dropdown-sub { font-size: .78rem; color: var(--muted); }
-    .nav-dropdown-subitem {
-      display: block; padding: .5rem .8rem .5rem 1.7rem; border-radius: 10px;
-      font-size: .78rem; color: var(--sage); transition: background .15s, color .15s;
-    }
-    .nav-dropdown-subitem:hover, .nav-dropdown-subitem:focus-visible { background: var(--bg-alt); color: var(--forest); }
-    .nav-dropdown-divider { height: 1px; background: rgba(61,127,97,.1); margin: .4rem .6rem; }
-    .nav-item-dropdown > a:focus-visible,
-    .nav-dropdown-item:focus-visible,
-    .nav-dropdown-subitem:focus-visible {
-      outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px;
-    }
     .nav-right {
       display: flex; align-items: center; gap: 2.4rem;
       justify-self: end;
@@ -307,68 +269,6 @@
       .nav-links { display: none; }
       /* hambúrguer visível */
       .nav-hamburger { display: flex; }
-      /* dropdown: escondido por padrão, expande ao abrir */
-      .nav-mobile-menu {
-        display: block;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(247,250,247,.97);
-        backdrop-filter: blur(20px) saturate(160%);
-        -webkit-backdrop-filter: blur(20px) saturate(160%);
-        border-bottom: 1px solid rgba(61,127,97,.12);
-        max-height: 0; overflow: hidden;
-        opacity: 0;
-        transition: max-height .35s ease, opacity .25s ease;
-        z-index: 99;
-      }
-      .nav-mobile-menu.open {
-        max-height: 1050px;
-        opacity: 1;
-      }
-      .nav-mobile-menu ul {
-        list-style: none;
-        display: flex; flex-direction: column;
-        padding: .75rem 2rem 1.25rem; margin: 0;
-      }
-      .nav-mobile-menu ul li a {
-        display: block;
-        padding: .9rem 0;
-        font-size: 1rem; font-weight: 500; color: var(--sage);
-        border-bottom: 1px solid rgba(61,127,97,.08);
-        transition: color .2s, padding-left .2s;
-      }
-      .nav-mobile-menu ul li:last-child a { border-bottom: none; }
-      .nav-mobile-menu ul li a:hover { color: var(--forest); padding-left: .4rem; }
-      /* ── item expansível "Serviços" ── */
-      .nav-mobile-item-dropdown { border-bottom: 1px solid rgba(61,127,97,.08); }
-      .nav-mobile-row { display: flex; align-items: stretch; }
-      .nav-mobile-row a { flex: 1; border-bottom: none; }
-      .nav-mobile-subtoggle {
-        background: none; border: none; padding: 0 .2rem 0 .8rem; cursor: pointer;
-        color: var(--sage); display: flex; align-items: center;
-      }
-      .nav-mobile-caret { width: 16px; height: 16px; transition: transform .25s ease; }
-      .nav-mobile-subtoggle[aria-expanded="true"] .nav-mobile-caret { transform: rotate(180deg); }
-      .nav-mobile-submenu {
-        list-style: none; max-height: 0; overflow: hidden; opacity: 0;
-        transition: max-height .3s ease, opacity .25s ease;
-        padding-left: 1rem; margin: 0;
-      }
-      .nav-mobile-submenu.open { max-height: 700px; opacity: 1; }
-      .nav-mobile-submenu li a {
-        padding: .7rem 0; font-size: .92rem;
-        border-bottom: 1px dashed rgba(61,127,97,.08);
-      }
-      .nav-mobile-submenu li a.nav-mobile-subsub {
-        padding: .75rem 0 .75rem 1rem; font-size: .86rem; color: var(--muted);
-      }
-      .nav-mobile-submenu li:last-child a { border-bottom: none; }
-      .nav-mobile-menu ul li a.nav-btn-mobile {
-        display: block; text-align: center; margin-top: .75rem;
-        padding: .85rem 1.25rem;
-        font-size: 1rem; font-weight: 600; color: var(--white);
-        border-bottom: none;
-      }
-      .nav-mobile-menu ul li a.nav-btn-mobile:hover { color: var(--white); padding-left: 1.25rem; }
     }
     @media (max-width: 768px) {
       .nav { height: 90px; }
@@ -380,6 +280,160 @@
       .nav { height: 76px; }
       .nav-logo-center img { height: 58px; }
       main { padding-top: 76px; }
+    }
+
+    /* ── Menu: painel "Serviços" (desktop), botão Diagnóstico 360° e menu mobile ── */
+    .nav-item-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      display: flex; align-items: center; gap: .3rem;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: var(--font-body); font-size: 1.05rem; font-weight: 500; color: var(--sage);
+      transition: color .2s;
+    }
+    .nav-dropdown-trigger:hover, .nav-dropdown-trigger[aria-expanded="true"] { color: var(--forest); }
+    .nav-caret { width: 13px; height: 13px; transition: transform .2s ease; }
+    .nav-dropdown-trigger[aria-expanded="true"] .nav-caret { transform: rotate(180deg); }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(-6px);
+      width: min(880px, calc(100vw - 32px));
+      max-height: min(420px, calc(100vh - 150px)); overflow-y: auto; overscroll-behavior: contain;
+      padding: 1.25rem 1.25rem 0; border-radius: var(--r-card);
+      background: #fff; border: 1px solid rgba(61,127,97,.1);
+      box-shadow: var(--shadow-float);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, visibility .18s;
+      z-index: 60;
+    }
+    .nav-dropdown.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(0);
+    }
+    .nav-mega-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 232px; gap: 1.25rem; align-items: start; }
+    .nav-mega-title { margin: 0; padding: 0 .55rem .4rem; font-size: 1rem; font-weight: 700; color: var(--forest); }
+    .nav-mega-list { list-style: none; margin: 0; padding: 0; }
+    .nav .nav-mega-list a {
+      display: block; padding: .3rem .55rem; border-radius: 8px;
+      font-size: .88rem; font-weight: 500; line-height: 1.35; color: var(--sage);
+      transition: background .15s, color .15s;
+    }
+    .nav .nav-mega-list a:hover { background: var(--bg-alt); color: var(--forest); }
+    .nav .nav-mega-more {
+      display: inline-block; margin-top: .35rem; padding: .3rem .55rem; border-radius: 8px;
+      font-size: .88rem; font-weight: 600; color: var(--accent); transition: color .15s;
+    }
+    .nav .nav-mega-more:hover { color: var(--forest); }
+    .nav-mega-card {
+      position: relative; overflow: hidden; isolation: isolate;
+      display: flex; flex-direction: column; align-items: flex-start; gap: .8rem;
+      padding: 1.4rem 1.25rem; border-radius: 14px; background: #0D3C1F;
+      box-shadow: 0 10px 30px rgba(13,60,31,.22);
+    }
+    .nav-mega-card::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .nav-mega-card::after {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(circle at 82% 0%, rgba(61,127,97,.22) 0%, transparent 55%),
+        radial-gradient(circle at 8% 100%, rgba(246,144,102,.1) 0%, transparent 45%);
+    }
+    .nav-mega-card-tag {
+      margin: 0; padding: .3rem .75rem; border-radius: var(--r-pill);
+      font-size: .72rem; font-weight: 600; letter-spacing: .12em; color: rgba(212,232,220,.92);
+      background: rgba(247,250,247,.1); border: 1px solid rgba(61,127,97,.42);
+    }
+    .nav-mega-card-text { margin: 0; font-size: .95rem; line-height: 1.5; color: #FAF9F6; }
+    .nav .nav-mega-card-btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+      padding: .7rem 1.3rem; border-radius: var(--r-pill);
+      background: var(--orange); color: #0D3C1F; font-size: .9rem; font-weight: 600;
+      box-shadow: 0 4px 18px rgba(246,144,102,.3); transition: background .2s;
+    }
+    .nav .nav-mega-card-btn:hover { background: #F8A383; color: #0D3C1F; }
+    .nav .nav-mega-all {
+      display: block; margin: 1rem -1.25rem 0; padding: .85rem 1.8rem;
+      border-top: 1px solid rgba(61,127,97,.1);
+      font-size: .92rem; font-weight: 600; color: var(--accent); transition: color .15s;
+    }
+    .nav .nav-mega-all:hover { color: var(--forest); }
+    .nav-dropdown-trigger:focus-visible,
+    .nav .nav-dropdown a:focus-visible,
+    .nav-diag-mobile:focus-visible,
+    .nav-hamburger:focus-visible,
+    .nav-mobile-menu a:focus-visible,
+    .nav-mobile-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .nav .nav-dropdown a.nav-mega-card-btn:focus-visible { outline: 2px solid #F69066; outline-offset: 3px; }
+    .nav-diag-mobile { display: none; }
+    html.afb-menu-aberto .nav { z-index: 10001; }
+    @media (min-width: 1025px) and (max-width: 1280px) {
+      .nav-dropdown-trigger { font-size: .92rem; }
+    }
+    @media (max-width: 1024px) {
+      .nav-right { gap: .5rem; }
+      .nav-diag-mobile {
+        display: inline-flex; align-items: center; justify-content: center; min-height: 40px;
+        padding: 0 1rem; border-radius: var(--r-pill);
+        background: var(--forest); color: var(--white);
+        font-family: var(--font-body); font-size: .875rem; font-weight: 600; white-space: nowrap;
+        transition: background .2s;
+      }
+      .nav-diag-mobile:hover { background: var(--accent); color: var(--white); }
+      .nav-hamburger { min-width: 40px; min-height: 40px; align-items: center; }
+      .nav-mobile-menu {
+        display: block; position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(247,250,247,.98);
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        border-bottom: 1px solid rgba(61,127,97,.12);
+        max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+        transition: max-height .35s ease, opacity .25s ease, visibility .35s;
+        z-index: 99;
+      }
+      .nav-mobile-menu.open {
+        max-height: calc(100vh - 108px); max-height: calc(100dvh - 108px);
+        overflow-y: auto; overscroll-behavior: contain; opacity: 1; visibility: visible;
+      }
+      .nav-mobile-menu ul { list-style: none; display: flex; flex-direction: column; margin: 0; padding: .75rem 2rem 1.25rem; }
+      .nav-mobile-menu ul ul { padding: 0 0 .25rem 1rem; }
+      .nav-mobile-menu li > a,
+      .nav-mobile-toggle {
+        display: block; width: 100%; padding: .9rem 0;
+        font-family: var(--font-body); font-size: 1rem; font-weight: 500; color: var(--sage); text-align: left;
+        background: none; border: none; border-bottom: 1px solid rgba(61,127,97,.08); cursor: pointer;
+        transition: color .2s;
+      }
+      .nav-mobile-toggle { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+      .nav-mobile-menu li > a:hover, .nav-mobile-toggle:hover, .nav-mobile-toggle[aria-expanded="true"] { color: var(--forest); }
+      .nav-mobile-caret { width: 16px; height: 16px; flex: 0 0 auto; transition: transform .25s ease; }
+      .nav-mobile-toggle[aria-expanded="true"] .nav-mobile-caret { transform: rotate(180deg); }
+      .nav-mobile-submenu {
+        max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+        transition: max-height .3s ease, opacity .25s ease, visibility .3s;
+      }
+      .nav-mobile-submenu.open { max-height: 1200px; opacity: 1; visibility: visible; }
+      .nav-mobile-submenu li > a, .nav-mobile-submenu .nav-mobile-toggle { padding: .75rem 0; font-size: .95rem; }
+      .nav-mobile-group .nav-mobile-submenu li > a { font-size: .9rem; }
+      .nav-mobile-menu li > a.nav-mobile-more { font-weight: 600; color: var(--forest); }
+      .nav-mobile-menu li > a.nav-btn-mobile {
+        margin-top: 1rem; padding: .85rem 1.25rem; border: none; border-radius: var(--r-pill);
+        background: var(--forest); color: var(--white); font-weight: 600; text-align: center;
+      }
+      .nav-mobile-menu li > a.nav-btn-mobile:hover { background: var(--accent); color: var(--white); }
+    }
+    @media (max-width: 768px) {
+      .nav-mobile-menu.open { max-height: calc(100vh - 90px); max-height: calc(100dvh - 90px); }
+    }
+    @media (max-width: 480px) {
+      .nav-mobile-menu.open { max-height: calc(100vh - 76px); max-height: calc(100dvh - 76px); }
+      .nav-mobile-menu ul { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .nav-mobile-menu ul ul { padding: 0 0 .25rem 1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .nav-dropdown, .nav-mobile-menu, .nav-mobile-submenu, .nav-caret, .nav-mobile-caret { transition: none; }
     }
 
     /* ─── HERO SECTION ───────────────────────────────────────────────── */
@@ -1113,103 +1167,120 @@
   <header>
     <nav class="nav" role="navigation" aria-label="Navegação principal">
       <div class="nav-inner">
-        <!-- links — esquerda -->
         <ul class="nav-links" role="list">
           <li class="nav-item-dropdown">
-            <a href="/servicos" id="nav-servicos-trigger" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="nav-dropdown-trigger" id="nav-servicos-trigger" aria-expanded="false" aria-controls="nav-servicos-dropdown">
               Serviços
               <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </a>
-            <div class="nav-dropdown" id="nav-servicos-dropdown" role="menu" aria-labelledby="nav-servicos-trigger">
-              <a href="/servicos" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Todos os serviços</span>
-              </a>
-              <div class="nav-dropdown-divider" aria-hidden="true"></div>
-              <a href="/servicos/eficiencia-energetica" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Eficiência Energética</span>
-                <span class="nav-dropdown-sub">Redução de custos com energia</span>
-              </a>
-              <a href="/servicos/eficiencia-energetica/gestao-de-fatura" role="menuitem" class="nav-dropdown-subitem">Gestão de Fatura</a>
-              <a href="/servicos/eficiencia-energetica/mercado-livre" role="menuitem" class="nav-dropdown-subitem">Mercado Livre de Energia</a>
-              <a href="/servicos/eficiencia-energetica/energia-por-assinatura" role="menuitem" class="nav-dropdown-subitem">Energia por Assinatura</a>
-              <a href="/servicos/eficiencia-energetica/qualidade-de-energia" role="menuitem" class="nav-dropdown-subitem">Qualidade de Energia (QEE)</a>
-              <a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia" role="menuitem" class="nav-dropdown-subitem">Correção de Fator de Potência</a>
-              <a href="/servicos/eficiencia-energetica/credito-icms" role="menuitem" class="nav-dropdown-subitem">Crédito de ICMS</a>
-              <div class="nav-dropdown-divider" aria-hidden="true"></div>
-              <a href="/servicos/subestacoes" role="menuitem" class="nav-dropdown-item">
-                <span class="nav-dropdown-title">Subestações Elétricas</span>
-                <span class="nav-dropdown-sub">Segurança, média tensão e conformidade</span>
-              </a>
-              <a href="/servicos/subestacoes/manutencao-preventiva" role="menuitem" class="nav-dropdown-subitem">Manutenção Preventiva</a>
-              <a href="/servicos/subestacoes/manutencao-corretiva" role="menuitem" class="nav-dropdown-subitem">Manutenção Corretiva</a>
-              <a href="/servicos/subestacoes/ensaios-eletricos" role="menuitem" class="nav-dropdown-subitem">Ensaios Elétricos</a>
-              <a href="/servicos/subestacoes/termografia" role="menuitem" class="nav-dropdown-subitem">Termografia</a>
-              <a href="/servicos/subestacoes/analise-de-oleo-isolante" role="menuitem" class="nav-dropdown-subitem">Análise de Óleo Isolante</a>
-              <a href="/servicos/subestacoes/ensaio-rele-de-protecao" role="menuitem" class="nav-dropdown-subitem">Relé de Proteção</a>
-              <a href="/servicos/subestacoes/estudo-de-seletividade" role="menuitem" class="nav-dropdown-subitem">Proteção e Seletividade</a>
-              <a href="/servicos/subestacoes/projeto-de-subestacao" role="menuitem" class="nav-dropdown-subitem">Projeto de Subestação</a>
-              <a href="/servicos/subestacoes/obras-de-subestacao" role="menuitem" class="nav-dropdown-subitem">Obras e Montagem</a>
+            </button>
+            <div class="nav-dropdown" id="nav-servicos-dropdown" data-lenis-prevent>
+              <div class="nav-mega-grid">
+                <div class="nav-mega-col">
+                  <p class="nav-mega-title" id="nav-mega-eficiencia">Eficiência Energética</p>
+                  <ul class="nav-mega-list" role="list" aria-labelledby="nav-mega-eficiencia">
+                    <li><a href="/servicos/eficiencia-energetica/gestao-de-fatura">Gestão de Fatura</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/mercado-livre">Mercado Livre</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/energia-por-assinatura">Energia por Assinatura</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Qualidade de Energia</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia">Fator de Potência</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/credito-icms">Crédito de ICMS</a></li>
+                  </ul>
+                  <a class="nav-mega-more" href="/servicos/eficiencia-energetica">Ver Eficiência <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-mega-col">
+                  <p class="nav-mega-title" id="nav-mega-subestacoes">Subestações</p>
+                  <ul class="nav-mega-list" role="list" aria-labelledby="nav-mega-subestacoes">
+                    <li><a href="/servicos/subestacoes/manutencao-preventiva">Manutenção Preventiva</a></li>
+                    <li><a href="/servicos/subestacoes/manutencao-corretiva">Manutenção Corretiva</a></li>
+                    <li><a href="/servicos/subestacoes/ensaios-eletricos">Ensaios Elétricos</a></li>
+                    <li><a href="/servicos/subestacoes/termografia">Termografia</a></li>
+                    <li><a href="/servicos/subestacoes/analise-de-oleo-isolante">Análise de Óleo Isolante</a></li>
+                    <li><a href="/servicos/subestacoes/ensaio-rele-de-protecao">Relé de Proteção</a></li>
+                    <li><a href="/servicos/subestacoes/estudo-de-seletividade">Proteção e Seletividade</a></li>
+                    <li><a href="/servicos/subestacoes/projeto-de-subestacao">Projeto de Subestação</a></li>
+                    <li><a href="/servicos/subestacoes/obras-de-subestacao">Obras e Montagem</a></li>
+                  </ul>
+                  <a class="nav-mega-more" href="/servicos/subestacoes">Ver Subestações <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-mega-card">
+                  <p class="nav-mega-card-tag">DIAGNÓSTICO 360°</p>
+                  <p class="nav-mega-card-text">Gratuito, leva de 3 a 5 minutos.</p>
+                  <a class="nav-mega-card-btn" href="/diagnostico">Fazer o diagnóstico</a>
+                </div>
+              </div>
+              <a class="nav-mega-all" href="/servicos">Todos os serviços <span aria-hidden="true">→</span></a>
             </div>
           </li>
-          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="/#como-funciona">Como Funciona</a></li>
         </ul>
 
-        <!-- logo — centro absoluto -->
         <a href="/" class="nav-logo-center" aria-label="AFB Engenharia &amp; Consultoria Elétrica — página inicial">
-          <img src="assets/images/logo-horizontal-v2.png" alt="AFB Engenharia &amp; Consultoria Elétrica" width="400" height="400" />
+          <img src="/assets/images/logo-horizontal-v2.png" alt="AFB Engenharia &amp; Consultoria Elétrica" width="400" height="400" />
         </a>
 
-        <!-- direita: links + hambúrguer mobile -->
         <div class="nav-right">
           <ul class="nav-links" role="list">
             <li><a href="/quem-somos">Quem Somos</a></li>
             <li><a href="/contato">Contato</a></li>
-<li><a class="nav-btn" href="/diagnostico" aria-label="Abrir Diagnóstico 360° da instalação">Diagnóstico 360° da instalação</a></li>
+            <li><a class="nav-btn" href="/diagnostico" aria-label="Abrir Diagnóstico 360° da instalação">Diagnóstico 360° da instalação</a></li>
           </ul>
-          <!-- hambúrguer — visível só no mobile -->
-          <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <a class="nav-diag-mobile" href="/diagnostico">Diagnóstico 360°</a>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-mobile-menu">
             <span class="ham-line"></span>
             <span class="ham-line"></span>
             <span class="ham-line"></span>
           </button>
-        </div><!-- /nav-right -->
+        </div>
       </div>
 
-      <!-- dropdown mobile — oculto no desktop -->
-      <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+      <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true" data-lenis-prevent>
         <ul>
-          <li class="nav-mobile-item-dropdown">
-            <div class="nav-mobile-row">
-              <a href="/servicos">Serviços</a>
-              <button class="nav-mobile-subtoggle" id="nav-mobile-servicos-toggle" aria-expanded="false" aria-controls="nav-mobile-servicos-panel" aria-label="Expandir lista de serviços">
-                <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-            </div>
-            <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel" aria-hidden="true">
+          <li>
+            <button type="button" class="nav-mobile-toggle" id="nav-mobile-servicos-toggle" aria-expanded="false" aria-controls="nav-mobile-servicos-panel">
+              Serviços
+              <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel">
               <li><a href="/servicos">Todos os serviços</a></li>
-              <li><a href="/servicos/eficiencia-energetica">Eficiência Energética</a></li>
-              <li><a href="/servicos/eficiencia-energetica/gestao-de-fatura" class="nav-mobile-subsub">Gestão de Fatura</a></li>
-              <li><a href="/servicos/eficiencia-energetica/mercado-livre" class="nav-mobile-subsub">Mercado Livre de Energia</a></li>
-              <li><a href="/servicos/eficiencia-energetica/energia-por-assinatura" class="nav-mobile-subsub">Energia por Assinatura</a></li>
-              <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia" class="nav-mobile-subsub">Qualidade de Energia (QEE)</a></li>
-              <li><a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia" class="nav-mobile-subsub">Correção de Fator de Potência</a></li>
-              <li><a href="/servicos/eficiencia-energetica/credito-icms" class="nav-mobile-subsub">Crédito de ICMS</a></li>
-              <li><a href="/servicos/subestacoes">Subestações Elétricas</a></li>
-              <li><a href="/servicos/subestacoes/manutencao-preventiva" class="nav-mobile-subsub">Manutenção Preventiva</a></li>
-              <li><a href="/servicos/subestacoes/manutencao-corretiva" class="nav-mobile-subsub">Manutenção Corretiva</a></li>
-              <li><a href="/servicos/subestacoes/ensaios-eletricos" class="nav-mobile-subsub">Ensaios Elétricos</a></li>
-              <li><a href="/servicos/subestacoes/termografia" class="nav-mobile-subsub">Termografia</a></li>
-              <li><a href="/servicos/subestacoes/analise-de-oleo-isolante" class="nav-mobile-subsub">Análise de Óleo Isolante</a></li>
-              <li><a href="/servicos/subestacoes/ensaio-rele-de-protecao" class="nav-mobile-subsub">Relé de Proteção</a></li>
-              <li><a href="/servicos/subestacoes/estudo-de-seletividade" class="nav-mobile-subsub">Proteção e Seletividade</a></li>
-              <li><a href="/servicos/subestacoes/projeto-de-subestacao" class="nav-mobile-subsub">Projeto de Subestação</a></li>
-              <li><a href="/servicos/subestacoes/obras-de-subestacao" class="nav-mobile-subsub">Obras e Montagem</a></li>
+              <li class="nav-mobile-group">
+                <button type="button" class="nav-mobile-toggle" id="nav-mobile-eficiencia-toggle" aria-expanded="false" aria-controls="nav-mobile-eficiencia-panel">
+                  Eficiência Energética
+                  <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="nav-mobile-submenu" id="nav-mobile-eficiencia-panel">
+                  <li><a href="/servicos/eficiencia-energetica/gestao-de-fatura">Gestão de Fatura</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/mercado-livre">Mercado Livre</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/energia-por-assinatura">Energia por Assinatura</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Qualidade de Energia</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia">Fator de Potência</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/credito-icms">Crédito de ICMS</a></li>
+                  <li><a class="nav-mobile-more" href="/servicos/eficiencia-energetica">Ver Eficiência</a></li>
+                </ul>
+              </li>
+              <li class="nav-mobile-group">
+                <button type="button" class="nav-mobile-toggle" id="nav-mobile-subestacoes-toggle" aria-expanded="false" aria-controls="nav-mobile-subestacoes-panel">
+                  Subestações
+                  <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="nav-mobile-submenu" id="nav-mobile-subestacoes-panel">
+                  <li><a href="/servicos/subestacoes/manutencao-preventiva">Manutenção Preventiva</a></li>
+                  <li><a href="/servicos/subestacoes/manutencao-corretiva">Manutenção Corretiva</a></li>
+                  <li><a href="/servicos/subestacoes/ensaios-eletricos">Ensaios Elétricos</a></li>
+                  <li><a href="/servicos/subestacoes/termografia">Termografia</a></li>
+                  <li><a href="/servicos/subestacoes/analise-de-oleo-isolante">Análise de Óleo Isolante</a></li>
+                  <li><a href="/servicos/subestacoes/ensaio-rele-de-protecao">Relé de Proteção</a></li>
+                  <li><a href="/servicos/subestacoes/estudo-de-seletividade">Proteção e Seletividade</a></li>
+                  <li><a href="/servicos/subestacoes/projeto-de-subestacao">Projeto de Subestação</a></li>
+                  <li><a href="/servicos/subestacoes/obras-de-subestacao">Obras e Montagem</a></li>
+                  <li><a class="nav-mobile-more" href="/servicos/subestacoes">Ver Subestações</a></li>
+                </ul>
+              </li>
             </ul>
           </li>
-          <li><a href="#como-funciona">Como Funciona</a></li>
-          <li><a href="/quem-somos">Quem Somos</a></li>
+          <li><a href="/#como-funciona">Como funciona</a></li>
+          <li><a href="/quem-somos">Quem somos</a></li>
           <li><a href="/contato">Contato</a></li>
-<li><a class="nav-btn nav-btn-mobile" href="/diagnostico" aria-label="Abrir Diagnóstico 360° da instalação">Diagnóstico 360° da instalação</a></li>
+          <li><a class="nav-btn-mobile" href="/diagnostico">Fazer o Diagnóstico 360°</a></li>
         </ul>
       </div>
     </nav>
@@ -3491,73 +3562,122 @@
       gsap.ticker.lagSmoothing(0);
     }
 
-    /* ── Hambúrguer mobile ───────────────────────────────────────── */
+    /* ── Menu: hambúrguer, acordeão mobile e painel "Serviços" ──── */
+    const root = document.documentElement;
     const hamburger = document.getElementById('nav-hamburger');
     const mobileMenu = document.getElementById('nav-mobile-menu');
+    const svcTrigger = document.getElementById('nav-servicos-trigger');
+    const svcDropdown = document.getElementById('nav-servicos-dropdown');
+    const svcItem = svcTrigger ? svcTrigger.closest('.nav-item-dropdown') : null;
+
+    // Com um menu aberto, a barra fica acima do banner de cookies e dos botões flutuantes.
+    const syncMenuState = () => {
+      const aberto = (mobileMenu && mobileMenu.classList.contains('open')) || (svcDropdown && svcDropdown.classList.contains('open'));
+      root.classList.toggle('afb-menu-aberto', !!aberto);
+    };
+
     if (hamburger && mobileMenu) {
-      hamburger.addEventListener('click', () => {
-        const isOpen = hamburger.classList.toggle('open');
+      const setMobile = (isOpen, returnFocus) => {
+        hamburger.classList.toggle('open', isOpen);
         mobileMenu.classList.toggle('open', isOpen);
         hamburger.setAttribute('aria-expanded', String(isOpen));
         mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+        syncMenuState();
+        if (returnFocus) hamburger.focus();
+      };
+      hamburger.addEventListener('click', () => {
+        setMobile(!mobileMenu.classList.contains('open'), false);
       });
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          hamburger.classList.remove('open');
-          mobileMenu.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-          mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => { setMobile(false, false); });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMobile(false, true);
+      });
+      document.addEventListener('click', (e) => {
+        const nav = hamburger.closest('.nav');
+        if (mobileMenu.classList.contains('open') && nav && !nav.contains(e.target)) setMobile(false, false);
+      });
+
+      // Acordeão: "Serviços" e, dentro dele, um grupo aberto por vez.
+      const setPanel = (toggle, isOpen) => {
+        const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        if (panel) panel.classList.toggle('open', isOpen);
+      };
+      mobileMenu.querySelectorAll('.nav-mobile-toggle').forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+          const isOpen = toggle.getAttribute('aria-expanded') !== 'true';
+          const group = toggle.closest('.nav-mobile-group');
+          if (isOpen && group) {
+            group.parentNode.querySelectorAll('.nav-mobile-group > .nav-mobile-toggle').forEach((other) => {
+              if (other !== toggle) setPanel(other, false);
+            });
+          }
+          setPanel(toggle, isOpen);
         });
       });
     }
 
-    /* ── Dropdown desktop "Serviços" ─────────────────────────────── */
-    const svcTrigger = document.getElementById('nav-servicos-trigger');
-    const svcDropdown = document.getElementById('nav-servicos-dropdown');
-    const svcItem = svcTrigger ? svcTrigger.closest('.nav-item-dropdown') : null;
     if (svcTrigger && svcDropdown && svcItem) {
       let svcCloseTimer;
+      let svcPinned = false;
+      // Centraliza o painel sob "Serviços" sem deixar que saia da tela.
+      const placeSvc = () => {
+        const vw = root.clientWidth;
+        const t = svcTrigger.getBoundingClientRect();
+        const w = svcDropdown.offsetWidth;
+        const desired = t.left + t.width / 2 - w / 2;
+        // Se não couber centralizado, alinha ao início do conteúdo da barra (onde está "Serviços").
+        const inner = svcItem.closest('.nav-inner');
+        const minLeft = inner ? Math.max(16, inner.getBoundingClientRect().left + parseFloat(getComputedStyle(inner).paddingLeft) - 12) : 16;
+        const x = Math.max(16, Math.min(vw - 16 - w, Math.max(minLeft, desired)));
+        svcDropdown.style.setProperty('--mega-x', Math.round(x - desired) + 'px');
+      };
       const openSvc = () => {
         clearTimeout(svcCloseTimer);
+        placeSvc();
         svcDropdown.classList.add('open');
         svcTrigger.setAttribute('aria-expanded', 'true');
+        syncMenuState();
       };
       const closeSvc = (returnFocus) => {
+        clearTimeout(svcCloseTimer);
+        svcPinned = false;
         svcDropdown.classList.remove('open');
         svcTrigger.setAttribute('aria-expanded', 'false');
+        syncMenuState();
         if (returnFocus) svcTrigger.focus();
       };
-      svcItem.addEventListener('mouseenter', openSvc);
-      svcItem.addEventListener('mouseleave', () => {
-        svcCloseTimer = setTimeout(() => closeSvc(false), 150);
+      svcTrigger.addEventListener('click', () => {
+        if (!svcDropdown.classList.contains('open')) { openSvc(); svcPinned = true; }
+        else if (!svcPinned) svcPinned = true;
+        else closeSvc(false);
       });
-      svcTrigger.addEventListener('focus', openSvc);
+      svcItem.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(hover: hover)').matches) openSvc();
+      });
+      svcItem.addEventListener('mouseleave', () => {
+        if (!svcPinned) svcCloseTimer = setTimeout(() => { closeSvc(false); }, 150);
+      });
       svcItem.addEventListener('focusout', (e) => {
-        if (!svcItem.contains(e.relatedTarget)) closeSvc(false);
+        if (e.relatedTarget && !svcItem.contains(e.relatedTarget)) closeSvc(false);
       });
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && svcDropdown.classList.contains('open')) closeSvc(true);
       });
       document.addEventListener('click', (e) => {
-        if (!svcItem.contains(e.target)) closeSvc(false);
+        if (svcDropdown.classList.contains('open') && !svcItem.contains(e.target)) closeSvc(false);
       });
-    }
-
-    /* ── Item expansível "Serviços" no menu mobile ───────────────── */
-    const svcMobileToggle = document.getElementById('nav-mobile-servicos-toggle');
-    const svcMobilePanel = document.getElementById('nav-mobile-servicos-panel');
-    if (svcMobileToggle && svcMobilePanel) {
-      svcMobileToggle.addEventListener('click', () => {
-        const isOpen = svcMobilePanel.classList.toggle('open');
-        svcMobileToggle.setAttribute('aria-expanded', String(isOpen));
-        svcMobilePanel.setAttribute('aria-hidden', String(!isOpen));
+      window.addEventListener('resize', () => {
+        if (svcDropdown.classList.contains('open')) placeSvc();
       });
     }
 
     /* ── Anchor clicks → Lenis smooth-scroll ─────────────────────── */
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
+    document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(link => {
       link.addEventListener('click', e => {
-        const hash = link.getAttribute('href');
+        const hash = link.getAttribute('href').replace(/^\//, '');
         if (!hash || hash === '#') {
           e.preventDefault();
           if (window.lenis) window.lenis.scrollTo(0, { duration: 1.2 });

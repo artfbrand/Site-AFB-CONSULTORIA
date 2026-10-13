@@ -2,63 +2,114 @@
 (function () {
   "use strict";
 
+  var root = document.documentElement;
   var hamburger = document.getElementById('nav-hamburger');
   var mobileMenu = document.getElementById('nav-mobile-menu');
+  var svcTrigger = document.getElementById('nav-servicos-trigger');
+  var svcDropdown = document.getElementById('nav-servicos-dropdown');
+  var svcItem = svcTrigger ? svcTrigger.closest('.nav-item-dropdown') : null;
+
+  // Com um menu aberto, a barra fica acima do banner de cookies e dos botões flutuantes.
+  var syncMenuState = function () {
+    var aberto = (mobileMenu && mobileMenu.classList.contains('open')) || (svcDropdown && svcDropdown.classList.contains('open'));
+    root.classList.toggle('afb-menu-aberto', !!aberto);
+  };
+
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function () {
-      var isOpen = hamburger.classList.toggle('open');
+    var setMobile = function (isOpen, returnFocus) {
+      hamburger.classList.toggle('open', isOpen);
       mobileMenu.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
       mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+      syncMenuState();
+      if (returnFocus) hamburger.focus();
+    };
+    hamburger.addEventListener('click', function () {
+      setMobile(!mobileMenu.classList.contains('open'), false);
     });
     mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        mobileMenu.setAttribute('aria-hidden', 'true');
+      link.addEventListener('click', function () { setMobile(false, false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMobile(false, true);
+    });
+    document.addEventListener('click', function (e) {
+      var nav = hamburger.closest('.nav');
+      if (mobileMenu.classList.contains('open') && nav && !nav.contains(e.target)) setMobile(false, false);
+    });
+
+    // Acordeão: "Serviços" e, dentro dele, um grupo aberto por vez.
+    var setPanel = function (toggle, isOpen) {
+      var panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      if (panel) panel.classList.toggle('open', isOpen);
+    };
+    mobileMenu.querySelectorAll('.nav-mobile-toggle').forEach(function (toggle) {
+      toggle.addEventListener('click', function () {
+        var isOpen = toggle.getAttribute('aria-expanded') !== 'true';
+        var group = toggle.closest('.nav-mobile-group');
+        if (isOpen && group) {
+          group.parentNode.querySelectorAll('.nav-mobile-group > .nav-mobile-toggle').forEach(function (other) {
+            if (other !== toggle) setPanel(other, false);
+          });
+        }
+        setPanel(toggle, isOpen);
       });
     });
   }
 
-  var svcTrigger = document.getElementById('nav-servicos-trigger');
-  var svcDropdown = document.getElementById('nav-servicos-dropdown');
-  var svcItem = svcTrigger ? svcTrigger.closest('.nav-item-dropdown') : null;
   if (svcTrigger && svcDropdown && svcItem) {
     var svcCloseTimer;
+    var svcPinned = false;
+    // Centraliza o painel sob "Serviços" sem deixar que saia da tela.
+    var placeSvc = function () {
+      var vw = root.clientWidth;
+      var t = svcTrigger.getBoundingClientRect();
+      var w = svcDropdown.offsetWidth;
+      var desired = t.left + t.width / 2 - w / 2;
+      // Se não couber centralizado, alinha ao início do conteúdo da barra (onde está "Serviços").
+      var inner = svcItem.closest('.nav-inner');
+      var minLeft = inner ? Math.max(16, inner.getBoundingClientRect().left + parseFloat(getComputedStyle(inner).paddingLeft) - 12) : 16;
+      var x = Math.max(16, Math.min(vw - 16 - w, Math.max(minLeft, desired)));
+      svcDropdown.style.setProperty('--mega-x', Math.round(x - desired) + 'px');
+    };
     var openSvc = function () {
       clearTimeout(svcCloseTimer);
+      placeSvc();
       svcDropdown.classList.add('open');
       svcTrigger.setAttribute('aria-expanded', 'true');
+      syncMenuState();
     };
     var closeSvc = function (returnFocus) {
+      clearTimeout(svcCloseTimer);
+      svcPinned = false;
       svcDropdown.classList.remove('open');
       svcTrigger.setAttribute('aria-expanded', 'false');
+      syncMenuState();
       if (returnFocus) svcTrigger.focus();
     };
-    svcItem.addEventListener('mouseenter', openSvc);
-    svcItem.addEventListener('mouseleave', function () {
-      svcCloseTimer = setTimeout(function () { closeSvc(false); }, 150);
+    svcTrigger.addEventListener('click', function () {
+      if (!svcDropdown.classList.contains('open')) { openSvc(); svcPinned = true; }
+      else if (!svcPinned) svcPinned = true;
+      else closeSvc(false);
     });
-    svcTrigger.addEventListener('focus', openSvc);
+    svcItem.addEventListener('mouseenter', function () {
+      if (window.matchMedia('(hover: hover)').matches) openSvc();
+    });
+    svcItem.addEventListener('mouseleave', function () {
+      if (!svcPinned) svcCloseTimer = setTimeout(function () { closeSvc(false); }, 150);
+    });
     svcItem.addEventListener('focusout', function (e) {
-      if (!svcItem.contains(e.relatedTarget)) closeSvc(false);
+      if (e.relatedTarget && !svcItem.contains(e.relatedTarget)) closeSvc(false);
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && svcDropdown.classList.contains('open')) closeSvc(true);
     });
     document.addEventListener('click', function (e) {
-      if (!svcItem.contains(e.target)) closeSvc(false);
+      if (svcDropdown.classList.contains('open') && !svcItem.contains(e.target)) closeSvc(false);
     });
-  }
-
-  var svcMobileToggle = document.getElementById('nav-mobile-servicos-toggle');
-  var svcMobilePanel = document.getElementById('nav-mobile-servicos-panel');
-  if (svcMobileToggle && svcMobilePanel) {
-    svcMobileToggle.addEventListener('click', function () {
-      var isOpen = svcMobilePanel.classList.toggle('open');
-      svcMobileToggle.setAttribute('aria-expanded', String(isOpen));
-      svcMobilePanel.setAttribute('aria-hidden', String(!isOpen));
+    window.addEventListener('resize', function () {
+      if (svcDropdown.classList.contains('open')) placeSvc();
     });
   }
 
