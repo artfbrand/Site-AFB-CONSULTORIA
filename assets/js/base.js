@@ -127,6 +127,16 @@
     });
   }
 
+  // GA4: cliques em links para o Diagnóstico 360° (mesmo evento da Home)
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || typeof window.gtag !== 'function') return;
+    var h = a.getAttribute('href') || '';
+    if (h === '/diagnostico' || h.indexOf('/diagnostico?') === 0) {
+      window.gtag('event', 'clique_diagnostico', { link_url: a.href, pagina: location.pathname });
+    }
+  }, true);
+
   var btt = document.getElementById('back-to-top');
   if (btt) {
     window.addEventListener('scroll', function () {

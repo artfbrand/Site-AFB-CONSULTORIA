@@ -252,6 +252,15 @@ html.afb-menu-aberto .nav { z-index: 10001; }
   .nav-dropdown, .nav-mobile-menu, .nav-mobile-submenu, .nav-caret, .nav-mobile-caret { transition: none; }
 }
 
+/* Link de texto abaixo dos botões (mesmo estilo do "ou fale pelo WhatsApp" da Home) */
+.cta-alt { margin: .5rem 0 0; }
+.cta-alt-link { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); font-size: .92rem; font-weight: 600; text-decoration: underline; }
+.cta-alt-link:hover { color: var(--forest); }
+/* em fundo verde-escuro, a mesma cor de link clara da Home (.sol-more-d) */
+.svc-final .cta-alt-link, .ee-final .cta-alt-link { color: #8ABF9E; }
+.svc-final .cta-alt-link:hover, .ee-final .cta-alt-link:hover { color: #FAF9F6; }
+.ee-hero-cta .cta-alt, .ee-final-cta .cta-alt { flex-basis: 100%; margin-top: -.5rem; }
+
 .site-footer { background: var(--forest); color: #FAF9F6; padding: 4.5rem 0 0; position: relative; overflow: hidden; }
 .footer-mesh { position: absolute; inset: 0; background-image: radial-gradient(rgba(138,191,158,.06) 1px, transparent 1px); background-size: 28px 28px; pointer-events: none; }
 .footer-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px); }
