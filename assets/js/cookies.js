@@ -16,13 +16,22 @@
     '.afb-ck-btns{display:flex;gap:8px}' +
     '.afb-ck button{min-height:40px;border-radius:999px;padding:9px 18px;font:600 13px var(--font-body,Inter,system-ui,sans-serif);cursor:pointer}' +
     '.afb-ck-ok{background:var(--forest,#0D3C1F);color:#fff;border:1px solid var(--forest,#0D3C1F)}' +
+    'body.afb-ck-open{padding-bottom:var(--afb-ck-espaco,0px)}' +
     '.afb-ck-no{background:transparent;color:var(--forest,#0D3C1F);border:1px solid var(--forest,#0D3C1F)}' +
     '.afb-ck button:focus-visible{outline:2px solid var(--accent,#3D7F61);outline-offset:2px}' +
     '@media (max-width:767px){.afb-ck{left:8px;right:8px;bottom:8px;max-width:none;padding:14px}.afb-ck p{font-size:13px}.afb-ck-btns button{flex:1}' +
+    '@media (max-width:600px){.afb-ck{padding:12px 14px}.afb-ck p{margin:0 0 10px;line-height:1.5}}' +
     'body.afb-ck-open .float-wa{bottom:calc(var(--afb-ck-h,170px) + 16px)!important}' +
     'body.afb-ck-open .back-to-top{bottom:calc(var(--afb-ck-h,170px) + 16px + 56px + 12px)!important}}' +
     '@media (min-width:1025px){.afb-ck{left:auto;right:16px}body.afb-ck-open .float-wa{bottom:calc(var(--afb-ck-h,170px) + 16px)!important}body.afb-ck-open .back-to-top{bottom:calc(var(--afb-ck-h,170px) + 16px + 56px + 12px)!important}}';
-  function measure() { if (banner && !banner.hidden) { document.documentElement.style.setProperty('--afb-ck-h', banner.offsetHeight + 'px'); } }
+  // Altura do banner (posiciona os botões flutuantes) e espaço reservado no fim da página enquanto ele está visível.
+  function measure() {
+    if (banner && !banner.hidden) {
+      var h = banner.offsetHeight, fundo = parseFloat(getComputedStyle(banner).bottom) || 0;
+      document.documentElement.style.setProperty('--afb-ck-h', h + 'px');
+      document.documentElement.style.setProperty('--afb-ck-espaco', (h + fundo) + 'px');
+    }
+  }
   function hide() { banner.hidden = true; document.body.classList.remove('afb-ck-open'); }
   function build() {
     var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
@@ -37,6 +46,7 @@
     banner.querySelector('.afb-ck-no').addEventListener('click', function () { setChoice('denied'); updateConsent('denied'); hide(); });
     document.body.appendChild(banner);
     window.addEventListener('resize', measure);
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); }
   }
   function show() { if (!banner) { build(); } banner.hidden = false; document.body.classList.add('afb-ck-open'); measure(); }
   window.afbAbrirPreferenciasCookies = show;
