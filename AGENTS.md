@@ -84,17 +84,12 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- main com tudo até 6be80fa (revisão final); a v2-estrutura tem o Bloco SEO-1, ainda sem merge.
+- main com tudo até 7548201 (Bloco SEO-1 e SEO-1b no ar); a v2-estrutura tem o Bloco GA-1, a ser publicado no merge seguinte.
 - Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
 - Menu: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu e na 404.
 - Revisão final no ar: banner de cookies compacto no celular, marca-d'água fatura.webp na Home, botão do rodapé "Fazer o Diagnóstico 360°" e limpeza dos arquivos antigos.
-- Bloco SEO-1 (v2-estrutura; textos em _design/textos-seo1-auditoria.md):
-  - link "ou faça o Diagnóstico 360° gratuito, em 3 a 5 minutos →" nas 7 páginas de Eficiência, /quem-somos e /contato (não nas de Subestações); classe .cta-alt-link no base.css
-  - /servicos: "Não sabe por onde começar?" com o diagnóstico como botão principal e o WhatsApp como link secundário
-  - região Belo Horizonte e região metropolitana no rodapé, em "Onde atendemos" (/quem-somos) e nos títulos/descrições de 7 páginas
-  - JSON-LD: ProfessionalService com @id #empresa, logo-horizontal-v2.png e areaServed em lista; Service aponta para #empresa; BreadcrumbList em /servicos
-  - evento GA4 clique_diagnostico também nas páginas internas (base.js)
-  - página 404.html na raiz (noindex, caminhos absolutos, fora do sitemap)
+- SEO-1 e SEO-1b no ar (textos em _design/textos-seo1-auditoria.md): link para o Diagnóstico 360° nas páginas de Eficiência, /quem-somos e /contato; /servicos com o diagnóstico como botão principal; região Belo Horizonte e região metropolitana no rodapé, em /quem-somos, no hub de Subestações, em /contato e nos títulos/descrições; JSON-LD com @id #empresa; clique_diagnostico também nas internas; página 404.html.
+- GA-1: o GA4 (G-2TLLY5G438) só carrega em www.afbenergia.com.br. Em qualquer outro endereço (Preview, localhost, testes) o gtag.js não é inserido; gtag() e dataLayer continuam existindo como fila local. Consent Mode (negado por padrão, liberado com "Aceitar") sem mudança.
 - Pendências conhecidas (não mexer sem prompt):
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
