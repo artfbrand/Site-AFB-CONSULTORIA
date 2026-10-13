@@ -1,5 +1,6 @@
-// Função Vercel (Node): recebe o Diagnóstico 360° e envia por e-mail via Resend.
-// Variáveis de ambiente (configuradas só na Vercel): RESEND_API_KEY, DIAG_TO, DIAG_FROM.
+// Função Vercel (Node): recebe o Diagnóstico 360° e envia por e-mail.
+// Envio principal pelo SMTP da conta (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS); reserva pela Resend
+// (RESEND_API_KEY, DIAG_FROM). Destino: DIAG_TO. Variáveis configuradas só na Vercel.
 "use strict";
 
 var MAX_BYTES = 50 * 1024;
@@ -170,6 +171,92 @@ function remetente(from) {
   return from.indexOf("<") > -1 ? from : "AFB Diagnóstico <" + from + ">";
 }
 
+function destinatarios(lista) {
+  return String(lista || "").split(",").map(function (x) { return x.trim(); }).filter(Boolean);
+}
+
+function configSmtp() {
+  var host = process.env.SMTP_HOST, user = process.env.SMTP_USER, pass = process.env.SMTP_PASS;
+  if (!host || !user || !pass) return null;
+  return { host: host, port: Number(process.env.SMTP_PORT) || 465, user: user, pass: pass };
+}
+
+// Envio principal: SMTP autenticado da própria conta (465 = SSL/TLS; 587 = STARTTLS).
+// Resolve com o messageId quando o servidor aceita a mensagem; rejeita com o erro do nodemailer.
+async function enviarSmtp(cfg, para, replyTo, email) {
+  var nodemailer = require("nodemailer");
+  var transporte = nodemailer.createTransport({
+    host: cfg.host,
+    port: cfg.port,
+    secure: cfg.port === 465,
+    requireTLS: cfg.port !== 465,
+    auth: { user: cfg.user, pass: cfg.pass },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000
+  });
+  var limite;
+  try {
+    var info = await Promise.race([
+      transporte.sendMail({
+        from: { name: "AFB Diagnóstico", address: cfg.user },
+        to: para,
+        replyTo: replyTo,
+        subject: email.assunto,
+        html: email.html,
+        text: email.texto
+      }),
+      new Promise(function (_, rejeitar) {
+        limite = setTimeout(function () {
+          var e = new Error("tempo esgotado"); e.code = "ETIMEDOUT"; rejeitar(e);
+        }, 10000);
+      })
+    ]);
+    if (!info || !info.messageId || !info.accepted || !info.accepted.length) {
+      var e = new Error("sem aceite"); e.code = "ENOACCEPT"; throw e;
+    }
+    return info.messageId;
+  } finally {
+    clearTimeout(limite);
+    transporte.close();
+  }
+}
+
+// Reserva: API da Resend. Só confirma quando a Resend responde 200 com o id do e-mail.
+async function enviarResend(chave, de, para, replyTo, email) {
+  var controle = new AbortController();
+  var limite = setTimeout(function () { controle.abort(); }, 10000);
+  try {
+    var r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { "Authorization": "Bearer " + chave, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: remetente(de),
+        to: para,
+        reply_to: replyTo,
+        subject: email.assunto,
+        html: email.html,
+        text: email.texto
+      }),
+      signal: controle.signal
+    });
+    var resposta = null;
+    try { resposta = await r.json(); } catch (e) {}
+    var id = resposta && typeof resposta.id === "string" ? resposta.id : "";
+    if (r.status !== 200 || !id) {
+      var erro = resposta && typeof resposta.name === "string" ? " " + resposta.name : "";
+      console.log("diagnostico: resend falhou status=" + r.status + (id ? " id=" + id : " sem id") + erro);
+      return "";
+    }
+    return id;
+  } catch (e) {
+    console.log("diagnostico: resend indisponivel");
+    return "";
+  } finally {
+    clearTimeout(limite);
+  }
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -182,8 +269,10 @@ module.exports = async function handler(req, res) {
     return responder(res, 400, { ok: false });
   }
 
-  var chave = process.env.RESEND_API_KEY, para = process.env.DIAG_TO, de = process.env.DIAG_FROM;
-  if (!chave || !para || !de) {
+  var smtp = configSmtp();
+  var chave = process.env.RESEND_API_KEY, de = process.env.DIAG_FROM;
+  var para = destinatarios(process.env.DIAG_TO);
+  if (!para.length || (!smtp && !(chave && de))) {
     console.log("diagnostico: 500 configuracao ausente");
     return responder(res, 500, { ok: false });
   }
@@ -196,37 +285,22 @@ module.exports = async function handler(req, res) {
   }
 
   var email = montarEmail(dados);
-  var controle = new AbortController();
-  var limite = setTimeout(function () { controle.abort(); }, 10000);
-  try {
-    var r = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { "Authorization": "Bearer " + chave, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from: remetente(de),
-        to: para.split(",").map(function (x) { return x.trim(); }).filter(Boolean),
-        reply_to: dados.contato.email,
-        subject: email.assunto,
-        html: email.html,
-        text: email.texto
-      }),
-      signal: controle.signal
-    });
-    var resposta = null;
-    try { resposta = await r.json(); } catch (e) {}
-    var id = resposta && typeof resposta.id === "string" ? resposta.id : "";
-    // Só confirma o envio quando a Resend responde 200 com o id do e-mail.
-    if (r.status !== 200 || !id) {
-      var erro = resposta && typeof resposta.name === "string" ? " " + resposta.name : "";
-      console.log("diagnostico: 502 resend status=" + r.status + (id ? " id=" + id : " sem id") + erro);
-      return responder(res, 502, { ok: false });
+  if (smtp) {
+    try {
+      var messageId = await enviarSmtp(smtp, para, dados.contato.email, email);
+      console.log("diagnostico: 200 via=smtp");
+      return responder(res, 200, { ok: true, id: messageId, via: "smtp" });
+    } catch (e) {
+      console.log("diagnostico: smtp falhou " + String((e && (e.code || e.name)) || "erro"));
     }
-    console.log("diagnostico: 200 resend status=200 id=" + id);
-    return responder(res, 200, { ok: true, id: id });
-  } catch (e) {
-    console.log("diagnostico: 502 resend indisponivel");
-    return responder(res, 502, { ok: false });
-  } finally {
-    clearTimeout(limite);
   }
+  if (chave && de) {
+    var id = await enviarResend(chave, de, para, dados.contato.email, email);
+    if (id) {
+      console.log("diagnostico: 200 via=resend status=200 id=" + id);
+      return responder(res, 200, { ok: true, id: id, via: "resend" });
+    }
+  }
+  console.log("diagnostico: 502 nenhum envio aceito");
+  return responder(res, 502, { ok: false });
 };
