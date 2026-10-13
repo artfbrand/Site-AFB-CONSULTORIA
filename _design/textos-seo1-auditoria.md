@@ -85,3 +85,8 @@ As demais páginas mantêm título e descrição atuais.
 - ProfessionalService (Home, /contato, /quem-somos): acrescentar "@id": "https://www.afbenergia.com.br/#empresa"; "logo" passa a ser https://www.afbenergia.com.br/assets/images/logo-horizontal-v2.png; "areaServed" passa a ser a lista: Belo Horizonte (City), Região Metropolitana de Belo Horizonte (AdministrativeArea), Minas Gerais (State), Brasil (Country).
 - Service (16 páginas de serviço): "provider" passa a apontar para "@id": "https://www.afbenergia.com.br/#empresa", com "name": "AFB Engenharia & Consultoria Elétrica" e "url": "https://www.afbenergia.com.br"; "areaServed" igual à lista acima.
 - /servicos: acrescentar BreadcrumbList (Início › Serviços), no mesmo padrão das outras páginas.
+
+## 6. Ajuste SEO-1b
+
+- Hub de Subestações (/servicos/subestacoes): "Atendimento em Minas Gerais e demais estados" passa a ser "Atendimento em Belo Horizonte e região metropolitana, Minas Gerais e demais estados".
+- /contato — description, og:description e twitter:description: Fale com a AFB Engenharia pelo WhatsApp (31) 97554-9075 ou pelo e-mail contato@afbenergia.com.br. Sede em Pedro Leopoldo (MG), atendimento em BH e região, Minas Gerais e demais estados.
