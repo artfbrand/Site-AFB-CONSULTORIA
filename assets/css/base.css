@@ -109,7 +109,7 @@ main { padding-top: 132px; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 14px); left: 50%;
   transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(-6px);
-  width: min(880px, calc(100vw - 32px));
+  width: min(1080px, calc(100vw - 32px));
   max-height: min(420px, calc(100vh - 150px)); overflow-y: auto;
   padding: 1.25rem 1.25rem 0; border-radius: var(--r-card);
   background: #fff; border: 1px solid rgba(61,127,97,.1);
@@ -122,7 +122,7 @@ main { padding-top: 132px; }
   opacity: 1; visibility: visible; pointer-events: auto;
   transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(0);
 }
-.nav-mega-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 232px; gap: 1.25rem; align-items: start; }
+.nav-mega-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(180px, .8fr) 232px; gap: 1.25rem; align-items: start; }
 .nav-mega-title { margin: 0; padding: 0 .55rem .4rem; font-size: 1rem; font-weight: 700; color: var(--forest); }
 .nav-mega-list { list-style: none; margin: 0; padding: 0; }
 .nav .nav-mega-list a {

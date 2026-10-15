@@ -312,7 +312,7 @@
     .nav-dropdown {
       position: absolute; top: calc(100% + 14px); left: 50%;
       transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(-6px);
-      width: min(880px, calc(100vw - 32px));
+      width: min(1080px, calc(100vw - 32px));
       max-height: min(420px, calc(100vh - 150px)); overflow-y: auto;
       padding: 1.25rem 1.25rem 0; border-radius: var(--r-card);
       background: #fff; border: 1px solid rgba(61,127,97,.1);
@@ -325,7 +325,7 @@
       opacity: 1; visibility: visible; pointer-events: auto;
       transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(0);
     }
-    .nav-mega-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 232px; gap: 1.25rem; align-items: start; }
+    .nav-mega-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(180px, .8fr) 232px; gap: 1.25rem; align-items: start; }
     .nav-mega-title { margin: 0; padding: 0 .55rem .4rem; font-size: 1rem; font-weight: 700; color: var(--forest); }
     .nav-mega-list { list-style: none; margin: 0; padding: 0; }
     .nav .nav-mega-list a {
@@ -1068,55 +1068,6 @@
     }
     .pc-p { font-size: .875rem; line-height: 1.82; color: var(--sage); }
     /* closing */
-    .problema-closing {
-      margin-top: 6rem; text-align: center;
-      max-width: 700px; opacity: 0;
-    }
-    .pc-closing-rule {
-      width: 48px; height: 2px; border-radius: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-      margin: 0 auto 2.6rem;
-    }
-    .problema-closing-text {
-      font-family: var(--font-display);
-      font-size: clamp(1.25rem, 2.4vw, 1.72rem);
-      font-weight: 700; line-height: 1.52; color: var(--forest);
-      font-style: italic;
-    }
-    .problema-closing-text .closing-green { color: var(--forest); }
-    .closing-sub {
-      margin-top: 1.5rem;
-      display: flex; align-items: center; justify-content: center; gap: .55rem;
-      font-size: .8rem; color: var(--muted);
-    }
-    .closing-sub-dot {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: var(--accent); opacity: .6; flex-shrink: 0;
-    }
-    /* balão clicável do fecho — visual da .problema-badge, em caixa normal */
-    .problema-cta-pill {
-      display: inline-flex; align-items: center; justify-content: center; gap: .62rem;
-      min-height: 44px; max-width: 100%; margin-top: 1.6rem;
-      padding: .58rem 1.45rem; border-radius: var(--r-pill);
-      border: 1.5px solid rgba(61,127,97,.42);
-      background: rgba(61,127,97,.1);
-      box-shadow: 0 0 0 5px rgba(61,127,97,.06), 0 4px 22px rgba(61,127,97,.14);
-      font-size: .97rem; font-weight: 600; line-height: 1.4; letter-spacing: normal; text-transform: none;
-      color: #0D3C1F; text-decoration: none; text-align: center;
-      transition: background .2s, border-color .2s, box-shadow .35s;
-    }
-    .problema-cta-pill:hover, .problema-cta-pill:focus-visible {
-      background: rgba(61,127,97,.18); border-color: #3D7F61;
-      box-shadow: 0 0 0 7px rgba(61,127,97,.08), 0 6px 28px rgba(61,127,97,.2);
-    }
-    .problema-cta-pill:focus-visible { outline: 2px solid #3D7F61; outline-offset: 3px; }
-    @media (max-width: 480px) { .problema-cta-pill { padding: .58rem .75rem; font-size: .94rem; gap: .4rem; } }
-    .problema-cta-arrow { display: inline-block; transition: transform .2s; }
-    .problema-cta-pill:hover .problema-cta-arrow, .problema-cta-pill:focus-visible .problema-cta-arrow { transform: translateX(4px); }
-    @media (prefers-reduced-motion: reduce) {
-      .problema-cta-arrow { transition: none; }
-      .problema-cta-pill:hover .problema-cta-arrow, .problema-cta-pill:focus-visible .problema-cta-arrow { transform: none; }
-    }
     /* responsive */
     @media (max-width: 1024px) {
       .problema-fatura-bg { width: 72%; }
@@ -1129,7 +1080,6 @@
     @media (max-width: 640px) {
       .problema { padding: 6rem 0 2.5rem; }
       .problema-header { margin-bottom: 3.5rem; gap: 1.4rem; }
-      .problema-closing { margin-top: 4rem; }
       .pc-num { font-size: 2rem; }
     }
   </style>
@@ -1237,6 +1187,13 @@
                   </ul>
                   <a class="nav-mega-more" href="/servicos/subestacoes">Ver Subestações <span aria-hidden="true">→</span></a>
                 </div>
+                <div class="nav-mega-col">
+                  <p class="nav-mega-title" id="nav-mega-solar-mobilidade">Energia Solar e Mobilidade</p>
+                  <ul class="nav-mega-list" role="list" aria-labelledby="nav-mega-solar-mobilidade">
+                    <li><a href="/servicos/energia-solar">Energia Solar</a></li>
+                    <li><a href="/servicos/carregadores-veiculares">Carregadores Veiculares</a></li>
+                  </ul>
+                </div>
                 <div class="nav-mega-card">
                   <p class="nav-mega-card-tag">DIAGNÓSTICO 360°</p>
                   <p class="nav-mega-card-text">Gratuito, leva de 3 a 5 minutos.</p>
@@ -1308,6 +1265,16 @@
                   <li><a href="/servicos/subestacoes/projeto-de-subestacao">Projeto de Subestação</a></li>
                   <li><a href="/servicos/subestacoes/obras-de-subestacao">Obras e Montagem</a></li>
                   <li><a class="nav-mobile-more" href="/servicos/subestacoes">Ver Subestações</a></li>
+                </ul>
+              </li>
+              <li class="nav-mobile-group">
+                <button type="button" class="nav-mobile-toggle" id="nav-mobile-solar-toggle" aria-expanded="false" aria-controls="nav-mobile-solar-panel">
+                  Energia Solar e Mobilidade
+                  <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="nav-mobile-submenu" id="nav-mobile-solar-panel">
+                  <li><a href="/servicos/energia-solar">Energia Solar</a></li>
+                  <li><a href="/servicos/carregadores-veiculares">Carregadores Veiculares</a></li>
                 </ul>
               </li>
             </ul>
@@ -3271,7 +3238,7 @@
         <!-- Brand -->
         <div class="footer-brand">
           <div class="footer-logo">AFB <span>Engenharia &amp; Consultoria Elétrica</span></div>
-          <p class="footer-tagline">Engenharia elétrica aplicada à redução de custos. Análise técnica completa — fatura, contratação, qualidade de energia e ICMS.</p>
+          <p class="footer-tagline">Engenharia de inteligência energética: eficiência, energia solar, subestações e mobilidade elétrica.</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/afbenergia/" class="footer-social-link" rel="noopener noreferrer" target="_blank" aria-label="Instagram da AFB Engenharia">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
