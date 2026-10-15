@@ -3,16 +3,21 @@
 // (RESEND_API_KEY, DIAG_FROM). Destino: DIAG_TO. Variáveis configuradas só na Vercel.
 "use strict";
 
-var MAX_BYTES = 50 * 1024;
+var MAX_BYTES = Math.floor(4.25 * 1024 * 1024);
 var MAX_RESPOSTAS = 80;
 var MAX_TEXTO = 2000;
+var MAX_ANEXO = 3 * 1024 * 1024;
 var TEMPO_MINIMO_MS = 20 * 1000;
 
 // Perguntas mostradas em destaque no topo do e-mail (texto exato do formulário).
 var DESTAQUES = [
   ["Valor médio da conta", "Qual é o valor médio da conta de energia por mês?"],
   ["Como a energia chega", "Como a energia chega à empresa?"],
-  ["Prioridade", "Qual é a prioridade neste momento?"],
+  ["Objetivos", "O que a empresa deseja avaliar?"],
+  ["Disposição para investir", "Qual é a disposição da empresa para investir?"],
+  ["Interesse em mudar a contratação", "Há interesse em comparar outras formas de contratação?"],
+  ["Interesse em energia solar", "Qual é a situação e o interesse da empresa em geração solar?"],
+  ["Interesse em carregadores", "A empresa pretende instalar carregadores veiculares?"],
   ["Interesse em visita", "Há interesse em uma visita técnica?"]
 ];
 
@@ -68,6 +73,26 @@ function textoValido(v) {
   return typeof v === "string" && v.length <= MAX_TEXTO;
 }
 
+function validarAnexo(v) {
+  if (v === undefined || v === null) return null;
+  if (!v || typeof v !== "object" || Array.isArray(v)) return false;
+  var nome = texto(v.nome), tipo = texto(v.tipo), tamanho = Number(v.tamanho), conteudo = v.conteudo;
+  var permitidos = { "application/pdf": "pdf", "image/jpeg": "jpg", "image/png": "png" };
+  if (!nome || nome.length > 160 || !permitidos[tipo] || !Number.isInteger(tamanho) || tamanho < 1 || tamanho > MAX_ANEXO) return false;
+  if (typeof conteudo !== "string" || conteudo.length > Math.ceil(MAX_ANEXO * 4 / 3) + 8 || !/^[A-Za-z0-9+/]+={0,2}$/.test(conteudo)) return false;
+  var buffer;
+  try { buffer = Buffer.from(conteudo, "base64"); } catch (e) { return false; }
+  if (buffer.length !== tamanho || buffer.length > MAX_ANEXO) return false;
+  var valido = tipo === "application/pdf" ? buffer.slice(0, 5).toString("ascii") === "%PDF-" :
+    tipo === "image/jpeg" ? buffer.length >= 3 && buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff :
+    buffer.slice(0, 8).toString("hex") === "89504e470d0a1a0a";
+  if (!valido) return false;
+  var extensao = nome.toLowerCase().match(/\.([a-z0-9]+)$/);
+  if (!extensao || (tipo === "application/pdf" && extensao[1] !== "pdf") || (tipo === "image/png" && extensao[1] !== "png") || (tipo === "image/jpeg" && ["jpg", "jpeg"].indexOf(extensao[1]) === -1)) return false;
+  nome = nome.replace(/[\\/:*?"<>|\x00-\x1f]/g, "_").slice(0, 160);
+  return { nome: nome, tipo: tipo, tamanho: tamanho, conteudo: conteudo, buffer: buffer };
+}
+
 // Devolve os dados normalizados ou null se a requisição for inválida.
 function validar(d) {
   if (texto(d.site) !== "" || (d.site !== undefined && typeof d.site !== "string")) return null;
@@ -89,6 +114,8 @@ function validar(d) {
   if (digitos.length < 10 || digitos.length > 11) return null;
   contato.whatsappDigitos = digitos;
 
+  var anexo = validarAnexo(d.anexo);
+  if (anexo === false) return null;
   if (!Array.isArray(d.respostas) || d.respostas.length > MAX_RESPOSTAS) return null;
   var respostas = [];
   for (var j = 0; j < d.respostas.length; j++) {
@@ -102,7 +129,7 @@ function validar(d) {
     if (!textoValido(r.secao) || !textoValido(r.pergunta) || !textoValido(resp)) return null;
     respostas.push({ secao: texto(r.secao), pergunta: texto(r.pergunta), resposta: texto(resp) });
   }
-  return { contato: contato, respostas: respostas };
+  return { contato: contato, respostas: respostas, anexo: anexo };
 }
 
 function agruparPorSecao(respostas) {
@@ -121,7 +148,7 @@ function destaque(respostas, pergunta) {
 }
 
 function montarEmail(dados) {
-  var c = dados.contato, respostas = dados.respostas;
+  var c = dados.contato, respostas = dados.respostas, anexo = dados.anexo;
   var wa = "https://wa.me/55" + c.whatsappDigitos;
   var nomeCargo = c.nome + (c.cargo ? " — " + c.cargo : "");
   var topo = [
@@ -129,7 +156,8 @@ function montarEmail(dados) {
     ["Cidade", c.cidade],
     ["Nome e cargo", nomeCargo],
     ["WhatsApp", c.whatsapp, wa],
-    ["E-mail", c.email, "mailto:" + c.email]
+    ["E-mail", c.email, "mailto:" + c.email],
+    ["Conta de energia anexada", anexo ? anexo.nome : "Não"]
   ].concat(DESTAQUES.map(function (x) { return [x[0], destaque(respostas, x[1])]; }));
   var grupos = agruparPorSecao(respostas);
 
@@ -162,7 +190,8 @@ function montarEmail(dados) {
   return {
     assunto: umaLinha("Novo Diagnóstico 360° — " + c.empresa + " — " + c.cidade),
     html: html,
-    texto: txt.join("\n")
+    texto: txt.join("\n"),
+    anexo: anexo
   };
 }
 
@@ -204,7 +233,8 @@ async function enviarSmtp(cfg, para, replyTo, email) {
         replyTo: replyTo,
         subject: email.assunto,
         html: email.html,
-        text: email.texto
+        text: email.texto,
+        attachments: email.anexo ? [{ filename: email.anexo.nome, content: email.anexo.buffer, contentType: email.anexo.tipo }] : []
       }),
       new Promise(function (_, rejeitar) {
         limite = setTimeout(function () {
@@ -236,7 +266,8 @@ async function enviarResend(chave, de, para, replyTo, email) {
         reply_to: replyTo,
         subject: email.assunto,
         html: email.html,
-        text: email.texto
+        text: email.texto,
+        attachments: email.anexo ? [{ filename: email.anexo.nome, content: email.anexo.conteudo }] : []
       }),
       signal: controle.signal
     });
