@@ -312,7 +312,7 @@
     .nav-dropdown {
       position: absolute; top: calc(100% + 14px); left: 50%;
       transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(-6px);
-      width: min(1080px, calc(100vw - 32px));
+      width: min(960px, calc(100vw - 32px));
       max-height: min(420px, calc(100vh - 150px)); overflow-y: auto;
       padding: 1.25rem 1.25rem 0; border-radius: var(--r-card);
       background: #fff; border: 1px solid rgba(61,127,97,.1);
@@ -325,7 +325,7 @@
       opacity: 1; visibility: visible; pointer-events: auto;
       transform: translateX(calc(-50% + var(--mega-x, 0px))) translateY(0);
     }
-    .nav-mega-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(180px, .8fr) 232px; gap: 1.25rem; align-items: start; }
+    .nav-mega-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; align-items: start; }
     .nav-mega-title { margin: 0; padding: 0 .55rem .4rem; font-size: 1rem; font-weight: 700; color: var(--forest); }
     .nav-mega-list { list-style: none; margin: 0; padding: 0; }
     .nav .nav-mega-list a {
@@ -370,6 +370,11 @@
       box-shadow: 0 4px 18px rgba(246,144,102,.3); transition: background .2s;
     }
     .nav .nav-mega-card-btn:hover { background: #F8A383; color: #0D3C1F; }
+    .nav-mega-col .nav-mega-card { margin: .85rem .55rem 0; padding: 1rem; gap: .55rem; box-shadow: 0 8px 24px rgba(13,60,31,.18); }
+    .nav-mega-col .nav-mega-card-tag { padding: .22rem .58rem; font-size: .64rem; }
+    .nav-mega-col .nav-mega-card-text { font-size: .82rem; line-height: 1.4; }
+    .nav .nav-mega-col .nav-mega-card-btn { width: 100%; min-height: 40px; padding: .58rem .85rem; font-size: .82rem; }
+    .nav-mobile-menu li > a.nav-mobile-diagnostico { margin-top: .35rem; padding: .8rem 1rem; border: 1px solid rgba(61,127,97,.18); border-radius: 12px; background: rgba(61,127,97,.08); color: var(--forest); font-weight: 700; }
     .nav .nav-mega-all {
       display: block; margin: 1rem -1.25rem 0; padding: .85rem 1.8rem;
       border-top: 1px solid rgba(61,127,97,.1);
@@ -1193,11 +1198,11 @@
                     <li><a href="/servicos/energia-solar">Energia Solar</a></li>
                     <li><a href="/servicos/carregadores-veiculares">Carregadores Veiculares</a></li>
                   </ul>
-                </div>
-                <div class="nav-mega-card">
-                  <p class="nav-mega-card-tag">DIAGNÓSTICO 360°</p>
-                  <p class="nav-mega-card-text">Gratuito, leva de 3 a 5 minutos.</p>
-                  <a class="nav-mega-card-btn" href="/diagnostico">Fazer o diagnóstico</a>
+                  <div class="nav-mega-card">
+                    <p class="nav-mega-card-tag">DIAGNÓSTICO 360°</p>
+                    <p class="nav-mega-card-text">Gratuito, leva de 3 a 5 minutos.</p>
+                    <a class="nav-mega-card-btn" href="/diagnostico">Fazer o diagnóstico</a>
+                  </div>
                 </div>
               </div>
               <a class="nav-mega-all" href="/servicos">Todos os serviços <span aria-hidden="true">→</span></a>
@@ -1277,6 +1282,7 @@
                   <li><a href="/servicos/carregadores-veiculares">Carregadores Veiculares</a></li>
                 </ul>
               </li>
+              <li><a class="nav-mobile-diagnostico" href="/diagnostico">Diagnóstico 360°</a></li>
             </ul>
           </li>
           <li><a href="/#como-funciona">Como Funciona</a></li>
@@ -1381,7 +1387,40 @@
 
               <div class="main-card-overlay" aria-hidden="true"></div>
 
+              <div class="card-top-badge" aria-hidden="true">
+                <span class="card-badge-dot"></span>
+                Diagnóstico Energético
+              </div>
+
             </div><!-- /main-card -->
+
+            <div class="float-card float-counter" id="float-counter" aria-hidden="true">
+              <div class="float-counter-phrase">
+                <span class="phrase-pre">De</span>
+                <span class="phrase-from">10<span class="range-pct">%</span></span>
+                <span class="phrase-sep">a</span>
+                <span class="phrase-to" id="counter-pct">95<span class="range-pct">%</span></span>
+              </div>
+              <div class="float-counter-unit">de economia possível no custo de energia, conforme o perfil</div>
+            </div>
+
+            <div class="float-card float-progress" id="float-progress" aria-hidden="true">
+              <div class="float-progress-header">
+                <span class="float-progress-title">Fontes de Análise</span>
+                <span class="float-progress-badge">9/9</span>
+              </div>
+              <ul class="frentes-list">
+                <li><span class="frente-check">✓</span> Fatura</li>
+                <li><span class="frente-check">✓</span> Contratação</li>
+                <li><span class="frente-check">✓</span> Mercado Livre</li>
+                <li><span class="frente-check">✓</span> Energia por Assinatura</li>
+                <li><span class="frente-check">✓</span> Qualidade de Energia</li>
+                <li><span class="frente-check">✓</span> Crédito de ICMS</li>
+                <li><span class="frente-check">✓</span> Subestação</li>
+                <li><span class="frente-check">✓</span> Instalações Elétricas</li>
+                <li><span class="frente-check">✓</span> Geração Própria — Fotovoltaica</li>
+              </ul>
+            </div>
 
           </div><!-- /main-card-wrap -->
         </div><!-- /hero-right -->
@@ -1863,8 +1902,69 @@
       #solucoes .sol-text { color: #4A6B5A; margin-top: 1rem; }
       #solucoes .sol-title { color: #0D3C1F; }
       #solucoes .sol-more { margin-top: auto; padding-top: 1.4rem; }
+      #solucoes .sol-bottom-grid { gap: 1.15rem; perspective: 1200px; }
+      #solucoes .sol-card {
+        isolation: isolate; min-height: 330px; padding: 2rem;
+        border-radius: 22px; border: 1px solid rgba(61,127,97,.14);
+        box-shadow: 0 10px 35px rgba(13,60,31,.08);
+        transform-origin: center bottom;
+      }
+      #solucoes .sol-card::before {
+        content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+        background: radial-gradient(circle at 85% 0%, rgba(138,191,158,.18), transparent 38%);
+      }
+      #solucoes .sol-card:hover {
+        transform: translateY(-9px) rotateX(1.5deg);
+        box-shadow: 0 22px 55px rgba(13,60,31,.16);
+      }
+      #solucoes .sol-card:focus-within { outline: 2px solid #3D7F61; outline-offset: 4px; }
+      #solucoes .sol-dark { background: linear-gradient(145deg, #0D3C1F 0%, #12512A 100%); border-color: rgba(138,191,158,.2); }
+      #solucoes .sol-medium { background: linear-gradient(145deg, #2F7657 0%, #0D3C1F 100%); border-color: rgba(255,255,255,.14); }
+      #solucoes .sol-sage { background: linear-gradient(145deg, #F7FAF7 0%, #E8F2EB 100%); }
+      #solucoes .sol-card-top {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 2.2rem; position: relative; z-index: 2;
+      }
+      #solucoes .sol-card-icon {
+        width: 46px; height: 46px; border-radius: 14px;
+        display: inline-flex; align-items: center; justify-content: center;
+        color: #3D7F61; background: rgba(255,255,255,.72);
+        border: 1px solid rgba(61,127,97,.14); box-shadow: 0 8px 22px rgba(13,60,31,.1);
+        transition: transform .35s var(--ease-out), box-shadow .35s;
+      }
+      #solucoes .sol-card-icon svg { width: 23px; height: 23px; }
+      #solucoes .sol-dark .sol-card-icon, #solucoes .sol-medium .sol-card-icon {
+        color: #F69066; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14);
+        box-shadow: inset 0 0 20px rgba(138,191,158,.06);
+      }
+      #solucoes .sol-card:hover .sol-card-icon { transform: translateY(-3px) rotate(-4deg); box-shadow: 0 12px 28px rgba(13,60,31,.16); }
+      #solucoes .sol-ghost { position: static; font-size: 3.5rem; opacity: 1; }
+      #solucoes .sol-title { font-size: clamp(1.18rem, 1.5vw, 1.45rem); margin-bottom: .85rem; }
+      #solucoes .sol-text { margin-top: 0; font-size: .84rem; line-height: 1.72; }
+      #solucoes .sol-dark .sol-title, #solucoes .sol-medium .sol-title { color: #FAF9F6; }
+      #solucoes .sol-dark .sol-text, #solucoes .sol-medium .sol-text { color: rgba(231,242,234,.78); }
+      #solucoes .sol-more {
+        align-self: flex-start; padding: .72rem 1rem; margin-top: 1.35rem;
+        border-radius: var(--r-pill); text-decoration: none;
+        border: 1px solid rgba(61,127,97,.2); background: rgba(255,255,255,.62);
+        transition: transform .25s var(--ease-out), background .25s, border-color .25s, color .25s;
+      }
+      #solucoes .sol-dark .sol-more, #solucoes .sol-medium .sol-more {
+        color: #FAF9F6; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.17);
+      }
+      #solucoes .sol-more:hover { transform: translateX(4px); background: #ffffff; border-color: rgba(61,127,97,.35); }
+      #solucoes .sol-dark .sol-more:hover, #solucoes .sol-medium .sol-more:hover { color: #0D3C1F; background: #F69066; border-color: #F69066; }
       @media (max-width: 1199px) { #solucoes .sol-bottom-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-      @media (max-width: 767px) { #solucoes .sol-bottom-grid { grid-template-columns: 1fr; } #solucoes .sol-card { min-height: 0; } }
+      @media (max-width: 767px) {
+        #solucoes .sol-bottom-grid { grid-template-columns: 1fr; gap: 1rem; }
+        #solucoes .sol-card { min-height: 0; padding: 1.55rem; }
+        #solucoes .sol-card-top { margin-bottom: 1.5rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #solucoes .sol-card, #solucoes .sol-card-icon, #solucoes .sol-more { transition: none; }
+        #solucoes .sol-card:hover, #solucoes .sol-card:hover .sol-card-icon, #solucoes .sol-more:hover { transform: none; }
+        #solucoes .sol-shimmer::after { animation: none; display: none; }
+      }
     </style>
 
     <section class="solucoes" id="solucoes" aria-labelledby="areas-heading">
@@ -1875,10 +1975,32 @@
           <h2 class="problema-h2" id="areas-heading">Da análise à ação: a solução certa para cada desafio energético.</h2>
         </header>
         <div class="sol-bottom-grid">
-          <article class="sol-card sol-sage" data-sol="0"><h3 class="sol-title"><a class="sol-card-link" href="/servicos/eficiencia-energetica">Eficiência energética</a></h3><p class="sol-text">Identificamos desperdícios e oportunidades de melhoria no consumo, na contratação e na qualidade da energia. Redução possível de 10% a 30%, conforme o perfil.</p><a class="sol-more sol-more-s" href="/servicos/eficiencia-energetica">Ver mais →</a></article>
-          <article class="sol-card sol-sage" data-sol="1"><h3 class="sol-title"><a class="sol-card-link" href="/servicos/subestacoes">Subestações elétricas</a></h3><p class="sol-text">Projetamos, mantemos e avaliamos instalações de média tensão para apoiar a segurança e a continuidade da operação.</p><a class="sol-more sol-more-s" href="/servicos/subestacoes">Ver mais →</a></article>
-          <article class="sol-card sol-sage" data-sol="2"><h3 class="sol-title"><a class="sol-card-link" href="/servicos/energia-solar">Energia solar fotovoltaica</a></h3><p class="sol-text">Da viabilidade à instalação com equipe própria: projeto, homologação na Cemig, manutenção e financiamento. Com o sistema dimensionado para todo o consumo, a redução na conta pode chegar a 95%.</p><a class="sol-more sol-more-s" href="/servicos/energia-solar">Ver mais →</a></article>
-          <article class="sol-card sol-sage" data-sol="3"><h3 class="sol-title"><a class="sol-card-link" href="/servicos/carregadores-veiculares">Carregadores veiculares</a></h3><p class="sol-text">Projeto, adequação da instalação, fornecimento e instalação de todos os tipos de carregador, com ART.</p><a class="sol-more sol-more-s" href="/servicos/carregadores-veiculares">Ver mais →</a></article>
+          <article class="sol-card sol-dark sol-shimmer" data-sol="0">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div class="sol-card-top" aria-hidden="true"><span class="sol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13h6L9.8 22 19.5 10h-6L13 2Z"/></svg></span><span class="sol-ghost sol-ghost-d">01</span></div>
+            <h3 class="sol-title sol-ti-d"><a class="sol-card-link" href="/servicos/eficiencia-energetica">Eficiência energética</a></h3>
+            <p class="sol-text sol-tx-d">Identificamos desperdícios e oportunidades de melhoria no consumo, na contratação e na qualidade da energia. Redução possível de 10% a 30%, conforme o perfil.</p>
+            <a class="sol-more sol-more-d" href="/servicos/eficiencia-energetica">Ver mais →</a>
+          </article>
+          <article class="sol-card sol-sage" data-sol="1">
+            <div class="sol-card-top" aria-hidden="true"><span class="sol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7l-8-4Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span><span class="sol-ghost sol-ghost-s">02</span></div>
+            <h3 class="sol-title sol-ti-s"><a class="sol-card-link" href="/servicos/subestacoes">Subestações elétricas</a></h3>
+            <p class="sol-text sol-tx-s">Projetamos, mantemos e avaliamos instalações de média tensão para apoiar a segurança e a continuidade da operação.</p>
+            <a class="sol-more sol-more-s" href="/servicos/subestacoes">Ver mais →</a>
+          </article>
+          <article class="sol-card sol-medium sol-shimmer" data-sol="2">
+            <div class="sol-mesh" aria-hidden="true"></div>
+            <div class="sol-card-top" aria-hidden="true"><span class="sol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg></span><span class="sol-ghost sol-ghost-m">03</span></div>
+            <h3 class="sol-title sol-ti-m"><a class="sol-card-link" href="/servicos/energia-solar">Energia solar fotovoltaica</a></h3>
+            <p class="sol-text sol-tx-m">Da viabilidade à instalação com equipe própria: projeto, homologação na Cemig, manutenção e financiamento. Com o sistema dimensionado para todo o consumo, a redução na conta pode chegar a 95%.</p>
+            <a class="sol-more sol-more-d" href="/servicos/energia-solar">Ver mais →</a>
+          </article>
+          <article class="sol-card sol-sage" data-sol="3">
+            <div class="sol-card-top" aria-hidden="true"><span class="sol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v5M17 3v5M5 8h14v3a7 7 0 0 1-7 7v3M9 12h6"/></svg></span><span class="sol-ghost sol-ghost-s">04</span></div>
+            <h3 class="sol-title sol-ti-s"><a class="sol-card-link" href="/servicos/carregadores-veiculares">Carregadores veiculares</a></h3>
+            <p class="sol-text sol-tx-s">Projeto, adequação da instalação, fornecimento e instalação de todos os tipos de carregador, com ART.</p>
+            <a class="sol-more sol-more-s" href="/servicos/carregadores-veiculares">Ver mais →</a>
+          </article>
         </div>
       </div>
     </section>
@@ -3586,10 +3708,38 @@
       }, 0.42)
         .fromTo('#main-card-wrap', { x: 32 }, { x: 0, duration: .85 }, 0.42);
 
+      tl.to('#float-counter', {
+        opacity: 1, x: 0, y: 0, duration: .55
+      }, 0.82)
+        .fromTo('#float-counter', { x: 12, y: -8 }, { x: 0, y: 0, duration: .55 }, 0.82);
+
+      tl.to('#float-progress', {
+        opacity: 1, x: 0, y: 0, duration: .55
+      }, 1.0)
+        .fromTo('#float-progress', { x: -12, y: 8 }, { x: 0, y: 0, duration: .55 }, 1.0);
+
+      tl.call(() => {
+        gsap.to({ val: 10 }, {
+          val: 95, duration: 2.4, ease: 'power2.out',
+          onUpdate: function () {
+            const el = document.getElementById('counter-pct');
+            if (el) el.innerHTML = Math.round(this.targets()[0].val) + '<span class="range-pct">%</span>';
+          }
+        });
+      }, [], 1.05);
+
+      tl.call(() => {
+        document.querySelectorAll('.float-card').forEach((card, index) => {
+          card.style.animation = `floatY ${5.5 + index}s ease-in-out infinite`;
+          card.style.animationDelay = `${index * 1.1}s`;
+        });
+      }, [], 1.6);
+
       /* ── Mouse parallax ─────────────────────────────────────────── */
       let mx = 0, my = 0;
       let cx = 0, cy = 0;
       const cardWrap = document.getElementById('main-card-wrap');
+      const floatCards = document.querySelectorAll('.float-card');
       const LERP = 0.06;
 
       window.addEventListener('mousemove', e => {
@@ -3603,6 +3753,13 @@
         if (cardWrap) {
           gsap.set(cardWrap, { x: cx * 14, y: cy * 8 });
         }
+        floatCards.forEach((card, index) => {
+          const factor = 22 + index * 8;
+          gsap.set(card, {
+            x: -cx * factor * (index % 2 === 0 ? 1 : -1),
+            y: -cy * (factor * .6)
+          });
+        });
         requestAnimationFrame(parallaxLoop);
       })();
 
@@ -3730,8 +3887,10 @@
     } else {
       /* reduced motion: show everything immediately */
       document.querySelectorAll(
-        '#hero-badge, #hero-subtitle, #hero-ctas, #hero-microprova, #main-card-wrap'
+        '#hero-badge, #hero-subtitle, #hero-ctas, #hero-microprova, #main-card-wrap, #float-counter, #float-progress'
       ).forEach(el => { el.style.opacity = '1'; });
+      const economyCounter = document.getElementById('counter-pct');
+      if (economyCounter) economyCounter.innerHTML = '95<span class="range-pct">%</span>';
       document.querySelectorAll('.word-inner').forEach(el => {
         el.style.transform = 'translateY(0)';
         el.style.opacity = '1';
