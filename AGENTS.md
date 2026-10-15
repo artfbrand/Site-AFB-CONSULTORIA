@@ -40,15 +40,15 @@
   - banner LGPD + GA4 Consent Mode (G-2TLLY5G438)
   - eventos clique_whatsapp e clique_email
   - o deslocamento dos botões flutuantes vale só no celular
-- Menu (21 páginas), igual em todas:
-  - Serviços (dropdown: Todos os serviços, grupo Eficiência com 5 páginas, grupo Subestações com 9 páginas)
+- Menu (24 páginas e a 404), igual em todas; /diagnostico usa barra própria:
+  - Serviços (dropdown: Todos os serviços, grupo Eficiência com 6 páginas, grupo Subestações com 9 páginas e grupo Energia Solar e Mobilidade com 2 páginas)
   - Como Funciona
   - logo ao centro
   - Quem Somos e Contato
-  - botão "Solicitar análise" (WhatsApp)
+  - botão "Diagnóstico 360°"
   - hambúrguer a partir de 1024 px
 - Rodapé: links, endereço e CNPJ 69.350.036/0001-00.
-- Sitemap com 20 URLs. /diagnostico e /privacidade ficam fora dele e com noindex.
+- Sitemap com 23 URLs. /diagnostico e /privacidade ficam fora dele e com noindex.
 - JSON-LD:
   - BreadcrumbList + Service nas páginas de serviço
   - ProfessionalService na Home, em /quem-somos e em /contato
@@ -86,10 +86,11 @@
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
 - main com tudo até 7548201 (Bloco SEO-1 e SEO-1b no ar); a v2-estrutura tem o Bloco GA-1, a ser publicado no merge seguinte.
 - Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
-- Menu: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 22 páginas com menu e na 404.
+- Menu: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 24 páginas com menu e na 404. O painel tem os grupos Eficiência Energética, Subestações e Energia Solar e Mobilidade.
 - Revisão final no ar: banner de cookies compacto no celular, marca-d'água fatura.webp na Home, botão do rodapé "Fazer o Diagnóstico 360°" e limpeza dos arquivos antigos.
 - SEO-1 e SEO-1b no ar (textos em _design/textos-seo1-auditoria.md): link para o Diagnóstico 360° nas páginas de Eficiência, /quem-somos e /contato; /servicos com o diagnóstico como botão principal; região Belo Horizonte e região metropolitana no rodapé, em /quem-somos, no hub de Subestações, em /contato e nos títulos/descrições; JSON-LD com @id #empresa; clique_diagnostico também nas internas; página 404.html.
 - GA-1: o GA4 (G-2TLLY5G438) só carrega em www.afbenergia.com.br. Em qualquer outro endereço (Preview, localhost, testes) o gtag.js não é inserido; gtag() e dataLayer continuam existindo como fila local. Consent Mode (negado por padrão, liberado com "Aceitar") sem mudança.
+- Bloco I na v2-estrutura: Home aprovada no commit d87a8b6; páginas /servicos/energia-solar e /servicos/carregadores-veiculares; dois cartões novos em /servicos; terceira coluna no menu; nova frase no rodapé; sitemap com 23 URLs. A seção 1 de _design/textos-i-inteligencia-energetica.md é obsoleta; as seções 2 a 5 continuam válidas.
 - Pendências conhecidas (não mexer sem prompt):
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
