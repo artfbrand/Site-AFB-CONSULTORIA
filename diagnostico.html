@@ -232,12 +232,108 @@ body.final header.top, body.final #nav{display:none}
 .toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--forest); color:var(--surface); padding:10px 18px; border-radius:var(--r-pill); font-size:.875rem; opacity:0; pointer-events:none; transition:opacity .2s; box-shadow:var(--shadow-float)}
 .toast.on{opacity:1}
 
+
+/* ---------- layout executivo do diagnóstico ---------- */
+body{
+  min-height:100vh;
+  background-color:var(--canvas);
+  background-image:
+    radial-gradient(circle at 8% 10%, rgba(91,168,122,.13), transparent 30rem),
+    linear-gradient(rgba(61,127,97,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61,127,97,.035) 1px, transparent 1px);
+  background-size:auto,48px 48px,48px 48px;
+}
+.wrap{max-width:1180px; padding:0 24px 96px}
+.topbar{padding:18px 4px 16px}
+.topbar-logo img{height:62px}
+.topbar-back{display:inline-flex; align-items:center; min-height:40px; padding:8px 12px; border:1px solid var(--line); border-radius:var(--r-pill); background:rgba(255,255,255,.7); backdrop-filter:blur(10px); font-weight:500}
+.form-layout{display:grid; grid-template-columns:minmax(310px,.78fr) minmax(0,1.42fr); gap:30px; align-items:start; padding-top:24px}
+.authority{position:sticky; top:24px; overflow:hidden; min-height:700px; padding:38px 34px 32px; border-radius:28px; color:#fff; background:var(--forest); box-shadow:0 24px 70px rgba(13,60,31,.2)}
+.authority::before{content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 88% 4%, rgba(246,144,102,.24), transparent 16rem),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size:auto,42px 42px,42px 42px}
+.authority header.top{position:relative; z-index:1; padding:0}
+.authority .kicker{display:inline-flex; align-items:center; gap:8px; padding:7px 11px; border:1px solid rgba(255,255,255,.16); border-radius:var(--r-pill); color:rgba(255,255,255,.78); font-size:.7rem; font-weight:600; letter-spacing:.08em}
+.authority .kicker::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--orange); box-shadow:0 0 0 5px rgba(246,144,102,.12)}
+.authority h1{max-width:none; margin:22px 0 18px; color:#fff; text-align:left; font-size:2.35rem; line-height:1.08}
+.authority header.top p{max-width:48ch; margin:0 0 12px; color:rgba(255,255,255,.72); font-size:.9rem; line-height:1.65}
+.trust-list{position:relative; z-index:1; display:grid; gap:8px; margin:24px 0 26px; padding:0; list-style:none}
+.trust-list li{display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid rgba(255,255,255,.11); border-radius:12px; background:rgba(255,255,255,.055); color:rgba(255,255,255,.88); font-size:.8rem}
+.trust-list li::before{content:"✓"; display:grid; place-items:center; width:20px; height:20px; flex:0 0 20px; border-radius:50%; color:var(--forest); background:var(--orange); font-size:.7rem; font-weight:700}
+.step-list{position:relative; z-index:1; display:grid; gap:5px; margin:0; padding:0; list-style:none}
+.step-list li{display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:center; min-height:36px; padding:4px 7px; border-radius:10px; color:rgba(255,255,255,.48); font-size:.76rem; transition:background .2s,color .2s}
+.step-list .step-index{display:grid; place-items:center; width:26px; height:26px; border:1px solid rgba(255,255,255,.16); border-radius:50%; font-size:.68rem; font-weight:600}
+.step-list li.done{color:rgba(255,255,255,.68)}
+.step-list li.done .step-index{border-color:rgba(91,168,122,.65); background:rgba(91,168,122,.18)}
+.step-list li.current{color:#fff; background:rgba(255,255,255,.09); font-weight:600}
+.step-list li.current .step-index{border-color:var(--orange); color:var(--forest); background:var(--orange); box-shadow:0 0 0 4px rgba(246,144,102,.12)}
+.form-workspace{min-width:0}
+.progress-card{margin-bottom:14px; padding:15px 20px 13px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.82); box-shadow:var(--shadow-card); backdrop-filter:blur(12px)}
+.progress-card .rail-label{margin:0; color:var(--ink2); font-size:.8rem; font-weight:600}
+.progress-card .rail{margin:10px 0 0; gap:6px}
+.progress-card .rail span{height:5px}
+.panel{position:relative; overflow:hidden; margin:0; padding:32px 30px 14px; border:1px solid var(--line); border-left:1px solid var(--line); border-radius:22px; box-shadow:0 18px 55px rgba(13,60,31,.09)}
+.panel::before{content:""; position:absolute; inset:0 0 auto; height:4px; background:var(--tint,var(--accent))}
+.panel > h2{font-family:var(--font-display); font-size:1.55rem; line-height:1.2; color:var(--forest)}
+.panel > .note{margin-top:7px; margin-bottom:24px; font-size:.9rem; line-height:1.6}
+.q{padding:21px 0}
+.q > label.qt,.qt{font-size:.95rem; font-weight:600; line-height:1.45}
+.qt .n{display:inline-grid; place-items:center; width:25px; height:25px; margin-right:8px; border-radius:8px; color:var(--tint,var(--accent)); background:color-mix(in srgb,var(--tint,var(--accent)) 10%,#fff); font-size:.76rem; font-weight:700}
+.hint{margin:7px 0 12px; padding-left:34px}
+.opts,.opts.stack{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin-top:12px}
+.opt span{position:relative; display:flex; align-items:center; min-height:54px; width:100%; padding:11px 13px 11px 43px; border:1px solid rgba(61,127,97,.16); border-radius:14px; background:#fbfdfb; font-size:.84rem; line-height:1.35; box-shadow:0 1px 0 rgba(13,60,31,.02); transition:border-color .2s,box-shadow .2s,background .2s,transform .2s}
+.opt span::before{content:""; position:absolute; left:14px; top:50%; width:17px; height:17px; border:1.5px solid rgba(61,127,97,.35); border-radius:5px; transform:translateY(-50%); background:#fff}
+.opt input[type=radio] + span::before{border-radius:50%}
+.opt:hover span{border-color:rgba(61,127,97,.4); transform:translateY(-1px); box-shadow:0 7px 18px rgba(13,60,31,.07)}
+.opt input:checked + span{border-color:var(--tint,var(--accent)); background:color-mix(in srgb,var(--tint,var(--accent)) 9%,#fff); box-shadow:0 0 0 2px color-mix(in srgb,var(--tint,var(--accent)) 14%,transparent); font-weight:600}
+.opt input:checked + span::before{border-color:var(--tint,var(--accent)); background:var(--tint,var(--accent)); box-shadow:inset 0 0 0 4px #fff}
+.opt input[type=checkbox]:checked + span::before{content:"✓"; display:grid; place-items:center; color:#fff; box-shadow:none; font-size:.7rem; font-weight:700}
+input[type=text],input[type=email],input[type=tel],textarea{border-radius:13px; background:#fbfdfb; border-color:rgba(61,127,97,.18)}
+.file-box{position:relative; padding:24px; border-width:1.5px; border-color:rgba(61,127,97,.28); border-radius:16px; background:linear-gradient(135deg,rgba(91,168,122,.08),rgba(255,255,255,.96))}
+.file-box input[type=file]::file-selector-button{padding:10px 16px; border-color:rgba(61,127,97,.24); box-shadow:0 4px 14px rgba(13,60,31,.07)}
+.nav{position:static; z-index:4; margin-top:14px; padding:12px; border:1px solid rgba(61,127,97,.14); border-radius:18px; background:rgba(255,255,255,.9); box-shadow:0 16px 42px rgba(13,60,31,.14); backdrop-filter:blur(14px)}
+.nav button{min-height:46px}
+.nav .primary{margin-left:auto; min-width:170px}
+.review{margin:22px 0 10px; padding:20px; border:1px solid var(--line); border-radius:16px; background:var(--canvas)}
+.review h3{margin:0 0 14px; font-family:var(--font-display); font-size:1.18rem}
+.review dl{display:grid; grid-template-columns:minmax(120px,.45fr) 1fr; gap:8px 14px; margin:0; font-size:.8rem}
+.review dt{color:var(--ink3)}
+.review dd{margin:0; color:var(--ink); font-weight:500; overflow-wrap:anywhere}
+body.final .authority,body.final .progress-card,body.final #nav{display:none}
+body.final .form-layout{display:block}
+body.final .form-workspace{max-width:680px; margin:0 auto}
+
+@media (max-width:959px){
+  .wrap{max-width:760px; padding-left:20px; padding-right:20px}
+  .form-layout{display:block; padding-top:18px}
+  .authority{position:relative; top:auto; min-height:0; margin-bottom:16px; padding:28px 26px 25px}
+  .authority h1{max-width:20ch; font-size:2rem}
+  .trust-list{grid-template-columns:repeat(2,minmax(0,1fr)); margin-bottom:0}
+  .step-list{display:none}
+  .nav{position:static}
+}
+
 @media (max-width:520px){
   .wrap, header.top, header.top p, h1, .panel, .panel > .note{width:100%; max-width:100%; min-width:0; overflow-wrap:anywhere}
-  h1{font-size:1.5rem}
-  .panel{padding:18px 16px 6px}
-  .opts .opt span{padding:9px 12px}
-  .nav{flex-wrap:wrap}
+  .wrap{padding-left:14px; padding-right:14px}
+  .topbar{padding-left:2px; padding-right:2px}
+  .topbar-logo img{height:50px}
+  .topbar-back{font-size:.8rem; padding:6px 10px}
+  .authority{padding:24px 20px; border-radius:22px}
+  .authority h1{font-size:1.72rem}
+  .authority .kicker{font-size:.62rem}
+  .authority header.top p{font-size:.86rem}
+  .trust-list{grid-template-columns:1fr}
+  .progress-card{padding:13px 15px 12px}
+  .panel{padding:25px 18px 8px; border-radius:19px}
+  .panel > h2{font-size:1.35rem}
+  .opts,.opts.stack{grid-template-columns:1fr}
+  .opt span{min-height:50px; padding:10px 12px 10px 42px}
+  .hint{padding-left:0}
+  .file-box{padding:18px}
+  .nav{bottom:8px; flex-wrap:wrap; padding:9px}
+  .nav .primary{min-width:0}
+  .review{padding:16px}
+  .review dl{grid-template-columns:1fr; gap:2px}
+  .review dd{margin-bottom:8px}
   .nav button{flex:1 1 auto}
   .thanks{padding:56px 16px 48px}
   .thanks-logo{height:104px}
@@ -261,22 +357,36 @@ body.final header.top, body.final #nav{display:none}
   <a class="topbar-back" href="/">← Voltar ao site</a>
 </div>
 
-<header class="top">
-  <div class="kicker">CONSULTORIA EM EFICIÊNCIA ENERGÉTICA, REDUÇÃO DE CUSTOS E SEGURANÇA OPERACIONAL</div>
-  <h1>Diagnóstico Energético 360° para Empresas</h1>
-  <p>Envie sua conta de energia e responda perguntas objetivas sobre custos, contratação, segurança operacional, geração própria e mobilidade elétrica.</p>
-  <p>Leva de 3 a 5 minutos para responder.</p>
-  <p>Não sabe alguma resposta? Sem problema. Selecione a opção ‘Não sei’.</p>
-  <div class="rail" id="rail"></div>
-  <div class="rail-label" id="railLabel"></div>
-</header>
+<div class="form-layout">
+  <aside class="authority" aria-label="Sobre o Diagnóstico Energético 360°">
+    <header class="top">
+      <div class="kicker">CONSULTORIA EM EFICIÊNCIA ENERGÉTICA, REDUÇÃO DE CUSTOS E SEGURANÇA OPERACIONAL</div>
+      <h1>Diagnóstico Energético 360° para Empresas</h1>
+      <p>Envie sua conta de energia e responda perguntas objetivas sobre custos, contratação, segurança operacional, geração própria e mobilidade elétrica.</p>
+      <p>Leva de 3 a 5 minutos para responder.</p>
+      <p>Não sabe alguma resposta? Sem problema. Selecione a opção ‘Não sei’.</p>
+    </header>
+    <ul class="trust-list" aria-label="Diferenciais do diagnóstico">
+      <li>11 anos dentro da Cemig</li>
+      <li>Análise técnica manual pela AFB</li>
+      <li>Conta de energia opcional</li>
+      <li>Dados protegidos</li>
+    </ul>
+    <ol class="step-list" id="stepList" aria-label="Etapas do diagnóstico"></ol>
+  </aside>
 
-<main id="form"></main>
-
-<div class="nav" id="nav">
-  <button class="ghost" id="btnBack" type="button">Voltar</button>
-  <button class="primary" id="btnNext" type="button">Continuar</button>
-  <span class="saved" id="saved"></span>
+  <section class="form-workspace" aria-label="Formulário do diagnóstico">
+    <div class="progress-card">
+      <div class="rail-label" id="railLabel"></div>
+      <div class="rail" id="rail"></div>
+    </div>
+    <main id="form"></main>
+    <div class="nav" id="nav">
+      <button class="ghost" id="btnBack" type="button">Voltar</button>
+      <button class="primary" id="btnNext" type="button">Continuar</button>
+      <span class="saved" id="saved"></span>
+    </div>
+  </section>
 </div>
 
 </div>
@@ -285,7 +395,7 @@ body.final header.top, body.final #nav{display:none}
 <script>
 (function(){
 "use strict";
-var KEY="diag-energetico-360-v4", form=document.getElementById("form"), nav=document.getElementById("nav"), rail=document.getElementById("rail"), railLabel=document.getElementById("railLabel"), saved=document.getElementById("saved"), answers={}, step=0, done=false, sending=false, sendError=false, sentName="", hp="", drawn="", restored=false, errs={}, inicio=Date.now(), faturaArquivo=null;
+var KEY="diag-energetico-360-v4", form=document.getElementById("form"), nav=document.getElementById("nav"), rail=document.getElementById("rail"), railLabel=document.getElementById("railLabel"), saved=document.getElementById("saved"), stepList=document.getElementById("stepList"), answers={}, step=0, done=false, sending=false, sendError=false, sentName="", hp="", drawn="", restored=false, errs={}, inicio=Date.now(), faturaArquivo=null;
 var LOGO='<img class="thanks-logo" src="/assets/images/logo-horizontal-v2.png" alt="AFB Engenharia &amp; Consultoria Elétrica" width="400" height="400">', WA="https://wa.me/5531975549075?text=", EMAIL_RE=/^[^\s@<>()",;]+@[^\s@<>()",;]+\.[^\s@<>()",;]{2,}$/;
 var MAX_ARQUIVO=3*1024*1024, TIPOS_ARQUIVO=["application/pdf","image/jpeg","image/png"];
 function F(id,label,kind,opts,required,show,hint,type,exclusive){return{id:id,label:label,kind:kind,opts:opts||[],required:required!==false,show:show,hint:hint,type:type||"text",exclusive:exclusive||[]};}
@@ -294,7 +404,7 @@ var sections=[
 {id:"empresa",title:"Empresa e contato",note:"Começamos com os dados essenciais para entender a operação e preparar o retorno da AFB.",tint:"var(--ink2)",fields:[
 F("empresa","Nome da empresa","text"),F("cidade","Cidade e Estado","text"),F("atividade","Qual é a principal atividade da empresa?","text",[],true,null,"Ex.: indústria de alimentos, metalúrgica, comércio, hospital ou agronegócio."),F("nome","Nome do responsável pelo diagnóstico","text"),F("cargo","Cargo","text",[],false),F("email","E-mail","text",[],true,null,null,"email"),F("whatsapp","WhatsApp","text",[],true,null,"Digite com DDD.","tel")]},
 {id:"fatura",title:"Fatura e perfil de consumo",note:"A conta de energia é opcional, mas permite iniciar a auditoria técnica e o Relatório GMT com dados reais.",tint:"var(--accent)",fields:[
-F("arquivoFatura","Anexe uma conta de energia recente, se desejar","file",[],false,null,"PDF, JPG ou PNG de até 3 MB. O arquivo será enviado com o diagnóstico para análise da AFB."),F("fatura","Qual é o valor médio da conta de energia por mês?","radio",["Até R$ 5 mil","De R$ 5 mil a R$ 20 mil","De R$ 20 mil a R$ 50 mil","Acima de R$ 50 mil","Não sei"]),F("entrada","Como a energia chega à empresa?","radio",["Alta tensão — temos subestação, cabine ou transformador próprio",low,"Não sei"]),F("unidades","Quantas unidades ou plantas a empresa possui?","radio",["1","2 ou 3","4 ou mais"])]},
+F("arquivoFatura","Anexe uma conta de energia recente","file",[],false,null,"PDF, JPG ou PNG de até 3 MB. O arquivo será enviado com o diagnóstico para análise da AFB."),F("fatura","Qual é o valor médio da conta de energia por mês?","radio",["Até R$ 5 mil","De R$ 5 mil a R$ 20 mil","De R$ 20 mil a R$ 50 mil","Acima de R$ 50 mil","Não sei"]),F("entrada","Como a energia chega à empresa?","radio",["Alta tensão — temos subestação, cabine ou transformador próprio",low,"Não sei"]),F("unidades","Quantas unidades ou plantas a empresa possui?","radio",["1","2 ou 3","4 ou mais"])]},
 {id:"objetivos",title:"Objetivos e investimento",note:"Estas respostas ajudam a priorizar soluções compatíveis com o momento da empresa.",tint:"var(--hot)",fields:[
 F("prioridades","O que a empresa deseja avaliar?","check",["Reduzir o custo da energia","Eliminar multas e cobranças evitáveis","Evitar falhas e paradas","Comparar formas de contratação de energia","Avaliar geração solar","Instalar carregadores veiculares","Preparar uma expansão da operação"],true,null,"Pode escolher mais de uma opção."),F("investimento","Qual é a disposição da empresa para investir?","radio",["Prefere começar por soluções de menor investimento","Pode investir se o ROI e o payback forem atrativos","Tem interesse em financiamento","Quer comparar soluções com e sem investimento","Ainda não sabe"]),F("prazoDecisao","Em qual prazo a empresa pretende tomar uma decisão?","radio",["Até 3 meses","De 3 a 6 meses","De 6 a 12 meses","Mais de 12 meses","Está apenas avaliando possibilidades"])]},
 {id:"energia",title:"Contratação e gestão da fatura",note:"Avaliamos o modelo de compra, a gestão tarifária e possíveis custos evitáveis.",tint:"var(--accent)",fields:[
@@ -319,14 +429,15 @@ function load(){try{var v=sessionStorage.getItem(KEY),data=v?JSON.parse(v):null;
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");}
 function clearHidden(){allFields().forEach(function(f){if(!isVisible(f))delete answers[f.id];}); sections.forEach(function(s){if(s.show&&!s.show())s.fields.forEach(function(f){delete answers[f.id];});});}
 function track(name){try{if(typeof gtag==="function")gtag("event",name);}catch(e){}}
-function field(f,n){var val=answers[f.id], err="err-"+f.id, desc=(f.hint?"hint-"+f.id+" ":"")+err, label='<span class="n">'+n+'.</span>'+esc(f.label)+(f.required?"":" (opcional)"), hint=f.hint?'<p class="hint" id="hint-'+f.id+'">'+esc(f.hint)+"</p>":"", h='<div class="q" data-id="'+f.id+'">';
+function field(f,n){var val=answers[f.id], err="err-"+f.id, desc=(f.hint?"hint-"+f.id+" ":"")+err, label='<span class="n">'+n+'.</span>'+esc(f.label)+(f.required||f.kind==="file"?"":" (opcional)"), hint=f.hint?'<p class="hint" id="hint-'+f.id+'">'+esc(f.hint)+"</p>":"", h='<div class="q" data-id="'+f.id+'">';
 if(f.kind==="consent")h+='<label class="consent"><input id="'+f.id+'" data-field="'+f.id+'" type="checkbox" aria-describedby="'+err+'"'+(val===true?" checked":"")+'><span>'+f.label+'</span></label>';
 else if(f.kind==="text")h+='<label class="qt" for="'+f.id+'">'+label+'</label>'+hint+'<input id="'+f.id+'" data-field="'+f.id+'" type="'+f.type+'" value="'+esc(val)+'" autocomplete="'+(f.type==="email"?"email":"off")+'" aria-describedby="'+desc+'">';
 else if(f.kind==="textarea")h+='<label class="qt" for="'+f.id+'">'+label+'</label>'+hint+'<textarea id="'+f.id+'" data-field="'+f.id+'" aria-describedby="'+desc+'">'+esc(val)+"</textarea>";
 else if(f.kind==="file")h+='<label class="qt" for="'+f.id+'">'+label+'</label>'+hint+'<div class="file-box"><input id="'+f.id+'" data-field="'+f.id+'" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="'+desc+'">'+(faturaArquivo?'<p class="file-status ok">Arquivo selecionado: '+esc(faturaArquivo.name)+'</p><button class="file-remove" id="removerFatura" type="button">Remover arquivo</button>':'<p class="file-status">Nenhum arquivo selecionado.</p>')+'</div>';
 else {h+='<fieldset class="qf" aria-describedby="'+desc+'"><legend class="qt">'+label+'</legend>'+hint+'<div class="opts '+(f.opts.length>5?"stack":"")+'">'; f.opts.forEach(function(o){var check=f.kind==="check"?Array.isArray(val)&&val.indexOf(o)>-1:val===o;h+='<label class="opt"><input data-field="'+f.id+'" type="'+(f.kind==="check"?"checkbox":"radio")+'" name="'+f.id+'" value="'+esc(o)+'"'+(check?" checked":"")+'><span>'+esc(o)+'</span></label>';});h+='</div></fieldset>';} return h+'<p class="field-error" id="'+err+'" aria-live="polite"></p></div>';}
+function resumo(){var itens=[["Empresa",answers.empresa],["Objetivos",Array.isArray(answers.prioridades)?answers.prioridades.join(", "):answers.prioridades],["Conta de energia",faturaArquivo?faturaArquivo.name:"Não anexada"],["Contratação",answers.interesseContratacao],["Geração solar",answers.interesseSolar],["Carregadores veiculares",answers.interesseCarregadores]];return '<section class="review" aria-label="Resumo do diagnóstico"><h3>Resumo do diagnóstico</h3><dl>'+itens.map(function(item){return '<dt>'+esc(item[0])+'</dt><dd>'+esc(item[1]||"Não informado")+'</dd>';}).join("")+'</dl></section>';}
 function draw(){clearHidden(); drawn=signature(); var vs=visibleSections(); if(step>=vs.length)step=vs.length-1; document.body.classList.toggle("final",done||sendError); if(sendError){form.innerHTML='<section class="thanks send-fail" id="sendError" role="alert"><p id="sendErrorMsg" tabindex="-1">Não foi possível enviar agora. Tente novamente ou <a href="'+WA+encodeURIComponent("Olá, tentei enviar o Diagnóstico 360° pelo site e não consegui.")+'" target="_blank" rel="noopener">fale com a gente pelo WhatsApp</a>.</p><button class="primary" id="retry" type="button">Tentar novamente</button></section>';nav.innerHTML="";return;} if(done){form.innerHTML='<section class="thanks">'+LOGO+'<h2 id="thanksTitle" tabindex="-1">Diagnóstico recebido!</h2><p>Obrigado, '+esc(sentName)+'. Vamos analisar suas respostas e entrar em contato em breve com o relatório das oportunidades encontradas.</p><a class="primary" href="/">Voltar ao site</a><a class="wa-link" href="'+WA+encodeURIComponent("Olá, acabei de enviar o Diagnóstico 360° pelo site.")+'" target="_blank" rel="noopener">Quer adiantar? Fale pelo WhatsApp</a></section>';nav.innerHTML=""; rail.innerHTML=Array(vs.length+1).join('<span class="done"></span>');railLabel.textContent="";return;}
-var s=vs[step], q=0, last=step===vs.length-1, html='<section class="step on"><div class="panel" style="--tint:'+s.tint+'"><h2 tabindex="-1">'+esc(s.title)+'</h2><p class="note">'+esc(s.note)+'</p>';s.fields.forEach(function(f){if(isVisible(f))html+=field(f,f.kind==="consent"?0:++q);});if(s.id==="contato")html+='<div class="hp" aria-hidden="true"><label for="site">Site</label><input type="text" id="site" name="site" tabindex="-1" autocomplete="off" value="'+esc(hp)+'"></div>';html+='</div></section>';form.innerHTML=html;rail.innerHTML=vs.map(function(_,i){return '<span class="'+(i<step?"done":i===step?"now":"")+'"></span>';}).join("");railLabel.textContent="Etapa "+(step+1)+" de "+vs.length;nav.innerHTML='<button class="ghost" id="btnBack" type="button"'+(step===0?" disabled":"")+'>Voltar</button><button class="primary" id="btnNext" type="button">'+(last?"Enviar diagnóstico":"Continuar")+'</button><span class="saved" id="saved"></span>';saved=document.getElementById("saved");Object.keys(errs).forEach(function(id){mark(id,errs[id]);});}
+var s=vs[step], q=0, last=step===vs.length-1, html='<section class="step on"><div class="panel" style="--tint:'+s.tint+'"><h2 tabindex="-1">'+esc(s.title)+'</h2><p class="note">'+esc(s.note)+'</p>';s.fields.forEach(function(f){if(isVisible(f))html+=field(f,f.kind==="consent"?0:++q);});if(s.id==="contato")html+=resumo()+'<div class="hp" aria-hidden="true"><label for="site">Site</label><input type="text" id="site" name="site" tabindex="-1" autocomplete="off" value="'+esc(hp)+'"></div>';html+='</div></section>';form.innerHTML=html;rail.innerHTML=vs.map(function(_,i){return '<span class="'+(i<step?"done":i===step?"now":"")+'"></span>';}).join("");railLabel.textContent="Etapa "+(step+1)+" de "+vs.length+" — "+s.title;stepList.innerHTML=vs.map(function(x,i){return '<li class="'+(i<step?"done":i===step?"current":"")+'"'+(i===step?' aria-current="step"':"")+'><span class="step-index">'+(i+1)+'</span><span>'+esc(x.title)+'</span></li>';}).join("");nav.innerHTML='<button class="ghost" id="btnBack" type="button"'+(step===0?" disabled":"")+'>Voltar</button><button class="primary" id="btnNext" type="button">'+(last?"Enviar para análise técnica":"Continuar")+'</button><span class="saved" id="saved"></span>';saved=document.getElementById("saved");Object.keys(errs).forEach(function(id){mark(id,errs[id]);});}
 function toStep(){var top=rail.getBoundingClientRect().top+window.pageYOffset-12, reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;window.scrollTo({top:Math.max(0,top),behavior:reduce?"auto":"smooth"});var t=form.querySelector(".panel > h2");if(t)t.focus({preventScroll:true});}
 function refocus(t){var els=form.querySelectorAll('[data-field="'+t.getAttribute("data-field")+'"]');for(var i=0;i<els.length;i++){if(els[i].value===t.value){els[i].focus();return;}}}
 function selecionarArquivo(input){var arquivo=input.files&&input.files[0], f=allFields().filter(function(x){return x.id==="arquivoFatura";})[0];clearErr("arquivoFatura");if(!arquivo){faturaArquivo=null;draw();return;}var ext=/\.(pdf|jpe?g|png)$/i.test(arquivo.name), tipo=TIPOS_ARQUIVO.indexOf(arquivo.type)>-1;if(!ext||!tipo){faturaArquivo=null;input.value="";invalid(f,"Envie um arquivo PDF, JPG ou PNG.");return;}if(arquivo.size>MAX_ARQUIVO){faturaArquivo=null;input.value="";invalid(f,"O arquivo deve ter no máximo 3 MB.");return;}faturaArquivo=arquivo;draw();}
