@@ -363,3 +363,20 @@ a.btn-whatsapp:focus-visible { outline: 3px solid #FAF9F6; outline-offset: 2px; 
   .btn-par { flex-direction: column; align-items: stretch; }
   .btn-par > a { width: 100%; justify-content: center; min-height: 48px; text-align: center; }
 }
+
+/* Bloco "Engenharia responsável" (páginas de destino do Google Ads): foto ao lado do texto no desktop, empilhado no celular.
+   Fora do .svc-detail (hub de Eficiência) ganha largura e respiro próprios; dentro dele segue a coluna da página. */
+.eng-resp { max-width: 1180px; margin: 0 auto; padding: 4rem 3rem; }
+.svc-detail .eng-resp { max-width: none; margin: 4rem 0 0; padding: 0; }
+.eng-resp-card { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 2rem; align-items: center; background: var(--white); border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 1.6rem; }
+.eng-resp-foto { margin: 0; }
+.eng-resp-foto img { display: block; width: 100%; height: auto; aspect-ratio: 480 / 625; object-fit: cover; border-radius: var(--r-card); }
+.eng-resp-titulo { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.eng-resp-nome { margin-top: .6rem; font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; line-height: 1.2; color: var(--forest); }
+.eng-resp-linha { margin-top: .3rem; font-size: .95rem; font-weight: 600; color: var(--sage); }
+.eng-resp-texto { margin-top: .9rem; max-width: 60ch; font-size: 1rem; line-height: 1.7; color: var(--sage); }
+@media (max-width: 1024px) { .eng-resp { padding: 3rem 1.5rem; } }
+@media (max-width: 767px) {
+  .eng-resp-card { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.2rem; }
+  .eng-resp-foto img { max-width: 240px; }
+}
