@@ -17,8 +17,8 @@
 .blog-body li { padding-left: .2rem; }
 .blog-body li::marker { color: var(--accent); }
 .blog-body strong { color: var(--forest); font-weight: 600; }
-.blog-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-.blog-body a:hover { color: var(--forest); }
+.blog-body a:not(.btn-whatsapp) { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.blog-body a:not(.btn-whatsapp):hover { color: var(--forest); }
 .blog-abertura p:first-child { margin-top: 0; font-size: 1.15rem; color: var(--forest); }
 
 /* Sumário */
