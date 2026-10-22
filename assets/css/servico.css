@@ -228,7 +228,7 @@
 /* número fantasma */
 .ds-mdeco-ghost {
   position: absolute; top: .35rem; right: 1.1rem; z-index: 2;
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', 'Playfair Fallback', Georgia, serif;
   font-size: 5.5rem; font-weight: 700; line-height: 1;
   letter-spacing: -.04em; pointer-events: none;
   color: rgba(255,255,255,.06);

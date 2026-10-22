@@ -108,7 +108,7 @@ main:has(> .svc-detail)::before,
 .svc-step-num, .ms-how-num, .ee-how-num {
   position: static; display: block; width: auto; padding: 0; text-align: left;
   background: none;
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', 'Playfair Fallback', Georgia, serif;
   font-size: 2rem; font-weight: 700; color: #F69066;
   line-height: 1; letter-spacing: -.03em;
   margin-bottom: .75rem;
