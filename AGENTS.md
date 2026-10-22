@@ -113,6 +113,7 @@
   - bloco "Artigos sobre este tema" em 13 páginas de serviço (Eficiência e Subestações).
   - formulário de WhatsApp: nomes "Blog" e "Blog — {tema}" e pré-marcação por artigo em assets/js/whatsapp-lead.js.
   - 7 links internos da lista do .md não foram colocados porque a frase exata não existe no texto aprovado (ver relatório do Bloco B).
+- Manutenção: Ao alterar CSS ou HTML de página interna, rode node tools/css-critico/critico.mjs antes do commit (ver tools/css-critico/LEIA-ME). Fontes servidas em assets/fonts/ (sem Google Fonts).
 - Pendências conhecidas (não mexer sem prompt):
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
