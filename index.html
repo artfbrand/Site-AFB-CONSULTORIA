@@ -3581,11 +3581,15 @@
   </button>
 
   <!-- ═══ SCRIPTS ══════════════════════════════════════════════════════ -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="/assets/js/cookies.js" defer></script>
+  <script src="/assets/js/whatsapp-lead.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <script>
+  /* Menu, imagem, partículas, cursor e voltar ao topo rodam na hora. Lenis e GSAP vêm com defer (não travam a leitura da
+     página) e os trechos que dependem deles rodam no DOMContentLoaded, logo depois de carregados. */
   (function () {
     'use strict';
 
@@ -3634,12 +3638,15 @@
     }
 
     /* ── Lenis smooth scroll ──────────────────────────────────────── */
-    if (!prefersReduced && typeof Lenis !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function () {
+    /* em telas de toque vale a rolagem nativa do celular */
+    if (!prefersReduced && typeof Lenis !== 'undefined' && !window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
       const lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
       window.lenis = lenis;
       gsap.ticker.add((t) => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);
     }
+    });
 
     /* ── Menu: hambúrguer, acordeão mobile e painel "Serviços" ──── */
     const root = document.documentElement;
@@ -3786,6 +3793,7 @@
       });
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
     /* ── GSAP word splitter ──────────────────────────────────────── */
     function splitWords(el) {
       /* preserve accent-text span as a single word unit */
@@ -4076,6 +4084,7 @@
       document.querySelectorAll('#ct-header,#ct-left,#ct-left .ct-wa-btn')
         .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
     }
+    });
 
     /* ── Custom cursor — 12 segmentos, GPU via translate3d ─────────── */
     const ring = document.getElementById('cursor-ring');
@@ -4230,7 +4239,5 @@
 
   })();
   </script>
-<script src="/assets/js/cookies.js" defer></script>
-<script src="/assets/js/whatsapp-lead.js" defer></script>
 </body>
 </html>
