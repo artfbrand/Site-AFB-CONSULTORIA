@@ -158,7 +158,7 @@ function montarEmail(lead) {
   var texto = ["Novo contato WhatsApp", ""].concat(linhas.map(function (l) {
     return l[0] + ": " + (l[1] || "—") + (l[2] ? " (" + l[2] + ")" : "");
   })).join("\n");
-  return { assunto: umaLinha("Novo contato WhatsApp — " + lead.perfil + " — " + lead.cidade), html: html, texto: texto };
+  return { assunto: umaLinha("Novo contato WhatsApp — " + lead.perfil + " — " + lead.cidade), html: html, texto: texto, nomeRemetente: "Site AFB" };
 }
 
 // "smtp", "resend", "sem-config" ou "falhou". Nunca bloqueia a resposta por erro.

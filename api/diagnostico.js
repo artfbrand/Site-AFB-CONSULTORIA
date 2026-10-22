@@ -195,8 +195,10 @@ function montarEmail(dados) {
   };
 }
 
-function remetente(from) {
+// nome: nome exibido opcional (o lead do WhatsApp usa "Site AFB"); sem ele, vale o padrão do diagnóstico.
+function remetente(from, nome) {
   from = String(from).trim();
+  if (nome) return nome + " <" + from.replace(/^.*<([^>]+)>.*$/, "$1").trim() + ">";
   return from.indexOf("<") > -1 ? from : "AFB Diagnóstico <" + from + ">";
 }
 
@@ -228,7 +230,7 @@ async function enviarSmtp(cfg, para, replyTo, email) {
   try {
     var info = await Promise.race([
       transporte.sendMail({
-        from: { name: "AFB Diagnóstico", address: cfg.user },
+        from: { name: email.nomeRemetente || "AFB Diagnóstico", address: cfg.user },
         to: para,
         replyTo: replyTo,
         subject: email.assunto,
@@ -261,7 +263,7 @@ async function enviarResend(chave, de, para, replyTo, email) {
       method: "POST",
       headers: { "Authorization": "Bearer " + chave, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: remetente(de),
+        from: remetente(de, email.nomeRemetente),
         to: para,
         reply_to: replyTo,
         subject: email.assunto,
