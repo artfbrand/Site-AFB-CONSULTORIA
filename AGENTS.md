@@ -84,13 +84,20 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- main com tudo até 7548201 (Bloco SEO-1 e SEO-1b no ar); a v2-estrutura tem o Bloco GA-1, a ser publicado no merge seguinte.
+- main com tudo até 1850d5b (GA-1, Bloco I e novo Diagnóstico 360° no ar); a v2-estrutura tem o Bloco W (lead WhatsApp), a ser publicado no merge seguinte.
 - Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
 - Menu: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 24 páginas com menu e na 404. O painel tem os grupos Eficiência Energética, Subestações e Energia Solar e Mobilidade.
 - Revisão final no ar: banner de cookies compacto no celular, marca-d'água fatura.webp na Home, botão do rodapé "Fazer o Diagnóstico 360°" e limpeza dos arquivos antigos.
 - SEO-1 e SEO-1b no ar (textos em _design/textos-seo1-auditoria.md): link para o Diagnóstico 360° nas páginas de Eficiência, /quem-somos e /contato; /servicos com o diagnóstico como botão principal; região Belo Horizonte e região metropolitana no rodapé, em /quem-somos, no hub de Subestações, em /contato e nos títulos/descrições; JSON-LD com @id #empresa; clique_diagnostico também nas internas; página 404.html.
 - GA-1: o GA4 (G-2TLLY5G438) só carrega em www.afbenergia.com.br. Em qualquer outro endereço (Preview, localhost, testes) o gtag.js não é inserido; gtag() e dataLayer continuam existindo como fila local. Consent Mode (negado por padrão, liberado com "Aceitar") sem mudança.
 - Bloco I na v2-estrutura: Home aprovada no commit d87a8b6; páginas /servicos/energia-solar e /servicos/carregadores-veiculares; dois cartões novos em /servicos; terceira coluna no menu; nova frase no rodapé; sitemap com 23 URLs. A seção 1 de _design/textos-i-inteligencia-energetica.md é obsoleta; as seções 2 a 5 continuam válidas.
+- Bloco W na v2-estrutura (lead WhatsApp):
+  - todo link de WhatsApp (a[href*="wa.me"] e api.whatsapp.com) abre a janela "Conte um pouco sobre a sua energia" (assets/js/whatsapp-lead.js + assets/css/whatsapp-lead.css, nas 24 páginas com menu, na 404 e no /diagnostico). Exceção: links com data-wa-direto (fallback da tela de erro do /diagnostico).
+  - ao enviar: WhatsApp abre na hora com a mensagem montada (celular: mesma aba; desktop: nova aba) e os dados vão em paralelo para api/lead-whatsapp.js, que grava na planilha Google (webhook Apps Script) e avisa por e-mail em DIAG_TO pelo mesmo SMTP/Resend do diagnóstico (api/diagnostico.js exporta as funções de envio em module.exports.envio).
+  - variáveis novas só na Vercel: SHEETS_WEBHOOK_URL e SHEETS_TOKEN. Sem SHEETS_WEBHOOK_URL a função responde ok e só registra no log.
+  - GA4: abertura_form_whatsapp (ao abrir), envio_form_whatsapp (perfil, faixa_gasto, pagina) e clique_whatsapp agora no envio, não mais no clique do botão.
+  - script da planilha e passo a passo em tools/google-apps-script/ (pasta fora do deploy pelo .vercelignore).
+  - /privacidade com a seção "Contato pelo WhatsApp".
 - Pendências conhecidas (não mexer sem prompt):
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
