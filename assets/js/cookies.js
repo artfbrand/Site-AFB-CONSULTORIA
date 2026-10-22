@@ -6,7 +6,10 @@
   function getChoice() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function setChoice(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
   function updateConsent(v) {
-    if (typeof window.gtag === 'function') { window.gtag('consent', 'update', { analytics_storage: v }); }
+    if (typeof window.gtag !== 'function') return;
+    /* v = 'granted' (Aceitar) ou 'denied' (Recusar): vale para medição e anúncios */
+    window.gtag('consent', 'update', { analytics_storage: v, ad_storage: v, ad_user_data: v, ad_personalization: v });
+    if (v === 'denied') window.gtag('set', 'ads_data_redaction', true);
   }
   var css =
     '.afb-ck{position:fixed;left:16px;bottom:16px;max-width:380px;z-index:10000;background:#fff;border:1px solid #DCE7DF;border-radius:14px;box-shadow:0 8px 30px rgba(13,60,31,.12);padding:16px 18px;font-family:var(--font-body,Inter,system-ui,sans-serif);color:var(--forest,#0D3C1F)}' +

@@ -15,7 +15,10 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   var afbConsent = null; try { afbConsent = localStorage.getItem('afb_cookie_consent'); } catch (e) {}
-  gtag('consent', 'default', { analytics_storage: afbConsent === 'granted' ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  /* Consentimento: "Aceitar" no aviso de cookies libera medição e anúncios; sem escolha ou "Recusar", tudo negado. */
+  var afbSinal = afbConsent === 'granted' ? 'granted' : 'denied';
+  gtag('consent', 'default', { analytics_storage: afbSinal, ad_storage: afbSinal, ad_user_data: afbSinal, ad_personalization: afbSinal });
+  if (afbSinal === 'denied') gtag('set', 'ads_data_redaction', true);
   gtag('js', new Date());
   gtag('config', 'G-2TLLY5G438');
   document.addEventListener('click', function (e) {
