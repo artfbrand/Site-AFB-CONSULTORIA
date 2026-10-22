@@ -9,3 +9,4 @@ package-lock.json
 .env*
 assets/icons/demo.html
 Logo em Alta Resolução - VARIAÇAO 2.png
+tools/

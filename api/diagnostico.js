@@ -335,3 +335,6 @@ module.exports = async function handler(req, res) {
   console.log("diagnostico: 502 nenhum envio aceito");
   return responder(res, 502, { ok: false });
 };
+
+// Envio de e-mail reaproveitado por api/lead-whatsapp.js (mesmas variáveis SMTP/Resend, sem duplicar credenciais).
+module.exports.envio = { configSmtp: configSmtp, enviarSmtp: enviarSmtp, enviarResend: enviarResend, destinatarios: destinatarios };
