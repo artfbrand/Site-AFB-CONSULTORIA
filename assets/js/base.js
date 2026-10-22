@@ -146,4 +146,20 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // Efeitos visuais (GSAP, ScrollTrigger e efeitos.js) só depois do primeiro desenho: carregam no evento load, na ordem.
+  // Lenis (rolagem suave) só em telas sem toque; no celular vale a rolagem nativa.
+  // Menu, botões, formulário do WhatsApp e cookies não dependem deles e funcionam desde o primeiro clique.
+  var efeitos = ['https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', '/assets/js/efeitos.js'];
+  if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) efeitos.unshift('https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js');
+  var carregarEfeitos = function () {
+    efeitos.forEach(function (src) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.async = false; // executa na ordem da lista
+      document.body.appendChild(s);
+    });
+  };
+  if (document.readyState === 'complete') carregarEfeitos();
+  else window.addEventListener('load', carregarEfeitos);
 })();

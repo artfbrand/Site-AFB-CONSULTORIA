@@ -473,14 +473,16 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
-  <script src="/assets/js/base.js"></script>
+  <script src="/assets/js/base.js" defer></script>
 
 
-  <script src="/assets/js/servico.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="/assets/js/efeitos.js" defer></script>
+  <script>
+    /* Entrada escalonada do topo (classes ds-intro-*): antes do primeiro desenho. O resto do servico.js vem com defer. */
+    [['.svc-breadcrumb',1],['.svc-back',2],['.svc-detail-kicker',3],['.svc-highlight',6],['.svc-open-cta',6],['.svc-top-media',7]].forEach(function (p) {
+      var el = document.querySelector(p[0]); if (el) el.classList.add('ds-intro-' + p[1]);
+    });
+  </script>
+  <script src="/assets/js/servico.js" defer></script>
 <script src="/assets/js/cookies.js" defer></script>
 <script src="/assets/js/whatsapp-lead.js" defer></script>
 </body>

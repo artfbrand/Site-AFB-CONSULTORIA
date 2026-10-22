@@ -11,14 +11,9 @@
       document.querySelectorAll(sel).forEach(function (el) { el.classList.add(cls); });
     }
 
-    /* entrada escalonada do topo (CSS puro; o aparecer ao rolar fica com o efeitos.js) */
+    /* a entrada escalonada do topo (ds-intro-*) fica num script embutido na página, antes do primeiro desenho;
+       este arquivo vem com defer */
     var topo = document.querySelector('.svc-top');
-    /* H1 e descrição ficam fora: aparecem na hora (são o elemento de LCP) */
-    [['.svc-breadcrumb',1],['.svc-back',2],['.svc-detail-kicker',3],
-     ['.svc-highlight',6],['.svc-open-cta',6],['.svc-top-media',7]].forEach(function (par) {
-      var el = document.querySelector(par[0]);
-      if (el) el.classList.add('ds-intro-' + par[1]);
-    });
 
     /* efeitos de hover — valem mesmo com movimento reduzido (o CSS neutraliza) */
     marca('.svc-cta-btn', 'ds-sweep');

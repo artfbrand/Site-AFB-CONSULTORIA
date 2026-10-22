@@ -38,7 +38,8 @@
   gsap.registerPlugin(ScrollTrigger);
 
   /* ── Lenis: mesma configuração da Home ───────────────────────────────── */
-  if (typeof window.Lenis !== 'undefined') {
+  /* em telas de toque o celular usa a rolagem nativa (o base.js nem carrega o Lenis nelas) */
+  if (typeof window.Lenis !== 'undefined' && !window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
     var lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
     window.lenis = lenis;
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
@@ -66,7 +67,15 @@
 
   /* ── Aparecer ao rolar ───────────────────────────────────────────────── */
   /* fora: o que o servico.js/hub já anima e o que já foi marcado aqui */
-  function livre(el) { return !el.hasAttribute('data-fx') && !el.closest('.ds-reveal, [class*="ds-intro-"]'); }
+  /* Os efeitos chegam depois do primeiro desenho (base.js): o que já está na tela nessa hora fica como está
+     (escondê-lo para animar seria uma "piscada"). Todas as leituras de posição são feitas aqui, antes de qualquer escrita. */
+  var naTela = new WeakSet(), limiteTela = window.innerHeight * 0.88;
+  document.querySelectorAll('.svc-section > .svc-h2, .ms-h2, .ms-risk-h2, .ms-deliverable-h2, main section .ms-kicker, main section .ms-kicker-dark, .ee-h2, main section .ee-kicker, .legal-page > h2, ' +
+    '.ms-risk-lead, .ms-why-lead, .ms-scope-lead, .svc-faq-list, .svc-related-title, .ee-services-lead, .svc-section > .svc-text, .svc-steps, .ms-how-track, .ee-how-track, .ms-why-photo, .svc-final, ' +
+    '.svc-list, .svc-related-list, .fx-equip, .svc-grid, .contact-grid').forEach(function (el) {
+    if (el.getBoundingClientRect().top < limiteTela) naTela.add(el);
+  });
+  function livre(el) { return !naTela.has(el) && !el.hasAttribute('data-fx') && !el.closest('.ds-reveal, [class*="ds-intro-"]'); }
   function lista(sel) { return Array.prototype.filter.call(document.querySelectorAll(sel), livre); }
 
   var grupos = [];
