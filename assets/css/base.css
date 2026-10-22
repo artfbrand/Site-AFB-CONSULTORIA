@@ -345,3 +345,18 @@ html.afb-menu-aberto .nav { z-index: 10001; }
   .float-wa svg { width: 24px; height: 24px; }
   .back-to-top { right: 1.25rem; bottom: calc(1.25rem + 56px + 12px); }
 }
+
+/* Botão de WhatsApp em destaque: herda tamanho, padding, fonte e raio do botão principal ao lado
+   (ex.: class="svc-cta-btn btn-whatsapp") e troca só as cores. Contraste #0D3C1F sobre #25D366 = 6,3:1. */
+a.btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 48px; background: #25D366; color: #0D3C1F; box-shadow: inset 0 0 0 1px rgba(13,60,31,.22), 0 4px 18px rgba(37,211,102,.28); }
+a.btn-whatsapp:hover { background: #1EBE5A; color: #0D3C1F; transform: translateY(-2px); box-shadow: inset 0 0 0 1px rgba(13,60,31,.22), 0 8px 28px rgba(13,60,31,.28); }
+a.btn-whatsapp:focus-visible { outline: 3px solid #FAF9F6; outline-offset: 2px; box-shadow: 0 0 0 6px #0D3C1F; }
+.btn-whatsapp-icone { width: 1.2em; height: 1.2em; flex-shrink: 0; fill: currentColor; }
+/* Par Diagnóstico + WhatsApp: lado a lado no desktop, um embaixo do outro no celular */
+.btn-par { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.btn-par > a { margin-top: 0; min-height: 48px; }
+.svc-final .btn-par { justify-content: center; margin-top: 2rem; }
+@media (max-width: 600px) {
+  .btn-par { flex-direction: column; align-items: stretch; }
+  .btn-par > a { width: 100%; justify-content: center; min-height: 48px; text-align: center; }
+}
