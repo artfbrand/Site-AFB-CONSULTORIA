@@ -37,7 +37,11 @@
     '/servicos/subestacoes/projeto-de-subestacao': 'Projeto de Subestação',
     '/servicos/subestacoes/obras-de-subestacao': 'Obras e Montagem',
     '/servicos/energia-solar': 'Energia Solar',
-    '/servicos/carregadores-veiculares': 'Carregadores Veiculares'
+    '/servicos/carregadores-veiculares': 'Carregadores Veiculares',
+    '/blog': 'Blog',
+    '/blog/consultoria-eficiencia-energetica-reduzir-custos': 'Blog — Eficiência Energética',
+    '/blog/ensaios-manutencao-subestacao-media-tensao': 'Blog — Subestações',
+    '/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas': 'Blog — Qualidade de Energia'
   };
 
   var caminho = location.pathname.replace(/\/index(\.html)?$/, '/').replace(/\.html$/, '').replace(/\/+$/, '') || '/';
@@ -45,7 +49,9 @@
 
   // Interesse já marcado conforme a página de origem
   function interessePadrao() {
-    if (caminho === '/servicos/eficiencia-energetica/qualidade-de-energia') return INTERESSES[4];
+    if (caminho === '/servicos/eficiencia-energetica/qualidade-de-energia' || caminho === '/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas') return INTERESSES[4];
+    if (caminho === '/blog/consultoria-eficiencia-energetica-reduzir-custos') return INTERESSES[0];
+    if (caminho === '/blog/ensaios-manutencao-subestacao-media-tensao') return INTERESSES[3];
     if (caminho.indexOf('/servicos/eficiencia-energetica') === 0) return INTERESSES[0];
     if (caminho === '/servicos/energia-solar') return INTERESSES[1];
     if (caminho === '/servicos/carregadores-veiculares') return INTERESSES[2];

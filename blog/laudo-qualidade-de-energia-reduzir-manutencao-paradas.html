@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google tag (gtag.js) -->
+<script>
+  /* GA4 só no site oficial: fora de www.afbenergia.com.br (Preview, localhost, testes) o gtag.js não é carregado;
+     gtag() e dataLayer continuam existindo abaixo, só como fila local. */
+  if (location.hostname === 'www.afbenergia.com.br') {
+    (function () { var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2TLLY5G438'; document.head.appendChild(s); })();
+  }
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  var afbConsent = null; try { afbConsent = localStorage.getItem('afb_cookie_consent'); } catch (e) {}
+  gtag('consent', 'default', { analytics_storage: afbConsent === 'granted' ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('js', new Date());
+  gtag('config', 'G-2TLLY5G438');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('wa.me') !== -1 || h.indexOf('api.whatsapp.com') !== -1) {
+      gtag('event', 'clique_whatsapp', { link_url: a.href, pagina: location.pathname });
+    } else if (h.indexOf('mailto:') === 0) {
+      gtag('event', 'clique_email', { pagina: location.pathname });
+    }
+  }, true);
+</script>
+  <title>Laudo de Qualidade de Energia: Menos Manutenção, Paradas e Queima de Equipamentos | AFB Engenharia</title>
+  <meta name="description" content="Entenda como o laudo de qualidade de energia identifica harmônicos, desequilíbrios e variações de tensão, e como filtros dimensionados reduzem manutenção, paradas e queimas." />
+  <link rel="canonical" href="https://www.afbenergia.com.br/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas" />
+
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png" />
+
+  <meta property="og:type"        content="article" />
+  <meta property="og:title"       content="Laudo de Qualidade de Energia: Menos Manutenção, Paradas e Queima de Equipamentos | AFB Engenharia" />
+  <meta property="og:description" content="Entenda como o laudo de qualidade de energia identifica harmônicos, desequilíbrios e variações de tensão, e como filtros dimensionados reduzem manutenção, paradas e queimas." />
+  <meta property="og:url"         content="https://www.afbenergia.com.br/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas" />
+  <meta property="og:image"       content="https://www.afbenergia.com.br/assets/images/og-image.jpg" />
+  <meta property="og:locale"      content="pt_BR" />
+  <meta property="article:published_time" content="2026-10-22" />
+  <meta property="article:modified_time" content="2026-10-22" />
+  <meta property="article:section" content="Qualidade de Energia" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="Laudo de Qualidade de Energia: Menos Manutenção, Paradas e Queima de Equipamentos | AFB Engenharia" />
+  <meta name="twitter:description" content="Entenda como o laudo de qualidade de energia identifica harmônicos, desequilíbrios e variações de tensão, e como filtros dimensionados reduzem manutenção, paradas e queimas." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/servico.css" />
+  <link rel="stylesheet" href="/assets/css/efeitos.css" />
+  <link rel="stylesheet" href="/assets/css/blog.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://www.afbenergia.com.br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://www.afbenergia.com.br/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Como um laudo de qualidade de energia ajuda a sua empresa a reduzir manutenção, paradas e queima de equipamentos",
+      "item": "https://www.afbenergia.com.br/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Laudo de Qualidade de Energia: Menos Manutenção, Paradas e Queima de Equipamentos",
+  "description": "Entenda como o laudo de qualidade de energia identifica harmônicos, desequilíbrios e variações de tensão, e como filtros dimensionados reduzem manutenção, paradas e queimas.",
+  "image": "https://www.afbenergia.com.br/assets/images/og-image.jpg",
+  "datePublished": "2026-10-22",
+  "dateModified": "2026-10-22",
+  "inLanguage": "pt-BR",
+  "articleSection": "Qualidade de Energia",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.afbenergia.com.br/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Arthur Felipe Brandão",
+    "jobTitle": "Engenheiro eletricista",
+    "worksFor": {
+      "@id": "https://www.afbenergia.com.br/#empresa"
+    }
+  },
+  "publisher": {
+    "@id": "https://www.afbenergia.com.br/#empresa"
+  }
+}
+  </script>
+  <link rel="stylesheet" href="/assets/css/whatsapp-lead.css" />
+</head>
+<body class="svc-page blog-page">
+
+  <header>
+    <nav class="nav" role="navigation" aria-label="Navegação principal">
+      <div class="nav-inner">
+        <ul class="nav-links" role="list">
+          <li class="nav-item-dropdown">
+            <button type="button" class="nav-dropdown-trigger" id="nav-servicos-trigger" aria-expanded="false" aria-controls="nav-servicos-dropdown">
+              Serviços
+              <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="nav-servicos-dropdown">
+              <div class="nav-mega-grid">
+                <div class="nav-mega-col">
+                  <p class="nav-mega-title" id="nav-mega-eficiencia">Eficiência Energética</p>
+                  <ul class="nav-mega-list" role="list" aria-labelledby="nav-mega-eficiencia">
+                    <li><a href="/servicos/eficiencia-energetica/gestao-de-fatura">Gestão de Fatura</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/mercado-livre">Mercado Livre</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/energia-por-assinatura">Energia por Assinatura</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Qualidade de Energia</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia">Fator de Potência</a></li>
+                    <li><a href="/servicos/eficiencia-energetica/credito-icms">Crédito de ICMS</a></li>
+                  </ul>
+                  <a class="nav-mega-more" href="/servicos/eficiencia-energetica">Ver Eficiência <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-mega-col">
+                  <p class="nav-mega-title" id="nav-mega-subestacoes">Subestações</p>
+                  <ul class="nav-mega-list" role="list" aria-labelledby="nav-mega-subestacoes">
+                    <li><a href="/servicos/subestacoes/manutencao-preventiva">Manutenção Preventiva</a></li>
+                    <li><a href="/servicos/subestacoes/manutencao-corretiva">Manutenção Corretiva</a></li>
+                    <li><a href="/servicos/subestacoes/ensaios-eletricos">Ensaios Elétricos</a></li>
+                    <li><a href="/servicos/subestacoes/termografia">Termografia</a></li>
+                    <li><a href="/servicos/subestacoes/analise-de-oleo-isolante">Análise de Óleo Isolante</a></li>
+                    <li><a href="/servicos/subestacoes/ensaio-rele-de-protecao">Relé de Proteção</a></li>
+                    <li><a href="/servicos/subestacoes/estudo-de-seletividade">Proteção e Seletividade</a></li>
+                    <li><a href="/servicos/subestacoes/projeto-de-subestacao">Projeto de Subestação</a></li>
+                    <li><a href="/servicos/subestacoes/obras-de-subestacao">Obras e Montagem</a></li>
+                  </ul>
+                  <a class="nav-mega-more" href="/servicos/subestacoes">Ver Subestações <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="nav-mega-col">
+                  <p class="nav-mega-title" id="nav-mega-solar-mobilidade">Energia Solar e Mobilidade</p>
+                  <ul class="nav-mega-list" role="list" aria-labelledby="nav-mega-solar-mobilidade">
+                    <li><a href="/servicos/energia-solar">Energia Solar</a></li>
+                    <li><a href="/servicos/carregadores-veiculares">Carregadores Veiculares</a></li>
+                  </ul>
+                  <div class="nav-mega-card">
+                    <p class="nav-mega-card-tag">DIAGNÓSTICO 360°</p>
+                    <p class="nav-mega-card-text">Gratuito, leva de 3 a 5 minutos.</p>
+                    <a class="nav-mega-card-btn" href="/diagnostico">Fazer o diagnóstico</a>
+                  </div>
+                </div>
+              </div>
+              <a class="nav-mega-all" href="/servicos">Todos os serviços <span aria-hidden="true">→</span></a>
+            </div>
+          </li>
+          <li><a href="/#como-funciona">Como Funciona</a></li>
+          <li><a href="/blog" aria-current="page">Blog</a></li>
+        </ul>
+
+        <a href="/" class="nav-logo-center" aria-label="AFB Engenharia &amp; Consultoria Elétrica — página inicial">
+          <img src="/assets/images/logo-horizontal-v2.png" alt="AFB Engenharia &amp; Consultoria Elétrica" width="400" height="400" />
+        </a>
+
+        <div class="nav-right">
+          <ul class="nav-links" role="list">
+            <li><a href="/quem-somos">Quem Somos</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a class="nav-btn" href="/diagnostico" aria-label="Diagnóstico 360°">Diagnóstico 360°</a></li>
+          </ul>
+          <a class="nav-diag-mobile" href="/diagnostico">Diagnóstico 360°</a>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-mobile-menu">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true" data-lenis-prevent>
+        <ul>
+          <li>
+            <button type="button" class="nav-mobile-toggle" id="nav-mobile-servicos-toggle" aria-expanded="false" aria-controls="nav-mobile-servicos-panel">
+              Serviços
+              <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="nav-mobile-submenu" id="nav-mobile-servicos-panel">
+              <li><a href="/servicos">Todos os serviços</a></li>
+              <li class="nav-mobile-group">
+                <button type="button" class="nav-mobile-toggle" id="nav-mobile-eficiencia-toggle" aria-expanded="false" aria-controls="nav-mobile-eficiencia-panel">
+                  Eficiência Energética
+                  <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="nav-mobile-submenu" id="nav-mobile-eficiencia-panel">
+                  <li><a href="/servicos/eficiencia-energetica/gestao-de-fatura">Gestão de Fatura</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/mercado-livre">Mercado Livre</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/energia-por-assinatura">Energia por Assinatura</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Qualidade de Energia</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia">Fator de Potência</a></li>
+                  <li><a href="/servicos/eficiencia-energetica/credito-icms">Crédito de ICMS</a></li>
+                  <li><a class="nav-mobile-more" href="/servicos/eficiencia-energetica">Ver Eficiência</a></li>
+                </ul>
+              </li>
+              <li class="nav-mobile-group">
+                <button type="button" class="nav-mobile-toggle" id="nav-mobile-subestacoes-toggle" aria-expanded="false" aria-controls="nav-mobile-subestacoes-panel">
+                  Subestações
+                  <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="nav-mobile-submenu" id="nav-mobile-subestacoes-panel">
+                  <li><a href="/servicos/subestacoes/manutencao-preventiva">Manutenção Preventiva</a></li>
+                  <li><a href="/servicos/subestacoes/manutencao-corretiva">Manutenção Corretiva</a></li>
+                  <li><a href="/servicos/subestacoes/ensaios-eletricos">Ensaios Elétricos</a></li>
+                  <li><a href="/servicos/subestacoes/termografia">Termografia</a></li>
+                  <li><a href="/servicos/subestacoes/analise-de-oleo-isolante">Análise de Óleo Isolante</a></li>
+                  <li><a href="/servicos/subestacoes/ensaio-rele-de-protecao">Relé de Proteção</a></li>
+                  <li><a href="/servicos/subestacoes/estudo-de-seletividade">Proteção e Seletividade</a></li>
+                  <li><a href="/servicos/subestacoes/projeto-de-subestacao">Projeto de Subestação</a></li>
+                  <li><a href="/servicos/subestacoes/obras-de-subestacao">Obras e Montagem</a></li>
+                  <li><a class="nav-mobile-more" href="/servicos/subestacoes">Ver Subestações</a></li>
+                </ul>
+              </li>
+              <li class="nav-mobile-group">
+                <button type="button" class="nav-mobile-toggle" id="nav-mobile-solar-toggle" aria-expanded="false" aria-controls="nav-mobile-solar-panel">
+                  Energia Solar e Mobilidade
+                  <svg class="nav-mobile-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="nav-mobile-submenu" id="nav-mobile-solar-panel">
+                  <li><a href="/servicos/energia-solar">Energia Solar</a></li>
+                  <li><a href="/servicos/carregadores-veiculares">Carregadores Veiculares</a></li>
+                </ul>
+              </li>
+              <li><a class="nav-mobile-diagnostico" href="/diagnostico">Diagnóstico 360°</a></li>
+            </ul>
+          </li>
+          <li><a href="/#como-funciona">Como Funciona</a></li>
+          <li><a href="/blog" aria-current="page">Blog</a></li>
+          <li><a href="/quem-somos">Quem Somos</a></li>
+          <li><a href="/contato">Contato</a></li>
+          <li><a class="nav-btn-mobile" href="/diagnostico">Fazer o Diagnóstico 360°</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="svc-detail">
+      <nav class="svc-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Início</a></li><li><a href="/blog">Blog</a></li><li aria-current="page">Como um laudo de qualidade de energia ajuda a sua empresa a reduzir manutenção, paradas e queima de equipamentos</li></ol></nav>
+      <a class="svc-back" href="/blog">← Blog</a>
+      <p class="svc-detail-kicker">Qualidade de Energia</p>
+      <h1 class="svc-detail-h1">Como um laudo de qualidade de energia ajuda a sua empresa a reduzir manutenção, paradas e queima de equipamentos</h1>
+      <p class="blog-meta"><span><strong>Arthur Felipe Brandão</strong></span><span><time datetime="2026-10-22">22 de outubro de 2026</time></span><span>7 min de leitura</span></p>
+      <div class="blog-body">
+<div class="blog-abertura"><p>Um motor que queima antes do tempo. Um inversor que desarma sem explicação. Um transformador que esquenta mais do que deveria. Quando esses problemas se repetem, a tendência é tratar cada um como um caso isolado: troca-se a peça, religa-se a máquina e a produção segue, até a próxima vez.</p>
+<p>Muitas vezes, porém, a causa é a mesma e está na própria energia que alimenta os equipamentos. O laudo de qualidade de energia é a ferramenta que identifica essa causa. Neste artigo, explicamos o que ele mede, quais são os principais distúrbios elétricos e como a correção certa reduz custos e aumenta a segurança da operação.</p></div>
+<nav class="blog-sumario" aria-labelledby="sumario-titulo"><p class="blog-sumario-titulo" id="sumario-titulo">Sumário</p><ol><li><a href="#o-que-e-qualidade-de-energia">O que é qualidade de energia</a></li><li><a href="#o-que-o-laudo-identifica">O que o laudo identifica</a></li><li><a href="#os-principais-disturbios-eletricos">Os principais distúrbios elétricos</a></li><li><a href="#quanto-esses-disturbios-custam-para-a-empresa">Quanto esses distúrbios custam para a empresa</a></li><li><a href="#como-e-feita-a-medicao">Como é feita a medição</a></li><li><a href="#a-solucao-filtros-dimensionados-para-a-sua-instalacao">A solução: filtros dimensionados para a sua instalação</a></li><li><a href="#sinais-de-que-a-sua-empresa-precisa-de-um-laudo">Sinais de que a sua empresa precisa de um laudo</a></li><li><a href="#perguntas-frequentes">Perguntas frequentes</a></li></ol></nav>
+<section aria-labelledby="o-que-e-qualidade-de-energia"><h2 id="o-que-e-qualidade-de-energia">O que é qualidade de energia</h2>
+<p>Em uma instalação ideal, a energia chega com tensão estável, equilibrada entre as fases e com a forma de onda limpa. Na prática, isso nem sempre acontece. Equipamentos eletrônicos, inversores de frequência, máquinas de solda e grandes cargas ligando e desligando &quot;sujam&quot; a energia dentro da própria instalação.</p>
+<p>Qualidade de energia é a medida de quanto a energia da sua instalação se afasta desse comportamento ideal, e de quanto isso afeta os seus equipamentos.</p></section>
+<section aria-labelledby="o-que-o-laudo-identifica"><h2 id="o-que-o-laudo-identifica">O que o laudo identifica</h2>
+<p>O laudo de qualidade de energia <strong>identifica os distúrbios</strong> presentes na instalação: quais são, em que intensidade, em que horários aparecem e de onde vêm. Com isso, deixa de ser preciso adivinhar a causa das queimas e dos desligamentos.</p>
+<p>Esse diagnóstico é a base para a decisão certa. Sem ele, a empresa corre o risco de investir na solução errada, ou de continuar trocando peças sem resolver a origem do problema.</p></section>
+<section aria-labelledby="os-principais-disturbios-eletricos"><h2 id="os-principais-disturbios-eletricos">Os principais distúrbios elétricos</h2>
+<ul><li><strong>Harmônicos:</strong> distorções na forma de onda causadas principalmente por cargas eletrônicas, como inversores de frequência, retificadores e fontes. Eles provocam aquecimento de motores, transformadores e cabos, e podem danificar capacitores.</li><li><strong>Desequilíbrio de tensão:</strong> quando as três fases não têm a mesma tensão. Motores alimentados com tensão desequilibrada aquecem mais e perdem vida útil.</li><li><strong>Afundamentos e elevações de tensão:</strong> quedas ou subidas rápidas da tensão, de curta duração. São uma das causas mais comuns de máquinas e inversores que desarmam &quot;do nada&quot;.</li><li><strong>Flutuação de tensão:</strong> variações repetidas da tensão, que podem afetar equipamentos sensíveis e causar a cintilação da iluminação.</li><li><strong>Baixo <a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia">fator de potência</a>:</strong> excesso de energia reativa circulando na instalação. Além de sobrecarregar cabos e transformadores, gera a cobrança de energia reativa excedente na fatura.</li></ul></section>
+<aside class="blog-cta-meio" aria-label="Fale com um engenheiro"><div><p class="blog-cta-meio-titulo">Fale com um engenheiro</p><p class="blog-cta-meio-texto">Tem uma dúvida sobre a sua instalação? Fale direto com um engenheiro da AFB.</p></div><a class="svc-cta-btn btn-whatsapp" href="https://wa.me/5531975549075" target="_blank" rel="noopener"><svg class="btn-whatsapp-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Conversar pelo WhatsApp</a></aside>
+<section aria-labelledby="quanto-esses-disturbios-custam-para-a-empresa"><h2 id="quanto-esses-disturbios-custam-para-a-empresa">Quanto esses distúrbios custam para a empresa</h2>
+<p>O custo da má qualidade de energia raramente aparece em uma única linha do orçamento. Ele se espalha:</p>
+<ul><li><strong>Manutenção corretiva</strong> mais frequente;</li><li><strong>Queima e troca antecipada</strong> de motores, inversores, capacitores e placas eletrônicas;</li><li><strong>Máquinas paradas</strong> por desligamentos inesperados, com perda de produção e retrabalho;</li><li><strong>Perdas de energia</strong> por aquecimento de cabos e transformadores;</li><li><strong>Cobranças na fatura,</strong> como a de energia reativa excedente.</li></ul>
+<p>Somados, esses custos costumam ser maiores do que parecem, justamente porque ninguém os soma.</p></section>
+<section aria-labelledby="como-e-feita-a-medicao"><h2 id="como-e-feita-a-medicao">Como é feita a medição</h2>
+<p>O estudo começa com a instalação de um analisador de qualidade de energia no ponto a ser avaliado, com a empresa funcionando normalmente. A medição dura 7 dias e reúne 1.008 leituras válidas, conforme os procedimentos do PRODIST Módulo 8, da ANEEL. Esse período cobre a rotina completa de uma semana, incluindo os horários de maior e menor carga.</p>
+<p>Depois da medição, os dados são analisados e consolidados no laudo, que mostra os distúrbios encontrados, compara os resultados com as referências e indica as soluções.</p></section>
+<section aria-labelledby="a-solucao-filtros-dimensionados-para-a-sua-instalacao"><h2 id="a-solucao-filtros-dimensionados-para-a-sua-instalacao">A solução: filtros dimensionados para a sua instalação</h2>
+<p>Identificado o problema, a correção precisa ser dimensionada para a sua instalação, e não escolhida em catálogo. Dependendo dos distúrbios encontrados, a solução pode incluir:</p>
+<ul><li><strong>Filtros de harmônicos,</strong> dimensionados a partir da medição, para limpar a forma de onda e proteger os equipamentos;</li><li><strong>Banco de capacitores com reatores de dessintonia,</strong> que corrige o fator de potência sem amplificar os harmônicos existentes;</li><li><strong>Ajustes na instalação,</strong> como redistribuição de cargas entre fases e adequações de proteção.</li></ul>
+<p>O dimensionamento correto é o que garante o resultado. Um filtro mal dimensionado pode não resolver o problema, ou até criar outro.</p>
+<p>O ganho vai além da economia: <strong>menos manutenção, menos máquinas paradas, menos queima de equipamentos e mais segurança operacional e dos processos da empresa.</strong></p></section>
+<section aria-labelledby="sinais-de-que-a-sua-empresa-precisa-de-um-laudo"><h2 id="sinais-de-que-a-sua-empresa-precisa-de-um-laudo">Sinais de que a sua empresa precisa de um laudo</h2>
+<ul><li>Queima frequente de motores, inversores, capacitores ou placas eletrônicas;</li><li>Máquinas que desarmam sem causa aparente;</li><li>Transformadores, cabos ou painéis aquecendo além do normal;</li><li>Cobrança de energia reativa excedente na fatura;</li><li>Instalação de muitas cargas eletrônicas, como inversores de frequência;</li><li>Ampliação da planta ou entrada de máquinas novas.</li></ul></section>
+<section aria-labelledby="perguntas-frequentes"><h2 id="perguntas-frequentes">Perguntas frequentes</h2>
+<div class="svc-faq-list"><details class="svc-faq-item"><summary>A empresa precisa parar para fazer a medição?</summary><p>Não. A medição é feita com a empresa funcionando normalmente, justamente para registrar o comportamento real da instalação.</p></details><details class="svc-faq-item"><summary>Por que a medição dura 7 dias?</summary><p>Porque a rotina de uma empresa muda ao longo da semana. Medir 7 dias, com 1.008 leituras válidas, conforme o PRODIST Módulo 8, garante que o laudo represente a operação completa, incluindo os momentos de maior e menor carga.</p></details><details class="svc-faq-item"><summary>Instalar um banco de capacitores resolve qualquer problema de energia?</summary><p>Não. O banco de capacitores corrige o fator de potência, mas, em instalações com harmônicos, um banco comum pode piorar a situação. Por isso a medição vem antes da solução.</p></details></div></section>
+      </div>
+      <section class="svc-final"><h2 class="svc-final-h2">Máquinas parando ou equipamentos queimando?</h2><p class="svc-final-text">Fale com a AFB. Medimos a sua instalação, identificamos a causa e dimensionamos a solução.</p><a class="svc-final-btn btn-whatsapp" href="https://wa.me/5531975549075" target="_blank" rel="noopener"><svg class="btn-whatsapp-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Falar com um engenheiro</a><p class="cta-alt"><a class="cta-alt-link" href="/diagnostico">ou faça o Diagnóstico 360° gratuito</a></p></section>
+      <div class="svc-related"><p class="svc-related-title">Serviços relacionados</p><ul class="svc-related-list">
+          <li><a href="/servicos/eficiencia-energetica/qualidade-de-energia">Qualidade de Energia</a></li>
+          <li><a href="/servicos/eficiencia-energetica/correcao-fator-de-potencia">Fator de Potência</a></li>
+        </ul></div>
+      <section class="blog-relacionados" aria-labelledby="relacionados-titulo"><p class="svc-related-title" id="relacionados-titulo">Artigos relacionados</p><ul class="blog-cards"><li class="blog-card"><p class="blog-card-tema">Eficiência Energética</p><h3 class="blog-card-titulo"><a href="/blog/consultoria-eficiencia-energetica-reduzir-custos">Como uma consultoria em eficiência energética pode reduzir custos, aumentar a vida útil dos equipamentos e deixar o seu sistema elétrico mais confiável</a></h3><p class="blog-card-meta">22 de outubro de 2026 · 7 min de leitura</p></li><li class="blog-card"><p class="blog-card-tema">Subestações</p><h3 class="blog-card-titulo"><a href="/blog/ensaios-manutencao-subestacao-media-tensao">Quais são os principais ensaios em uma manutenção de subestação de média tensão?</a></h3><p class="blog-card-meta">22 de outubro de 2026 · 8 min de leitura</p></li></ul></section>
+      <aside class="blog-autor" aria-label="Autor"><p><strong>Arthur Felipe Brandão</strong> — Engenheiro eletricista, fundador da AFB Engenharia. Atuou 11 anos na Cemig, do campo à engenharia de expansão de ativos de alta tensão.</p></aside>
+    </article>
+  </main>
+
+  <footer class="site-footer" id="footer" role="contentinfo">
+    <div class="footer-mesh" aria-hidden="true"></div>
+    <div class="footer-orb" style="top:-80px;left:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(61,127,97,.13) 0%,transparent 70%);" aria-hidden="true"></div>
+    <div class="footer-orb" style="bottom:-60px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(246,144,102,.08) 0%,transparent 70%);" aria-hidden="true"></div>
+
+    <div class="footer-inner">
+      <div class="footer-cta-strip">
+        <p class="footer-cta-text">
+          Sua empresa pode estar pagando mais do que deveria.<br>
+          <em>Descubra quanto pode economizar.</em>
+        </p>
+        <a href="/diagnostico" class="footer-cta-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Fazer o Diagnóstico 360°
+        </a>
+      </div>
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">AFB <span>Engenharia &amp; Consultoria Elétrica</span></div>
+          <p class="footer-tagline">Engenharia de inteligência energética: eficiência, energia solar, subestações e mobilidade elétrica.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/afbenergia/" class="footer-social-link" rel="noopener noreferrer" target="_blank" aria-label="Instagram da AFB Engenharia">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://wa.me/5531975549075" class="footer-social-link" rel="noopener noreferrer" target="_blank" aria-label="WhatsApp da AFB Engenharia">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav-group" aria-label="Navegação do rodapé">
+          <p class="footer-nav-label">Navegação</p>
+          <a href="/servicos" class="footer-nav-link">Serviços</a>
+          <a href="/servicos/eficiencia-energetica" class="footer-nav-link">Eficiência Energética</a>
+          <a href="/servicos/subestacoes" class="footer-nav-link">Subestações</a>
+          <a href="/#como-funciona" class="footer-nav-link">Como Funciona</a>
+          <a href="/blog" class="footer-nav-link">Blog</a>
+          <a href="/quem-somos" class="footer-nav-link">Quem Somos</a>
+          <a href="/contato" class="footer-nav-link">Contato</a>
+        </nav>
+
+        <div class="footer-nav-group">
+          <p class="footer-nav-label">Contato</p>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="https://wa.me/5531975549075">WhatsApp: (31) 97554-9075</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contato@afbenergia.com.br">contato@afbenergia.com.br</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rua Roberto Belizário Viana, 218, Centro, Pedro Leopoldo/MG, CEP 33250-054
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Belo Horizonte e região metropolitana, Minas Gerais e demais estados
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 AFB Engenharia &amp; Consultoria Elétrica. Todos os direitos reservados. · CNPJ 69.350.036/0001-00</p>
+        <nav class="footer-legal" aria-label="Links legais">
+          <a href="/privacidade">Política de Privacidade</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5531975549075?text=Ol%C3%A1%2C+gostaria+de+solicitar+uma+an%C3%A1lise+de+energia." class="float-wa" id="float-wa" rel="noopener noreferrer" target="_blank" aria-label="Falar no WhatsApp (abre em nova aba)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Falar agora
+  </a>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Voltar ao topo da página">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="/assets/js/base.js"></script>
+
+
+  <script src="/assets/js/servico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/efeitos.js" defer></script>
+<script src="/assets/js/cookies.js" defer></script>
+<script src="/assets/js/whatsapp-lead.js" defer></script>
+</body>
+</html>
