@@ -1,0 +1,121 @@
+/* Janela "Conte um pouco sobre a sua energia": qualificação antes do WhatsApp (assets/js/whatsapp-lead.js).
+   Autocontida: funciona também na Home e no /diagnostico, que não carregam base.css. */
+
+html.afb-wl-aberto, html.afb-wl-aberto body { overflow: hidden !important; }
+
+.afb-wl {
+  position: fixed; inset: 0; z-index: 10050;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+  color: var(--forest, #0D3C1F);
+}
+.afb-wl[hidden] { display: none; }
+.afb-wl, .afb-wl * { box-sizing: border-box; cursor: auto; }
+.afb-wl a, .afb-wl button, .afb-wl label, .afb-wl input[type=checkbox], .afb-wl input[type=radio] { cursor: pointer; }
+.afb-wl input[type=text], .afb-wl input[type=tel] { cursor: text; }
+
+.afb-wl-fundo {
+  position: absolute; inset: 0;
+  background: rgba(13,60,31,.42);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.afb-wl-caixa {
+  position: relative; width: 100%; max-width: 580px;
+  max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px);
+  overflow-y: auto; overscroll-behavior: contain;
+  background: var(--bg, #F7FAF7);
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(13,60,31,.22), 0 0 0 1px rgba(61,127,97,.08);
+  padding: 32px 32px 28px;
+}
+.afb-wl-caixa:focus { outline: none; }
+
+.afb-wl-x {
+  position: absolute; top: 14px; right: 14px;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid rgba(61,127,97,.18); color: var(--forest, #0D3C1F);
+  transition: background .2s, border-color .2s;
+}
+.afb-wl-x:hover { background: #EFF6F1; border-color: rgba(61,127,97,.4); }
+.afb-wl-x svg { width: 18px; height: 18px; }
+
+.afb-wl-titulo {
+  margin: 0 48px 8px 0;
+  font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+  font-size: 1.6rem; line-height: 1.2; font-weight: 700; color: var(--forest, #0D3C1F);
+}
+.afb-wl-sub { margin: 0 0 20px; font-size: .95rem; line-height: 1.55; color: var(--sage, #4A6B5A); }
+
+.afb-wl-form { display: grid; gap: 18px; margin: 0; }
+.afb-wl-q { margin: 0; padding: 0; border: 0; min-width: 0; }
+.afb-wl-rot, .afb-wl-q legend {
+  display: block; padding: 0; margin: 0 0 8px;
+  font-size: .9rem; font-weight: 600; color: var(--forest, #0D3C1F);
+}
+.afb-wl-opc { font-weight: 400; color: var(--muted, #7A9E8A); }
+
+.afb-wl input[type=text], .afb-wl input[type=tel] {
+  display: block; width: 100%; min-height: 48px;
+  padding: 11px 14px; margin: 0;
+  font: 400 16px/1.4 var(--font-body, 'Inter', system-ui, sans-serif); color: var(--forest, #0D3C1F);
+  background: #fbfdfb; border: 1px solid rgba(61,127,97,.22); border-radius: 13px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.afb-wl input[type=text]::placeholder, .afb-wl input[type=tel]::placeholder { color: var(--muted, #7A9E8A); }
+.afb-wl input[type=text]:focus, .afb-wl input[type=tel]:focus {
+  outline: none; border-color: var(--accent, #3D7F61); box-shadow: 0 0 0 3px rgba(61,127,97,.15);
+}
+
+.afb-wl-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.afb-wl-chip { position: relative; display: inline-flex; }
+.afb-wl-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.afb-wl-chip span {
+  display: inline-flex; align-items: center; min-height: 40px;
+  padding: 8px 15px; border-radius: var(--r-pill, 9999px);
+  border: 1px solid rgba(61,127,97,.22); background: #fbfdfb;
+  font-size: .875rem; line-height: 1.3; color: var(--forest, #0D3C1F);
+  transition: background .2s, border-color .2s, color .2s;
+}
+.afb-wl-chip:hover span { border-color: rgba(61,127,97,.5); }
+.afb-wl-chip input:checked + span { background: var(--forest, #0D3C1F); border-color: var(--forest, #0D3C1F); color: #fff; font-weight: 600; }
+.afb-wl-chip input:focus-visible + span { outline: 2px solid var(--accent, #3D7F61); outline-offset: 2px; }
+
+.afb-wl-consent { display: flex; gap: 10px; align-items: flex-start; font-size: .875rem; line-height: 1.5; color: var(--sage, #4A6B5A); }
+.afb-wl-consent input { width: 18px; height: 18px; margin: 2px 0 0; flex: 0 0 auto; accent-color: var(--accent, #3D7F61); }
+.afb-wl-consent a { color: var(--accent, #3D7F61); text-decoration: underline; }
+
+.afb-wl-erro { margin: 8px 0 0; font-size: .8125rem; color: #d95252; }
+.afb-wl-erro:empty { display: none; }
+.afb-wl-q.afb-wl-invalido input[type=text], .afb-wl-q.afb-wl-invalido input[type=tel] { border-color: #d95252; box-shadow: 0 0 0 3px rgba(217,82,82,.1); }
+.afb-wl-q.afb-wl-invalido .afb-wl-chip input:not(:checked) + span { border-color: #d95252; }
+.afb-wl-q.afb-wl-invalido .afb-wl-consent input { outline: 2px solid #d95252; outline-offset: 2px; }
+
+.afb-wl-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+
+.afb-wl-enviar {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; min-height: 52px; margin-top: 4px;
+  padding: 14px 24px; border: 0; border-radius: var(--r-pill, 9999px);
+  background: var(--forest, #0D3C1F); color: #fff;
+  font: 600 1rem/1.2 var(--font-body, 'Inter', system-ui, sans-serif);
+  transition: background .2s;
+}
+.afb-wl-enviar:hover, .afb-wl-enviar:focus-visible { background: var(--accent, #3D7F61); }
+.afb-wl-enviar:focus-visible, .afb-wl-x:focus-visible { outline: 2px solid var(--accent, #3D7F61); outline-offset: 3px; }
+.afb-wl-enviar svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+.afb-wl-micro { margin: -8px 0 0; text-align: center; font-size: .8125rem; color: var(--muted, #7A9E8A); }
+
+/* Celular: a janela ocupa a tela */
+@media (max-width: 600px) {
+  .afb-wl { padding: 0; }
+  .afb-wl-caixa { max-width: none; height: 100%; max-height: none; border-radius: 0; padding: 22px 18px 28px; }
+  .afb-wl-x { top: 12px; right: 12px; }
+  .afb-wl-titulo { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .afb-wl:not([hidden]) .afb-wl-caixa { animation: afbWlEntra .25s var(--ease-out, cubic-bezier(.16,1,.3,1)); }
+  @keyframes afbWlEntra { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+}
