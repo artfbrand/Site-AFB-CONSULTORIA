@@ -84,7 +84,7 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- main com tudo até 1850d5b (GA-1, Bloco I e novo Diagnóstico 360° no ar); a v2-estrutura tem o Bloco W (lead WhatsApp), a ser publicado no merge seguinte.
+- main com tudo até 1850d5b (GA-1, Bloco I e novo Diagnóstico 360° no ar); a v2-estrutura tem os Blocos W (lead WhatsApp) e W2 (botão de WhatsApp em destaque), a serem publicados no merge seguinte.
 - Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
 - Menu: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 24 páginas com menu e na 404. O painel tem os grupos Eficiência Energética, Subestações e Energia Solar e Mobilidade.
 - Revisão final no ar: banner de cookies compacto no celular, marca-d'água fatura.webp na Home, botão do rodapé "Fazer o Diagnóstico 360°" e limpeza dos arquivos antigos.
@@ -98,6 +98,13 @@
   - GA4: abertura_form_whatsapp (ao abrir), envio_form_whatsapp (perfil, faixa_gasto, pagina) e clique_whatsapp agora no envio, não mais no clique do botão.
   - script da planilha e passo a passo em tools/google-apps-script/ (pasta fora do deploy pelo .vercelignore).
   - /privacidade com a seção "Contato pelo WhatsApp".
+- Bloco W2 na v2-estrutura:
+  - botão .btn-whatsapp (fundo #25D366, texto #0D3C1F, contraste 6,3:1, ícone à esquerda) em assets/css/base.css e no CSS da Home. Herda tamanho, padding, fonte e raio do botão principal ao lado (ex.: class="svc-cta-btn btn-whatsapp").
+  - .btn-par junta Diagnóstico + WhatsApp: lado a lado no desktop e empilhados em largura total até 600 px.
+  - Home: topo, Diagnóstico 360° e chamada final com o botão "Conversar pelo WhatsApp". Páginas internas: o WhatsApp principal ficou verde, e em /servicos e Energia Solar o link virou botão ao lado do Diagnóstico, com o mesmo texto.
+  - /diagnostico: os links de WhatsApp da tela de erro e da tela de sucesso têm data-wa-direto (vão direto, sem formulário).
+  - e-mail do lead sai com o nome "Site AFB" (campo nomeRemetente); o do diagnóstico continua "AFB Diagnóstico".
+- _design/plano-blog.md e _design/textos-blog-artigos.md: plano e textos do blog (do Arthur/arquiteto), ainda não implementados.
 - Pendências conhecidas (não mexer sem prompt):
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
