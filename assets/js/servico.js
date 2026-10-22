@@ -13,7 +13,8 @@
 
     /* entrada escalonada do topo (CSS puro; o aparecer ao rolar fica com o efeitos.js) */
     var topo = document.querySelector('.svc-top');
-    [['.svc-breadcrumb',1],['.svc-back',2],['.svc-detail-kicker',3],['.svc-detail-h1',4],['.svc-detail-desc',5],
+    /* H1 e descrição ficam fora: aparecem na hora (são o elemento de LCP) */
+    [['.svc-breadcrumb',1],['.svc-back',2],['.svc-detail-kicker',3],
      ['.svc-highlight',6],['.svc-open-cta',6],['.svc-top-media',7]].forEach(function (par) {
       var el = document.querySelector(par[0]);
       if (el) el.classList.add('ds-intro-' + par[1]);

@@ -279,11 +279,11 @@
     .ds-intro-1, .ds-intro-2, .ds-intro-3, .ds-intro-4, .ds-intro-5 {
       animation: slideUpFade 1.05s cubic-bezier(.16,1,.3,1) backwards;
     }
-    .ds-intro-1 { animation-delay: .08s; }
-    .ds-intro-2 { animation-delay: .22s; }
-    .ds-intro-3 { animation-delay: .36s; }
-    .ds-intro-4 { animation-delay: .5s; }
-    .ds-intro-5 { animation-delay: .64s; }
+    .ds-intro-1 { animation-delay: 0s; }
+    .ds-intro-2 { animation-delay: .075s; }
+    .ds-intro-3 { animation-delay: .15s; }
+    .ds-intro-4 { animation-delay: .225s; }
+    .ds-intro-5 { animation-delay: .3s; }
 
     /* reveal no scroll — só ganha estado inicial quando o JS assume */
     .ds-anim .ds-reveal { opacity: 0; transform: translateY(22px); }
@@ -1187,7 +1187,8 @@
     }
 
     /* entrada escalonada do hero */
-    [['.ms-kicker',1],['.ms-h1',2],['.ms-hero-text',3],['.ms-hero-cta',4],['.ms-hero-area',5]].forEach(function (par) {
+    /* H1 e texto do topo ficam fora: aparecem na hora */
+    [['.ms-kicker',1],['.ms-hero-cta',4],['.ms-hero-area',5]].forEach(function (par) {
       var el = document.querySelector(par[0]);
       if (el) el.classList.add('ds-intro-' + par[1]);
     });
