@@ -106,7 +106,7 @@
   - /diagnostico: os links de WhatsApp da tela de erro e da tela de sucesso têm data-wa-direto (vão direto, sem formulário).
   - e-mail do lead sai com o nome "Site AFB" (campo nomeRemetente); o do diagnóstico continua "AFB Diagnóstico".
 - Bloco B (blog) na v2-estrutura:
-  - /blog (blog.html) e 3 artigos em blog/*.html, gerados a partir de _design/textos-blog-artigos.md (texto exato) pelo script C:afb-testesloggerar-blog.cjs. Para mudar um texto: altere o .md e rode o gerador de novo.
+  - /blog (blog.html) e 3 artigos em blog/*.html, gerados a partir de _design/textos-blog-artigos.md (texto exato) pelo script C:/afb-testes/blog/gerar-blog.cjs. Para mudar um texto: altere o .md e rode o gerador de novo.
   - estilo em assets/css/blog.css (reaproveita servico.css). Fotos do Artigo 2 em .webp em assets/images/fotos/.
   - JSON-LD: Blog + BreadcrumbList na lista; BlogPosting (autor Arthur Felipe Brandão, publisher #empresa) + BreadcrumbList nos artigos.
   - data de publicação 22/10/2026 (datePublished, dateModified, texto do artigo e sitemap). Se o merge for em outra data, atualizar DATA_ISO/DATA_TXT no gerador, gerar de novo e atualizar o sitemap.
