@@ -329,3 +329,37 @@ estudo de qualidade de energia → /servicos/eficiencia-energetica/qualidade-de-
 3. Chamadas finais com WhatsApp: confirmadas. TODOS os botões de WhatsApp do blog (chamadas finais, botão flutuante, caixa "Fale com um engenheiro") devem abrir o formulário de qualificação do Bloco W (assets/js/whatsapp-lead.js), como no resto do site. Pré-marcação do campo "O que você procura?": Artigo 1 → "Reduzir a conta de energia"; Artigo 2 → "Manutenção ou projeto de subestação"; Artigo 3 → "Queima de equipamentos ou falhas na energia".
 4. Soluções de qualidade de energia (filtros de harmônicos e banco de capacitores com reatores de dessintonia): confirmadas.
 5. Fotos: sem fotos novas no momento. Artigos 1 e 3 sem imagem no corpo (usar og-image.jpg padrão para compartilhamento). Artigo 2 pode usar as fotos reais já existentes em assets/images/fotos/ (subestacao-paineis-reles.jpg, subestacao-transformador-seco.jpg, subestacao-transformador-oleo.jpg, subestacao-ensaio-transformador-seco.jpg), com alt descritivo. Não usar banco de imagens.
+
+## Textos complementares do blog (aprovados pelo Arthur em 22/10/2026)
+
+### Página /blog
+- H1: Blog AFB Engenharia
+- Introdução: Artigos técnicos sobre eficiência energética, subestações e qualidade de energia, escritos por quem trabalha com isso no dia a dia.
+- Title: Blog de Eficiência Energética, Subestações e Qualidade de Energia | AFB Engenharia
+- Meta description: Artigos técnicos sobre eficiência energética, subestações de média tensão e qualidade de energia, escritos por quem trabalha com isso no dia a dia.
+- Resumo de cada cartão: a meta description aprovada de cada artigo.
+- Nome da página na mensagem do WhatsApp: "Blog".
+
+### Caixa no meio do artigo
+- Título: Fale com um engenheiro
+- Frase: Tem uma dúvida sobre a sua instalação? Fale direto com um engenheiro da AFB.
+- Botão: Conversar pelo WhatsApp (abre o formulário de qualificação, com a pré-marcação do artigo)
+
+### Autor (bio curta, no fim de cada artigo)
+Arthur Felipe Brandão — Engenheiro eletricista, fundador da AFB Engenharia. Atuou 11 anos na Cemig, do campo à engenharia de expansão de ativos de alta tensão.
+
+### Data de publicação
+A data em que o blog for publicado em produção (mesma data em datePublished e dateModified no JSON-LD e visível no artigo).
+
+### Nome da página na mensagem do WhatsApp (artigos)
+"Blog — " + tema: "Blog — Eficiência Energética", "Blog — Subestações", "Blog — Qualidade de Energia".
+
+### Chamadas finais dos artigos
+Seguir o padrão do Bloco W2 (igual ao resto do site): o WhatsApp é BOTÃO verde (.btn-whatsapp), não link de texto.
+- Artigo 1: botão principal "Fazer o Diagnóstico 360° gratuito" + botão verde "Conversar pelo WhatsApp", lado a lado.
+- Artigo 2: "Agendar a manutenção" é o botão verde do WhatsApp; o Diagnóstico continua como link de texto "ou faça o Diagnóstico 360° gratuito" (mesmo padrão das páginas de Subestações).
+- Artigo 3: "Falar com um engenheiro" é o botão verde do WhatsApp; o Diagnóstico continua como link de texto "ou faça o Diagnóstico 360° gratuito".
+
+### Técnico
+- Fotos do Artigo 2: converter para .webp e usar o mesmo alt das páginas de serviço.
+- "Artigos relacionados": cada artigo mostra os outros 2.

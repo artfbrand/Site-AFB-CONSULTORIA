@@ -43,12 +43,13 @@
 - Menu (24 páginas e a 404), igual em todas; /diagnostico usa barra própria:
   - Serviços (dropdown: Todos os serviços, grupo Eficiência com 6 páginas, grupo Subestações com 9 páginas e grupo Energia Solar e Mobilidade com 2 páginas)
   - Como Funciona
+  - Blog (entre Como Funciona e o logo; no ☰ depois de Como Funciona; também no rodapé)
   - logo ao centro
   - Quem Somos e Contato
   - botão "Diagnóstico 360°"
   - hambúrguer a partir de 1024 px
 - Rodapé: links, endereço e CNPJ 69.350.036/0001-00.
-- Sitemap com 23 URLs. /diagnostico e /privacidade ficam fora dele e com noindex.
+- Sitemap com 27 URLs (inclui /blog e os 3 artigos). /diagnostico e /privacidade ficam fora dele e com noindex.
 - JSON-LD:
   - BreadcrumbList + Service nas páginas de serviço
   - ProfessionalService na Home, em /quem-somos e em /contato
@@ -84,7 +85,7 @@
 
 ## Estado atual
 - Executor: Claude Code ou Codex (o mesmo AGENTS.md vale para os dois).
-- main com tudo até 1850d5b (GA-1, Bloco I e novo Diagnóstico 360° no ar); a v2-estrutura tem os Blocos W (lead WhatsApp) e W2 (botão de WhatsApp em destaque), a serem publicados no merge seguinte.
+- main com tudo até b1ce4e8 (Blocos W e W2 no ar); a v2-estrutura tem o Bloco B (blog), a ser publicado no merge seguinte.
 - Formulário do Diagnóstico 360° no ar: a função api/diagnostico.js envia pelo SMTP da Locaweb (contato@afbenergia.com.br, nodemailer 10.0.9), com a Resend como reserva. Variáveis só na Vercel: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, RESEND_API_KEY, DIAG_TO e DIAG_FROM.
 - Menu: painel "Serviços" no desktop e botão Diagnóstico 360° na barra do celular, com a mesma marcação nas 24 páginas com menu e na 404. O painel tem os grupos Eficiência Energética, Subestações e Energia Solar e Mobilidade.
 - Revisão final no ar: banner de cookies compacto no celular, marca-d'água fatura.webp na Home, botão do rodapé "Fazer o Diagnóstico 360°" e limpeza dos arquivos antigos.
@@ -104,7 +105,14 @@
   - Home: topo, Diagnóstico 360° e chamada final com o botão "Conversar pelo WhatsApp". Páginas internas: o WhatsApp principal ficou verde, e em /servicos e Energia Solar o link virou botão ao lado do Diagnóstico, com o mesmo texto.
   - /diagnostico: os links de WhatsApp da tela de erro e da tela de sucesso têm data-wa-direto (vão direto, sem formulário).
   - e-mail do lead sai com o nome "Site AFB" (campo nomeRemetente); o do diagnóstico continua "AFB Diagnóstico".
-- _design/plano-blog.md e _design/textos-blog-artigos.md: plano e textos do blog (do Arthur/arquiteto), ainda não implementados.
+- Bloco B (blog) na v2-estrutura:
+  - /blog (blog.html) e 3 artigos em blog/*.html, gerados a partir de _design/textos-blog-artigos.md (texto exato) pelo script C:afb-testesloggerar-blog.cjs. Para mudar um texto: altere o .md e rode o gerador de novo.
+  - estilo em assets/css/blog.css (reaproveita servico.css). Fotos do Artigo 2 em .webp em assets/images/fotos/.
+  - JSON-LD: Blog + BreadcrumbList na lista; BlogPosting (autor Arthur Felipe Brandão, publisher #empresa) + BreadcrumbList nos artigos.
+  - data de publicação 22/10/2026 (datePublished, dateModified, texto do artigo e sitemap). Se o merge for em outra data, atualizar DATA_ISO/DATA_TXT no gerador, gerar de novo e atualizar o sitemap.
+  - bloco "Artigos sobre este tema" em 13 páginas de serviço (Eficiência e Subestações).
+  - formulário de WhatsApp: nomes "Blog" e "Blog — {tema}" e pré-marcação por artigo em assets/js/whatsapp-lead.js.
+  - 7 links internos da lista do .md não foram colocados porque a frase exata não existe no texto aprovado (ver relatório do Bloco B).
 - Pendências conhecidas (não mexer sem prompt):
   - troca da foto de termografia
   - trocar a chave da Resend por uma de somente envio (adiada pelo Arthur)
