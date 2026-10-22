@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "description": "Gera o CSS embutido do topo das paginas internas (ver LEIA-ME.md)",
+  "type": "module",
+  "dependencies": {
+    "beasties": "0.3.5"
+  }
+}
