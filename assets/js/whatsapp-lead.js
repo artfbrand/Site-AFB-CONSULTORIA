@@ -6,6 +6,24 @@
   var NUMERO = '5531975549075';
   var API = '/api/lead-whatsapp';
   var RASCUNHO = 'afb_lead_whatsapp';
+  var TIPOS = { 'Comercial': 'empresa', 'Industrial': 'industria', 'Residencial': 'residencia', 'Condomínio': 'condominio', 'Propriedade rural': 'rural' };
+
+  // Origem do anúncio (Google Ads): gclid ou utm_source=google + utm_medium=cpc marcam a visita inteira (sessionStorage);
+  // utm_content A1–A4 / B1–B4 vira o grupo. Roda em todas as páginas, porque este arquivo está em todas.
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.get('gclid') || (String(q.get('utm_source') || '').toLowerCase() === 'google' && String(q.get('utm_medium') || '').toLowerCase() === 'cpc')) {
+      sessionStorage.setItem('afb_ads', '1');
+      var grupoAds = String(q.get('utm_content') || '').toUpperCase();
+      if (/^[AB][1-4]$/.test(grupoAds)) sessionStorage.setItem('afb_grp', grupoAds);
+    }
+  } catch (e) {}
+
+  function origemAds() {
+    try { return { ads: sessionStorage.getItem('afb_ads') === '1', grp: sessionStorage.getItem('afb_grp') || '' }; } catch (e) { return { ads: false, grp: '' }; }
+  }
+  function codigoAds(o) { return o.ads ? ' [G' + (o.grp ? '-' + o.grp : '') + ']' : ''; }
+  window.afbOrigemAds = origemAds;
   var MSG_VAZIO = 'Selecione ou preencha esta resposta para continuar.';
   var MSG_WHATSAPP = 'Informe o WhatsApp com DDD.';
   var PERFIS = ['Comercial', 'Industrial', 'Residencial', 'Condomínio', 'Propriedade rural'];
@@ -264,37 +282,52 @@
     origem = null;
   }
 
-  function mensagem(d) {
+  // codigo: ' [G-XX]' / ' [G]' quando a visita veio de anúncio do Google; vira a última linha da mensagem
+  function mensagem(d, codigo) {
     return 'Olá! Sou ' + d.nome + (d.empresa ? ', da ' + d.empresa : '') + '. Vim pelo site da AFB.\n' +
       '• Perfil: ' + d.perfil + '\n' +
       '• Cidade: ' + d.cidade + '\n' +
       '• Gasto mensal com energia: ' + d.faixa + '\n' +
       '• Interesse: ' + d.interesse.join(', ') + '\n' +
-      '• Página: ' + nomePagina;
+      '• Página: ' + nomePagina +
+      (codigo ? '\n' + codigo.trim() : '');
   }
 
   function enviar(e) {
     e.preventDefault();
     if (!validar()) return;
     var d = dados();
-    var url = 'https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(mensagem(d));
+    var origemLead = origemAds(), codigo = codigoAds(origemLead);
+    var url = 'https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(mensagem(d, codigo));
     // Gravação em paralelo: se falhar, o WhatsApp abre do mesmo jeito
     if (!hp.value) {
       try {
         fetch(API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome: d.nome, whatsapp: d.whatsapp, cidade: d.cidade, perfil: d.perfil, faixa: d.faixa, interesse: d.interesse, empresa: d.empresa, pagina: nomePagina, consentimento: true, site: hp.value, tempo: Date.now() - abertoEm }),
+          body: JSON.stringify({ nome: d.nome, whatsapp: d.whatsapp, cidade: d.cidade, perfil: d.perfil, faixa: d.faixa, interesse: d.interesse, empresa: d.empresa, pagina: nomePagina + codigo, consentimento: true, site: hp.value, tempo: Date.now() - abertoEm }),
           keepalive: true
         }).catch(function () {});
       } catch (x) {}
     }
     evento('envio_form_whatsapp', { perfil: d.perfil, faixa_gasto: d.faixa, pagina: location.pathname });
     evento('clique_whatsapp', { link_url: url, pagina: location.pathname });
+    // Evento para o Google Tag Manager (sem nome nem telefone)
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lead_whatsapp',
+      lead_tipo: TIPOS[d.perfil] || '',
+      lead_cidade: d.cidade,
+      lead_servico: d.interesse.join(', '),
+      lead_origem: origemLead.ads ? 'google_ads' : 'outro',
+      lead_grupo: origemLead.grp,
+      page_path: location.pathname
+    });
     try { sessionStorage.removeItem(RASCUNHO); } catch (x) {}
     if (celular()) {
       fechar();
-      location.href = url;
+      // 300 ms para a tag disparar antes de sair da página
+      setTimeout(function () { location.href = url; }, 300);
     } else {
       var janela = window.open(url, '_blank');
       if (janela) { try { janela.opener = null; } catch (x) {} } else { location.href = url; }
