@@ -26,4 +26,9 @@
   <url><loc>https://www.afbenergia.com.br/servicos/subestacoes/estudo-de-seletividade</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.afbenergia.com.br/servicos/subestacoes/projeto-de-subestacao</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.afbenergia.com.br/servicos/subestacoes/obras-de-subestacao</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://www.afbenergia.com.br/blog</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.afbenergia.com.br/blog/consultoria-eficiencia-energetica-reduzir-custos</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.afbenergia.com.br/blog/ensaios-manutencao-subestacao-media-tensao</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.afbenergia.com.br/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
