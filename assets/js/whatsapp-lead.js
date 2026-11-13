@@ -59,7 +59,8 @@
     '/blog': 'Blog',
     '/blog/consultoria-eficiencia-energetica-reduzir-custos': 'Blog — Eficiência Energética',
     '/blog/ensaios-manutencao-subestacao-media-tensao': 'Blog — Subestações',
-    '/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas': 'Blog — Qualidade de Energia'
+    '/blog/laudo-qualidade-de-energia-reduzir-manutencao-paradas': 'Blog — Qualidade de Energia',
+    '/blog/it-30-carregador-veicular-condominio': 'Blog — Carregadores Veiculares'
   };
 
   var caminho = location.pathname.replace(/\/index(\.html)?$/, '/').replace(/\.html$/, '').replace(/\/+$/, '') || '/';
@@ -72,7 +73,7 @@
     if (caminho === '/blog/ensaios-manutencao-subestacao-media-tensao') return INTERESSES[3];
     if (caminho.indexOf('/servicos/eficiencia-energetica') === 0) return INTERESSES[0];
     if (caminho === '/servicos/energia-solar') return INTERESSES[1];
-    if (caminho === '/servicos/carregadores-veiculares') return INTERESSES[2];
+    if (caminho === '/servicos/carregadores-veiculares' || caminho === '/blog/it-30-carregador-veicular-condominio') return INTERESSES[2];
     if (caminho.indexOf('/servicos/subestacoes') === 0) return INTERESSES[3];
     return '';
   }

@@ -323,6 +323,160 @@ estudo de qualidade de energia → /servicos/eficiencia-energetica/qualidade-de-
 
 ---
 
+## ARTIGO 4
+
+Status: APROVADO pelo Arthur em 12/11/2026 (inclusive a linha dos modos de recarga, conferida por ele no texto oficial). Fontes (consultadas em 12/11/2026): Portaria CBMMG nº 84/2026 (14/08/2026), que aprova a 3ª edição da IT 30, com a seção de Sistemas de Alimentação de Veículos Elétricos (SAVE).
+
+- URL: /blog/it-30-carregador-veicular-condominio
+- Tema (etiqueta): Carregadores Veiculares
+- Title: IT 30 e Carregador Veicular em Condomínio | AFB Engenharia
+- Meta description: Guia para síndicos: o que a IT 30 do Corpo de Bombeiros de MG exige para carregadores de carro elétrico em condomínio e como evitar reprovação na vistoria.
+- Tempo de leitura: 7 min
+- Data de publicação: 2026-11-12 | 12 de novembro de 2026
+- Palavra-chave principal: IT 30 carregador veicular condomínio
+- Secundárias: carregador de carro elétrico em condomínio, norma bombeiros carregador veicular MG, laudo carregador veicular condomínio, memorial do SAVE
+- Interesse pré-marcado no formulário do WhatsApp: Carregador veicular
+- Página de serviço relacionada (bloco "Artigos sobre este tema"): /servicos/carregadores-veiculares
+- Schema: BlogPosting + FAQPage (perguntas da seção final) + BreadcrumbList
+- Imagem: sem foto (não há foto real de carregador ou garagem no site)
+
+### H1
+Carregador de carro elétrico no condomínio: o que a IT 30 dos Bombeiros exige do síndico
+
+### Linha fina
+A nova edição da IT 30 do Corpo de Bombeiros de Minas Gerais trouxe regras para a recarga de veículos elétricos em prédios. Veja, em linguagem simples, o que o condomínio precisa ter para instalar com segurança e passar na vistoria.
+
+### Abertura
+O primeiro morador pediu para instalar um carregador na vaga. Depois veio o segundo. Agora há uma fila de pedidos na administração e uma pergunta no ar: o prédio aguenta? E o Corpo de Bombeiros, o que diz?
+
+Desde agosto de 2026, Minas Gerais tem uma resposta oficial. A Portaria nº 84/2026 do Corpo de Bombeiros Militar de Minas Gerais (CBMMG) aprovou a 3ª edição da Instrução Técnica 30 (IT 30), que passou a tratar dos Sistemas de Alimentação de Veículos Elétricos, chamados na norma de SAVE.
+
+Este guia explica o que mudou, o que o síndico precisa providenciar e por que fazer tudo dentro da norma evita dor de cabeça na vistoria.
+
+### H2 — O que é a IT 30 e por que ela importa para o condomínio
+A IT 30 é a instrução técnica do CBMMG para instalações e equipamentos elétricos em edificações. A nova edição incluiu uma seção específica sobre recarga de veículos elétricos em edificações e espaços de uso coletivo, o que inclui condomínios residenciais e comerciais.
+
+Dois pontos ajudam a entender o espírito da norma:
+
+- Ela não obriga o condomínio a ter carregadores. Ela define como eles precisam ser instalados quando existirem.
+- Ela olha para o prédio como um todo. Não basta cada morador resolver a sua vaga: a infraestrutura de recarga precisa caber na instalação elétrica do edifício inteiro.
+
+E aqui está o motivo de atenção: instalações fora da IT 30 podem impedir a emissão ou a renovação do Auto de Vistoria do Corpo de Bombeiros (AVCB). Um carregador instalado sem critério pode deixar o prédio todo irregular.
+
+### H2 — O documento que muda tudo: projeto único e Memorial do SAVE
+A principal novidade para o síndico é que a recarga deixa de ser um assunto de vaga e passa a ser um assunto do prédio.
+
+A norma pede um projeto elétrico único para toda a edificação, com:
+
+- a solução de infraestrutura de recarga;
+- os padrões técnicos que todas as instalações vão seguir;
+- um estudo global de carga, verificando a capacidade de transformadores, quadros e prumadas.
+
+Esse estudo resulta no Memorial do SAVE, documento que indica quantas estações de recarga o prédio suporta com segurança. Com ele pronto, cada morador pode instalar o seu carregador seguindo o padrão definido, sem colocar em risco a instalação de todos.
+
+Além do memorial, cada instalação precisa ser feita por profissional habilitado, com documento de responsabilidade técnica (ART) e laudo técnico de conformidade.
+
+**Na prática: o carregador do morador não começa na vaga dele. Começa no estudo do prédio.**
+
+### H2 — O que a IT 30 exige na instalação
+Para o síndico conferir com a empresa responsável, os principais requisitos da norma são:
+
+#### Alimentação elétrica
+- Circuito dedicado e exclusivo para cada estação de recarga.
+- Proteções contra sobrecorrente, dispositivo DR, proteção contra surtos e aterramento.
+- Proibido ligar carregador em tomada comum, usar adaptadores ou extensões.
+- O carregador não pode ser ligado direto nos bornes do disjuntor de entrada; precisa de proteção própria.
+
+#### Desligamento de emergência
+- Botão de desligamento manual a no máximo 5 m de cada estação.
+- Desligamento por pavimento, próximo ao acesso principal.
+- Desligamento geral no quadro de distribuição principal.
+- Se o prédio tiver sistema de detecção ou alarme de incêndio, ele deve ser interligado para desligar os carregadores automaticamente.
+
+#### Localização
+- Preferência por áreas externas ou com ventilação natural permanente ou mecânica eficaz.
+- Proibido instalar em corredores e rotas de fuga.
+- Com apenas uma saída de emergência, o carregador deve ficar a pelo menos 5 m dela.
+- A escolha do local depende da avaliação de um responsável técnico habilitado.
+
+#### Proteção e sinalização
+- Muretas, pilares ou proteção equivalente contra batidas de veículos, salvo quando o equipamento estiver em parede ou pilar fora do risco de impacto.
+- Identificação da edificação como possuidora de SAVE e sinalização das vagas, estações, quadros e pontos de desligamento.
+
+A norma também define quais modos de recarga são aceitos: o Modo 1 não é admitido, e o Modo 2 só em áreas externas.
+
+### H2 — E os carregadores que já foram instalados?
+Muitos prédios já têm carregadores instalados antes da nova regra. Para edificações com projeto de prevenção (PSCIP) aprovado antes da nova IT 30, ou com AVCB ou CLCB, a regularização pode ser feita por modificação ou substituição do PSCIP ou por atualização cadastral. Para isso, são exigidos o Memorial do SAVE e o Laudo de Conformidade, com o documento de responsabilidade técnica.
+
+O melhor momento para avaliar os carregadores existentes é antes da próxima vistoria, e não durante ela.
+
+### H2 — Por que fazer dentro da norma: o que está em jogo na vistoria
+Um carregador fora da IT 30 não é só um detalhe técnico:
+
+- **Vistoria:** a falta do memorial, do laudo ou das proteções exigidas pode impedir a emissão ou a renovação do AVCB, deixando o prédio irregular perante o Corpo de Bombeiros.
+- **Segurança:** circuitos improvisados, tomadas comuns e extensões aumentam o risco de aquecimento e incêndio na garagem.
+- **Responsabilidade:** segundo a norma, o dimensionamento elétrico é responsabilidade do profissional técnico junto com o proprietário ou responsável pelo uso. Ou seja, o condomínio responde junto.
+- **Patrimônio e convivência:** sem estudo de carga, um carregador a mais pode sobrecarregar a instalação de todos e virar conflito entre moradores.
+
+### H2 — Por que contratar uma empresa de engenharia habilitada
+A IT 30 deixa claro que a instalação precisa de profissional habilitado, com ART e laudo. Mas o motivo vai além do papel:
+
+- O estudo global de carga exige conhecer a entrada de energia, os transformadores, os quadros e as prumadas do prédio.
+- A posição de cada carregador depende de uma avaliação técnica de risco de incêndio e propagação de fumaça.
+- O memorial e o laudo precisam ser assinados por quem responde tecnicamente por eles.
+
+Um eletricista resolve uma tomada. A IT 30 pede engenharia: projeto, estudo, responsabilidade técnica e documentação que o Corpo de Bombeiros reconheça.
+
+### H2 — Como a AFB Engenharia ajuda o seu condomínio
+A AFB Engenharia é uma empresa de engenharia elétrica de Minas Gerais com equipe própria. Para condomínios, atuamos em todas as etapas da recarga veicular:
+
+- **Estudo de carga e Memorial do SAVE:** avaliamos a instalação do prédio e indicamos quantas estações ela suporta.
+- **Projeto elétrico único:** definimos o padrão técnico que todas as instalações vão seguir.
+- **Instalação e adequação:** circuitos dedicados, proteções, desligamento de emergência e sinalização conforme a IT 30.
+- **Documentação:** ART e laudo técnico de conformidade.
+- **Carregadores existentes:** levantamento e regularização dos que já foram instalados.
+
+### H2 — Checklist rápido para o síndico
+- [ ] O prédio tem estudo global de carga e Memorial do SAVE?
+- [ ] Existe um projeto único que todos os moradores seguem?
+- [ ] Cada carregador tem circuito dedicado e as proteções exigidas?
+- [ ] Há botões de desligamento de emergência perto das estações, por pavimento e no quadro geral?
+- [ ] Os carregadores estão longe de rotas de fuga?
+- [ ] Vagas e equipamentos estão sinalizados?
+- [ ] Cada instalação tem ART e laudo de conformidade?
+- [ ] Os carregadores antigos foram avaliados?
+
+Se alguma resposta for "não" ou "não sei", vale conversar com um engenheiro antes da próxima vistoria.
+
+### H2 — Perguntas frequentes
+**O condomínio é obrigado a instalar carregadores?**
+Não. A IT 30 não obriga a instalação. Ela define os requisitos para quando houver carregadores no prédio.
+
+**Cada morador pode contratar o seu próprio eletricista?**
+A instalação individual pode ser feita, desde que siga o projeto único e o padrão definido para o prédio, por profissional habilitado, com ART e laudo de conformidade.
+
+**O que é o Memorial do SAVE?**
+É o documento com a avaliação global da edificação, baseado no estudo de carga, que indica o número máximo de estações de recarga que o prédio suporta.
+
+**Carregador fora da norma pode reprovar a vistoria?**
+Sim. Instalações que não atendem à IT 30 podem impedir a emissão ou a renovação do AVCB.
+
+**E se o prédio já tem carregadores?**
+A regularização pode ser feita por modificação do projeto de prevenção ou atualização cadastral, apresentando o Memorial do SAVE e o Laudo de Conformidade com a responsabilidade técnica.
+
+### Fonte
+Fonte: Corpo de Bombeiros Militar de Minas Gerais — Portaria nº 84/2026, Instrução Técnica 30, 3ª edição (bombeiros.mg.gov.br). Este artigo é orientativo e não substitui o texto oficial da norma.
+
+### Chamada final
+**Seu condomínio está pronto para a IT 30?**
+Fale com um engenheiro pelo WhatsApp e entenda o que o seu prédio precisa para instalar carregadores com segurança e sem risco na vistoria.
+Botão: Falar com o engenheiro no WhatsApp → WhatsApp · Link: ou faça o Diagnóstico 360° gratuito, em 3 a 5 minutos →
+
+### Links internos no texto
+(nenhum: a copy não indica frases com link; o artigo liga para /servicos/carregadores-veiculares no bloco "Serviços relacionados")
+
+---
+
 ## Decisões do Arthur na revisão (22/10/2026)
 1. Mercado Livre para empresas em média tensão: confirmado.
 2. Lista de ensaios por equipamento: confirmada.
@@ -352,7 +506,7 @@ Arthur Felipe Brandão — Engenheiro eletricista, fundador da AFB Engenharia. A
 A data em que o blog for publicado em produção (mesma data em datePublished e dateModified no JSON-LD e visível no artigo).
 
 ### Nome da página na mensagem do WhatsApp (artigos)
-"Blog — " + tema: "Blog — Eficiência Energética", "Blog — Subestações", "Blog — Qualidade de Energia".
+"Blog — " + tema: "Blog — Eficiência Energética", "Blog — Subestações", "Blog — Qualidade de Energia", "Blog — Carregadores Veiculares" (Artigo 4, pré-marcação "Carregador veicular").
 
 ### Chamadas finais dos artigos
 Seguir o padrão do Bloco W2 (igual ao resto do site): o WhatsApp é BOTÃO verde (.btn-whatsapp), não link de texto.
