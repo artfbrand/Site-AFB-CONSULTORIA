@@ -90,6 +90,21 @@
     .cv-grid-fx .h { left: 0; width: 200px; height: 1px; background: linear-gradient(90deg, transparent, rgba(61,127,97,.6), rgba(20,184,166,.7), transparent); }
     .cv-grid-fx .v { top: 0; width: 1px; height: 200px; background: linear-gradient(180deg, transparent, rgba(61,127,97,.55), rgba(246,144,102,.55), transparent); }
 
+    /* novo topo: texto | imagem; faixa de 3 atalhos embaixo. Sem animação de entrada. */
+    .cv-topo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: center; }
+    .svc-page .cv-topo .svc-breadcrumb { max-width: none; margin: 0 0 1.6rem; padding: 0; }
+    .cv-topo-kicker { margin-top: .2rem; }
+    .svc-page .cv-page .cv-topo-h1 { max-width: 18ch; }
+    .cv-topo-cta { margin-top: 2rem; }
+    .cv-topo-media { margin: 0; }
+    .cv-topo-media img { display: block; width: 100%; height: auto; max-height: 280px; object-fit: contain; }
+    .cv-topo-faixa { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+    .cv-topo-faixa a { display: flex; align-items: center; gap: .9rem; height: 100%; padding: .9rem 1.15rem; border-radius: var(--r-card); background: var(--bg-alt); border: 1px solid rgba(61,127,97,.14); font-size: 1rem; font-weight: 600; line-height: 1.35; color: var(--forest); transition: transform .38s var(--ease-out), box-shadow .38s, border-color .38s; }
+    .cv-topo-faixa a:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(13,60,31,.09); border-color: rgba(61,127,97,.26); }
+    .cv-topo-ico { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: var(--white); border: 1px solid rgba(61,127,97,.16); color: var(--accent); }
+    .cv-topo-ico svg { width: 22px; height: 22px; }
+    .cv-page h2[id] { scroll-margin-top: 100px; }
+
     /* topo */
     .svc-page .cv-hero { gap: 3rem; }
     .cv-kicker { display: flex; width: fit-content; max-width: 100%; align-items: center; gap: .6rem; padding: .42rem .95rem; border-radius: var(--r-pill); background: rgba(61,127,97,.08); border: 1px solid rgba(61,127,97,.22); }
@@ -178,6 +193,7 @@
     .cv-esconde.cv-rv-b:not(.cv-in) { transform: translateX(28px); }
 
     @media (min-width: 640px) {
+      .cv-topo-faixa { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cv-parc-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cv-req { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -187,7 +203,12 @@
       .cv-gal-destaque .cv-gal-item { display: flex; flex-direction: column; height: 100%; }
       .cv-gal-destaque img { flex: 1 1 0; min-height: 0; height: 0; aspect-ratio: auto; object-position: 62% 50%; }
     }
+    @media (min-width: 769px) { .cv-topo-media img { max-height: 420px; } }
     @media (min-width: 1025px) {
+      .cv-topo { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 2.5rem 4rem; }
+      .cv-topo-faixa { grid-column: 1 / -1; }
+      .cv-topo-media img { max-height: 540px; }
+      .cv-page h2[id] { scroll-margin-top: 150px; }
       .svc-page .cv-hero { gap: 4rem; }
       .cv-track { padding: 3.2rem 3rem; }
       .cv-line { left: 50%; margin-left: -1px; }
@@ -493,18 +514,33 @@
   <main>
     <div class="cv-grid-fx" aria-hidden="true"><span class="h" style="top:180px;animation-delay:.4s"></span><span class="h" style="top:420px;animation-delay:3.2s;animation-duration:9s"></span><span class="h" style="top:600px;animation-delay:5.6s"></span><span class="v" style="left:300px;animation-delay:1.4s"></span><span class="v" style="left:900px;animation-delay:4.2s;animation-duration:10s"></span><span class="v" style="left:1260px;animation-delay:2.4s"></span></div>
     <div class="svc-detail cv-page">
-      <div class="svc-top cv-hero">
-        <div class="svc-top-text">
+      <div class="cv-topo">
+        <div class="cv-topo-texto">
           <nav class="svc-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Início</a></li><li><a href="/servicos">Serviços</a></li><li aria-current="page">Carregadores Veiculares</li></ol></nav>
           <a class="svc-back" href="/servicos">← Serviços</a>
+          <p class="svc-detail-kicker cv-topo-kicker">Conforme a IT 30 do Corpo de Bombeiros de MG</p>
+          <h1 class="svc-detail-h1 cv-topo-h1">Instalação de Carregadores para Veículos Elétricos</h1>
+          <p class="svc-detail-desc">Para condomínios e casas em BH e região: do laudo e memorial do SAVE ao projeto e à instalação dos carregadores, com ART.</p>
+          <div class="cv-topo-cta"><span class="cv-btn-wrap"><a class="svc-cta-btn btn-whatsapp" href="https://wa.me/5531975549075?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20AFB%20e%20gostaria%20de%20falar%20com%20um%20engenheiro." target="_blank" rel="noopener"><svg class="btn-whatsapp-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Solicitar orçamento</a></span></div>
+        </div>
+        <figure class="cv-topo-media"><img src="/assets/images/fotos/carregadores/hero-carregadores-690.webp" srcset="/assets/images/fotos/carregadores/hero-carregadores-640.webp 640w, /assets/images/fotos/carregadores/hero-carregadores-690.webp 690w" sizes="(min-width: 1025px) 493px, (min-width: 769px) 420px, 265px" alt="Carregadores para veículos elétricos de parede e de coluna" width="690" height="729" fetchpriority="high" decoding="async" /></figure>
+        <ul class="cv-topo-faixa">
+          <li><a href="#cv-it30-titulo"><span class="cv-topo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></svg></span>Condomínios</a></li>
+          <li><a href="#cv-casa-titulo"><span class="cv-topo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Casas</a></li>
+          <li><a href="#cv-how-titulo"><span class="cv-topo-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span>Laudo e memorial do SAVE</a></li>
+        </ul>
+      </div>
+
+      <div class="svc-top cv-hero svc-section">
+        <div class="svc-top-text">
           <div class="svc-detail-kicker cv-kicker"><span class="cv-kicker-dot" aria-hidden="true"></span>CARREGADORES VEICULARES · CONDOMÍNIOS</div>
-          <h1 class="svc-detail-h1">Carregador de veículos elétricos em condomínios, <em class="cv-h1-em">sem risco para o AVCB</em></h1>
+          <h2 class="svc-detail-h1">Carregador de veículos elétricos em condomínios, <em class="cv-h1-em">sem risco para o AVCB</em></h2>
           <p class="svc-detail-desc">A Instrução Técnica (IT 30) do Corpo de Bombeiros de MG exige que o condomínio com carregadores tenha o laudo com estudo de carga e o memorial do SAVE (Sistema de Alimentação de Veículos Elétricos) para obter ou regularizar o AVCB (Auto de Vistoria do Corpo de Bombeiros). Medimos o consumo do prédio por 7 dias, entregamos o laudo e o memorial e cuidamos do projeto, adequação da instalação e instalação dos carregadores, acompanhados de ART.</p>
           <p class="cv-hero-casa">Também instalamos carregadores em casas.</p>
           <div class="svc-open-cta cv-cta"><span class="cv-btn-wrap"><a class="svc-cta-btn btn-whatsapp" href="https://wa.me/5531975549075?text=Ol%C3%A1!%20Sou%20s%C3%ADndico(a)%2C%20vi%20o%20an%C3%BAncio%20no%20Google%20e%20quero%20agendar%20a%20visita%20t%C3%A9cnica%20gratuita%20para%20avaliar%20carregadores%20no%20condom%C3%ADnio." data-wa-msg="Olá! Sou síndico(a), vi o anúncio no Google e quero agendar a visita técnica gratuita para avaliar carregadores no condomínio." data-wa-perfil="Condomínio" target="_blank" rel="noopener"><svg class="btn-whatsapp-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Agendar visita técnica gratuita</a></span><p class="cv-cta-sub"><span class="cv-cta-sub-dot" aria-hidden="true"></span>Pelo WhatsApp, com um engenheiro. Atendemos BH e região.</p></div>
         </div>
         <figure class="svc-top-media">
-          <img src="/assets/images/fotos/carregadores/carregador-veicular-condominio-sinalizacao-it30.webp" srcset="/assets/images/fotos/carregadores/carregador-veicular-condominio-sinalizacao-it30-600.webp 569w, /assets/images/fotos/carregadores/carregador-veicular-condominio-sinalizacao-it30.webp 762w" sizes="(min-width: 1025px) 493px, 100vw" alt="Carregador veicular instalado em condomínio com quadro de proteção exclusivo, placa S.A.V.E. e botão de desligamento de emergência" width="762" height="803" loading="eager" fetchpriority="high" decoding="async" />
+          <img src="/assets/images/fotos/carregadores/carregador-veicular-condominio-sinalizacao-it30.webp" srcset="/assets/images/fotos/carregadores/carregador-veicular-condominio-sinalizacao-it30-600.webp 569w, /assets/images/fotos/carregadores/carregador-veicular-condominio-sinalizacao-it30.webp 762w" sizes="(min-width: 1025px) 493px, 100vw" alt="Carregador veicular instalado em condomínio com quadro de proteção exclusivo, placa S.A.V.E. e botão de desligamento de emergência" width="762" height="803" loading="lazy" decoding="async" />
         </figure>
       </div>
 
@@ -680,12 +716,6 @@
   <script src="/assets/js/base.js" defer></script>
 
 
-  <script>
-    /* Entrada escalonada do topo (classes ds-intro-*): antes do primeiro desenho. O resto do servico.js vem com defer. */
-    [['.svc-breadcrumb',1],['.svc-back',2],['.svc-detail-kicker',3],['.svc-highlight',6],['.svc-open-cta',6],['.svc-top-media',7]].forEach(function (p) {
-      var el = document.querySelector(p[0]); if (el) el.classList.add('ds-intro-' + p[1]);
-    });
-  </script>
   <script>
     /* Carregadores veiculares: aparecer ao rolar e linha do "Como funciona" que carrega com a rolagem.
        Roda antes do primeiro desenho: só esconde o que está abaixo da tela. Sem JS ou com movimento reduzido, nada muda. */
