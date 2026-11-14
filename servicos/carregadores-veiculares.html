@@ -154,15 +154,7 @@
     .cv-gal-destaque img { aspect-ratio: 4 / 5; }
     .cv-gal-item figcaption { margin-top: .6rem; font-size: .92rem; line-height: 1.45; color: var(--sage); }
 
-    /* Engenharia responsável e Também atendemos */
-    .cv-also-list { list-style: none; margin-top: 1.6rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    .cv-also-item { display: flex; align-items: center; gap: .9rem; padding: 1.1rem 1.25rem; border-radius: 16px; background: var(--bg-alt); border: 1px solid rgba(61,127,97,.14); font-size: 1rem; font-weight: 600; color: var(--forest); transition: transform .38s var(--ease-out), box-shadow .38s, border-color .38s; }
-    .cv-also-item:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(13,60,31,.09); border-color: rgba(61,127,97,.26); }
-    .cv-also-icon { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: var(--white); border: 1px solid rgba(61,127,97,.16); color: var(--accent); }
-    .cv-also-icon svg { width: 22px; height: 22px; }
-    .cv-also-text { margin-top: 1.3rem; max-width: 70ch; font-size: 1rem; line-height: 1.7; color: var(--sage); }
-
-    /* Parceiros e fornecedores: marcas em verde-escuro, nos mesmos cartões de "Também atendemos" */
+    /* Parceiros e fornecedores: marcas em verde-escuro, em cartões claros */
     .cv-parc-list { list-style: none; margin-top: 1.6rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
     .cv-parc-item { display: grid; place-items: center; min-height: 96px; padding: 1.1rem 1.25rem; border-radius: var(--r-card); background: var(--bg-alt); border: 1px solid rgba(61,127,97,.14); transition: transform .38s var(--ease-out), box-shadow .38s, border-color .38s; }
     .cv-parc-item:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(13,60,31,.09); border-color: rgba(61,127,97,.26); }
@@ -188,7 +180,6 @@
     @media (min-width: 640px) {
       .cv-parc-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cv-req { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .cv-also-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (min-width: 768px) {
       .cv-gal { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
@@ -582,16 +573,6 @@
           <details class="svc-faq-item"><summary>Minha casa aguenta um carregador?</summary><p>Depende da carga disponível no padrão de entrada e no quadro. Verificamos isso antes de instalar e, se for preciso, cuidamos do aumento de carga junto à Cemig.</p></details>
         </div></section>
 
-      <section class="svc-section cv-also" aria-labelledby="cv-also-titulo">
-        <h2 class="svc-h2" id="cv-also-titulo">Também atendemos</h2>
-        <ul class="cv-also-list">
-          <li class="cv-also-item cv-rv cv-rv-s"><span class="cv-also-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>Empresas e frotas</li>
-          <li class="cv-also-item cv-rv cv-rv-s"><span class="cv-also-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Residências</li>
-          <li class="cv-also-item cv-rv cv-rv-s"><span class="cv-also-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>Propriedades rurais</li>
-        </ul>
-        <p class="cv-also-text cv-rv">Projeto, verificação da carga disponível, adequação da instalação, fornecimento e instalação do carregador, com ART.</p>
-      </section>
-
       <section class="svc-section cv-parc" aria-labelledby="cv-parc-titulo">
         <h2 class="svc-h2" id="cv-parc-titulo">Parceiros e Fornecedores</h2>
         <ul class="cv-parc-list">
@@ -727,7 +708,7 @@
         if (el.getBoundingClientRect().top < limite) return;
         var pai = el.parentElement, n = irmaos.get(pai) || 0;
         irmaos.set(pai, n + 1);
-        if (el.matches('.cv-req-card, .cv-also-item, .cv-gal > li, .cv-parc-item')) el.style.transitionDelay = (n * 0.09) + 's';
+        if (el.matches('.cv-req-card, .cv-gal > li, .cv-parc-item')) el.style.transitionDelay = (n * 0.09) + 's';
         el.classList.add('cv-esconde');
         obs.observe(el);
       });
