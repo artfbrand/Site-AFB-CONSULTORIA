@@ -164,6 +164,13 @@
     .cv-also-icon svg { width: 22px; height: 22px; }
     .cv-also-text { margin-top: 1.3rem; max-width: 70ch; font-size: 1rem; line-height: 1.7; color: var(--sage); }
 
+    /* Parceiros e fornecedores: marcas em verde-escuro, nos mesmos cartões de "Também atendemos" */
+    .cv-parc-list { list-style: none; margin-top: 1.6rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .cv-parc-item { display: grid; place-items: center; min-height: 96px; padding: 1.1rem 1.25rem; border-radius: var(--r-card); background: var(--bg-alt); border: 1px solid rgba(61,127,97,.14); transition: transform .38s var(--ease-out), box-shadow .38s, border-color .38s; }
+    .cv-parc-item:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(13,60,31,.09); border-color: rgba(61,127,97,.26); }
+    .cv-parc-item img { display: block; width: auto; height: auto; max-width: min(100%, 150px); max-height: 40px; }
+    .cv-parc-alto img { max-height: 52px; }
+
     /* chamada final */
     .cv-final-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(40px); }
     .cv-final-orb-a { width: 360px; height: 360px; top: -40%; left: -8%; background: radial-gradient(circle, rgba(61,127,97,.38), transparent 70%); }
@@ -181,6 +188,7 @@
     .cv-esconde.cv-rv-b:not(.cv-in) { transform: translateX(28px); }
 
     @media (min-width: 640px) {
+      .cv-parc-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .cv-req { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .cv-also-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
@@ -200,7 +208,7 @@
       .cv-esconde.cv-rv-a:not(.cv-in) { transform: translateX(-36px); }
       .cv-esconde.cv-rv-b:not(.cv-in) { transform: translateX(36px); }
     }
-    @media (min-width: 1100px) { .cv-req { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    @media (min-width: 1100px) { .cv-req { grid-template-columns: repeat(4, minmax(0, 1fr)); } .cv-parc-list { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
     @media (max-width: 600px) {
       .cv-btn-wrap { display: flex; width: 100%; }
       .cv-page .cv-btn-wrap > a { width: 100%; justify-content: center; text-align: center; padding: 1rem 1.25rem; }
@@ -599,6 +607,18 @@
         <p class="cv-also-text cv-rv">Projeto, verificação da carga disponível, adequação da instalação, fornecimento e instalação do carregador, com ART.</p>
       </section>
 
+      <section class="svc-section cv-parc" aria-labelledby="cv-parc-titulo">
+        <h2 class="svc-h2" id="cv-parc-titulo">Parceiros e Fornecedores</h2>
+        <ul class="cv-parc-list">
+          <li class="cv-parc-item cv-parc-alto cv-rv cv-rv-s"><img src="/assets/images/marcas/weg.webp" alt="WEG" width="106" height="75" loading="lazy" decoding="async" /></li>
+          <li class="cv-parc-item cv-rv cv-rv-s"><img src="/assets/images/marcas/byd.webp" alt="BYD" width="180" height="40" loading="lazy" decoding="async" /></li>
+          <li class="cv-parc-item cv-rv cv-rv-s"><img src="/assets/images/marcas/clamper.webp" alt="Clamper" width="190" height="50" loading="lazy" decoding="async" /></li>
+          <li class="cv-parc-item cv-rv cv-rv-s"><img src="/assets/images/marcas/intelbras.webp" alt="Intelbras" width="160" height="36" loading="lazy" decoding="async" /></li>
+          <li class="cv-parc-item cv-rv cv-rv-s"><img src="/assets/images/marcas/universo-eletrico.webp" alt="Universo Elétrico" width="172" height="54" loading="lazy" decoding="async" /></li>
+          <li class="cv-parc-item cv-parc-alto cv-rv cv-rv-s"><img src="/assets/images/marcas/neocharge.webp" alt="NeoCharge" width="172" height="77" loading="lazy" decoding="async" /></li>
+        </ul>
+      </section>
+
       <section class="svc-final cv-final"><span class="cv-final-orb cv-final-orb-a" aria-hidden="true"></span><span class="cv-final-orb cv-final-orb-b" aria-hidden="true"></span><span class="ds-scan" aria-hidden="true"></span><span class="cv-final-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h2 class="svc-final-h2">Vai instalar carregador no condomínio ou em casa?</h2><p class="svc-final-text">Comece pela visita técnica gratuita. Avaliamos a sua necessidade, emitimos o memorial do SAVE exigido pelo Corpo de Bombeiros, fazemos o projeto e executamos as adequações para a instalação ficar correta e segura.</p><span class="cv-btn-wrap"><a class="svc-final-btn btn-whatsapp" href="https://wa.me/5531975549075?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20AFB%20e%20gostaria%20de%20falar%20com%20um%20engenheiro." target="_blank" rel="noopener"><svg class="btn-whatsapp-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Agendar visita técnica gratuita</a></span></section>
       <section class="blog-temas" aria-labelledby="blog-temas-titulo"><p class="blog-temas-titulo" id="blog-temas-titulo">Artigos sobre este tema</p><ul class="blog-cards"><li class="blog-card"><p class="blog-card-tema">Carregadores Veiculares</p><h3 class="blog-card-titulo"><a href="/blog/it-30-carregador-veicular-condominio">Carregador de carro elétrico no condomínio: o que a IT 30 dos Bombeiros exige do síndico</a></h3></li></ul></section>
 
@@ -722,7 +742,7 @@
         if (el.getBoundingClientRect().top < limite) return;
         var pai = el.parentElement, n = irmaos.get(pai) || 0;
         irmaos.set(pai, n + 1);
-        if (el.matches('.cv-req-card, .cv-also-item, .cv-gal > li')) el.style.transitionDelay = (n * 0.09) + 's';
+        if (el.matches('.cv-req-card, .cv-also-item, .cv-gal > li, .cv-parc-item')) el.style.transitionDelay = (n * 0.09) + 's';
         el.classList.add('cv-esconde');
         obs.observe(el);
       });
