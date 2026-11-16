@@ -122,6 +122,36 @@
 
     .cv-afb::after { content: ""; position: absolute; top: 0; left: -60%; width: 42%; height: 100%; z-index: 3; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); opacity: 0; }
 
+    @keyframes cvDesenha { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } }
+    @keyframes cvSurge { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes cvVarre { 0% { left: .6rem; opacity: 0 } 6% { opacity: 1 } 94% { opacity: 1 } 100% { left: calc(100% - .6rem); opacity: 0 } }
+    /* gráfico "Medição por 7 dias" (ilustração) na seção da IT 30 */
+    .cv-visual { position: relative; }
+    .cv-visual::before { content: ""; position: absolute; inset: 6% 4%; border-radius: 30px; background: radial-gradient(circle at 70% 30%, rgba(61,127,97,.35), transparent 65%), radial-gradient(circle at 20% 90%, rgba(246,144,102,.22), transparent 60%); filter: blur(40px); z-index: -1; }
+    .cv-meter { position: relative; overflow: hidden; isolation: isolate; border-radius: 24px; padding: 1.5rem 1.5rem 1.4rem; background: #0D3C1F; border: 1px solid rgba(255,255,255,.07); box-shadow: 0 30px 80px rgba(13,60,31,.3), 0 0 0 1px rgba(61,127,97,.1); color: #FAF9F6; }
+    .cv-meter::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 32px 32px; }
+    .cv-meter::after { content: ""; position: absolute; top: 0; left: -60%; width: 42%; height: 100%; z-index: 3; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); opacity: 0; }
+    .cv-meter-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(28px); }
+    .cv-meter-orb-a { width: 280px; height: 280px; top: -32%; right: -18%; background: radial-gradient(circle, rgba(61,127,97,.5), transparent 70%); }
+    .cv-meter-orb-b { width: 210px; height: 210px; bottom: -28%; left: -12%; background: radial-gradient(circle, rgba(246,144,102,.22), transparent 65%); }
+    .cv-meter-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; }
+    .cv-live { display: inline-flex; align-items: center; gap: .55rem; padding: .4rem .85rem; border-radius: var(--r-pill); background: rgba(247,250,247,.08); border: 1px solid rgba(91,168,122,.42); font-size: .76rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: rgba(212,232,220,.95); }
+    .cv-live i { width: 8px; height: 8px; border-radius: 50%; background: #14b8a6; }
+    .cv-plug { width: 44px; height: 44px; flex-shrink: 0; border-radius: 14px; display: grid; place-items: center; background: rgba(246,144,102,.14); border: 1px solid rgba(246,144,102,.38); color: #F69066; }
+    .cv-plug svg { width: 22px; height: 22px; }
+    .cv-chart { position: relative; border-radius: 14px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.07); padding: .9rem .6rem .5rem; }
+    .cv-chart-svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .cv-chart-fds { fill: rgba(246,144,102,.07); }
+    .cv-chart-grid line { stroke: rgba(255,255,255,.08); stroke-width: 1; }
+    .cv-chart-grid line.hz { stroke-dasharray: 3 5; }
+    .cv-chart-area { fill: url(#cvArea); }
+    .cv-chart-line { fill: none; stroke: url(#cvLinha); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; filter: drop-shadow(0 0 5px rgba(91,168,122,.6)); }
+    .cv-chart-scan { position: absolute; top: .9rem; bottom: .5rem; left: .6rem; width: 2px; border-radius: 2px; background: linear-gradient(180deg, transparent, #14b8a6, transparent); box-shadow: 0 0 12px rgba(20,184,166,.9); opacity: 0; pointer-events: none; }
+    .cv-days { display: grid; grid-template-columns: repeat(7, 1fr); margin: .6rem .6rem 0; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-align: center; color: rgba(212,232,220,.55); }
+    .cv-days span:nth-child(n+6) { color: rgba(246,144,102,.9); }
+    .cv-it30-top { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.75rem; align-items: center; }
+    .cv-it30-top .cv-visual { width: 100%; max-width: 520px; }
+
     /* IT 30 */
     .cv-lead { margin-top: 1.1rem; max-width: 70ch; font-size: 1.04rem; line-height: 1.75; color: var(--sage); }
     .cv-req { list-style: none; margin-top: 2rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
@@ -206,6 +236,13 @@
     }
     @media (min-width: 769px) { .cv-topo-media img { max-height: 420px; } }
     @media (min-width: 1025px) {
+      /* título e texto à esquerda, gráfico à direita ao lado dos dois; cartões e faixa verde na largura toda */
+      .cv-it30 { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); column-gap: 3.5rem; }
+      .cv-it30 > .svc-h2 { grid-column: 1; grid-row: 1; align-self: end; }
+      .cv-it30-top { display: contents; }
+      .cv-it30-top .cv-lead { grid-column: 1; grid-row: 2; align-self: start; }
+      .cv-it30-top .cv-visual { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: end; }
+      .cv-it30 > .cv-req, .cv-it30 > .cv-afb { grid-column: 1 / -1; }
       .cv-topo { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 2.5rem 4rem; }
       .cv-topo-faixa { grid-column: 1 / -1; }
       .cv-topo-media img { max-height: 540px; }
@@ -226,6 +263,7 @@
       .cv-btn-wrap { display: flex; width: 100%; }
       .cv-page .cv-btn-wrap > a { width: 100%; justify-content: center; text-align: center; padding: 1rem 1.25rem; }
       .cv-afb { align-items: flex-start; padding: 1.3rem 1.25rem; }
+      .cv-meter { padding: 1.15rem 1rem 1.1rem; }
       .cv-track { padding: 1.5rem 1rem; }
       .cv-step { grid-template-columns: 48px minmax(0, 1fr); gap: .85rem; }
       .cv-step-node { width: 48px; height: 48px; font-size: 1.1rem; }
@@ -236,7 +274,15 @@
     @media (prefers-reduced-motion: no-preference) {
       .cv-grid-fx .h { animation: cvRunH 7s linear infinite; }
       .cv-grid-fx .v { animation: cvRunV 8s linear infinite; }
-      .cv-kicker-dot { animation: cvPulso 1.8s ease-out infinite; }
+      .cv-kicker-dot, .cv-live i { animation: cvPulso 1.8s ease-out infinite; }
+      .cv-meter { animation: dsFloat 6.5s ease-in-out 3.5s infinite; }
+      .cv-meter::after { animation: cvBrilho 6s ease-in-out 3s infinite; }
+      .cv-meter-orb-a { animation: cvOrbe 9s ease-in-out infinite; }
+      .cv-meter-orb-b { animation: cvOrbe 11s ease-in-out infinite reverse; }
+      /* a linha se desenha quando o gráfico entra na tela (classe cv-visto, posta pelo script da página) */
+      .cv-visto .cv-chart-line { animation: cvDesenha 2.4s .5s cubic-bezier(.45,0,.25,1) both; }
+      .cv-visto .cv-chart-area { animation: cvSurge 1.2s 1.7s ease-out both; }
+      .cv-visto .cv-chart-scan { animation: cvVarre 2.4s .5s cubic-bezier(.45,0,.25,1) both; }
       .cv-h1-em { animation: cvSublinha 1.1s .5s var(--ease-out) both; }
       .cv-btn-wrap::before { animation: cvOnda 2.8s var(--ease-out) 1.4s infinite; }
       .cv-btn-wrap::after { animation: cvOnda 2.8s var(--ease-out) 1.85s infinite; }
@@ -548,7 +594,32 @@
 
       <section class="svc-section cv-it30" id="it30" aria-labelledby="cv-it30-titulo">
         <h2 class="svc-h2" id="cv-it30-titulo">O que a IT 30 pede ao condomínio</h2>
+        <div class="cv-it30-top">
         <p class="cv-lead cv-rv">A Instrução Técnica nº 30 do Corpo de Bombeiros de MG trata a recarga de veículos elétricos em prédios como um sistema único, o SAVE. Antes de instalar carregadores, o condomínio precisa de:</p>
+          <div class="cv-visual cv-rv" aria-hidden="true">
+            <div class="cv-meter">
+              <span class="cv-meter-orb cv-meter-orb-a"></span><span class="cv-meter-orb cv-meter-orb-b"></span>
+              <div class="cv-meter-head">
+                <span class="cv-live"><i></i>Medição por 7 dias</span>
+                <span class="cv-plug"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+              </div>
+              <div class="cv-chart">
+                <svg class="cv-chart-svg" viewBox="0 0 420 150" focusable="false">
+                  <defs>
+                    <linearGradient id="cvArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5BA87A" stop-opacity=".42"/><stop offset="1" stop-color="#5BA87A" stop-opacity="0"/></linearGradient>
+                    <linearGradient id="cvLinha" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#14b8a6"/><stop offset=".62" stop-color="#5BA87A"/><stop offset="1" stop-color="#F69066"/></linearGradient>
+                  </defs>
+                  <rect class="cv-chart-fds" x="300" y="0" width="120" height="150"/>
+                  <g class="cv-chart-grid"><line class="hz" x1="0" y1="40" x2="420" y2="40"/><line class="hz" x1="0" y1="80" x2="420" y2="80"/><line class="hz" x1="0" y1="120" x2="420" y2="120"/><line x1="60" y1="0" x2="60" y2="150"/><line x1="120" y1="0" x2="120" y2="150"/><line x1="180" y1="0" x2="180" y2="150"/><line x1="240" y1="0" x2="240" y2="150"/><line x1="300" y1="0" x2="300" y2="150"/><line x1="360" y1="0" x2="360" y2="150"/></g>
+                  <path class="cv-chart-area" d="M0 120 L4 121 L8 118 L12 118 L16 100 L20 96 L24 108 L28 118 L32 122 L36 118 L40 118 L44 81 L48 48 L52 82 L56 115 L60 122 L64 118 L68 122 L72 114 L76 103 L80 94 L84 108 L88 120 L92 118 L96 123 L100 114 L104 87 L108 50 L112 85 L116 118 L120 118 L124 123 L128 118 L132 117 L136 102 L140 94 L144 110 L148 116 L152 123 L156 118 L160 117 L164 82 L168 42 L172 84 L176 113 L180 123 L184 119 L188 121 L192 116 L196 101 L200 96 L204 106 L208 121 L212 119 L216 121 L220 116 L224 83 L228 50 L232 82 L236 118 L240 119 L244 121 L248 120 L252 115 L256 104 L260 92 L264 111 L268 117 L272 121 L276 121 L280 114 L284 82 L288 38 L292 82 L296 114 L300 121 L304 121 L308 118 L312 117 L316 94 L320 87 L324 99 L328 109 L332 109 L336 108 L340 112 L344 83 L348 58 L352 87 L356 117 L360 121 L364 119 L368 122 L372 112 L376 98 L380 84 L384 100 L388 110 L392 106 L396 112 L400 108 L404 90 L408 59 L412 90 L416 118 L420 118 L420 150 L0 150 Z"/>
+                  <path class="cv-chart-line" d="M0 120 L4 121 L8 118 L12 118 L16 100 L20 96 L24 108 L28 118 L32 122 L36 118 L40 118 L44 81 L48 48 L52 82 L56 115 L60 122 L64 118 L68 122 L72 114 L76 103 L80 94 L84 108 L88 120 L92 118 L96 123 L100 114 L104 87 L108 50 L112 85 L116 118 L120 118 L124 123 L128 118 L132 117 L136 102 L140 94 L144 110 L148 116 L152 123 L156 118 L160 117 L164 82 L168 42 L172 84 L176 113 L180 123 L184 119 L188 121 L192 116 L196 101 L200 96 L204 106 L208 121 L212 119 L216 121 L220 116 L224 83 L228 50 L232 82 L236 118 L240 119 L244 121 L248 120 L252 115 L256 104 L260 92 L264 111 L268 117 L272 121 L276 121 L280 114 L284 82 L288 38 L292 82 L296 114 L300 121 L304 121 L308 118 L312 117 L316 94 L320 87 L324 99 L328 109 L332 109 L336 108 L340 112 L344 83 L348 58 L352 87 L356 117 L360 121 L364 119 L368 122 L372 112 L376 98 L380 84 L384 100 L388 110 L392 106 L396 112 L400 108 L404 90 L408 59 L412 90 L416 118 L420 118" pathLength="1"/>
+                </svg>
+                <span class="cv-chart-scan"></span>
+              </div>
+              <div class="cv-days"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div>
+            </div>
+          </div>
+        </div>
         <ol class="cv-req">
           <li class="cv-req-card cv-rv cv-rv-s"><div class="cv-req-top" aria-hidden="true"><span class="cv-req-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><span class="cv-req-num">01</span></div><p>Projeto elétrico único para toda a edificação, com estudo de carga global</p></li>
           <li class="cv-req-card cv-rv cv-rv-s"><div class="cv-req-top" aria-hidden="true"><span class="cv-req-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span><span class="cv-req-num">02</span></div><p>Memorial do SAVE, com a avaliação do prédio e a quantidade máxima de carregadores que a instalação suporta</p></li>
@@ -730,7 +801,7 @@
           if (!it.isIntersecting) return;
           var el = it.target;
           obs.unobserve(el);
-          el.classList.add('cv-in');
+          el.classList.add('cv-in', 'cv-visto');
           /* depois da entrada, devolve as transições normais (hover) */
           setTimeout(function () { el.classList.remove('cv-esconde', 'cv-in'); el.style.transitionDelay = ''; }, 1300 + (parseFloat(el.style.transitionDelay) || 0) * 1000);
         });
