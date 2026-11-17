@@ -349,14 +349,14 @@
     }
   }
 
-  // Visita do anúncio do Google: WhatsApp direto, com a mensagem do botão, a página e o código [G].
+  // Visita do anúncio do Google: WhatsApp direto, com a mensagem do botão e o código [G] na última linha.
   // O lead_whatsapp (conversão do Google Ads) dispara no clique. A planilha não recebe esse contato: o telefone chega na conversa.
   function direto(a, origemLead) {
     var perfil = a.getAttribute('data-wa-perfil') || '';
     var base = a.getAttribute('data-wa-msg') || '';
     if (!base) { try { base = new URL(a.href, location.href).searchParams.get('text') || ''; } catch (x) {} }
     if (!base) base = 'Olá! Vim pelo site da AFB e gostaria de falar com um engenheiro.';
-    var url = 'https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(base + '\n• Página: ' + nomePagina + '\n' + codigoAds(origemLead).trim());
+    var url = 'https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(base + '\n' + codigoAds(origemLead).trim());
     evento('clique_whatsapp', { link_url: url, pagina: location.pathname, direto: 'google_ads' });
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
