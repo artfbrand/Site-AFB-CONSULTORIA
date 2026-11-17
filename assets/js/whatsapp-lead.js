@@ -1,5 +1,6 @@
 /* Janela "Conte um pouco sobre a sua energia": todo link de WhatsApp do site abre este formulário antes da conversa.
-   Exceção: links com o atributo data-wa-direto (vão direto ao WhatsApp).
+   Exceções (vão direto ao WhatsApp, sem a janela): links com o atributo data-wa-direto e visitas que vieram
+   de anúncio do Google (afb_ads), para tirar atrito de quem chega pelo celular; nesse caso a conversão dispara no clique.
    Ao enviar, o WhatsApp abre na hora com a mensagem montada e os dados seguem em paralelo para /api/lead-whatsapp. */
 (function () {
   'use strict';
@@ -348,6 +349,34 @@
     }
   }
 
+  // Visita do anúncio do Google: WhatsApp direto, com a mensagem do botão, a página e o código [G].
+  // O lead_whatsapp (conversão do Google Ads) dispara no clique. A planilha não recebe esse contato: o telefone chega na conversa.
+  function direto(a, origemLead) {
+    var perfil = a.getAttribute('data-wa-perfil') || '';
+    var base = a.getAttribute('data-wa-msg') || '';
+    if (!base) { try { base = new URL(a.href, location.href).searchParams.get('text') || ''; } catch (x) {} }
+    if (!base) base = 'Olá! Vim pelo site da AFB e gostaria de falar com um engenheiro.';
+    var url = 'https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(base + '\n• Página: ' + nomePagina + '\n' + codigoAds(origemLead).trim());
+    evento('clique_whatsapp', { link_url: url, pagina: location.pathname, direto: 'google_ads' });
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lead_whatsapp',
+      lead_tipo: TIPOS[perfil] || '',
+      lead_cidade: '',
+      lead_servico: interessePadrao(),
+      lead_origem: 'google_ads',
+      lead_grupo: origemLead.grp,
+      page_path: location.pathname
+    });
+    if (celular()) {
+      // 300 ms para a tag disparar antes de sair da página
+      setTimeout(function () { location.href = url; }, 300);
+    } else {
+      var janela = window.open(url, '_blank');
+      if (janela) { try { janela.opener = null; } catch (x) {} } else { location.href = url; }
+    }
+  }
+
   // Captura no window: roda antes do contador clique_whatsapp do <head>, que agora dispara só no envio
   function interceptar(e) {
     if (e.type === 'auxclick' && e.button !== 1) return;
@@ -355,6 +384,8 @@
     if (!a || !ehLinkWhatsapp(a) || (raiz && raiz.contains(a))) return;
     e.preventDefault();
     e.stopPropagation();
+    var origemLead = origemAds();
+    if (origemLead.ads) { direto(a, origemLead); return; }
     abrir(a);
   }
   window.addEventListener('click', interceptar, true);
